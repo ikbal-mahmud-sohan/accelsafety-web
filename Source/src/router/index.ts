@@ -113,6 +113,7 @@ const router = createRouter({
           name: "crud-form",
           component: () => import("../pages/CrudForm.vue"),
         },
+        // accSafety
         {
           path: "accident-data-list",
           name: "accident-data-list",
@@ -123,6 +124,28 @@ const router = createRouter({
           name: "accident-form",
           component: () => import("../pages/AccidentForm.vue"),
         },
+        {
+          path: "accident/:id/update",
+          name: "accident-update-form",
+          component: () => import("../pages/AccidentUpdateForm.vue"),
+        },
+        // Safety Observation
+        {
+          path: "safety-observations",
+          name: "safety-observation-data-list",
+          component: () => import("../pages/SafetyObservationtDataList.vue"),
+        },
+        {
+          path: "safety-observation-create",
+          name: "safety-observation-form",
+          component: () => import("../pages/SafetyObservationForm.vue"),
+        },
+        {
+          path: "safety-observatio/:id/update",
+          name: "safety-observatio-update-form",
+          component: () => import("../pages/SafetyObservatioUpdateForm.vue"),
+        },
+        // accSafety
         {
           path: "users-layout-1",
           name: "users-layout-1",

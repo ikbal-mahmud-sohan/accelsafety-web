@@ -9,38 +9,30 @@ import Lucide from '@/components/Base/Lucide';
 import Tippy from '@/components/Base/Tippy';
 import { Dialog, Menu } from '@/components/Base/Headless';
 import Table from '@/components/Base/Table';
-
-// Define your state using the reactive function
 const state = reactive({
   accidentReports: [] as Array<any>,
 });
-
-// Fetch data from the API and update the state
 const fetchData = async () => {
   try {
-    const response = await axios.get('http://accelsafety.test/api/v1/accident');
+    const response = await axios.get('http://accelsafety.test/api/v1/safety');
     state.accidentReports = response.data.data;
   } catch (error) {
     console.error('Error fetching data:', error);
   }
 };
 
-// Call fetchData when the component is mounted
 onMounted(() => {
   fetchData();
 });
 </script>
 
 <template>
-  <h2 class="mt-10 text-lg font-medium intro-y">Accident List</h2>
+  <h2 class="mt-10 text-lg font-medium intro-y">Safety Observationt List</h2>
   <div class="grid grid-cols-12 gap-6 mt-5">
     <div class="flex flex-wrap items-center col-span-12 mt-2 intro-y sm:flex-nowrap">
-      <!-- <Button variant="primary" class="mr-2 shadow-md">
-        Add New Accident
-      </Button> -->
-      <router-link :to="{ name: 'accident-form' }">
+      <router-link :to="{ name: 'safety-observation-form' }">
         <Button variant="primary" class="mr-2 shadow-md">
-          Add New Accident
+          Add New Safety Observationt
         </Button>
       </router-link>
       <Menu>
@@ -83,121 +75,88 @@ onMounted(() => {
       <Table class="border-spacing-y-[10px] border-separate -mt-2">
         <Table.Thead>
           <Table.Tr>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase"> ID </Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase"> MONTH </Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase"> date </Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">NAME</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase"> DESIGNATIONS</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">SUPERVISOR</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">department</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">type of accident</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">description</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">zone location</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">precise location</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">injury type</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">affected body parts</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">property damaged</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">root cause</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">action</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">days lost</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">remarks</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">type of victim employee</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">responsible name</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">deadline</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">verified image</Table.Th>
-            <Table.Th class="text-center border-b-0 whitespace-nowrap uppercase">STATUS</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">ID</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Auditor</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Plant_name</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Location</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Audit Date</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Category</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Problem Description</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Problematic Progressive Images</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Root Cause</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Resp Department</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Owner Department</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Improvement Actions</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Due Date</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Status</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Priority Type</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Remarks</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Corrective Image</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Importance Level</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Work Accomplished By</Table.Th>
             <Table.Th class="text-center border-b-0 whitespace-nowrap uppercase">ACTIONS</Table.Th>
           </Table.Tr>
         </Table.Thead>
         <Table.Tbody>
-          <Table.Tr v-for="(report, index) in state.accidentReports" :key="index" class="intro-x">
+          <Table.Tr  v-for="(report, index) in state.accidentReports" :key="index" class="intro-x">
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
               {{ report.id }}
             </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.month }}
+              {{ report.auditor }}
             </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.date }}
+              {{ report.plant_name }}
             </Table.Td>
             <Table.Td class="box text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.name }}
+              {{ report.location }}
             </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.designation }}
+              {{ report.audit_date }}
             </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.supervisor }}
-            </Table.Td>
-            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.department }}
-            </Table.Td>
-            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.type_of_accident }}
+              {{ report.category }}
             </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
               <div class="relative group">
-                <div class="lg:truncate w-32" v-html="report.description"></div>
-                <div class="top-0 left-0 absolute w-72 bg-white shadow-xl rounded-md z-50 px-4 py-4 hidden group-hover:block" v-html="report.description"></div>
+                <div class="lg:truncate w-32" v-html="report.problem_description"></div>
+                <div class="top-0 left-0 absolute w-72 bg-white shadow-xl rounded-md z-50 px-4 py-4 hidden group-hover:block" v-html="report.problem_description"></div>
               </div>
             </Table.Td>
-            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.zone_location }}
-            </Table.Td>
-            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.precise_location }}
-            </Table.Td>
-            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.injury_type }}
-            </Table.Td>
-            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.affected_body_parts }}
-            </Table.Td>
+            <!-- <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.problematic_progressive_images }}
+            </Table.Td> -->
+            <!-- sohan  -->
             <Table.Td
-              class="box w-40 text-center rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600"
+              class="box w-40 rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600"
             >
-              <div
-                :class="[
-                  'flex items-center justify-center',
-                  { 'text-success':report.property_damaged },
-                  { 'text-danger': !report.property_damaged },
-                ]"
-              >
-                <Lucide icon="CheckSquare" class="w-4 h-4 mr-2" />
-                {{ report.property_damaged ? "YES" : "NO" }}
+              <div class="flex justify-center">
+                <div class="w-16 h-16 image-fit zoom-in" v-for="(img, index) in report.problematic_progressive_images" :key="index" >
+                  <Tippy
+                    as="img"
+                    alt="safety"
+                    class="rounded-full shadow-[0px_0px_0px_2px_#fff,_1px_1px_5px_rgba(0,0,0,0.32)] dark:shadow-[0px_0px_0px_2px_#3f4865,_1px_1px_5px_rgba(0,0,0,0.32)]"
+                    :src="`http://accelsafety.test/${img}`"
+                    :content="`safety`"
+                  />
+                </div>
               </div>
             </Table.Td>
+            <!-- sohan  -->
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
               {{ report.root_cause }}
             </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              
-              <div class="relative group">
-                <div class="lg:truncate w-32">
-                  {{ report.action }}
-                </div>
-                <div class="top-0 left-0 absolute w-72 bg-white shadow-xl rounded-md z-50 px-4 py-4 hidden group-hover:block">
-                  {{ report.action }}
-                </div>
-              </div>
+              {{ report.resp_department }}
             </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.days_lost }}
+              {{ report.owner_department }}
             </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.remarks }}
+              {{ report.improvement_actions }}
             </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.type_of_victim_employee }}
-            </Table.Td>
-            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.responsible_name }}
-            </Table.Td>
-            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.deadline }}
-            </Table.Td>
-            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.verified_image }}
+              {{ report.due_date }}
             </Table.Td>
             <Table.Td
               class="box w-40 text-center rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600"
@@ -213,6 +172,22 @@ onMounted(() => {
                 {{ report.status ? "Active" : "Inactive" }}
               </div>
             </Table.Td>
+            
+            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.priority_type }}
+            </Table.Td>
+            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.remarks ? report.remarks : "No Data" }}
+            </Table.Td>
+            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.corrective_image ? report.corrective_image : "No Data" }}
+            </Table.Td>
+            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.importance_level ? report.importance_level : "No Data" }}
+            </Table.Td>
+            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.work_accomplished_by ? report.work_accomplished_by : "No Data" }}
+            </Table.Td>
             <Table.Td
               :class="[
                 'box w-56 rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600',
@@ -220,7 +195,7 @@ onMounted(() => {
               ]"
             >
               <div class="flex items-center justify-center">
-                <router-link :to="{name:'accident-update-form', params:{id:report.id} }" class="flex items-center mr-3">
+                <router-link :to="{name:'safety-observatio-update-form', params:{id:report.id} }" class="flex items-center mr-3">
                   <Lucide icon="CheckSquare" class="w-4 h-4 mr-1" />
                   Edit
                 </router-link>
@@ -270,3 +245,4 @@ onMounted(() => {
     <!-- END: Pagination -->
   </div>
 </template>
+
