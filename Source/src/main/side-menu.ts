@@ -167,6 +167,23 @@ const menu: Array<Menu | "divider"> = [
     ],
   },
   {
+    icon: "Edit",
+    pageName: "Safety Observations",
+    title: "Safety Observations",
+    subMenu: [
+      {
+        icon: "Activity",
+        pageName: "safety-observation-data-list",
+        title: "Data List",
+      },
+      {
+        icon: "Activity",
+        pageName: "safety-observation-form",
+        title: "Form",
+      },
+    ],
+  },
+  {
     icon: "Users",
     pageName: "users",
     title: "Users",
