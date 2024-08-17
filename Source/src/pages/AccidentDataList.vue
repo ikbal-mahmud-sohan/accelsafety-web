@@ -9,16 +9,28 @@ import Lucide from '@/components/Base/Lucide';
 import Tippy from '@/components/Base/Tippy';
 import { Dialog, Menu } from '@/components/Base/Headless';
 import Table from '@/components/Base/Table';
+import config from "@/config";
 
 // Define your state using the reactive function
 const state = reactive({
   accidentReports: [] as Array<any>,
 });
 
+
 // Fetch data from the API and update the state
 const fetchData = async () => {
   try {
-    const response = await axios.get('http://accelsafety.test/api/v1/accident');
+   let  url = config.baseURL+'/api/v1/accident';
+    const response = await axios.get(url);
+    state.accidentReports = response.data.data;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+};
+const deleteData = async (sID:string) => {
+  try {
+    let url = config.baseURL+"/api/v1/accident/"+sID;
+    const response = await axios.delete(url);
     state.accidentReports = response.data.data;
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -100,11 +112,11 @@ onMounted(() => {
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">root cause</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">action</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">days lost</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">remarks</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">type of victim employee</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">responsible name</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">deadline</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">verified image</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">remarks</Table.Th>
             <Table.Th class="text-center border-b-0 whitespace-nowrap uppercase">STATUS</Table.Th>
             <Table.Th class="text-center border-b-0 whitespace-nowrap uppercase">ACTIONS</Table.Th>
           </Table.Tr>
@@ -185,9 +197,6 @@ onMounted(() => {
               {{ report.days_lost }}
             </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.remarks }}
-            </Table.Td>
-            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
               {{ report.type_of_victim_employee }}
             </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
@@ -196,8 +205,35 @@ onMounted(() => {
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
               {{ report.deadline }}
             </Table.Td>
+            <Table.Td  class="box w-40 rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600"
+            >
+              <div class="flex justify-center">
+                <template v-if="report.verified_image && report.verified_image.length > 0">
+                  <div class="w-16 h-16 image-fit zoom-in" v-for="(img, index) in report.verified_image" :key="index">
+                    <Tippy
+                      as="img"
+                      alt="safety"
+                      class="rounded-full shadow-[0px_0px_0px_2px_#fff,_1px_1px_5px_rgba(0,0,0,0.32)] dark:shadow-[0px_0px_0px_2px_#3f4865,_1px_1px_5px_rgba(0,0,0,0.32)]"
+                      :src="`${config.baseURL}${img}`"
+                      :content="`safety`"
+                    />
+                  </div>
+                </template>
+                <template v-else>
+                  <span>No Data</span>
+                </template>
+              </div>
+            </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.verified_image }}
+              <div class="relative group">
+                <template v-if="report.remarks && report.remarks.trim() !== ''">
+                  <div class="lg:truncate w-32" v-html="report.remarks"></div>
+                  <div class="top-0 left-0 absolute w-72 bg-white shadow-xl rounded-md z-50 px-4 py-4 hidden group-hover:block" v-html="report.remarks"></div>
+                </template>
+                <template v-else>
+                  <span>No Data</span>
+                </template>
+              </div>
             </Table.Td>
             <Table.Td
               class="box w-40 text-center rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600"
@@ -226,10 +262,8 @@ onMounted(() => {
                 </router-link>
                 <a
                   class="flex items-center text-danger"
-                  href="#"
-                  @click="(event) => {
-                      event.preventDefault();
-                      setDeleteConfirmationModal(true);}">
+                  href="javascript:;"
+                  @click="deleteData(report.id)">
                   <Lucide icon="Trash2" class="w-4 h-4 mr-1" /> Delete
                 </a>
               </div>

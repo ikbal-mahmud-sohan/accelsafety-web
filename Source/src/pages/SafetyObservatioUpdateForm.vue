@@ -1,190 +1,202 @@
 <script setup lang="ts">
-import { ref, reactive } from 'vue';
-import axios from 'axios';
+import { ref, reactive, toRefs } from 'vue';
+import axios, { AxiosError } from 'axios';
 import { ClassicEditor } from "@/components/Base/Ckeditor";
-import TomSelect from "@/components/Base/TomSelect";
 import Button from "@/components/Base/Button";
-import { useRouter } from 'vue-router';
+import { useRouter,useRoute } from 'vue-router';
+import Notification from "@/components/Base/Notification";
+import Lucide from "@/components/Base/Lucide";
+import config from "@/config";
 import {
   FormInput,
   FormLabel,
-  FormSwitch,
-  InputGroup,
 } from "@/components/Base/Form";
+import useVuelidate from '@vuelidate/core';
+import { required, minLength, email, integer, maxLength } from '@vuelidate/validators';
+import Toastify from 'toastify-js';
 
 const formData = reactive({
-  month: '',
-  date: '',
-  name: '',
-  designation: '',
-  supervisor: '',
-  department: '',
-  type_of_accident: '',
-  description: '',
-  zone_location: '',
-  precise_location: '',
-  injury_type: '',
-  affected_body_parts: '',
-  property_damaged: 0,
-  root_cause: '',
-  action: '',
-  days_lost: 0,
-  type_of_victim_employee: '',
-  responsible_name: '',
-  deadline: ''
+    remarks: '',
+    corrective_image:[] as File[],
+    importance_level: '',
+    work_accomplished_by: '',
 });
 const router = useRouter();
+const route = useRoute();
+const editorData = ref("");
 
-const categories = ref(["1", "3"]);
 const editorConfig = {
   toolbar: {
     items: ["bold", "italic", "link"],
   },
 };
-const editorData = ref("");
+interface BackendErrorResponse {
+    message: string;
+    errors: {
+        [key: string]: string[];
+    };
+}
 
-const submitForm = async () => {
-  formData.description = editorData.value; // Use the editor data for the description field
-
-  try {
-    const response = await axios.post('http://accelsafety.test/api/v1/accident', formData);
-    console.log('Form submitted successfully:', response.data);
-    if(response.data != undefined){
-      router.push({ name: 'accident-data-list' });
-    }
-  } catch (error) {
-    console.error('Error submitting form:', error);
-    // Handle error (e.g., show an error message)
+const handleFileChange = (event: Event) => {
+  const input = event.target as HTMLInputElement;
+  if (input.files) {
+    formData.corrective_image = Array.from(input.files);
   }
 };
+
+const rules = {
+    remarks: {required,minLength: minLength(3),},
+    corrective_image: {required,},
+};
+
+const validate = useVuelidate(rules, toRefs(formData));
+const backendErrors = reactive<{
+    message: string;
+    errors: { [key: string]: string[] };
+}>({
+    message: '',
+    errors: {}
+});
+
+function FailedPopUp(){
+    const failedEl = document
+        .querySelectorAll("#failed-notification-content")[0]
+        .cloneNode(true) as HTMLElement;
+        failedEl.classList.remove("hidden");
+        Toastify({
+        node: failedEl,
+        duration: 3000,
+        newWindow: true,
+        close: true,
+        gravity: "top",
+        position: "right",
+        stopOnFocus: true,
+        }).showToast();
+}
+function SuccessPopUp(){
+ 
+    const successEl = document
+        .querySelectorAll("#success-notification-content")[0]
+        .cloneNode(true) as HTMLElement;
+        successEl.classList.remove("hidden");
+        Toastify({
+        node: successEl,
+        duration: 3000,
+        newWindow: true,
+        close: true,
+        gravity: "top",
+        position: "right",
+        stopOnFocus: true,
+        }).showToast();
+}
+
+const submitForm = async () => {
+    formData.remarks = editorData.value;
+
+    validate.value.$touch();
+    console.log(validate.value)
+    if (validate.value.$invalid) {
+        FailedPopUp()
+    } else {
+        const form = new FormData();
+            (Object.keys(formData) as Array<keyof typeof formData>).forEach((key) => {
+            if (key !== 'corrective_image') {
+                form.append(key, formData[key] as string);
+            }
+            });
+            formData.corrective_image.forEach((file, index) => {
+            form.append(`corrective_image[${index}]`, file);
+            });
+            let id = route.params.id;
+            let sID =id.toString()
+            let url = config.baseURL+'/api/v1/safety/'+sID;
+            try {
+                const response = await axios.post(url, form, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+                });
+                if (response.data !== undefined) {
+                    SuccessPopUp();
+                    router.push({ name: 'safety-observation-data-list' });
+                }
+        
+            } catch (err) {
+                FailedPopUp();
+                const error = err as AxiosError<BackendErrorResponse>;
+
+                if (error.response) {
+                    const backendError = error.response.data;
+                    console.error('Error submitting form:', backendError.message);
+                    backendErrors.message = backendError.message;
+                    backendErrors.errors = backendError.errors || {};
+                } else if (error.request) {
+                    console.error('No response received:', error.request);
+                } else {
+                    console.error('Error:', error.message);
+                }
+            }
+       
+    }
+};
+
 </script>
 
 <template>
   <div class="flex items-center mt-8 intro-y">
-    <h2 class="mr-auto text-lg font-medium">Accident Form</h2>
+    <h2 class="mr-auto text-lg font-medium">Safety Observationt Form</h2>
   </div>
 
-  <div class="flex flex-wrap items-center justify-center w-full">
+  <div class="flex flex-wrap items-center justify-between w-full">
         <div class="w-full md:w-1/2">
             <div class="px-4 py-2">
-              <FormLabel htmlFor="crud-form-4">Month</FormLabel>
-              <FormInput v-model="formData.month" id="crud-form-1" type="text" class="w-full" placeholder="Input Month"/>
-            </div>
+                <FormLabel htmlFor="crud-form-4">Importance Level</FormLabel>
+                <FormInput v-model="formData.importance_level" id="crud-form-1" type="text" class="w-full" placeholder="Input Importance Level"/>
+            </div>  
         </div>
         <div class="w-full md:w-1/2">
             <div class="px-4 py-2">
-                <FormLabel htmlFor="crud-form-1">Date</FormLabel>
-                <FormInput v-model="formData.date" id="crud-form-2" type="date" class="w-full" placeholder="Input Date"/> 
-            </div>
+                <FormLabel htmlFor="crud-form-4">Work Accomplished By</FormLabel>
+                <FormInput v-model="formData.work_accomplished_by" id="crud-form-1" type="text" class="w-full" placeholder="Input Work Accomplished By"/>
+            </div>  
         </div>
         <div class="w-full md:w-1/2">
             <div class="px-4 py-2">
-                <FormLabel htmlFor="crud-form-1">Name</FormLabel>
-                <FormInput v-model="formData.name" id="crud-form-3" type="text" class="w-full" placeholder="Input Name"/>
-            </div>
-        </div>
-        <div class="w-full md:w-1/2">
-            <div class="px-4 py-2">
-                <FormLabel htmlFor="crud-form-1">Designation</FormLabel>
-                <FormInput v-model="formData.designation" id="crud-form-4" type="text" class="w-full" placeholder="Input Designation"/>
-            </div>
-        </div>
-        <div class="w-full md:w-1/2">
-            <div class="px-4 py-2">
-                <FormLabel htmlFor="crud-form-1">Supervisor</FormLabel>
-                <FormInput v-model="formData.supervisor" id="crud-form-5" type="text" class="w-full" placeholder="Input Supervisor"/>
-            </div>
-        </div>
-        <div class="w-full md:w-1/2">
-            <div class="px-4 py-2">
-                <FormLabel htmlFor="crud-form-1">Department</FormLabel>
-                <FormInput v-model="formData.department" id="crud-form-6" type="text" class="w-full" placeholder="Input Department"/>
-            </div>
-        </div>
-        <div class="w-full md:w-1/2">
-            <div class="px-4 py-2">
-                <FormLabel htmlFor="crud-form-1">Type of Accident</FormLabel>
-                <FormInput v-model="formData.type_of_accident" id="crud-form-7" type="text" class="w-full" placeholder="Input Type of Accident"/>
-            </div>
-        </div>
-        <div class="w-full md:w-1/2">
-            <div class="px-4 py-2">
-                <FormLabel htmlFor="crud-form-1">Zone Location</FormLabel>
-                <FormInput v-model="formData.zone_location" id="crud-form-8" type="text" class="w-full" placeholder="Input Zone Location"/>
-            </div>
-        </div>
-        <div class="w-full md:w-1/2">
-            <div class="px-4 py-2">
-                <FormLabel htmlFor="crud-form-1">Precise Location</FormLabel>
-                <FormInput v-model="formData.precise_location" id="crud-form-9" type="text" class="w-full" placeholder="Input Precise Location"/>
-            </div>
-        </div>
-        <div class="w-full md:w-1/2">
-            <div class="px-4 py-2">
-                <FormLabel htmlFor="crud-form-1">Injury Type</FormLabel>
-                <FormInput v-model="formData.injury_type" id="crud-form-10" type="text" class="w-full" placeholder="Input Injury Type"/>
-            </div>
-        </div>
-        <div class="w-full md:w-1/2">
-            <div class="px-4 py-2">
-                <FormLabel htmlFor="crud-form-1">Affected Body Parts</FormLabel>
-                <FormInput v-model="formData.affected_body_parts" id="crud-form-11" type="text" class="w-full" placeholder="Input Affected Body Parts"/>
-            </div>
-        </div>
-        <div class="w-full md:w-1/2">
-            <div class="px-4 py-2">
-                <label>Property Damaged</label>
-                <FormSwitch class="mt-2">
-            <FormSwitch.Input v-model="formData.property_damaged" type="checkbox" />
-          </FormSwitch>
-            </div>
-        </div>
-        <div class="w-full md:w-1/2">
-            <div class="px-4 py-2">
-                <FormLabel htmlFor="crud-form-1">Root Cause</FormLabel>
-                <FormInput v-model="formData.root_cause" id="crud-form-13" type="text" class="w-full" placeholder="Input Root Cause"/>
-            </div>
-        </div>
-
-        <div class="w-full md:w-1/2">
-            <div class="px-4 py-2">
-                <FormLabel htmlFor="crud-form-1">Days Lost</FormLabel>
-                <FormInput v-model="formData.days_lost" id="crud-form-14" type="number" class="w-full" placeholder="Input Days Lost"/>
-            </div>
-        </div>
-        <div class="w-full md:w-1/2">
-            <div class="px-4 py-2">
-                <FormLabel htmlFor="crud-form-1">Type Of Victim Employee</FormLabel>
-                <FormInput v-model="formData.type_of_victim_employee" id="crud-form-15" type="text" class="w-full" placeholder="Input Type Of Victim Employee"/>
-            </div>
-        </div>
-        <div class="w-full md:w-1/2">
-            <div class="px-4 py-2">
-                <FormLabel htmlFor="crud-form-1">Responsible Name</FormLabel>
-                <FormInput v-model="formData.responsible_name" id="crud-form-17" type="text" class="w-full" placeholder="Input Responsible Name"/>
-            </div>
-        </div>
-        <div class="w-full md:w-1/2">
-            <div class="px-4 py-2">
-                <FormLabel htmlFor="crud-form-1">Deadline</FormLabel>
-                <FormInput v-model="formData.deadline" id="crud-form-18" type="date" class="w-full" placeholder="Input Deadline"/>
-            </div>
-        </div>
-        <div class="w-full md:w-1/2">
-            <div class="px-4 py-2">
-                <FormLabel htmlFor="crud-form-1">Action</FormLabel>
-                <FormInput v-model="formData.action" id="crud-form-19" type="text" class="w-full" placeholder="Input Action"/>
+                <FormLabel htmlFor="crud-form-13">Corrective Image</FormLabel>
+                <FormInput id="crud-form-13" type="file" class="w-full" placeholder="Input Corrective Image"
+                    multiple @change="handleFileChange" />
+                <template v-if="validate.corrective_image.$error">
+                  <div v-for="(error, index) in validate.corrective_image.$errors" :key="index" class="mt-2 text-danger">
+                    {{ error.$message }}
+                  </div>
+                </template>
             </div>
         </div>
         <div class="w-full">
           <div class="px-4 py-2">
-                <FormLabel>Description</FormLabel>
-                <div class="mt-2">
-            <ClassicEditor v-model="editorData" :config="editorConfig" />
-          </div>
-          </div>
+                <FormLabel htmlFor="crud-form-5" class="flex flex-col w-full sm:flex-row">Remarks
+                  <span class="mt-1 text-xs sm:ml-auto sm:mt-0 text-slate-500">Required, at least 3 characters</span>
+                </FormLabel>
+                <ClassicEditor v-model="editorData" :class="{ 'border-danger': validate.remarks.$error,}" :config="editorConfig" />
+                <template v-if="validate.remarks.$error">
+                  <div v-for="(error, index) in validate.remarks.$errors" :key="index" class="mt-2 text-danger">
+                    {{ error.$message }}
+                  </div>
+                </template>
+            </div> 
         </div>
-        <div class="mt-5 text-right">
+        <div class="w-full px-4 py-4">
+        <p v-if="backendErrors.message" class="text-red-500 text-sm">{{ backendErrors.message }}</p>
+        <template v-if="backendErrors.errors">
+            <div v-for="(messages, field) in backendErrors.errors" :key="field" class="mt-2 text-danger">
+            <p><strong>{{ field }}:</strong></p>
+            <ul>
+                <li v-for="(message, index) in messages" :key="index">{{ message }}</li>
+            </ul>
+            </div>
+        </template>
+        </div>
+        <div class="mt-5 text-right px-4 py-2">
           <Button type="button" variant="outline-secondary" class="w-24 mr-4">
             Cancel
           </Button>
@@ -194,4 +206,17 @@ const submitForm = async () => {
         </div>
 
   </div>
+  <Notification id="success-notification-content" class="flex hidden">
+        <Lucide icon="CheckCircle" class="text-success" />
+        <div class="ml-4 mr-4">
+          <div class="font-medium">Safety Observationt Update success!</div>
+        </div>
+      </Notification>
+      <Notification id="failed-notification-content" class="flex items-center hidden">
+        <Lucide icon="XCircle" class="text-danger" />
+        <div class="ml-4 mr-4">
+          <div class="font-medium">Safety Observationt Update failed!</div>
+          <div class="mt-1 text-slate-500">Please check the fileld form.</div>
+        </div>
+      </Notification>
 </template>
