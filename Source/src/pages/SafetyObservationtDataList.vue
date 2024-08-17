@@ -9,12 +9,25 @@ import Lucide from '@/components/Base/Lucide';
 import Tippy from '@/components/Base/Tippy';
 import { Dialog, Menu } from '@/components/Base/Headless';
 import Table from '@/components/Base/Table';
+import config from "@/config";
+
 const state = reactive({
   accidentReports: [] as Array<any>,
 });
+
 const fetchData = async () => {
   try {
-    const response = await axios.get('http://accelsafety.test/api/v1/safety');
+   let  url = config.baseURL+'/api/v1/safety';
+    const response = await axios.get(url);
+    state.accidentReports = response.data.data;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+};
+const deleteData = async (sID:string) => {
+  try {
+    let url = config.baseURL+"/api/v1/safety/"+sID;
+    const response = await axios.delete(url);
     state.accidentReports = response.data.data;
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -71,7 +84,7 @@ onMounted(() => {
       </div>
     </div>
     <!-- BEGIN: Data List -->
-    <div class="col-span-12 overflow-auto intro-y ">
+    <div class="col-span-12 overflow-auto intro-y " >
       <Table class="border-spacing-y-[10px] border-separate -mt-2">
         <Table.Thead>
           <Table.Tr>
@@ -97,7 +110,7 @@ onMounted(() => {
             <Table.Th class="text-center border-b-0 whitespace-nowrap uppercase">ACTIONS</Table.Th>
           </Table.Tr>
         </Table.Thead>
-        <Table.Tbody>
+        <Table.Tbody v-if="state.accidentReports.length !== 0">
           <Table.Tr  v-for="(report, index) in state.accidentReports" :key="index" class="intro-x">
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
               {{ report.id }}
@@ -123,10 +136,6 @@ onMounted(() => {
                 <div class="top-0 left-0 absolute w-72 bg-white shadow-xl rounded-md z-50 px-4 py-4 hidden group-hover:block" v-html="report.problem_description"></div>
               </div>
             </Table.Td>
-            <!-- <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.problematic_progressive_images }}
-            </Table.Td> -->
-            <!-- sohan  -->
             <Table.Td
               class="box w-40 rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600"
             >
@@ -136,13 +145,12 @@ onMounted(() => {
                     as="img"
                     alt="safety"
                     class="rounded-full shadow-[0px_0px_0px_2px_#fff,_1px_1px_5px_rgba(0,0,0,0.32)] dark:shadow-[0px_0px_0px_2px_#3f4865,_1px_1px_5px_rgba(0,0,0,0.32)]"
-                    :src="`http://accelsafety.test/${img}`"
+                    :src="`${config.baseURL}${img}`"
                     :content="`safety`"
                   />
                 </div>
               </div>
             </Table.Td>
-            <!-- sohan  -->
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
               {{ report.root_cause }}
             </Table.Td>
@@ -177,10 +185,34 @@ onMounted(() => {
               {{ report.priority_type }}
             </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.remarks ? report.remarks : "No Data" }}
+              <div class="relative group">
+                <template v-if="report.remarks && report.remarks.trim() !== ''">
+                  <div class="lg:truncate w-32" v-html="report.remarks"></div>
+                  <div class="top-0 left-0 absolute w-72 bg-white shadow-xl rounded-md z-50 px-4 py-4 hidden group-hover:block" v-html="report.remarks"></div>
+                </template>
+                <template v-else>
+                  <span>No Data</span>
+                </template>
+              </div>
             </Table.Td>
-            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.corrective_image ? report.corrective_image : "No Data" }}
+            <Table.Td  class="box w-40 rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600"
+            >
+              <div class="flex justify-center">
+                <template v-if="report.corrective_image && report.corrective_image.length > 0">
+                  <div class="w-16 h-16 image-fit zoom-in" v-for="(img, index) in report.corrective_image" :key="index">
+                    <Tippy
+                      as="img"
+                      alt="safety"
+                      class="rounded-full shadow-[0px_0px_0px_2px_#fff,_1px_1px_5px_rgba(0,0,0,0.32)] dark:shadow-[0px_0px_0px_2px_#3f4865,_1px_1px_5px_rgba(0,0,0,0.32)]"
+                      :src="`${config.baseURL}${img}`"
+                      :content="`safety`"
+                    />
+                  </div>
+                </template>
+                <template v-else>
+                  <span>No Data</span>
+                </template>
+              </div>
             </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
               {{ report.importance_level ? report.importance_level : "No Data" }}
@@ -201,15 +233,18 @@ onMounted(() => {
                 </router-link>
                 <a
                   class="flex items-center text-danger"
-                  href="#"
-                  @click="(event) => {
-                      event.preventDefault();
-                      setDeleteConfirmationModal(true);}">
+                  href="javascript:;"
+                  @click="deleteData(report.id)">
                   <Lucide icon="Trash2" class="w-4 h-4 mr-1" /> Delete
                 </a>
               </div>
             </Table.Td>
           </Table.Tr>
+        </Table.Tbody>
+        <Table.Tbody v-else class=" ">
+          <div class="w-40 px-4 py-4 text-red-600">
+            No data
+          </div>
         </Table.Tbody>
       </Table>
     </div>

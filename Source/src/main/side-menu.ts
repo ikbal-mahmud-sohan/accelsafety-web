@@ -169,7 +169,7 @@ const menu: Array<Menu | "divider"> = [
   {
     icon: "Edit",
     pageName: "Safety Observations",
-    title: "Safety Observations",
+    title: "Safety Obs...",
     subMenu: [
       {
         icon: "Activity",

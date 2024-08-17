@@ -6,6 +6,7 @@ import Button from "@/components/Base/Button";
 import { useRouter } from 'vue-router';
 import Notification from "@/components/Base/Notification";
 import Lucide from "@/components/Base/Lucide";
+import config from "@/config";
 import {
   FormInput,
   FormLabel,
@@ -96,14 +97,14 @@ const submitForm = async () => {
             });
 
             try {
-                const response = await axios.post('http://accelsafety.test/api/v1/safety', form, {
+                let  url = config.baseURL+'/api/v1/safety';
+                const response = await axios.post(url, form, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
                 });
                 console.log('Form submitted successfully:', response.data);
                 if (response.data !== undefined) {
-                    console.log("sohan mhd")
                     router.push({ name: 'safety-observation-data-list' });
                 }
         
@@ -196,19 +197,6 @@ const submitForm = async () => {
                 <FormInput id="crud-form-5" v-model.trim="validate.category.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.category.$error,}" placeholder="Input Category"/>
                 <template v-if="validate.category.$error">
                   <div v-for="(error, index) in validate.category.$errors" :key="index" class="mt-2 text-danger">
-                    {{ error.$message }}
-                  </div>
-                </template>
-            </div> 
-        </div>
-        <div class="w-full md:w-1/2">
-            <div class="px-4 py-2">
-                <FormLabel htmlFor="crud-form-6" class="flex flex-col w-full sm:flex-row">Root Cause
-                  <span class="mt-1 text-xs sm:ml-auto sm:mt-0 text-slate-500">Required, at least 3 characters</span>
-                </FormLabel>
-                <FormInput id="crud-form-6" v-model.trim="validate.root_cause.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.root_cause.$error,}" placeholder="Input Root Cause"/>
-                <template v-if="validate.root_cause.$error">
-                  <div v-for="(error, index) in validate.root_cause.$errors" :key="index" class="mt-2 text-danger">
                     {{ error.$message }}
                   </div>
                 </template>
@@ -331,10 +319,7 @@ const submitForm = async () => {
   <Notification id="success-notification-content" class="flex hidden">
         <Lucide icon="CheckCircle" class="text-success" />
         <div class="ml-4 mr-4">
-          <div class="font-medium">Registration success!</div>
-          <div class="mt-1 text-slate-500">
-            Please check your e-mail for further info!
-          </div>
+          <div class="font-medium">Safety Observationt Create success!</div>
         </div>
       </Notification>
       <!-- END: Success Notification Content -->
@@ -342,7 +327,7 @@ const submitForm = async () => {
       <Notification id="failed-notification-content" class="flex items-center hidden">
         <Lucide icon="XCircle" class="text-danger" />
         <div class="ml-4 mr-4">
-          <div class="font-medium">Registration failed!</div>
+          <div class="font-medium">Safety Observationt Create failed!</div>
           <div class="mt-1 text-slate-500">Please check the fileld form.</div>
         </div>
       </Notification>
