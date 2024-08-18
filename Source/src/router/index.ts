@@ -145,6 +145,22 @@ const router = createRouter({
           name: "safety-observatio-update-form",
           component: () => import("../pages/SafetyObservatioUpdateForm.vue"),
         },
+        // Training
+        {
+          path: "trainings",
+          name: "training-data-list",
+          component: () => import("../pages/TrainingDataList.vue"),
+        },
+        {
+          path: "training-create",
+          name: "training-form",
+          component: () => import("../pages/TrainingForm.vue"),
+        },
+        {
+          path: "training/:id/update",
+          name: "training-update-form",
+          component: () => import("../pages/TrainingUpdateForm.vue"),
+        },
         // accSafety
         {
           path: "users-layout-1",

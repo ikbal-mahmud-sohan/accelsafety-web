@@ -29,6 +29,57 @@ const menu: Array<Menu | "divider"> = [
     ],
   },
   {
+    icon: "AlertTriangle",
+    pageName: "accident",
+    title: "Accident",
+    subMenu: [
+      {
+        icon: "Activity",
+        pageName: "accident-data-list",
+        title: "Data List",
+      },
+      {
+        icon: "Activity",
+        pageName: "accident-form",
+        title: "Form",
+      },
+    ],
+  },
+  {
+    icon: "Aperture",
+    pageName: "Safety Observations",
+    title: "Safety Obs...",
+    subMenu: [
+      {
+        icon: "Activity",
+        pageName: "safety-observation-data-list",
+        title: "Data List",
+      },
+      {
+        icon: "Activity",
+        pageName: "safety-observation-form",
+        title: "Form",
+      },
+    ],
+  },
+  {
+    icon: "Award",
+    pageName: "Training",
+    title: "Training",
+    subMenu: [
+      {
+        icon: "Activity",
+        pageName: "training-data-list",
+        title: "Data List",
+      },
+      {
+        icon: "Activity",
+        pageName: "training-form",
+        title: "Form",
+      },
+    ],
+  },
+  {
     icon: "ShoppingBag",
     pageName: "ecommerce",
     title: "E-Commerce",
@@ -145,40 +196,6 @@ const menu: Array<Menu | "divider"> = [
       {
         icon: "Activity",
         pageName: "crud-form",
-        title: "Form",
-      },
-    ],
-  },
-  {
-    icon: "Edit",
-    pageName: "accident",
-    title: "Accident",
-    subMenu: [
-      {
-        icon: "Activity",
-        pageName: "accident-data-list",
-        title: "Data List",
-      },
-      {
-        icon: "Activity",
-        pageName: "accident-form",
-        title: "Form",
-      },
-    ],
-  },
-  {
-    icon: "Edit",
-    pageName: "Safety Observations",
-    title: "Safety Obs...",
-    subMenu: [
-      {
-        icon: "Activity",
-        pageName: "safety-observation-data-list",
-        title: "Data List",
-      },
-      {
-        icon: "Activity",
-        pageName: "safety-observation-form",
         title: "Form",
       },
     ],
