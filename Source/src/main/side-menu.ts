@@ -80,6 +80,23 @@ const menu: Array<Menu | "divider"> = [
     ],
   },
   {
+    icon: "Award",
+    pageName: "Training Attendences",
+    title: "Training Att...",
+    subMenu: [
+      {
+        icon: "Activity",
+        pageName: "training-attendences-data-list",
+        title: "Data List",
+      },
+      {
+        icon: "Activity",
+        pageName: "training-attendences-form",
+        title: "Form",
+      },
+    ],
+  },
+  {
     icon: "ShoppingBag",
     pageName: "ecommerce",
     title: "E-Commerce",
