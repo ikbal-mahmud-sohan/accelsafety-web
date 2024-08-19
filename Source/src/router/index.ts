@@ -161,6 +161,22 @@ const router = createRouter({
           name: "training-update-form",
           component: () => import("../pages/TrainingUpdateForm.vue"),
         },
+        // Training Attendence
+        {
+          path: "training-attendences",
+          name: "training-attendences-data-list",
+          component: () => import("../pages/TrainingAttendencesDataList.vue"),
+        },
+        {
+          path: "training-attendences-create",
+          name: "training-attendences-form",
+          component: () => import("../pages/TrainingAttendencesForm.vue"),
+        },
+        {
+          path: "training-attendences/:id/update",
+          name: "training-attendences-update-form",
+          component: () => import("../pages/TrainingAttendencesUpdateForm.vue"),
+        },
         // accSafety
         {
           path: "users-layout-1",
