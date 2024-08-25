@@ -1,0 +1,296 @@
+<script setup lang="ts">
+import { ref, reactive,toRefs,onMounted } from 'vue';
+import axios, { AxiosError } from 'axios';
+import { ClassicEditor } from "@/components/Base/Ckeditor";
+import TomSelect from "@/components/Base/TomSelect";
+import Lucide from "@/components/Base/Lucide";
+import Button from "@/components/Base/Button";
+import { useRouter,useRoute } from 'vue-router';
+import useVuelidate from '@vuelidate/core';
+import { required, minLength, email, integer, maxLength } from '@vuelidate/validators';
+import config from "@/config";
+import Toastify from 'toastify-js';
+import Notification from "@/components/Base/Notification";
+import Preview from "@/components/Base/Preview";
+import { Menu, Popover } from "@/components/Base/Headless";
+
+
+// Define your state using the reactive function
+const state = reactive({
+  departmentData: [] as Array<any>,
+  designationData: [] as Array<any>,
+});
+
+import {
+  FormInput,
+  FormLabel,
+  FormSwitch,
+  InputGroup,
+} from "@/components/Base/Form";
+
+const formData = reactive({
+  designation:'',
+  name:'',
+  department:'',
+  employee_type:'',
+});
+const router = useRouter();
+const route = useRoute();
+
+
+const categories = ref(["1", "3"]);
+const editorConfig = {
+  toolbar: {
+    items: ["bold", "italic", "link"],
+  },
+};
+interface BackendErrorResponse {
+    message: string;
+    errors: {
+        [key: string]: string[];
+    };
+}
+const selectedDesignation = ref("");
+const selectedDepartment = ref("");
+const selectedEmployeeType = ref("");
+
+const rules = {
+        name: {required},
+        designation: {required,},
+        department: { required, minLength: minLength(1),},
+        employee_type: {required },
+       
+};
+
+const validate = useVuelidate(rules, toRefs(formData));
+const backendErrors = reactive<{
+    message: string;
+    errors: { [key: string]: string[] };
+}>({
+    message: '',
+    errors: {}
+});
+
+function FailedPopUp(){
+    const failedEl = document
+        .querySelectorAll("#failed-notification-content")[0]
+        .cloneNode(true) as HTMLElement;
+        failedEl.classList.remove("hidden");
+        Toastify({
+        node: failedEl,
+        duration: 3000,
+        newWindow: true,
+        close: true,
+        gravity: "top",
+        position: "right",
+        stopOnFocus: true,
+        }).showToast();
+}
+function SuccessPopUp(){
+ 
+    const successEl = document
+        .querySelectorAll("#success-notification-content")[0]
+        .cloneNode(true) as HTMLElement;
+        successEl.classList.remove("hidden");
+        Toastify({
+        node: successEl,
+        duration: 3000,
+        newWindow: true,
+        close: true,
+        gravity: "top",
+        position: "right",
+        stopOnFocus: true,
+        }).showToast();
+}
+
+const submitForm = async () => {
+  formData.department = selectedDepartment.value;
+  formData.designation = selectedDesignation.value;
+  formData.employee_type = selectedEmployeeType.value;
+
+  validate.value.$touch();
+  if (validate.value.$invalid) {
+    FailedPopUp();
+  } else {
+    try {
+      let id = route.params.id;
+      let sID =id.toString()
+      let url = config.baseURL+'/api/v1/employee/'+sID;
+      const response = await axios.post(url, formData);
+      if (response.data != undefined) {
+        SuccessPopUp();
+        router.push({ name: 'employee-info-list' });
+      }
+    } catch (err) {
+      FailedPopUp();
+      const error = err as AxiosError<BackendErrorResponse>;
+      if (error.response) {
+        const backendError = error.response.data;
+        backendErrors.message = backendError.message;
+        backendErrors.errors = backendError.errors || {};
+      } else if (error.request) {
+        console.error('No response received:', error.request);
+      } else {
+        console.error('Error:', error.message);
+      }
+    }
+  }
+};
+
+// Fetch data from the API and update the state
+const fetchDepartmentData = async () => {
+  try {
+   let  url = config.baseURL+'/api/v1/department';
+    const response = await axios.get(url);
+    state.departmentData = response.data.data;
+
+    console.log("sohan",state.departmentData)
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+};
+const fetchDesignationData = async () => {
+  try {
+   let  url = config.baseURL+'/api/v1/designation';
+    const response = await axios.get(url);
+    state.designationData = response.data.data;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+};
+const fetchData = async () => {
+  try {
+    let id = route.params.id;
+    let sID =id.toString()
+    let url = config.baseURL+'/api/v1/employee/'+sID;
+    const response = await axios.get(url);
+    formData.name = response.data.data.name
+    selectedDesignation.value = response.data.data.designation
+    selectedDepartment.value = response.data.data.department
+    selectedEmployeeType.value = response.data.data.employee_type
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+};
+
+onMounted(() => {
+  fetchDepartmentData();
+  fetchDesignationData();
+  fetchData();
+});
+</script>
+
+<template>
+  <div class="flex items-center mt-8 intro-y">
+    <h2 class="mr-auto text-lg font-medium">Hr Info Form</h2>
+  </div>
+
+  <div class="flex flex-wrap items-center justify-between w-full">
+        <div class="w-full md:w-1/2">
+            <div class="px-4 py-2">
+                <FormLabel htmlFor="crud-form-3" class="flex flex-col w-full sm:flex-row">Name
+                  <span class="mt-1 text-xs sm:ml-auto sm:mt-0 text-slate-500">Required, at least 3 characters</span>
+                </FormLabel>
+                <FormInput id="crud-form-3" v-model.trim="validate.name.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.name.$error,}" placeholder="Input Name"/>
+                <template v-if="validate.name.$error">
+                  <div v-for="(error, index) in validate.name.$errors" :key="index" class="mt-2 text-danger">
+                    {{ error.$message }}
+                  </div>
+                </template>
+            </div> 
+        </div>
+
+        <div class="w-full md:w-1/2">
+            <div class="px-4 py-2">
+            <FormLabel htmlFor="crud-form-6" class="flex flex-col w-full sm:flex-row">
+              Designation
+                <span class="mt-1 text-xs sm:ml-auto sm:mt-0 text-slate-500">Required, at least 3 characters</span>
+              </FormLabel>
+              <select id="crud-form-6" v-model="selectedDesignation"  class="w-full border border-gray-300 rounded-lg">
+                <option value="" disabled>Select Designation</option>
+                <option v-for="(data, index) in state.designationData" :key="index" :value="data.name">{{ data.name }}</option>
+              </select>
+              <template v-if="validate.designation.$error">
+                <div v-for="(error, index) in validate.designation.$errors" :key="index" class="mt-2 text-danger">
+                  {{ error.$message }}
+                </div>
+              </template>
+            </div> 
+        </div>
+        <div class="w-full md:w-1/2">
+            <div class="px-4 py-2">
+              <FormLabel htmlFor="crud-form-6" class="flex flex-col w-full sm:flex-row">
+                Department
+                <span class="mt-1 text-xs sm:ml-auto sm:mt-0 text-slate-500">Required, at least 3 characters</span>
+              </FormLabel>
+              <select id="crud-form-6" v-model="selectedDepartment" class="w-full border border-gray-300 rounded-lg">
+                <option value="" disabled>Select Department</option>
+                <option v-for="(data, index) in state.departmentData" :key="index" :value="data.name">{{ data.name }}</option>
+                <!-- Add more options as needed -->
+              </select>
+              <template v-if="validate.department.$error">
+                <div v-for="(error, index) in validate.department.$errors" :key="index" class="mt-2 text-danger">
+                  {{ error.$message }}
+                </div>
+              </template>
+            </div> 
+        </div>
+        <div class="w-full md:w-1/2">
+            <div class="px-4 py-2">
+              
+            <FormLabel htmlFor="crud-form-6" class="flex flex-col w-full sm:flex-row">
+              Employee Type
+                <span class="mt-1 text-xs sm:ml-auto sm:mt-0 text-slate-500">Required, at least 3 characters</span>
+              </FormLabel>
+              <select id="crud-form-6" v-model="selectedEmployeeType" class="w-full border border-gray-300 rounded-lg">
+                <option value="" disabled>Select Employee Type</option>
+                <option value="Management">Management</option>
+                <option value="Non-Management">Non-Management</option>
+              </select>
+              <template v-if="validate.employee_type.$error">
+                <div v-for="(error, index) in validate.employee_type.$errors" :key="index" class="mt-2 text-danger">
+                  {{ error.$message }}
+                </div>
+              </template>
+            </div> 
+        </div>
+        
+        <div class="w-full px-4 py-4">
+        <!-- <p v-if="backendErrors.message" class="text-red-500 text-sm">{{ backendErrors.message }}</p> -->
+        <template v-if="backendErrors.errors">
+            <div v-for="(messages, field) in backendErrors.errors" :key="field" class="mt-2 text-danger flex">
+            <p class=" capitalize mr-2"><strong>{{ field }}:</strong></p>
+            <ul>
+                <li v-for="(message, index) in messages" :key="index">{{ message }}</li>
+            </ul>
+            </div>
+        </template>
+        </div>
+        <div class="mt-5 text-right">
+          <Button type="button" variant="outline-secondary" class="w-24 mr-4">
+            Cancel
+          </Button>
+          <Button type="button" variant="primary" class="w-24" @click="submitForm">
+            Save
+          </Button>
+        </div>
+
+  </div>
+  <!-- BEGIN: Success Notification Content -->
+  <Notification id="success-notification-content" class="flex hidden">
+        <Lucide icon="CheckCircle" class="text-success" />
+        <div class="ml-4 mr-4">
+          <div class="font-medium">Employee Information Create success!</div>
+        </div>
+      </Notification>
+      <!-- END: Success Notification Content -->
+      <!-- BEGIN: Failed Notification Content -->
+      <Notification id="failed-notification-content" class="flex items-center hidden">
+        <Lucide icon="XCircle" class="text-danger" />
+        <div class="ml-4 mr-4">
+          <div class="font-medium">Employee Information Create failed!</div>
+          <div class="mt-1 text-slate-500">Please check the fileld form.</div>
+        </div>
+      </Notification>
+      <!-- END: Failed Notification Content -->
+</template>

@@ -157,6 +157,11 @@ const router = createRouter({
           component: () => import("../pages/TrainingForm.vue"),
         },
         {
+          path: "assign-training",
+          name: "assign-training-form",
+          component: () => import("../pages/AssignTrainingForm.vue"),
+        },
+        {
           path: "training/:id/update",
           name: "training-update-form",
           component: () => import("../pages/TrainingUpdateForm.vue"),
@@ -176,6 +181,54 @@ const router = createRouter({
           path: "training-attendences/:id/update",
           name: "training-attendences-update-form",
           component: () => import("../pages/TrainingAttendencesUpdateForm.vue"),
+        },
+        // EmployeeInfo
+        {
+          path: "employee-info",
+          name: "employee-info-list",
+          component: () => import("../pages/EmployeeInfoDataList.vue"),
+        },
+        {
+          path: "employee-info-create",
+          name: "employee-info-form",
+          component: () => import("../pages/EmployeeInfoForm.vue"),
+        },
+        {
+          path: "employee-info/:id/update",
+          name: "employee-info-update-form",
+          component: () => import("../pages/EmployeeInfoUpdateForm.vue"),
+        },
+        // Department
+        {
+          path: "departments",
+          name: "department-info-list",
+          component: () => import("../pages/DepartmentDataList.vue"),
+        },
+        {
+          path: "departments-create",
+          name: "department-form",
+          component: () => import("../pages/DepartmentForm.vue"),
+        },
+        {
+          path: "departments/:id/update",
+          name: "department-update-form",
+          component: () => import("../pages/DepartmentUpdateForm.vue"),
+        },
+        // Designation
+        {
+          path: "Designation",
+          name: "designation-info-list",
+          component: () => import("../pages/DesignationDataList.vue"),
+        },
+        {
+          path: "Designation-create",
+          name: "designation-form",
+          component: () => import("../pages/DesignationForm.vue"),
+        },
+        {
+          path: "Designation/:id/update",
+          name: "designation-update-form",
+          component: () => import("../pages/DesignationUpdateForm.vue"),
         },
         // accSafety
         {
