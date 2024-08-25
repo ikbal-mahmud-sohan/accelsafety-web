@@ -14,24 +14,27 @@ import config from "@/config";
 // Define your state using the reactive function
 const state = reactive({
   viewData: [] as Array<any>,
+  headers: [] as Array<any>,  // New array to store dynamic headers
 });
-
 
 // Fetch data from the API and update the state
 const fetchData = async () => {
   try {
-   let  url = config.baseURL+'/api/v1/training';
+    let  url = config.baseURL+'/api/v1/training-assesments';
     const response = await axios.get(url);
-    state.viewData = response.data.data;
-  } catch (error) {
-    console.error('Error fetching data:', error);
-  }
-};
-const deleteData = async (sID:string) => {
-  try {
-    let url = config.baseURL+"/api/v1/training/"+sID;
-    const response = await axios.delete(url);
-    state.viewData = response.data.data;
+    state.viewData = response.data.TrainingAssessment;
+
+    // Assuming each training object has a 'assign_trainings' array to derive headers
+    if (state.viewData.length) {
+      const firstTraining = state.viewData[0].employee.assign_trainings;
+      state.headers = firstTraining.map((_: any, index: number) => ({
+        name: `Training Topic ${index + 1}`,
+        date: `Training Date ${index + 1}`,
+        status: `Training Status ${index + 1}`
+      }));
+    }
+
+    console.log("res", response.data);
   } catch (error) {
     console.error('Error fetching data:', error);
   }
@@ -42,230 +45,64 @@ onMounted(() => {
   fetchData();
 });
 </script>
-
 <template>
   <h2 class="mt-10 text-lg font-medium intro-y">Training List</h2>
   <div class="grid grid-cols-12 gap-6 mt-5">
-    <div class="flex flex-wrap items-center col-span-12 mt-2 intro-y sm:flex-nowrap">
-      <!-- <Button variant="primary" class="mr-2 shadow-md">
-        Add New Accident
-      </Button> -->
-      <router-link :to="{ name: 'accident-form' }">
-        <Button variant="primary" class="mr-2 shadow-md">
-          Add New Training
-        </Button>
-      </router-link>
-      <Menu>
-        <Menu.Button :as="Button" class="px-2 !box">
-          <span class="flex items-center justify-center w-5 h-5">
-            <Lucide icon="Plus" class="w-4 h-4" />
-          </span>
-        </Menu.Button>
-        <Menu.Items class="w-40">
-          <Menu.Item>
-            <Lucide icon="Printer" class="w-4 h-4 mr-2" /> Print
-          </Menu.Item>
-          <Menu.Item>
-            <Lucide icon="FileText" class="w-4 h-4 mr-2" /> Export to Excel
-          </Menu.Item>
-          <Menu.Item>
-            <Lucide icon="FileText" class="w-4 h-4 mr-2" /> Export to PDF
-          </Menu.Item>
-        </Menu.Items>
-      </Menu>
-      <div class="hidden mx-auto md:block text-slate-500">
-        Showing 1 to 10 of 150 entries
-      </div>
-      <div class="w-full mt-3 sm:w-auto sm:mt-0 sm:ml-auto md:ml-0">
-        <div class="relative w-56 text-slate-500">
-          <FormInput
-            type="text"
-            class="w-56 pr-10 !box"
-            placeholder="Search..."
-          />
-          <Lucide
-            icon="Search"
-            class="absolute inset-y-0 right-0 w-4 h-4 my-auto mr-3"
-          />
-        </div>
-      </div>
-    </div>
     <!-- BEGIN: Data List -->
-    <div class="col-span-12 overflow-auto intro-y ">
+    <div class="col-span-12 overflow-auto intro-y">
       <Table class="border-spacing-y-[10px] border-separate -mt-2">
         <Table.Thead>
           <Table.Tr>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase"> serial number </Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase"> employee name </Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase"> designation </Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase"> department </Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase"> special training need </Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase"> employee type </Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase"> status </Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase"> first training topic </Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase"> first training date </Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase"> first training status </Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase"> second training topic </Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase"> second training date </Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase"> second training status </Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase"> third training topic </Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase"> third training date </Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase"> third training status </Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase"> fourth training topic </Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase"> fourth training date </Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase"> fourth training status </Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase"> fifth training topic </Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase"> fifth training date </Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase"> fifth training status </Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase"> additional resources </Table.Th>
-            <Table.Th class="text-center border-b-0 whitespace-nowrap uppercase">ACTIONS</Table.Th>
+            <!-- Static Headers -->
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">serial number</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">employee name</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">designation</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">department</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">employee type</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">special training need</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">status</Table.Th>
+            
+            <!-- Dynamic Headers -->
+            <template v-for="header in state.headers" :key="header.name">
+              <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">{{ header.name }}</Table.Th>
+              <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">{{ header.date }}</Table.Th>
+              <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">{{ header.status }}</Table.Th>
+            </template>
           </Table.Tr>
         </Table.Thead>
         <Table.Tbody>
-          <Table.Tr v-for="(data, index) in state.viewData" :key="index" class="intro-x">
-            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ data.serial_number }}
+          <Table.Tr v-for="(data, index) in state.viewData" :key="index" class="intro-x bg-white my-2">
+            <!-- Static Data Columns -->
+            <Table.Td>{{ data.employee.id || '' }}</Table.Td>
+            <Table.Td>{{ data.employee.name || '' }}</Table.Td>
+            <Table.Td>{{ data.employee.designation || '' }}</Table.Td>
+            <Table.Td>{{ data.employee.department || '' }}</Table.Td>
+            <Table.Td>{{ data.employee.employee_type || '' }}</Table.Td>
+            <Table.Td>
+              <div class="flex">
+                <div class="px-1" v-for="(spt, index) in data.employee.assign_special_trainings" :key="index">
+                  {{ spt.special_training || '' }}
+                </div>
+              </div>
             </Table.Td>
-            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ data.employee_name }}
-            </Table.Td>
-            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ data.designation }}
-            </Table.Td>
-            <Table.Td class="box text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ data.department }}
-            </Table.Td>
-            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ data.special_training_need }}
-            </Table.Td>
-            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ data.employee_type }}
-            </Table.Td>
-            <Table.Td class="box w-40 text-center rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              <div
-                :class="[
-                  'flex items-center justify-center',
-                  { 'text-success':data.status },
-                  { 'text-danger': !data.status },
-                ]"
-              >
+            <Table.Td>
+              <div :class="['flex items-center justify-center', data.main_status ? 'text-success' : 'text-danger']">
                 <Lucide icon="CheckSquare" class="w-4 h-4 mr-2" />
-                {{ data.status ? "Completed" : "Incompleted" }}
+                {{ data.main_status ? "Completed" : "Incomplete" }}
               </div>
             </Table.Td>
-            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ data.first_training_topic }}
-            </Table.Td>
-            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ data.first_training_date }}
-            </Table.Td>
-            <Table.Td class="box w-40 text-center rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              <div
-                :class="[
-                  'flex items-center justify-center',
-                  { 'text-success':data.first_training_status },
-                  { 'text-danger': !data.first_training_status },
-                ]"
-              >
-                <Lucide icon="CheckSquare" class="w-4 h-4 mr-2" />
-                {{ data.first_training_status ? "Completed" : "Incompleted" }}
-              </div>
-            </Table.Td>
-            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ data.second_training_topic }}
-            </Table.Td>
-            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ data.second_training_date }}
-            </Table.Td>
-            <Table.Td class="box w-40 text-center rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              <div
-                :class="[
-                  'flex items-center justify-center',
-                  { 'text-success':data.second_training_status },
-                  { 'text-danger': !data.second_training_status },
-                ]"
-              >
-                <Lucide icon="CheckSquare" class="w-4 h-4 mr-2" />
-                {{ data.second_training_status ? "Completed" : "Incompleted" }}
-              </div>
-            </Table.Td>
-            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ data.third_training_topic }}
-            </Table.Td>
-            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ data.third_training_date }}
-            </Table.Td>
-            <Table.Td class="box w-40 text-center rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              <div
-                :class="[
-                  'flex items-center justify-center',
-                  { 'text-success':data.third_training_status },
-                  { 'text-danger': !data.third_training_status },
-                ]"
-              >
-                <Lucide icon="CheckSquare" class="w-4 h-4 mr-2" />
-                {{ data.third_training_status ? "Completed" : "Incompleted" }}
-              </div>
-            </Table.Td>
-            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ data.fourth_training_topic }}
-            </Table.Td>
-            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ data.fourth_training_date }}
-            </Table.Td>
-            <Table.Td class="box w-40 text-center rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              <div
-                :class="[
-                  'flex items-center justify-center',
-                  { 'text-success':data.fourth_training_status },
-                  { 'text-danger': !data.fourth_training_status },
-                ]"
-              >
-                <Lucide icon="CheckSquare" class="w-4 h-4 mr-2" />
-                {{ data.fourth_training_status ? "Completed" : "Incompleted" }}
-              </div>
-            </Table.Td>
-            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ data.fifth_training_topic }}
-            </Table.Td>
-            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ data.fifth_training_date }}
-            </Table.Td>
-            <Table.Td class="box w-40 text-center rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              <div
-                :class="[
-                  'flex items-center justify-center',
-                  { 'text-success':data.fifth_training_status },
-                  { 'text-danger': !data.fifth_training_status },
-                ]"
-              >
-                <Lucide icon="CheckSquare" class="w-4 h-4 mr-2" />
-                {{ data.fifth_training_status ? "Completed" : "Incompleted" }}
-              </div>
-            </Table.Td>
-            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ data.additional_resources }}
-            </Table.Td>
-           
-            <Table.Td
-              :class="[
-                'box w-56 rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600',
-                'before:absolute before:inset-y-0 before:left-0 before:my-auto before:block before:h-8 before:w-px before:bg-slate-200 before:dark:bg-darkmode-400',
-              ]"
-            >
-              <div class="flex items-center justify-center">
-                <!-- <router-link :to="{name:'accident-update-form', params:{id:data.id} }" class="flex items-center mr-3">
-                  <Lucide icon="CheckSquare" class="w-4 h-4 mr-1" />
-                  Edit
-                </router-link> -->
-                <a
-                  class="flex items-center text-danger"
-                  href="javascript:;"
-                  @click="deleteData(data.id)">
-                  <Lucide icon="Trash2" class="w-4 h-4 mr-1" /> Delete
-                </a>
-              </div>
-            </Table.Td>
+            
+            <!-- Dynamic Data Columns -->
+            <template v-for="(ast, index) in data.employee.assign_trainings" :key="index">
+              <Table.Td>{{ ast.training_topic?.name || '' }}</Table.Td>
+              <Table.Td>{{ ast.date || '' }}</Table.Td>
+              <Table.Td>
+                <div :class="['flex items-center justify-center', ast.status ? 'text-success' : 'text-danger']">
+                  <Lucide icon="CheckSquare" class="w-4 h-4 mr-2" />
+                  {{ ast.status ? "Completed" : "Incomplete" }}
+                </div>
+              </Table.Td>
+            </template>
           </Table.Tr>
         </Table.Tbody>
       </Table>
@@ -302,3 +139,5 @@ onMounted(() => {
     <!-- END: Pagination -->
   </div>
 </template>
+
+

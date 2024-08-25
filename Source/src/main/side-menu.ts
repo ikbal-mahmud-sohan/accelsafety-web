@@ -77,10 +77,52 @@ const menu: Array<Menu | "divider"> = [
         pageName: "training-form",
         title: "Form",
       },
+      {
+        icon: "Activity",
+        pageName: "assign-training-form",
+        title: "Assign Training",
+      },
     ],
   },
   {
-    icon: "Award",
+    icon: "Box",
+    pageName: "Employee Information",
+    title: "Employee Info.",
+    subMenu: [
+      {
+        icon: "Activity",
+        pageName: "employee-info-list",
+        title: "Data List",
+      },
+      {
+        icon: "Activity",
+        pageName: "employee-info-form",
+        title: "Form",
+      },
+      {
+        icon: "Activity",
+        pageName: "department-info-list",
+        title: "Department List",
+      },
+      {
+        icon: "Activity",
+        pageName: "department-form",
+        title: "Department Form",
+      },
+      {
+        icon: "Activity",
+        pageName: "designation-info-list",
+        title: "Designation List",
+      },
+      {
+        icon: "Activity",
+        pageName: "designation-form",
+        title: "Designation Form",
+      },
+    ],
+  },
+  {
+    icon: "AtSign",
     pageName: "Training Attendences",
     title: "Training Att...",
     subMenu: [

@@ -41,9 +41,7 @@ const setProgrammaticDropdown = (value: boolean) => {
           <Preview.Panel>
             <div class="flex justify-center">
               <Menu>
-                <Menu.Button :as="Button" variant="primary">
-                  Show Dropdown
-                </Menu.Button>
+                <Menu.Button :as="Button" variant="primary"> Show Dropdown </Menu.Button>
                 <Menu.Items class="w-40">
                   <Menu.Item>New Dropdown</Menu.Item>
                   <Menu.Item>Delete Dropdown</Menu.Item>
@@ -55,9 +53,7 @@ const setProgrammaticDropdown = (value: boolean) => {
             <Preview.Highlight>
               {{`
               <Menu>
-                <Menu.Button :as="Button" variant="primary">
-                  Show Dropdown
-                </Menu.Button>
+                <Menu.Button :as="Button" variant="primary"> Show Dropdown </Menu.Button>
                 <Menu.Items class="w-40">
                   <Menu.Item>New Dropdown</Menu.Item>
                   <Menu.Item>Delete Dropdown</Menu.Item>
@@ -74,9 +70,7 @@ const setProgrammaticDropdown = (value: boolean) => {
         <div
           class="flex flex-col items-center p-5 border-b sm:flex-row border-slate-200/60 dark:border-darkmode-400"
         >
-          <h2 class="mr-auto text-base font-medium">
-            Header & Footer Dropdown
-          </h2>
+          <h2 class="mr-auto text-base font-medium">Header & Footer Dropdown</h2>
           <FormSwitch class="w-full mt-3 sm:w-auto sm:ml-auto sm:mt-0">
             <FormSwitch.Label htmlFor="show-example-2">
               Show example code
@@ -93,9 +87,7 @@ const setProgrammaticDropdown = (value: boolean) => {
           <Preview.Panel>
             <div class="flex justify-center">
               <Menu>
-                <Menu.Button :as="Button" variant="primary">
-                  Show Dropdown
-                </Menu.Button>
+                <Menu.Button :as="Button" variant="primary"> Show Dropdown </Menu.Button>
                 <Menu.Items class="w-56">
                   <Menu.Header>Export Options</Menu.Header>
                   <Menu.Divider />
@@ -106,9 +98,7 @@ const setProgrammaticDropdown = (value: boolean) => {
                   <Menu.Item>
                     <Lucide icon="Box" class="w-4 h-4 mr-2" />
                     Indonesia
-                    <div
-                      class="px-1 ml-auto text-xs text-white rounded-full bg-danger"
-                    >
+                    <div class="px-1 ml-auto text-xs text-white rounded-full bg-danger">
                       10
                     </div>
                   </Menu.Item>
@@ -125,11 +115,7 @@ const setProgrammaticDropdown = (value: boolean) => {
                     <Button type="button" variant="primary" class="px-2 py-1">
                       Settings
                     </Button>
-                    <Button
-                      type="button"
-                      variant="secondary"
-                      class="px-2 py-1 ml-auto"
-                    >
+                    <Button type="button" variant="secondary" class="px-2 py-1 ml-auto">
                       View Profile
                     </Button>
                   </Menu.Footer>
@@ -141,9 +127,7 @@ const setProgrammaticDropdown = (value: boolean) => {
             <Preview.Highlight>
               {{`
               <Menu>
-                <Menu.Button :as="Button" variant="primary">
-                  Show Dropdown
-                </Menu.Button>
+                <Menu.Button :as="Button" variant="primary"> Show Dropdown </Menu.Button>
                 <Menu.Items class="w-56">
                   <Menu.Header>Export Options</Menu.Header>
                   <Menu.Divider />
@@ -154,9 +138,7 @@ const setProgrammaticDropdown = (value: boolean) => {
                   <Menu.Item>
                     <Lucide icon="Box" class="w-4 h-4 mr-2" />
                     Indonesia
-                    <div
-                      class="px-1 ml-auto text-xs text-white rounded-full bg-danger"
-                    >
+                    <div class="px-1 ml-auto text-xs text-white rounded-full bg-danger">
                       10
                     </div>
                   </Menu.Item>
@@ -173,11 +155,7 @@ const setProgrammaticDropdown = (value: boolean) => {
                     <Button type="button" variant="primary" class="px-2 py-1">
                       Settings
                     </Button>
-                    <Button
-                      type="button"
-                      variant="secondary"
-                      class="px-2 py-1 ml-auto"
-                    >
+                    <Button type="button" variant="secondary" class="px-2 py-1 ml-auto">
                       View Profile
                     </Button>
                   </Menu.Footer>
@@ -211,9 +189,7 @@ const setProgrammaticDropdown = (value: boolean) => {
           <Preview.Panel>
             <div class="flex justify-center">
               <Menu>
-                <Menu.Button :as="Button" variant="primary">
-                  Show Dropdown
-                </Menu.Button>
+                <Menu.Button :as="Button" variant="primary"> Show Dropdown </Menu.Button>
                 <Menu.Items class="w-48">
                   <Menu.Item>
                     <Lucide icon="Edit2" class="w-4 h-4 mr-2" /> New Dropdown
@@ -229,9 +205,7 @@ const setProgrammaticDropdown = (value: boolean) => {
             <Preview.Highlight>
               {{`
               <Menu>
-                <Menu.Button :as="Button" variant="primary">
-                  Show Dropdown
-                </Menu.Button>
+                <Menu.Button :as="Button" variant="primary"> Show Dropdown </Menu.Button>
                 <Menu.Items class="w-48">
                   <Menu.Item>
                     <Lucide icon="Edit2" class="w-4 h-4 mr-2" /> New Dropdown
@@ -252,9 +226,7 @@ const setProgrammaticDropdown = (value: boolean) => {
         <div
           class="flex flex-col items-center p-5 border-b sm:flex-row border-slate-200/60 dark:border-darkmode-400"
         >
-          <h2 class="mr-auto text-base font-medium">
-            Dropdown with close button
-          </h2>
+          <h2 class="mr-auto text-base font-medium">Dropdown with close button</h2>
           <FormSwitch class="w-full mt-3 sm:w-auto sm:ml-auto sm:mt-0">
             <FormSwitch.Label htmlFor="show-example-4">
               Show example code
@@ -305,9 +277,7 @@ const setProgrammaticDropdown = (value: boolean) => {
                       >
                         Close
                       </Button>
-                      <Button variant="primary" class="w-32 ml-2">
-                        Search
-                      </Button>
+                      <Button variant="primary" class="w-32 ml-2"> Search </Button>
                     </div>
                   </div>
                 </Popover.Panel>
@@ -353,9 +323,7 @@ const setProgrammaticDropdown = (value: boolean) => {
                         >
                           Close
                         </Button>
-                        <Button variant="primary" class="w-32 ml-2">
-                          Search
-                        </Button>
+                        <Button variant="primary" class="w-32 ml-2"> Search </Button>
                       </div>
                     </div>
                   </Popover.Panel>
@@ -391,9 +359,7 @@ const setProgrammaticDropdown = (value: boolean) => {
           <Preview.Panel>
             <div class="flex justify-center">
               <Menu>
-                <Menu.Button :as="Button" variant="primary">
-                  Show Dropdown
-                </Menu.Button>
+                <Menu.Button :as="Button" variant="primary"> Show Dropdown </Menu.Button>
                 <Menu.Items class="w-40 h-32 overflow-y-auto">
                   <Menu.Item>January</Menu.Item>
                   <Menu.Item>February</Menu.Item>
@@ -408,9 +374,7 @@ const setProgrammaticDropdown = (value: boolean) => {
             <Preview.Highlight>
               {{`
               <Menu>
-                <Menu.Button :as="Button" variant="primary">
-                  Show Dropdown
-                </Menu.Button>
+                <Menu.Button :as="Button" variant="primary"> Show Dropdown </Menu.Button>
                 <Menu.Items class="w-40 h-32 overflow-y-auto">
                   <Menu.Item>January</Menu.Item>
                   <Menu.Item>February</Menu.Item>
@@ -447,9 +411,7 @@ const setProgrammaticDropdown = (value: boolean) => {
           <Preview.Panel>
             <div class="flex justify-center">
               <Menu>
-                <Menu.Button :as="Button" variant="primary">
-                  Show Dropdown
-                </Menu.Button>
+                <Menu.Button :as="Button" variant="primary"> Show Dropdown </Menu.Button>
                 <Menu.Items class="w-40">
                   <Menu.Header>Export Tools</Menu.Header>
                   <Menu.Divider />
@@ -477,9 +439,7 @@ const setProgrammaticDropdown = (value: boolean) => {
             <Preview.Highlight>
               {{`
               <Menu>
-                <Menu.Button :as="Button" variant="primary">
-                  Show Dropdown
-                </Menu.Button>
+                <Menu.Button :as="Button" variant="primary"> Show Dropdown </Menu.Button>
                 <Menu.Items class="w-40">
                   <Menu.Header>Export Tools</Menu.Header>
                   <Menu.Divider />
