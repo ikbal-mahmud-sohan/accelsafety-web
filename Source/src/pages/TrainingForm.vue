@@ -126,7 +126,7 @@ const submitForm = async () => {
 
 <template>
   <div class="flex items-center mt-8 intro-y">
-    <h2 class="mr-auto text-lg font-medium">Training Form</h2>
+    <h2 class="mr-auto text-lg font-medium">Add Training Topics</h2>
   </div>
 
   <div class="flex flex-wrap items-center justify-between w-full">

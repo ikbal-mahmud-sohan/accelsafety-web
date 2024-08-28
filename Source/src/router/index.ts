@@ -149,7 +149,7 @@ const router = createRouter({
         {
           path: "trainings",
           name: "training-data-list",
-          component: () => import("../pages/TrainingDataList.vue"),
+          component: () => import("../pages/TrainingNeedAnalysisList.vue"),
         },
         {
           path: "training-create",
@@ -160,6 +160,11 @@ const router = createRouter({
           path: "assign-training",
           name: "assign-training-form",
           component: () => import("../pages/AssignTrainingForm.vue"),
+        },
+        {
+          path: "assign-multiple-training",
+          name: "assign-multiple-training-form",
+          component: () => import("../pages/AssignMultipleTrainingForm.vue"),
         },
         {
           path: "training/:id/update",

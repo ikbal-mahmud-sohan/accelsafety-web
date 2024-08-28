@@ -46,15 +46,15 @@ onMounted(() => {
 </script>
 
 <template>
-  <h2 class="mt-10 text-lg font-medium intro-y">HR List</h2>
+  <h2 class="mt-10 text-lg font-medium intro-y">Human Resource Data List</h2>
   <div class="grid grid-cols-12 gap-6 mt-5">
     <div class="flex flex-wrap items-center col-span-12 mt-2 intro-y sm:flex-nowrap">
       <!-- <Button variant="primary" class="mr-2 shadow-md">
         Add New Accident
       </Button> -->
-      <router-link :to="{ name: 'accident-form' }">
+      <router-link :to="{ name: 'employee-info-form' }">
         <Button variant="primary" class="mr-2 shadow-md">
-          Add New Accident
+          Add New Employee
         </Button>
       </router-link>
       <Menu>
@@ -98,10 +98,15 @@ onMounted(() => {
         <Table.Thead>
           <Table.Tr>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase"> ID </Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Employee ID</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">NAME</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">First Name</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Last Name</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase"> DESIGNATIONS</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">department</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">employee_type</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Unit</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Location</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Employee Type</Table.Th>
             <Table.Th class="text-center border-b-0 whitespace-nowrap uppercase">ACTIONS</Table.Th>
           </Table.Tr>
         </Table.Thead>
@@ -110,14 +115,29 @@ onMounted(() => {
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
               {{ report.id }}
             </Table.Td>
+            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.emp_id }}
+            </Table.Td>
             <Table.Td class="box text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
               {{ report.name }}
+            </Table.Td>
+            <Table.Td class="box text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.first_name }}
+            </Table.Td>
+            <Table.Td class="box text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.last_name }}
             </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
               {{ report.designation }}
             </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
               {{ report.department }}
+            </Table.Td>
+            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.unit_name }}
+            </Table.Td>
+            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.location }}
             </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
               {{ report.employee_type }}
@@ -129,10 +149,10 @@ onMounted(() => {
               ]"
             >
               <div class="flex items-center justify-center">
-                <router-link :to="{name:'employee-info-update-form', params:{id:report.id} }" class="flex items-center mr-3">
+                <!-- <router-link :to="{name:'employee-info-update-form', params:{id:report.id} }" class="flex items-center mr-3">
                   <Lucide icon="CheckSquare" class="w-4 h-4 mr-1" />
                   Edit
-                </router-link>
+                </router-link> -->
                 <a
                   class="flex items-center text-danger"
                   href="javascript:;"

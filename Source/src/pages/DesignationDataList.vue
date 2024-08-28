@@ -46,7 +46,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <h2 class="mt-10 text-lg font-medium intro-y">designation List</h2>
+  <h2 class="mt-10 text-lg font-medium intro-y">Designation List</h2>
   <div class="grid grid-cols-12 gap-6 mt-5">
     <div class="flex flex-wrap items-center col-span-12 mt-2 intro-y sm:flex-nowrap">
       <!-- <Button variant="primary" class="mr-2 shadow-md">

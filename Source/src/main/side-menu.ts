@@ -36,12 +36,12 @@ const menu: Array<Menu | "divider"> = [
       {
         icon: "Activity",
         pageName: "accident-data-list",
-        title: "Data List",
+        title: "Accident List",
       },
       {
         icon: "Activity",
         pageName: "accident-form",
-        title: "Form",
+        title: "Add Accident",
       },
     ],
   },
@@ -53,12 +53,12 @@ const menu: Array<Menu | "divider"> = [
       {
         icon: "Activity",
         pageName: "safety-observation-data-list",
-        title: "Data List",
+        title: "Safety Observationt List",
       },
       {
         icon: "Activity",
         pageName: "safety-observation-form",
-        title: "Form",
+        title: "Add Safety Observationt",
       },
     ],
   },
@@ -70,34 +70,40 @@ const menu: Array<Menu | "divider"> = [
       {
         icon: "Activity",
         pageName: "training-data-list",
-        title: "Data List",
-      },
-      {
-        icon: "Activity",
-        pageName: "training-form",
-        title: "Form",
+        title: "Training Need Analysis List",
       },
       {
         icon: "Activity",
         pageName: "assign-training-form",
-        title: "Assign Training",
+        title: "Assign Single Training",
       },
+      {
+        icon: "Activity",
+        pageName: "assign-multiple-training-form",
+        title: "Assign Multiple Training",
+      },
+      {
+        icon: "Activity",
+        pageName: "training-form",
+        title: "Add Training Topics",
+      },
+      
     ],
   },
   {
     icon: "Box",
     pageName: "Employee Information",
-    title: "Employee Info.",
+    title: "HR Data",
     subMenu: [
       {
         icon: "Activity",
         pageName: "employee-info-list",
-        title: "Data List",
+        title: "Human Resource Data List",
       },
       {
         icon: "Activity",
         pageName: "employee-info-form",
-        title: "Form",
+        title: "Add Human Resource Data",
       },
       {
         icon: "Activity",
@@ -106,18 +112,8 @@ const menu: Array<Menu | "divider"> = [
       },
       {
         icon: "Activity",
-        pageName: "department-form",
-        title: "Department Form",
-      },
-      {
-        icon: "Activity",
         pageName: "designation-info-list",
         title: "Designation List",
-      },
-      {
-        icon: "Activity",
-        pageName: "designation-form",
-        title: "Designation Form",
       },
     ],
   },
@@ -129,12 +125,12 @@ const menu: Array<Menu | "divider"> = [
       {
         icon: "Activity",
         pageName: "training-attendences-data-list",
-        title: "Data List",
+        title: "Training Attendences List",
       },
       {
         icon: "Activity",
         pageName: "training-attendences-form",
-        title: "Form",
+        title: "Attendences Training",
       },
     ],
   },
