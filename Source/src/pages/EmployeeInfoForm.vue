@@ -30,9 +30,22 @@ import {
 
 const formData = reactive({
   name:'',
+  emp_id:'',
+  first_name:'',
+  last_name:'',
+  unit_name:'',
+  location:'',
   designation:'',
+  designationInput:'',
   department:'',
+  departmentInput:'',
   employee_type:'',
+});
+const designationformData = reactive({
+        name:'',
+});
+const departmentformData = reactive({
+        name:'',
 });
 const router = useRouter();
 
@@ -54,8 +67,13 @@ const selectedEmployeeType = ref("");
 
 const rules = {
         name: {required},
+        emp_id: {required,},
+        first_name: {required,},
+        last_name: {required,},
+        unit_name: {required,},
+        location: {required,},
         designation: {required,},
-        department: { required, minLength: minLength(1),},
+        department: { required, },
         employee_type: {required },
        
 };
@@ -102,11 +120,47 @@ function SuccessPopUp(){
 }
 
 const submitForm = async () => {
-  formData.department = selectedDepartment.value;
-  formData.designation = selectedDesignation.value;
+console.log("formData xyz",formData)
+  if(selectedDesignation.value === ""){
+    formData.designation = formData.designationInput;
+    designationformData.name = formData.designationInput
+    try {
+            let  url = config.baseURL+'/api/v1/designation';
+            const response = await axios.post(url, designationformData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+            });
+    
+        } catch (error) {
+            console.error('Error submitting form:', error);
+        }
+  }else{
+    formData.designation = selectedDesignation.value;
+  }
+
+  if(selectedDepartment.value === ""){
+    formData.department = formData.departmentInput;
+    departmentformData.name =formData.departmentInput;
+    try {
+          let  url = config.baseURL+'/api/v1/department';
+          const response = await axios.post(url, departmentformData, {
+          headers: {
+              'Content-Type': 'multipart/form-data',
+          },
+          });
+  
+      } catch (error) {
+          console.error('Error submitting form:', error);
+      }
+  }else{
+    formData.department = selectedDepartment.value;
+  }
+  
   formData.employee_type = selectedEmployeeType.value;
 
   validate.value.$touch();
+  console.log("validate.value.$invalid",validate)
   if (validate.value.$invalid) {
     FailedPopUp();
   } else {
@@ -132,6 +186,13 @@ const submitForm = async () => {
     }
   }
 };
+
+function departnemtChange(){
+  formData.departmentInput = ""
+}
+function designationChange(){
+  formData.designationInput = ""
+}
 
 // Fetch data from the API and update the state
 const fetchDepartmentData = async () => {
@@ -162,7 +223,7 @@ onMounted(() => {
 
 <template>
   <div class="flex items-center mt-8 intro-y">
-    <h2 class="mr-auto text-lg font-medium">Hr Info Form</h2>
+    <h2 class="mr-auto text-lg font-medium">Create Human Resource Data</h2>
   </div>
 
   <div class="flex flex-wrap items-center justify-between w-full">
@@ -179,6 +240,71 @@ onMounted(() => {
                 </template>
             </div> 
         </div>
+        <div class="w-full md:w-1/2">
+            <div class="px-4 py-2">
+                <FormLabel htmlFor="crud-form-3" class="flex flex-col w-full sm:flex-row">Employee ID
+                  <span class="mt-1 text-xs sm:ml-auto sm:mt-0 text-slate-500">Required, at least 3 characters</span>
+                </FormLabel>
+                <FormInput id="crud-form-3" v-model.trim="validate.emp_id.$model" class="w-full" type="text" name="emp_id":class="{ 'border-danger': validate.emp_id.$error,}" placeholder="Input Employee ID"/>
+                <template v-if="validate.emp_id.$error">
+                  <div v-for="(error, index) in validate.emp_id.$errors" :key="index" class="mt-2 text-danger">
+                    {{ error.$message }}
+                  </div>
+                </template>
+            </div> 
+        </div>
+        <div class="w-full md:w-1/2">
+            <div class="px-4 py-2">
+                <FormLabel htmlFor="crud-form-3" class="flex flex-col w-full sm:flex-row">First Name
+                  <span class="mt-1 text-xs sm:ml-auto sm:mt-0 text-slate-500">Required, at least 3 characters</span>
+                </FormLabel>
+                <FormInput id="crud-form-3" v-model.trim="validate.first_name.$model" class="w-full" type="text" name="first_name":class="{ 'border-danger': validate.first_name.$error,}" placeholder="Input First Name"/>
+                <template v-if="validate.first_name.$error">
+                  <div v-for="(error, index) in validate.first_name.$errors" :key="index" class="mt-2 text-danger">
+                    {{ error.$message }}
+                  </div>
+                </template>
+            </div> 
+        </div>
+        <div class="w-full md:w-1/2">
+            <div class="px-4 py-2">
+                <FormLabel htmlFor="crud-form-3" class="flex flex-col w-full sm:flex-row">Last Name
+                  <span class="mt-1 text-xs sm:ml-auto sm:mt-0 text-slate-500">Required, at least 3 characters</span>
+                </FormLabel>
+                <FormInput id="crud-form-3" v-model.trim="validate.last_name.$model" class="w-full" type="text" name="last_name":class="{ 'border-danger': validate.last_name.$error,}" placeholder="Input Last Name"/>
+                <template v-if="validate.last_name.$error">
+                  <div v-for="(error, index) in validate.last_name.$errors" :key="index" class="mt-2 text-danger">
+                    {{ error.$message }}
+                  </div>
+                </template>
+            </div> 
+        </div>
+        <div class="w-full md:w-1/2">
+            <div class="px-4 py-2">
+                <FormLabel htmlFor="crud-form-3" class="flex flex-col w-full sm:flex-row">Unit Name
+                  <span class="mt-1 text-xs sm:ml-auto sm:mt-0 text-slate-500">Required, at least 3 characters</span>
+                </FormLabel>
+                <FormInput id="crud-form-3" v-model.trim="validate.unit_name.$model" class="w-full" type="text" name="unit_name":class="{ 'border-danger': validate.unit_name.$error,}" placeholder="Input Unit Name"/>
+                <template v-if="validate.unit_name.$error">
+                  <div v-for="(error, index) in validate.unit_name.$errors" :key="index" class="mt-2 text-danger">
+                    {{ error.$message }}
+                  </div>
+                </template>
+            </div> 
+        </div>
+        <div class="w-full md:w-1/2">
+            <div class="px-4 py-2">
+                <FormLabel htmlFor="crud-form-3" class="flex flex-col w-full sm:flex-row">Location
+                  <span class="mt-1 text-xs sm:ml-auto sm:mt-0 text-slate-500">Required, at least 3 characters</span>
+                </FormLabel>
+                <FormInput id="crud-form-3" v-model.trim="validate.location.$model" class="w-full" type="text" name="location":class="{ 'border-danger': validate.location.$error,}" placeholder="Input Location"/>
+                <template v-if="validate.location.$error">
+                  <div v-for="(error, index) in validate.location.$errors" :key="index" class="mt-2 text-danger">
+                    {{ error.$message }}
+                  </div>
+                </template>
+            </div> 
+        </div>
 
         <div class="w-full md:w-1/2">
             <div class="px-4 py-2">
@@ -186,10 +312,18 @@ onMounted(() => {
               Designation
                 <span class="mt-1 text-xs sm:ml-auto sm:mt-0 text-slate-500">Required, at least 3 characters</span>
               </FormLabel>
-              <select id="crud-form-6" v-model="selectedDesignation"  class="w-full border border-gray-300 rounded-lg">
-                <option value="" disabled>Select Designation</option>
-                <option v-for="(data, index) in state.designationData" :key="index" :value="data.name">{{ data.name }}</option>
-              </select>
+              <div class="flex w-full border border-gray-300 rounded-lg bg-white" :class="{ 'border-danger': validate.designation.$error,}">
+                <div class="w-1/2">
+                 <input type="text" v-model="formData.designationInput" class="w-full border-none outline-none rounded-l-lg text-sm  dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" name="designation" placeholder="Input Designation">
+                </div>
+                <div class="w-1/2  border-l border-gray-300">
+                  <select @change="designationChange()" v-model="selectedDesignation"  class="w-full border-none outline-none rounded-r-lg text-sm  dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80">
+                    <option value="" disabled >Select Designation</option>
+                    <option v-for="(data, index) in state.designationData" :key="index" :value="data.name">{{ data.name }}</option>
+                  </select>
+                </div>
+              </div>
+              
               <template v-if="validate.designation.$error">
                 <div v-for="(error, index) in validate.designation.$errors" :key="index" class="mt-2 text-danger">
                   {{ error.$message }}
@@ -203,11 +337,18 @@ onMounted(() => {
                 Department
                 <span class="mt-1 text-xs sm:ml-auto sm:mt-0 text-slate-500">Required, at least 3 characters</span>
               </FormLabel>
-              <select id="crud-form-6" v-model="selectedDepartment" class="w-full border border-gray-300 rounded-lg">
-                <option value="" disabled>Select Department</option>
-                <option v-for="(data, index) in state.departmentData" :key="index" :value="data.name">{{ data.name }}</option>
-                <!-- Add more options as needed -->
-              </select>
+              <div class="flex w-full border border-gray-300 rounded-lg bg-white" :class="{ 'border-danger': validate.designation.$error,}">
+                <div class="w-1/2">
+                 <input type="text" v-model="formData.departmentInput" class="w-full border-none outline-none rounded-l-lg text-sm  dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" name="department" placeholder="Input Department">
+                </div>
+                <div class="w-1/2  border-l border-gray-300">
+                  <select @change="departnemtChange()" v-model="selectedDepartment" class="w-full border-none outline-none rounded-r-lg text-sm  dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80">
+                    <option value="" disabled >Select Department</option>
+                    <option v-for="(data, index) in state.departmentData" :key="index" :value="data.name">{{ data.name }}</option>
+                  </select>
+                </div>
+              </div>
+              
               <template v-if="validate.department.$error">
                 <div v-for="(error, index) in validate.department.$errors" :key="index" class="mt-2 text-danger">
                   {{ error.$message }}
@@ -215,6 +356,7 @@ onMounted(() => {
               </template>
             </div> 
         </div>
+        
         <div class="w-full md:w-1/2">
             <div class="px-4 py-2">
               
@@ -222,7 +364,7 @@ onMounted(() => {
               Employee Type
                 <span class="mt-1 text-xs sm:ml-auto sm:mt-0 text-slate-500">Required, at least 3 characters</span>
               </FormLabel>
-              <select id="crud-form-6" v-model="selectedEmployeeType" class="w-full border border-gray-300 rounded-lg">
+              <select id="crud-form-6" v-model="selectedEmployeeType" class="w-full border border-gray-300 rounded-lg text-sm  dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80">
                 <option value="" disabled>Select Employee Type</option>
                 <option value="Management">Management</option>
                 <option value="Non-Management">Non-Management</option>

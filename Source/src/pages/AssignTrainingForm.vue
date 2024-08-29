@@ -31,8 +31,6 @@ import {
 const formData = reactive({
   employee_id:'',
   training_topic_id:'',
-  status:'0',
-  date:'',
 });
 const router = useRouter();
 
@@ -55,8 +53,6 @@ const rules = {
   
       employee_id: {required},
       training_topic_id: {required},
-      status: {required},
-      date: {required},
        
 };
 
@@ -202,26 +198,6 @@ onMounted(() => {
                 </div>
               </template>
             </div> 
-        </div>
-        <div class="w-full md:w-1/2">
-            <div class="px-4 py-2">
-                <FormLabel htmlFor="crud-form-16" class="flex flex-col w-full sm:flex-row">Date
-                  <span class="mt-1 text-xs sm:ml-auto sm:mt-0 text-slate-500">Required</span>
-                </FormLabel>
-                <FormInput id="crud-form-16" v-model.trim="validate.date.$model" class="w-full" type="date" name="name":class="{ 'border-danger': validate.date.$error,}" placeholder="Input date"/>
-                <template v-if="validate.date.$error">
-                  <div v-for="(error, index) in validate.date.$errors" :key="index" class="mt-2 text-danger">
-                    {{ error.$message }}
-                  </div>
-                </template>
-            </div>
-        </div>
-        <div class="w-full md:w-1/2">
-            <div class="px-4 py-2">
-                <FormLabel htmlFor="crud-form-17" class="flex flex-col w-full sm:flex-row">Status
-                </FormLabel>
-                <FormSwitch.Input id="crud-form-17" v-model.trim="validate.status.$model" type="checkbox" />
-            </div>
         </div>
         
         <div class="w-full px-4 py-4">

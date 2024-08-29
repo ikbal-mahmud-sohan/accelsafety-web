@@ -14,7 +14,8 @@ import config from "@/config";
 // Define your state using the reactive function
 const state = reactive({
   viewData: [] as Array<any>,
-  headers: [] as Array<any>,  // New array to store dynamic headers
+  headers: [] as Array<any>,   
+  maxLen: 0 as number,
 });
 
 // Fetch data from the API and update the state
@@ -23,6 +24,16 @@ const fetchData = async () => {
     let  url = config.baseURL+'/api/v1/training-assesments';
     const response = await axios.get(url);
     state.viewData = response.data.TrainingAssessment;
+
+    // let maxTrainingLength = 0;
+    // state.viewData.forEach((item) => {
+    //   const length = item.employee.assign_trainings?.length || 0;
+    //   if (length > maxTrainingLength) {
+    //     maxTrainingLength = length;
+    //   }
+    //   state.maxLen = maxTrainingLength
+    // });
+
 
     // Assuming each training object has a 'assign_trainings' array to derive headers
     if (state.viewData.length) {
@@ -46,7 +57,7 @@ onMounted(() => {
 });
 </script>
 <template>
-  <h2 class="mt-10 text-lg font-medium intro-y">Training List</h2>
+  <h2 class="mt-10 text-lg font-medium intro-y">Training Need Analysis List</h2>
   <div class="grid grid-cols-12 gap-6 mt-5">
     <!-- BEGIN: Data List -->
     <div class="col-span-12 overflow-auto intro-y">
@@ -59,7 +70,6 @@ onMounted(() => {
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">designation</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">department</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">employee type</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">special training need</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">status</Table.Th>
             
             <!-- Dynamic Headers -->
@@ -79,13 +89,6 @@ onMounted(() => {
             <Table.Td>{{ data.employee.department || '' }}</Table.Td>
             <Table.Td>{{ data.employee.employee_type || '' }}</Table.Td>
             <Table.Td>
-              <div class="flex">
-                <div class="px-1" v-for="(spt, index) in data.employee.assign_special_trainings" :key="index">
-                  {{ spt.special_training || '' }}
-                </div>
-              </div>
-            </Table.Td>
-            <Table.Td>
               <div :class="['flex items-center justify-center', data.main_status ? 'text-success' : 'text-danger']">
                 <Lucide icon="CheckSquare" class="w-4 h-4 mr-2" />
                 {{ data.main_status ? "Completed" : "Incomplete" }}
@@ -94,15 +97,40 @@ onMounted(() => {
             
             <!-- Dynamic Data Columns -->
             <template v-for="(ast, index) in data.employee.assign_trainings" :key="index">
-              <Table.Td>{{ ast.training_topic?.name || '' }}</Table.Td>
-              <Table.Td>{{ ast.date || '' }}</Table.Td>
+              <Table.Td>
+              {{ ast.training_topic?.name || '' }}
+              </Table.Td>
+              <Table.Td class="text-center">
+                <span v-if="ast.date" class="">{{ ast.date }}</span>
+                <Button v-else variant="soft-pending" rounded class="w-24 mb-2 mr-1">
+                  Pending
+                </Button>
+              </Table.Td>
               <Table.Td>
                 <div :class="['flex items-center justify-center', ast.status ? 'text-success' : 'text-danger']">
                   <Lucide icon="CheckSquare" class="w-4 h-4 mr-2" />
                   {{ ast.status ? "Completed" : "Incomplete" }}
                 </div>
               </Table.Td>
-            </template>
+           </template>
+             <!-- <template v-for="(ast, index) in data.employee.assign_trainings" :key="index">
+             <p>{{index}}</p>
+                  <Table.Td v-if="index<state.maxLen" class="text-center">
+                    <Button variant="soft-danger" rounded class="w-24 mb-2 mr-1">
+                      No Data
+                    </Button>
+                  </Table.Td>
+                  <Table.Td v-if="data.employee.assign_trainings.length<state.maxLen" class="text-center">
+                    <Button variant="soft-danger" rounded class="w-24 mb-2 mr-1">
+                      No Data
+                    </Button>
+                  </Table.Td>
+                  <Table.Td v-if="data.employee.assign_trainings.length<state.maxLen" class="text-center">
+                    <Button variant="soft-danger" rounded class="w-24 mb-2 mr-1">
+                      No Data
+                    </Button>
+                  </Table.Td>
+            </template> -->
           </Table.Tr>
         </Table.Tbody>
       </Table>

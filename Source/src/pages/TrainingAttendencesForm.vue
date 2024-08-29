@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, reactive, toRefs } from 'vue';
+import { ref, reactive, toRefs,onMounted } from 'vue';
 import axios from 'axios';
 import { ClassicEditor } from "@/components/Base/Ckeditor";
 import Button from "@/components/Base/Button";
@@ -17,17 +17,22 @@ import Toastify from 'toastify-js';
 
 const formData = reactive({
         serial_number:'',
-        training_topic:'',
+        training_topic_id:'',
         iso_standard:'',
         venue:'',
         facilitator:'',
         training_date:'',
         training_duration:'',
-        name:'',
+        emp_id:'',
         title:'',
         function:'',
         business:'',
         signature: null as File | null,
+});
+const state = reactive({
+  trainingTopicData: [] as Array<any>,
+  employeeData: [] as Array<any>,
+
 });
 const router = useRouter();
 
@@ -41,13 +46,13 @@ const handleFileChange = (event: Event) => {
 
 const rules = {
         serial_number: {required,integer},
-        training_topic: {required,minLength: minLength(3),},
+        training_topic_id: {required,},
         iso_standard: {required,minLength: minLength(3),},
         venue: {required,minLength: minLength(3),},
         facilitator: {required,minLength: minLength(3),},
         training_date: {required},
         training_duration: {required,minLength: minLength(3),},
-        name: {required,minLength: minLength(3),},
+        emp_id: {required},
         title: {required,minLength: minLength(3),},
         function: {required,minLength: minLength(3),},
         business: {required,minLength: minLength(3),},
@@ -55,9 +60,13 @@ const rules = {
 };
 
 const validate = useVuelidate(rules, toRefs(formData));
+const selectedtrainingTopic = ref("");
+const selectedEmployee = ref("");
 
 
 const submitForm = async () => {
+  formData.emp_id = selectedEmployee.value;
+  formData.training_topic_id = selectedtrainingTopic.value;
     validate.value.$touch();
     console.log(validate.value)
     if (validate.value.$invalid) {
@@ -116,11 +125,36 @@ const submitForm = async () => {
     }
 };
 
+const fetchTrainingTopicData = async () => {
+  try {
+   let  url = config.baseURL+'/api/v1/trainingTopics';
+    const response = await axios.get(url);
+    state.trainingTopicData = response.data.data;
+
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+};
+const fetchEmployeeData = async () => {
+  try {
+   let  url = config.baseURL+'/api/v1/employee';
+    const response = await axios.get(url);
+    state.employeeData = response.data.data;
+
+    console.log("sohan 1",state.employeeData)
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+};
+onMounted(() => {
+  fetchTrainingTopicData();
+  fetchEmployeeData();
+});
 </script>
 
 <template>
   <div class="flex items-center mt-8 intro-y">
-    <h2 class="mr-auto text-lg font-medium">Training Attendence Form</h2>
+    <h2 class="mr-auto text-lg font-medium">Attendence Training</h2>
   </div>
   <div class="flex flex-wrap items-center justify-between w-full">
         <div class="w-full md:w-1/2">
@@ -137,16 +171,37 @@ const submitForm = async () => {
         </div>
         <div class="w-full md:w-1/2">
             <div class="px-4 py-2">
-                <FormLabel htmlFor="crud-form-2" class="flex flex-col w-full sm:flex-row">Training Topic
-                  <span class="mt-1 text-xs sm:ml-auto sm:mt-0 text-slate-500">Required</span>
-                </FormLabel>
-                <FormInput id="crud-form-2" v-model.trim="validate.training_topic.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.training_topic.$error,}" placeholder="Input Training Topic"/>
-                <template v-if="validate.training_topic.$error">
-                  <div v-for="(error, index) in validate.training_topic.$errors" :key="index" class="mt-2 text-danger">
-                    {{ error.$message }}
-                  </div>
-                </template>
+            <FormLabel htmlFor="crud-form-6" class="flex flex-col w-full sm:flex-row">
+              Employee
+                <span class="mt-1 text-xs sm:ml-auto sm:mt-0 text-slate-500">Required</span>
+              </FormLabel>
+              <select id="crud-form-6" v-model="selectedEmployee"  class="w-full border border-gray-300 rounded-lg">
+                <option value="" disabled>Select Employee</option>
+                <option v-for="(data, index) in state.employeeData" :key="index" :value="data.id">{{ data.name }}</option>
+              </select>
+              <template v-if="validate.emp_id.$error">
+                <div v-for="(error, index) in validate.emp_id.$errors" :key="index" class="mt-2 text-danger">
+                  {{ error.$message }}
+                </div>
+              </template>
             </div> 
+        </div>
+        <div class="w-full md:w-1/2">
+          <div class="px-4 py-2">
+              <FormLabel htmlFor="crud-form-6" class="flex flex-col w-full sm:flex-row">
+                Training Topic
+                <span class="mt-1 text-xs sm:ml-auto sm:mt-0 text-slate-500">Required</span>
+              </FormLabel>
+              <select id="crud-form-6" v-model="selectedtrainingTopic" class="w-full border border-gray-300 rounded-lg">
+                <option value="" disabled>Select Training</option>
+                <option v-for="(data, index) in state.trainingTopicData" :key="index" :value="data.id">{{ data.name }}</option>
+              </select>
+              <template v-if="validate.training_topic_id.$error">
+                <div v-for="(error, index) in validate.training_topic_id.$errors" :key="index" class="mt-2 text-danger">
+                  {{ error.$message }}
+                </div>
+              </template>
+            </div>  
         </div>
         <div class="w-full md:w-1/2">
             <div class="px-4 py-2">
@@ -166,7 +221,7 @@ const submitForm = async () => {
                 <FormLabel htmlFor="crud-form-4" class="flex flex-col w-full sm:flex-row">Venue
                   <span class="mt-1 text-xs sm:ml-auto sm:mt-0 text-slate-500">Required</span>
                 </FormLabel>
-                <FormInput id="crud-form-4" v-model.trim="validate.venue.$model" class="w-full" type="date" name="name":class="{ 'border-danger': validate.venue.$error,}" placeholder="Input Venue"/>
+                <FormInput id="crud-form-4" v-model.trim="validate.venue.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.venue.$error,}" placeholder="Input Venue"/>
                 <template v-if="validate.venue.$error">
                   <div v-for="(error, index) in validate.venue.$errors" :key="index" class="mt-2 text-danger">
                     {{ error.$message }}
@@ -213,19 +268,7 @@ const submitForm = async () => {
                 </template>
             </div> 
         </div>
-        <div class="w-full md:w-1/2">
-            <div class="px-4 py-2">
-                <FormLabel htmlFor="crud-form-5" class="flex flex-col w-full sm:flex-row">Name
-                  <span class="mt-1 text-xs sm:ml-auto sm:mt-0 text-slate-500">Required, at least 3 characters</span>
-                </FormLabel>
-                <FormInput id="crud-form-5" v-model.trim="validate.name.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.name.$error,}" placeholder="Input Name"/>
-                <template v-if="validate.name.$error">
-                  <div v-for="(error, index) in validate.name.$errors" :key="index" class="mt-2 text-danger">
-                    {{ error.$message }}
-                  </div>
-                </template>
-            </div> 
-        </div>
+        
         <div class="w-full md:w-1/2">
             <div class="px-4 py-2">
                 <FormLabel htmlFor="crud-form-5" class="flex flex-col w-full sm:flex-row">Title
