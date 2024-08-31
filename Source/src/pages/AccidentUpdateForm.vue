@@ -142,7 +142,7 @@ const submitForm = async () => {
 
 <template>
   <div class="flex items-center mt-8 intro-y">
-    <h2 class="mr-auto text-lg font-medium">Safety Observationt Form</h2>
+    <h2 class="mr-auto text-lg font-medium">Update Accident</h2>
   </div>
 
   <div class="flex flex-wrap items-center justify-between w-full">
