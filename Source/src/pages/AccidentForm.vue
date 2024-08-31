@@ -11,6 +11,8 @@ import { required, minLength, email, integer, maxLength } from '@vuelidate/valid
 import config from "@/config";
 import Toastify from 'toastify-js';
 import Notification from "@/components/Base/Notification";
+import Preview from "@/components/Base/Preview";
+import Litepicker from "@/components/Base/Litepicker";
 
 
 import {
@@ -39,7 +41,16 @@ const formData = reactive({
   days_lost: 0,
   type_of_victim_employee: '',
   responsible_name: '',
-  deadline: ''
+  deadline: '',
+  type_of_employee:'',
+  site_name:'',
+  time_date:'',
+  incident_category:'',
+  immidiate_cause:'',
+  incident_location:'',
+  incident_descriptions:'',
+  investigation_lead:'',
+  attachment:[] as File[],
 });
 const router = useRouter();
 
@@ -56,14 +67,17 @@ interface BackendErrorResponse {
     };
 }
 const editorData = ref("");
-
+const date = ref("");
+const deadlinedate = ref("");
+const time_date = ref("");
+const selectedIncidentCategory = ref("");
 const rules = {
         month: {required},
         date: {required,},
-        name: { required, minLength: minLength(3),},
-        designation: {required },
-        supervisor: {required },
-        department: {required, minLength: minLength(3) },
+        // name: { required, minLength: minLength(3),},
+        // designation: {required },
+        // supervisor: {required },
+        // department: {required, minLength: minLength(3) },
         type_of_accident: { required, minLength: minLength(3),},
         description: { required, minLength: minLength(3),},
         zone_location: { required, minLength: minLength(3),},
@@ -77,6 +91,14 @@ const rules = {
         type_of_victim_employee: { required, minLength: minLength(3),},
         responsible_name: { required, minLength: minLength(3),},
         deadline: { required},
+        type_of_employee: { required},
+        site_name: { required},
+        time_date: { required},
+        incident_category: { required},
+        immidiate_cause: { required},
+        incident_location: { required},
+        incident_descriptions: { required},
+        investigation_lead: { required},
 };
 
 const validate = useVuelidate(rules, toRefs(formData));
@@ -121,7 +143,11 @@ function SuccessPopUp(){
 }
 
 const submitForm = async () => {
-    formData.description = editorData.value;
+  formData.date = date.value;
+  formData.deadline = deadlinedate.value;
+  formData.time_date = time_date.value;
+  formData.description = editorData.value;
+  formData.incident_category = selectedIncidentCategory.value;
     validate.value.$touch();
     console.log(validate.value)
     if (validate.value.$invalid) {
@@ -129,8 +155,18 @@ const submitForm = async () => {
     } else {
 
    try {
+    const form = new FormData();
+            (Object.keys(formData) as Array<keyof typeof formData>).forEach((key) => {
+            if (key !== 'attachment') {
+                form.append(key, formData[key] as string);
+            }
+            });
+            formData.attachment.forEach((file, index) => {
+            form.append(`attachment[${index}]`, file);
+            });
+            console.log("form",form)
    let  url = config.baseURL+'/api/v1/accident';
-    const response = await axios.post(url, formData);
+    const response = await axios.post(url, form);
     console.log('Form submitted successfully:', response.data);
     if(response.data != undefined){
         SuccessPopUp();
@@ -158,6 +194,12 @@ const submitForm = async () => {
         successEl.classList.remove("hidden");
     }
 };
+const handleFileChange = (event: Event) => {
+  const input = event.target as HTMLInputElement;
+  if (input.files) {
+    formData.attachment = Array.from(input.files);
+  }
+};
 </script>
 
 <template>
@@ -184,7 +226,60 @@ const submitForm = async () => {
                 <FormLabel htmlFor="crud-form-2" class="flex flex-col w-full sm:flex-row">Date
                   <span class="mt-1 text-xs sm:ml-auto sm:mt-0 text-slate-500">Required, at least 3 characters</span>
                 </FormLabel>
-                <FormInput id="crud-form-2" v-model.trim="validate.date.$model" class="w-full" type="date" name="name":class="{ 'border-danger': validate.date.$error,}" placeholder="Input Date"/>
+                <!-- <FormInput id="crud-form-2" v-model.trim="validate.date.$model" class="w-full" type="date" name="name":class="{ 'border-danger': validate.date.$error,}" placeholder="Input Date"/> -->
+                <!-- sohan  -->
+                <Preview class="mt-5 intro-y box" v-slot="{ toggle }">
+                  <Preview.Panel>
+                      <div class="relative w-full mx-auto">
+                        <div
+                          class="absolute flex items-center justify-center w-10 h-full border rounded-l bg-slate-100 text-slate-500 dark:bg-darkmode-700 dark:border-darkmode-800 dark:text-slate-400">
+                          <Lucide icon="Calendar" class="w-4 h-4" />
+                        </div>
+                        <Litepicker
+                          v-model="date"
+                          :options="{
+                            autoApply: false,
+                            showWeekNumbers: true,
+                            dropdowns: {
+                              minYear: 1990,
+                              maxYear: null,
+                              months: true,
+                              years: true,
+                            },
+                          }"
+                          class="pl-12"/>
+                      </div>
+                    </Preview.Panel>
+                    <Preview.Panel type="source">
+                      <Preview.Highlight>
+                        {{`
+                        <div class="relative w-56 mx-auto">
+                          <div
+                            class="absolute flex items-center justify-center w-10 h-full border rounded-l bg-slate-100 text-slate-500 dark:bg-darkmode-700 dark:border-darkmode-800 dark:text-slate-400"
+                          >
+                            <Lucide icon="Calendar" class="w-4 h-4" />
+                          </div>
+                          <Litepicker
+                            v-model="date"
+                            :options="{
+                              autoApply: false,
+                              showWeekNumbers: true,
+                              dropdowns: {
+                                minYear: 1990,
+                                maxYear: null,
+                                months: true,
+                                years: true,
+                              },
+                            }"
+                            class="pl-12"
+                          />
+                        </div>
+                        `}}
+                      </Preview.Highlight>
+                    </Preview.Panel>
+                 
+                </Preview>
+                <!-- sohan  -->
                 <template v-if="validate.date.$error">
                   <div v-for="(error, index) in validate.date.$errors" :key="index" class="mt-2 text-danger">
                     {{ error.$message }}
@@ -192,7 +287,7 @@ const submitForm = async () => {
                 </template>
             </div> 
         </div>
-        <div class="w-full md:w-1/2">
+        <!-- <div class="w-full md:w-1/2">
             <div class="px-4 py-2">
                 <FormLabel htmlFor="crud-form-3" class="flex flex-col w-full sm:flex-row">Name
                   <span class="mt-1 text-xs sm:ml-auto sm:mt-0 text-slate-500">Required, at least 3 characters</span>
@@ -245,7 +340,7 @@ const submitForm = async () => {
                 </template>
             </div> 
             
-        </div>
+        </div> -->
         <div class="w-full md:w-1/2">
             <div class="px-4 py-2">
                 <FormLabel htmlFor="crud-form-7" class="flex flex-col w-full sm:flex-row">Type Of Accident
@@ -384,12 +479,234 @@ const submitForm = async () => {
                 <FormLabel htmlFor="crud-form-16" class="flex flex-col w-full sm:flex-row">Deadline
                   <span class="mt-1 text-xs sm:ml-auto sm:mt-0 text-slate-500">Required, at least 3 characters</span>
                 </FormLabel>
-                <FormInput id="crud-form-16" v-model.trim="validate.deadline.$model" class="w-full" type="date" name="name":class="{ 'border-danger': validate.deadline.$error,}" placeholder="Input Deadline"/>
+                <!-- <FormInput id="crud-form-16" v-model.trim="validate.deadline.$model" class="w-full" type="date" name="name":class="{ 'border-danger': validate.deadline.$error,}" placeholder="Input Deadline"/> -->
+                <Preview class="mt-5 intro-y box" v-slot="{ toggle }">
+                  <Preview.Panel>
+                      <div class="relative w-full mx-auto">
+                        <div
+                          class="absolute flex items-center justify-center w-10 h-full border rounded-l bg-slate-100 text-slate-500 dark:bg-darkmode-700 dark:border-darkmode-800 dark:text-slate-400">
+                          <Lucide icon="Calendar" class="w-4 h-4" />
+                        </div>
+                        <Litepicker
+                          v-model="deadlinedate"
+                          :options="{
+                            autoApply: false,
+                            showWeekNumbers: true,
+                            dropdowns: {
+                              minYear: 1990,
+                              maxYear: null,
+                              months: true,
+                              years: true,
+                            },
+                          }"
+                          class="pl-12"/>
+                      </div>
+                    </Preview.Panel>
+                    <Preview.Panel type="source">
+                      <Preview.Highlight>
+                        {{`
+                        <div class="relative w-56 mx-auto">
+                          <div
+                            class="absolute flex items-center justify-center w-10 h-full border rounded-l bg-slate-100 text-slate-500 dark:bg-darkmode-700 dark:border-darkmode-800 dark:text-slate-400"
+                          >
+                            <Lucide icon="Calendar" class="w-4 h-4" />
+                          </div>
+                          <Litepicker
+                            v-model="date"
+                            :options="{
+                              autoApply: false,
+                              showWeekNumbers: true,
+                              dropdowns: {
+                                minYear: 1990,
+                                maxYear: null,
+                                months: true,
+                                years: true,
+                              },
+                            }"
+                            class="pl-12"
+                          />
+                        </div>
+                        `}}
+                      </Preview.Highlight>
+                    </Preview.Panel>
+                 
+                </Preview>
                 <template v-if="validate.deadline.$error">
                   <div v-for="(error, index) in validate.deadline.$errors" :key="index" class="mt-2 text-danger">
                     {{ error.$message }}
                   </div>
                 </template>
+            </div>
+        </div>
+        
+        <div class="w-full md:w-1/2">
+            <div class="px-4 py-2">
+                <FormLabel htmlFor="crud-form-16" class="flex flex-col w-full sm:flex-row">Type Of Employee
+                  <span class="mt-1 text-xs sm:ml-auto sm:mt-0 text-slate-500">Required, at least 3 characters</span>
+                </FormLabel>
+                <FormInput id="crud-form-16" v-model.trim="validate.type_of_employee.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.type_of_employee.$error,}" placeholder="Input Type Of Employee"/>
+                <template v-if="validate.type_of_employee.$error">
+                  <div v-for="(error, index) in validate.type_of_employee.$errors" :key="index" class="mt-2 text-danger">
+                    {{ error.$message }}
+                  </div>
+                </template>
+            </div>
+        </div>
+        <div class="w-full md:w-1/2">
+            <div class="px-4 py-2">
+                <FormLabel htmlFor="crud-form-16" class="flex flex-col w-full sm:flex-row">Site Name
+                  <span class="mt-1 text-xs sm:ml-auto sm:mt-0 text-slate-500">Required, at least 3 characters</span>
+                </FormLabel>
+                <FormInput id="crud-form-16" v-model.trim="validate.site_name.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.site_name.$error,}" placeholder="Input Site Name"/>
+                <template v-if="validate.site_name.$error">
+                  <div v-for="(error, index) in validate.site_name.$errors" :key="index" class="mt-2 text-danger">
+                    {{ error.$message }}
+                  </div>
+                </template>
+            </div>
+        </div>
+        <div class="w-full md:w-1/2">
+            <div class="px-4 py-2">
+                <FormLabel htmlFor="crud-form-16" class="flex flex-col w-full sm:flex-row">Time Date
+                  <span class="mt-1 text-xs sm:ml-auto sm:mt-0 text-slate-500">Required, at least 3 characters</span>
+                </FormLabel>
+                <!-- <FormInput id="crud-form-16" v-model.trim="validate.time_date.$model" class="w-full" type="date" name="name":class="{ 'border-danger': validate.time_date.$error,}" placeholder="Input Time Date"/> -->
+                <Preview class="mt-5 intro-y box" v-slot="{ toggle }">
+                  <Preview.Panel>
+                      <div class="relative w-full mx-auto">
+                        <div
+                          class="absolute flex items-center justify-center w-10 h-full border rounded-l bg-slate-100 text-slate-500 dark:bg-darkmode-700 dark:border-darkmode-800 dark:text-slate-400">
+                          <Lucide icon="Calendar" class="w-4 h-4" />
+                        </div>
+                        <Litepicker
+                          v-model="time_date"
+                          :options="{
+                            autoApply: false,
+                            showWeekNumbers: true,
+                            dropdowns: {
+                              minYear: 1990,
+                              maxYear: null,
+                              months: true,
+                              years: true,
+                            },
+                          }"
+                          class="pl-12"/>
+                      </div>
+                    </Preview.Panel>
+                    <Preview.Panel type="source">
+                      <Preview.Highlight>
+                        {{`
+                        <div class="relative w-56 mx-auto">
+                          <div
+                            class="absolute flex items-center justify-center w-10 h-full border rounded-l bg-slate-100 text-slate-500 dark:bg-darkmode-700 dark:border-darkmode-800 dark:text-slate-400"
+                          >
+                            <Lucide icon="Calendar" class="w-4 h-4" />
+                          </div>
+                          <Litepicker
+                            v-model="date"
+                            :options="{
+                              autoApply: false,
+                              showWeekNumbers: true,
+                              dropdowns: {
+                                minYear: 1990,
+                                maxYear: null,
+                                months: true,
+                                years: true,
+                              },
+                            }"
+                            class="pl-12"
+                          />
+                        </div>
+                        `}}
+                      </Preview.Highlight>
+                    </Preview.Panel>
+                 
+                </Preview>
+                <template v-if="validate.time_date.$error">
+                  <div v-for="(error, index) in validate.time_date.$errors" :key="index" class="mt-2 text-danger">
+                    {{ error.$message }}
+                  </div>
+                </template>
+            </div>
+        </div>
+        <div class="w-full md:w-1/2">
+            <div class="px-4 py-2">
+                <FormLabel htmlFor="crud-form-16" class="flex flex-col w-full sm:flex-row">Incident Category
+                  <span class="mt-1 text-xs sm:ml-auto sm:mt-0 text-slate-500">Required, at least 3 characters</span>
+                </FormLabel>
+                <!-- <FormInput id="crud-form-16" v-model.trim="validate.incident_category.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.incident_category.$error,}" placeholder="Input Incident Category"/> -->
+                <select id="crud-form-6" v-model="selectedIncidentCategory" class="w-full border border-gray-300 rounded-lg text-sm  dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80">
+                  <option value="" disabled>Select Incident Category</option>
+                  <option  value="Fatality">Fatality</option>
+                  <option  value="Lts">Lts</option>
+                  <option  value="Medica Trisect">Medica Trisect</option>
+                  <option  value="Resistance Workdays">Resistance Workdays</option>
+                  <option  value="First Aid">First Aid</option>
+                </select>
+                <template v-if="validate.incident_category.$error">
+                  <div v-for="(error, index) in validate.incident_category.$errors" :key="index" class="mt-2 text-danger">
+                    {{ error.$message }}
+                  </div>
+                </template>
+            </div>
+        </div>
+        <div class="w-full md:w-1/2">
+            <div class="px-4 py-2">
+                <FormLabel htmlFor="crud-form-16" class="flex flex-col w-full sm:flex-row">Immidiate Cause
+                  <span class="mt-1 text-xs sm:ml-auto sm:mt-0 text-slate-500">Required, at least 3 characters</span>
+                </FormLabel>
+                <FormInput id="crud-form-16" v-model.trim="validate.immidiate_cause.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.immidiate_cause.$error,}" placeholder="Input Immidiate Cause"/>
+                <template v-if="validate.immidiate_cause.$error">
+                  <div v-for="(error, index) in validate.immidiate_cause.$errors" :key="index" class="mt-2 text-danger">
+                    {{ error.$message }}
+                  </div>
+                </template>
+            </div>
+        </div>
+        <div class="w-full md:w-1/2">
+            <div class="px-4 py-2">
+                <FormLabel htmlFor="crud-form-16" class="flex flex-col w-full sm:flex-row">Incident Location
+                  <span class="mt-1 text-xs sm:ml-auto sm:mt-0 text-slate-500">Required, at least 3 characters</span>
+                </FormLabel>
+                <FormInput id="crud-form-16" v-model.trim="validate.incident_location.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.incident_location.$error,}" placeholder="Input Incident Location"/>
+                <template v-if="validate.incident_location.$error">
+                  <div v-for="(error, index) in validate.incident_location.$errors" :key="index" class="mt-2 text-danger">
+                    {{ error.$message }}
+                  </div>
+                </template>
+            </div>
+        </div>
+        <div class="w-full md:w-1/2">
+            <div class="px-4 py-2">
+                <FormLabel htmlFor="crud-form-16" class="flex flex-col w-full sm:flex-row">Incident Descriptions
+                  <span class="mt-1 text-xs sm:ml-auto sm:mt-0 text-slate-500">Required, at least 3 characters</span>
+                </FormLabel>
+                <FormInput id="crud-form-16" v-model.trim="validate.incident_descriptions.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.incident_descriptions.$error,}" placeholder="Input Incident Descriptions"/>
+                <template v-if="validate.incident_descriptions.$error">
+                  <div v-for="(error, index) in validate.incident_descriptions.$errors" :key="index" class="mt-2 text-danger">
+                    {{ error.$message }}
+                  </div>
+                </template>
+            </div>
+        </div>
+        <div class="w-full md:w-1/2">
+            <div class="px-4 py-2">
+                <FormLabel htmlFor="crud-form-16" class="flex flex-col w-full sm:flex-row">Investigation Lead
+                  <span class="mt-1 text-xs sm:ml-auto sm:mt-0 text-slate-500">Required, at least 3 characters</span>
+                </FormLabel>
+                <FormInput id="crud-form-16" v-model.trim="validate.investigation_lead.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.investigation_lead.$error,}" placeholder="Input Investigation Lead"/>
+                <template v-if="validate.investigation_lead.$error">
+                  <div v-for="(error, index) in validate.investigation_lead.$errors" :key="index" class="mt-2 text-danger">
+                    {{ error.$message }}
+                  </div>
+                </template>
+            </div>
+        </div>
+        <div class="w-full md:w-1/2">
+            <div class="px-4 py-2">
+                <FormLabel htmlFor="crud-form-13">Attachment</FormLabel>
+                <FormInput id="crud-form-13" type="file" class="w-full" placeholder="Input Attachment"
+                    multiple @change="handleFileChange" />
             </div>
         </div>
         <div class="w-full md:w-1/2">
