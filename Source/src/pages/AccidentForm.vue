@@ -11,7 +11,6 @@ import {
   InputGroup,
   FormSwitch,
 } from "@/components/Base/Form";
-import Alert from "@/components/Base/Alert";
 import Tippy from "@/components/Base/Tippy";
 import Table from "@/components/Base/Table";
 import { ref, reactive,toRefs } from 'vue';
@@ -28,8 +27,21 @@ import Toastify from 'toastify-js';
 import Notification from "@/components/Base/Notification";
 import Preview from "@/components/Base/Preview";
 import Litepicker from "@/components/Base/Litepicker";
+import Alert from "@/components/Base/Alert";
 
+
+const router = useRouter();
 const subcategory = ref(["0"]);
+const editorData = ref("");
+const date = ref("");
+const deadlinedate = ref("");
+const time_date = ref("");
+const selectedIncidentCategory = ref("");
+const editorConfig = {
+  toolbar: {
+    items: ["bold", "italic", "link"],
+  },
+};
 
 
 const formData = reactive({
@@ -62,25 +74,13 @@ const formData = reactive({
   investigation_lead:'',
   attachment:[] as File[],
 });
-const router = useRouter();
 
-const categories = ref(["1", "3"]);
-const editorConfig = {
-  toolbar: {
-    items: ["bold", "italic", "link"],
-  },
-};
 interface BackendErrorResponse {
     message: string;
     errors: {
         [key: string]: string[];
     };
 }
-const editorData = ref("");
-const date = ref("");
-const deadlinedate = ref("");
-const time_date = ref("");
-const selectedIncidentCategory = ref("");
 const rules = {
         month: {required},
         date: {required,},
@@ -120,37 +120,6 @@ const backendErrors = reactive<{
     errors: {}
 });
 
-function FailedPopUp(){
-    const failedEl = document
-        .querySelectorAll("#failed-notification-content")[0]
-        .cloneNode(true) as HTMLElement;
-        failedEl.classList.remove("hidden");
-        Toastify({
-        node: failedEl,
-        duration: 3000,
-        newWindow: true,
-        close: true,
-        gravity: "top",
-        position: "right",
-        stopOnFocus: true,
-        }).showToast();
-}
-function SuccessPopUp(){
- 
-    const successEl = document
-        .querySelectorAll("#success-notification-content")[0]
-        .cloneNode(true) as HTMLElement;
-        successEl.classList.remove("hidden");
-        Toastify({
-        node: successEl,
-        duration: 3000,
-        newWindow: true,
-        close: true,
-        gravity: "top",
-        position: "right",
-        stopOnFocus: true,
-        }).showToast();
-}
 
 const submitForm = async () => {
   formData.date = date.value;
@@ -159,7 +128,6 @@ const submitForm = async () => {
   formData.description = editorData.value;
   formData.incident_category = selectedIncidentCategory.value;
     validate.value.$touch();
-    console.log(validate.value)
     if (validate.value.$invalid) {
         FailedPopUp();
     } else {
@@ -204,18 +172,45 @@ const submitForm = async () => {
         successEl.classList.remove("hidden");
     }
 };
-// const handleFileChange = (event: Event) => {
-//   const input = event.target as HTMLInputElement;
-//   if (input.files) {
-//     formData.attachment = Array.from(input.files);
-//   }
-// };
 const handleFileChange = (event: Event) => {
   const input = event.target as HTMLInputElement;
   if (input.files) {
-    formData.attachment = Array.from(input.files); // Update the attachment array within the existing formData
+    formData.attachment = Array.from(input.files);
   }
 };
+// Ext Function 
+
+function FailedPopUp(){
+    const failedEl = document
+        .querySelectorAll("#failed-notification-content")[0]
+        .cloneNode(true) as HTMLElement;
+        failedEl.classList.remove("hidden");
+        Toastify({
+        node: failedEl,
+        duration: 3000,
+        newWindow: true,
+        close: true,
+        gravity: "top",
+        position: "right",
+        stopOnFocus: true,
+        }).showToast();
+}
+function SuccessPopUp(){
+ 
+    const successEl = document
+        .querySelectorAll("#success-notification-content")[0]
+        .cloneNode(true) as HTMLElement;
+        successEl.classList.remove("hidden");
+        Toastify({
+        node: successEl,
+        duration: 3000,
+        newWindow: true,
+        close: true,
+        gravity: "top",
+        position: "right",
+        stopOnFocus: true,
+        }).showToast();
+}
 </script>
 
 <template>
@@ -1094,7 +1089,6 @@ const handleFileChange = (event: Event) => {
       </div>
     </div>
   </div>
-                    <!-- sohann  -->
                 <FormHelp class="text-right"> Required</FormHelp>
               </div>
             </FormInline>
@@ -1183,9 +1177,6 @@ const handleFileChange = (event: Event) => {
           </div>
         </div>
       </div>
-      <!-- END: Product Information -->
-      
-      
       <div class="flex flex-col justify-end gap-2 mt-5 md:flex-row">
         <Button
           type="button"class="w-full py-3 border-slate-300 dark:border-darkmode-400 text-slate-500 md:w-52">

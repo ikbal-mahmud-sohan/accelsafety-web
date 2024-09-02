@@ -13,6 +13,7 @@ import Toastify from 'toastify-js';
 import Notification from "@/components/Base/Notification";
 import Preview from "@/components/Base/Preview";
 import { Menu, Popover } from "@/components/Base/Headless";
+import Alert from "@/components/Base/Alert";
 
 
 // Define your state using the reactive function
@@ -225,160 +226,379 @@ onMounted(() => {
   <div class="flex items-center mt-8 intro-y">
     <h2 class="mr-auto text-lg font-medium">Create Human Resource Data</h2>
   </div>
-
-  <div class="flex flex-wrap items-center justify-between w-full">
-        <div class="w-full md:w-1/2">
-            <div class="px-4 py-2">
-                <FormLabel htmlFor="crud-form-3" class="flex flex-col w-full sm:flex-row">Name
-                  <span class="mt-1 text-xs sm:ml-auto sm:mt-0 text-slate-500">Required, at least 3 characters</span>
-                </FormLabel>
-                <FormInput id="crud-form-3" v-model.trim="validate.name.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.name.$error,}" placeholder="Input Name"/>
-                <template v-if="validate.name.$error">
-                  <div v-for="(error, index) in validate.name.$errors" :key="index" class="mt-2 text-danger">
-                    {{ error.$message }}
+  <div class="grid grid-cols-11 pb-20 mt-5 gap-x-6">
+    <!-- BEGIN: Notification -->
+    <Alert
+      variant="primary"
+      dismissible
+      class="col-span-11 mb-6 intro-y box dark:border-darkmode-600"
+      v-slot="{ dismiss }"
+    >
+      <div class="flex items-center">
+        <span>
+          <Lucide icon="Info" class="w-4 h-4 mr-2" />
+        </span>
+        <span>
+          Ensure accurate HR information is inserted, including employee details, designation, department, and other relevant fields, following the correct format and guidelines
+          <a
+            href="https://themeforest.net/item/midone-jquery-tailwindcss-html-admin-template/26366820"
+            class="ml-1 underline"
+            target="blank"
+          >
+            Learn More
+          </a>
+        </span>
+        <Alert.DismissButton
+          class="text-white"
+          @click="dismiss"
+          aria-label="Close"
+        >
+          <Lucide icon="X" class="w-4 h-4" />
+        </Alert.DismissButton>
+      </div>
+    </Alert>
+    <!-- BEGIN: Notification -->
+    <div class="col-span-11 intro-y 2xl:col-span-9">
+      <!-- BEGIN: Uplaod Product -->
+      
+      <!-- BEGIN: Product Information -->
+     
+      <div class="p-5 mt-5 intro-y box">
+        <div class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400">
+          <div class="flex items-center pb-5 text-base font-medium border-b border-slate-200/60 dark:border-darkmode-400">
+            <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" />Employee
+          </div>
+          <div class="mt-5">
+            <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+              <FormLabel class="xl:w-64 xl:!mr-10">
+                <div class="text-left">
+                  <div class="flex items-center">
+                    <div class="font-medium">ID</div>
+                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                      Required
+                    </div>
                   </div>
-                </template>
-            </div> 
-        </div>
-        <div class="w-full md:w-1/2">
-            <div class="px-4 py-2">
-                <FormLabel htmlFor="crud-form-3" class="flex flex-col w-full sm:flex-row">Employee ID
-                  <span class="mt-1 text-xs sm:ml-auto sm:mt-0 text-slate-500">Required, at least 3 characters</span>
-                </FormLabel>
-                <FormInput id="crud-form-3" v-model.trim="validate.emp_id.$model" class="w-full" type="text" name="emp_id":class="{ 'border-danger': validate.emp_id.$error,}" placeholder="Input Employee ID"/>
-                <template v-if="validate.emp_id.$error">
-                  <div v-for="(error, index) in validate.emp_id.$errors" :key="index" class="mt-2 text-danger">
-                    {{ error.$message }}
+                  <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                    Unique employee identification number.
                   </div>
-                </template>
-            </div> 
-        </div>
-        <div class="w-full md:w-1/2">
-            <div class="px-4 py-2">
-                <FormLabel htmlFor="crud-form-3" class="flex flex-col w-full sm:flex-row">First Name
-                  <span class="mt-1 text-xs sm:ml-auto sm:mt-0 text-slate-500">Required, at least 3 characters</span>
-                </FormLabel>
-                <FormInput id="crud-form-3" v-model.trim="validate.first_name.$model" class="w-full" type="text" name="first_name":class="{ 'border-danger': validate.first_name.$error,}" placeholder="Input First Name"/>
-                <template v-if="validate.first_name.$error">
-                  <div v-for="(error, index) in validate.first_name.$errors" :key="index" class="mt-2 text-danger">
-                    {{ error.$message }}
-                  </div>
-                </template>
-            </div> 
-        </div>
-        <div class="w-full md:w-1/2">
-            <div class="px-4 py-2">
-                <FormLabel htmlFor="crud-form-3" class="flex flex-col w-full sm:flex-row">Last Name
-                  <span class="mt-1 text-xs sm:ml-auto sm:mt-0 text-slate-500">Required, at least 3 characters</span>
-                </FormLabel>
-                <FormInput id="crud-form-3" v-model.trim="validate.last_name.$model" class="w-full" type="text" name="last_name":class="{ 'border-danger': validate.last_name.$error,}" placeholder="Input Last Name"/>
-                <template v-if="validate.last_name.$error">
-                  <div v-for="(error, index) in validate.last_name.$errors" :key="index" class="mt-2 text-danger">
-                    {{ error.$message }}
-                  </div>
-                </template>
-            </div> 
-        </div>
-        <div class="w-full md:w-1/2">
-            <div class="px-4 py-2">
-                <FormLabel htmlFor="crud-form-3" class="flex flex-col w-full sm:flex-row">Unit Name
-                  <span class="mt-1 text-xs sm:ml-auto sm:mt-0 text-slate-500">Required, at least 3 characters</span>
-                </FormLabel>
-                <FormInput id="crud-form-3" v-model.trim="validate.unit_name.$model" class="w-full" type="text" name="unit_name":class="{ 'border-danger': validate.unit_name.$error,}" placeholder="Input Unit Name"/>
-                <template v-if="validate.unit_name.$error">
-                  <div v-for="(error, index) in validate.unit_name.$errors" :key="index" class="mt-2 text-danger">
-                    {{ error.$message }}
-                  </div>
-                </template>
-            </div> 
-        </div>
-        <div class="w-full md:w-1/2">
-            <div class="px-4 py-2">
-                <FormLabel htmlFor="crud-form-3" class="flex flex-col w-full sm:flex-row">Location
-                  <span class="mt-1 text-xs sm:ml-auto sm:mt-0 text-slate-500">Required, at least 3 characters</span>
-                </FormLabel>
-                <FormInput id="crud-form-3" v-model.trim="validate.location.$model" class="w-full" type="text" name="location":class="{ 'border-danger': validate.location.$error,}" placeholder="Input Location"/>
-                <template v-if="validate.location.$error">
-                  <div v-for="(error, index) in validate.location.$errors" :key="index" class="mt-2 text-danger">
-                    {{ error.$message }}
-                  </div>
-                </template>
-            </div> 
-        </div>
-
-        <div class="w-full md:w-1/2">
-            <div class="px-4 py-2">
-            <FormLabel htmlFor="crud-form-6" class="flex flex-col w-full sm:flex-row">
-              Designation
-                <span class="mt-1 text-xs sm:ml-auto sm:mt-0 text-slate-500">Required, at least 3 characters</span>
-              </FormLabel>
-              <div class="flex w-full border border-gray-300 rounded-lg bg-white" :class="{ 'border-danger': validate.designation.$error,}">
-                <div class="w-1/2">
-                 <input type="text" v-model="formData.designationInput" class="w-full border-none outline-none rounded-l-lg text-sm  dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" name="designation" placeholder="Input Designation">
                 </div>
-                <div class="w-1/2  border-l border-gray-300">
-                  <select @change="designationChange()" v-model="selectedDesignation"  class="w-full border-none outline-none rounded-r-lg text-sm  dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80">
+              </FormLabel>
+              <div class="flex-1 w-full mt-3 xl:mt-0">
+                <FormInput id="crud-form-3" v-model.trim="validate.emp_id.$model" class="w-full" type="text" name="emp_id":class="{ 'border-danger': validate.emp_id.$error,}" placeholder="Input Employee ID"/>
+                  <div class="flex justify-between">
+                    <template v-if="validate.first_name.$error">
+                      <div v-for="(error, index) in validate.first_name.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
+                        {{ error.$message }}
+                      </div>
+                    </template>
+                  <p class="text-right mt-2 w-full"> Required</p>
+                </div>
+              </div>
+            </FormInline>
+            <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+              <FormLabel class="xl:w-64 xl:!mr-10">
+                <div class="text-left">
+                  <div class="flex items-center">
+                    <div class="font-medium">Name</div>
+                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                      Required
+                    </div>
+                  </div>
+                  <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                    Full name of the employee.
+                  </div>
+                </div>
+              </FormLabel>
+              <div class="flex-1 w-full mt-3 xl:mt-0">
+                <FormInput id="crud-form-3" v-model.trim="validate.name.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.name.$error,}" placeholder="Input Name"/>
+                  <div class="flex justify-between">
+                    <template v-if="validate.name.$error">
+                      <div v-for="(error, index) in validate.name.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
+                        {{ error.$message }}
+                      </div>
+                    </template>
+                  <p class="text-right mt-2 w-full"> Required, at least 3 characters</p>
+                </div>
+              </div>
+            </FormInline>
+            <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+              <FormLabel class="xl:w-64 xl:!mr-10">
+                <div class="text-left">
+                  <div class="flex items-center">
+                    <div class="font-medium">First Name</div>
+                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                      Required
+                    </div>
+                  </div>
+                  <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                    Employee's first name.
+                  </div>
+                </div>
+              </FormLabel>
+              <div class="flex-1 w-full mt-3 xl:mt-0">
+                <FormInput id="crud-form-3" v-model.trim="validate.first_name.$model" class="w-full" type="text" name="first_name":class="{ 'border-danger': validate.first_name.$error,}" placeholder="Input First Name"/>
+                  <div class="flex justify-between">
+                    <template v-if="validate.first_name.$error">
+                      <div v-for="(error, index) in validate.first_name.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
+                        {{ error.$message }}
+                      </div>
+                    </template>
+                  <p class="text-right mt-2 w-full"> Required, at least 3 characters</p>
+                </div>
+              </div>
+            </FormInline>
+            <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+              <FormLabel class="xl:w-64 xl:!mr-10">
+                <div class="text-left">
+                  <div class="flex items-center">
+                    <div class="font-medium">Last Name</div>
+                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                      Required
+                    </div>
+                  </div>
+                  <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                    Employee's Last Name.
+                  </div>
+                </div>
+              </FormLabel>
+              <div class="flex-1 w-full mt-3 xl:mt-0">
+                <FormInput id="crud-form-3" v-model.trim="validate.last_name.$model" class="w-full" type="text" name="last_name":class="{ 'border-danger': validate.last_name.$error,}" placeholder="Input Last Name"/>
+                  <div class="flex justify-between">
+                    <template v-if="validate.last_name.$error">
+                      <div v-for="(error, index) in validate.last_name.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
+                        {{ error.$message }}
+                      </div>
+                    </template>
+                  <p class="text-right mt-2 w-full"> Required, at least 3 characters</p>
+                </div>
+              </div>
+            </FormInline>
+            
+          </div>
+        </div>
+      </div>
+      <div class="p-5 mt-5 intro-y box">
+        <div class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400">
+          <div class="flex items-center pb-5 text-base font-medium border-b border-slate-200/60 dark:border-darkmode-400">
+            <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" />Unit
+          </div>
+          <div class="mt-5">
+            <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+              <FormLabel class="xl:w-64 xl:!mr-10">
+                <div class="text-left">
+                  <div class="flex items-center">
+                    <div class="font-medium">Name</div>
+                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                      Required
+                    </div>
+                  </div>
+                  <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                    Name of the unit or division the employee belongs to.
+                  </div>
+                </div>
+              </FormLabel>
+              <div class="flex-1 w-full mt-3 xl:mt-0">
+                <FormInput id="crud-form-3" v-model.trim="validate.unit_name.$model" class="w-full" type="text" name="unit_name":class="{ 'border-danger': validate.unit_name.$error,}" placeholder="Input Unit Name"/>
+                  <div class="flex justify-between">
+                    <template v-if="validate.unit_name.$error">
+                      <div v-for="(error, index) in validate.unit_name.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
+                        {{ error.$message }}
+                      </div>
+                    </template>
+                  <p class="text-right mt-2 w-full"> Required, at least 3 characters</p>
+                </div>
+              </div>
+            </FormInline>
+          </div>
+        </div>
+      </div>
+      <div class="p-5 mt-5 intro-y box">
+        <div class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400">
+          <div class="flex items-center pb-5 text-base font-medium border-b border-slate-200/60 dark:border-darkmode-400">
+            <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" />Location
+          </div>
+          <div class="mt-5">
+            <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+              <FormLabel class="xl:w-64 xl:!mr-10">
+                <div class="text-left">
+                  <div class="flex items-center">
+                    <div class="font-medium">Location</div>
+                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                      Required
+                    </div>
+                  </div>
+                  <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                    Location of the employee's workplace.
+                  </div>
+                </div>
+              </FormLabel>
+              <div class="flex-1 w-full mt-3 xl:mt-0">
+                <FormInput id="crud-form-3" v-model.trim="validate.location.$model" class="w-full" type="text" name="location":class="{ 'border-danger': validate.location.$error,}" placeholder="Input Location"/>
+                  <div class="flex justify-between">
+                    <template v-if="validate.location.$error">
+                      <div v-for="(error, index) in validate.location.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
+                        {{ error.$message }}
+                      </div>
+                    </template>
+                  <p class="text-right mt-2 w-full"> Required, at least 3 characters</p>
+                </div>
+              </div>
+            </FormInline>
+          </div>
+        </div>
+      </div>
+      <div class="p-5 mt-5 intro-y box">
+        <div class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400">
+          <div class="flex items-center pb-5 text-base font-medium border-b border-slate-200/60 dark:border-darkmode-400">
+            <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" />Designation
+          </div>
+          <div class="mt-5">
+            <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+              <FormLabel class="xl:w-64 xl:!mr-10">
+                <div class="text-left">
+                  <div class="flex items-center">
+                    <div class="font-medium">Insert Designation</div>
+                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                      Required
+                    </div>
+                  </div>
+                  <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                    Job title or position of the employee.
+                  </div>
+                </div>
+              </FormLabel>
+              <div class="flex-1 w-full mt-3 xl:mt-0">
+                <FormInput id="crud-form-3" v-model="formData.designationInput" class="w-full" type="text" name="location":class="{ 'border-danger': validate.designation.$error,}" placeholder="Input Location"/>
+              </div>
+            </FormInline>
+            <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+              <FormLabel class="xl:w-64 xl:!mr-10">
+                <div class="text-left">
+                  <div class="flex items-center">
+                    <div class="font-medium">Select Designation</div>
+                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                      Required
+                    </div>
+                  </div>
+                  <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                    Job title or position of the employee.
+                  </div>
+                </div>
+              </FormLabel>
+              <div class="flex-1 w-full mt-3 xl:mt-0">
+                <select @change="designationChange()" v-model="selectedDesignation"  class="w-full border border-gray-300 rounded-lg py-3 text-sm">
                     <option value="" disabled >Select Designation</option>
                     <option v-for="(data, index) in state.designationData" :key="index" :value="data.name">{{ data.name }}</option>
                   </select>
+                  <div class="flex justify-between">
+                    <template v-if="validate.designation.$error">
+                      <div v-for="(error, index) in validate.designation.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
+                        {{ error.$message }}
+                      </div>
+                    </template>
+                  <p class="text-right mt-2 w-full"> Required, at least 3 characters</p>
                 </div>
               </div>
-              
-              <template v-if="validate.designation.$error">
-                <div v-for="(error, index) in validate.designation.$errors" :key="index" class="mt-2 text-danger">
-                  {{ error.$message }}
-                </div>
-              </template>
-            </div> 
+            </FormInline>
+          </div>
         </div>
-        <div class="w-full md:w-1/2">
-            <div class="px-4 py-2">
-              <FormLabel htmlFor="crud-form-6" class="flex flex-col w-full sm:flex-row">
-                Department
-                <span class="mt-1 text-xs sm:ml-auto sm:mt-0 text-slate-500">Required, at least 3 characters</span>
-              </FormLabel>
-              <div class="flex w-full border border-gray-300 rounded-lg bg-white" :class="{ 'border-danger': validate.designation.$error,}">
-                <div class="w-1/2">
-                 <input type="text" v-model="formData.departmentInput" class="w-full border-none outline-none rounded-l-lg text-sm  dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" name="department" placeholder="Input Department">
+      </div>
+      <div class="p-5 mt-5 intro-y box">
+        <div class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400">
+          <div class="flex items-center pb-5 text-base font-medium border-b border-slate-200/60 dark:border-darkmode-400">
+            <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" />Department
+          </div>
+          <div class="mt-5">
+            <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+              <FormLabel class="xl:w-64 xl:!mr-10">
+                <div class="text-left">
+                  <div class="flex items-center">
+                    <div class="font-medium">Insert Department</div>
+                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                      Required
+                    </div>
+                  </div>
+                  <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                    Department where the employee works.
+                  </div>
                 </div>
-                <div class="w-1/2  border-l border-gray-300">
-                  <select @change="departnemtChange()" v-model="selectedDepartment" class="w-full border-none outline-none rounded-r-lg text-sm  dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80">
-                    <option value="" disabled >Select Department</option>
-                    <option v-for="(data, index) in state.departmentData" :key="index" :value="data.name">{{ data.name }}</option>
+              </FormLabel>
+              <div class="flex-1 w-full mt-3 xl:mt-0">
+                <FormInput id="crud-form-3" v-model="formData.departmentInput" class="w-full" type="text" name="location":class="{ 'border-danger': validate.location.$error,}" placeholder="Input Location"/>
+              </div>
+            </FormInline>
+            <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+              <FormLabel class="xl:w-64 xl:!mr-10">
+                <div class="text-left">
+                  <div class="flex items-center">
+                    <div class="font-medium">Select Department</div>
+                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                      Required
+                    </div>
+                  </div>
+                  <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                    Department where the employee works.
+                  </div>
+                </div>
+              </FormLabel>
+              <div class="flex-1 w-full mt-3 xl:mt-0">
+                <select @change="departnemtChange()" v-model="selectedDepartment"  class="w-full border border-gray-300 rounded-lg py-3 text-sm">
+                  <option value="" disabled >Select Department</option>
+                  <option v-for="(data, index) in state.departmentData" :key="index" :value="data.name">{{ data.name }}</option>
                   </select>
+                  <div class="flex justify-between">
+                    <template v-if="validate.department.$error">
+                      <div v-for="(error, index) in validate.department.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
+                        {{ error.$message }}
+                      </div>
+                    </template>
+                  <p class="text-right mt-2 w-full"> Required, at least 3 characters</p>
                 </div>
               </div>
-              
-              <template v-if="validate.department.$error">
-                <div v-for="(error, index) in validate.department.$errors" :key="index" class="mt-2 text-danger">
-                  {{ error.$message }}
-                </div>
-              </template>
-            </div> 
+            </FormInline>
+          </div>
         </div>
-        
-        <div class="w-full md:w-1/2">
-            <div class="px-4 py-2">
-              
-            <FormLabel htmlFor="crud-form-6" class="flex flex-col w-full sm:flex-row">
-              Employee Type
-                <span class="mt-1 text-xs sm:ml-auto sm:mt-0 text-slate-500">Required, at least 3 characters</span>
+      </div>
+      <div class="p-5 mt-5 intro-y box">
+        <div class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400">
+          <div class="flex items-center pb-5 text-base font-medium border-b border-slate-200/60 dark:border-darkmode-400">
+            <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" />Department
+          </div>
+          <div class="mt-5">
+            <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+              <FormLabel class="xl:w-64 xl:!mr-10">
+                <div class="text-left">
+                  <div class="flex items-center">
+                    <div class="font-medium">Select Department</div>
+                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                      Required
+                    </div>
+                  </div>
+                  <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                    Department where the employee works.
+                  </div>
+                </div>
               </FormLabel>
-              <select id="crud-form-6" v-model="selectedEmployeeType" class="w-full border border-gray-300 rounded-lg text-sm  dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80">
-                <option value="" disabled>Select Employee Type</option>
-                <option value="Management">Management</option>
-                <option value="Non-Management">Non-Management</option>
-              </select>
-              <template v-if="validate.employee_type.$error">
-                <div v-for="(error, index) in validate.employee_type.$errors" :key="index" class="mt-2 text-danger">
-                  {{ error.$message }}
+              <div class="flex-1 w-full mt-3 xl:mt-0">
+                <select id="crud-form-6" v-model="selectedEmployeeType" class="w-full border border-gray-300 rounded-lg py-3 text-sm">
+                  <option value="" disabled>Select Employee Type</option>
+                  <option value="Management">Management</option>
+                  <option value="Non-Management">Non-Management</option>
+                </select>
+                  <div class="flex justify-between">
+                    <template v-if="validate.employee_type.$error">
+                      <div v-for="(error, index) in validate.employee_type.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
+                        {{ error.$message }}
+                      </div>
+                    </template>
+                  <p class="text-right mt-2 w-full"> Required</p>
                 </div>
-              </template>
-            </div> 
+              </div>
+            </FormInline>
+          </div>
         </div>
-        
-        <div class="w-full px-4 py-4">
-        <!-- <p v-if="backendErrors.message" class="text-red-500 text-sm">{{ backendErrors.message }}</p> -->
+      </div>
+      <div class="w-full px-4 py-4">
         <template v-if="backendErrors.errors">
             <div v-for="(messages, field) in backendErrors.errors" :key="field" class="mt-2 text-danger flex">
             <p class=" capitalize mr-2"><strong>{{ field }}:</strong></p>
@@ -388,17 +608,66 @@ onMounted(() => {
             </div>
         </template>
         </div>
-        <div class="mt-5 text-right">
-          <Button type="button" variant="outline-secondary" class="w-24 mr-4">
-            Cancel
-          </Button>
-          <Button type="button" variant="primary" class="w-24" @click="submitForm">
-            Save
-          </Button>
+      <div class="flex flex-col justify-end gap-2 mt-5 md:flex-row">
+        <Button
+          type="button"class="w-full py-3 border-slate-300 dark:border-darkmode-400 text-slate-500 md:w-52">
+          Cancel
+        </Button>
+        <Button variant="primary" type="button" class="w-full py-3 md:w-52" @click="submitForm">
+          Save
+        </Button>
+      </div>
+    </div>
+    <div class="hidden col-span-2 intro-y 2xl:block">
+      <div class="sticky top-0 pt-10">
+        <ul
+          class="text-slate-500 relative before:content-[''] before:w-[2px] before:bg-slate-200 before:dark:bg-darkmode-600 before:h-full before:absolute before:left-0 before:z-[-1]"
+        >
+          <li
+            class="pl-5 mb-4 font-medium border-l-2 border-primary dark:border-primary text-primary"
+          >
+            <a href="">HR information</a>
+          </li>
+          <li
+            class="pl-5 mb-4 border-l-2 border-transparent dark:border-transparent"
+          >
+            <a href="">Be Specific and Clear</a>
+          </li>
+          <li
+            class="pl-5 mb-4 border-l-2 border-transparent dark:border-transparent"
+          >
+            <a href="">Check Input Requirements</a>
+          </li>
+          <li
+            class="pl-5 mb-4 border-l-2 border-transparent dark:border-transparent"
+          >
+            <a href="">Upload Relevant Files</a>
+          </li>
+          
+        </ul>
+        <div
+          class="relative p-5 mt-10 border rounded-md bg-warning/20 dark:bg-darkmode-600 border-warning dark:border-0"
+        >
+          <Lucide
+            icon="Lightbulb"
+            class="absolute top-0 right-0 w-12 h-12 mt-5 mr-3 text-warning/80"
+          />
+          <h2 class="mt-5 text-lg font-medium">Tips</h2>
+          <div
+            class="mt-2 text-xs leading-relaxed text-slate-600 dark:text-slate-500"
+          >
+            <div>
+              When filling out the HR information report, be specific and clear with details, using the correct date format and precise descriptions..
+            </div>
+            <div class="mt-2">
+              Ensure all required fields are accurately completed and boolean options are correctly marked. Upload relevant files and adhere to format and size requirements for attachments.
+            </div>
+          </div>
         </div>
-
+      </div>
+    </div>
   </div>
-  <!-- BEGIN: Success Notification Content -->
+    <!-- BEGIN: Success Notification Content -->
   <Notification id="success-notification-content" class="flex hidden">
         <Lucide icon="CheckCircle" class="text-success" />
         <div class="ml-4 mr-4">
@@ -416,3 +685,4 @@ onMounted(() => {
       </Notification>
       <!-- END: Failed Notification Content -->
 </template>
+

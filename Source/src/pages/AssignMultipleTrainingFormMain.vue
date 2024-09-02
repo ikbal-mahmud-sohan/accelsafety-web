@@ -14,7 +14,6 @@ import Notification from "@/components/Base/Notification";
 import Preview from "@/components/Base/Preview";
 import { Menu, Popover } from "@/components/Base/Headless";
 import Table from '@/components/Base/Table';
-import Alert from "@/components/Base/Alert";
 
 
 // Define your state using the reactive function
@@ -114,8 +113,7 @@ const submitForm = async () => {
       training_topic_id: formData.training_topic_id,
     })),
   };
-  console.log("validate.value",validate.value)
-  console.log("payload",payload)
+
   validate.value.$touch();
   if (validate.value.$invalid) {
     FailedPopUp();
@@ -223,97 +221,42 @@ onMounted(() => {
 
 <template>
   <div class="flex items-center mt-8 intro-y">
-    <h2 class="mr-auto text-lg font-medium">Assign Multiple Training</h2>
+    <h2 class="mr-auto text-lg font-medium">Assign Multiple Training Form</h2>
   </div>
-  <div class="grid grid-cols-11 pb-20 mt-5 gap-x-6">
-    <!-- BEGIN: Notification -->
-    <Alert
-      variant="primary"
-      dismissible
-      class="col-span-11 mb-6 intro-y box dark:border-darkmode-600"
-      v-slot="{ dismiss }"
-    >
-      <div class="flex items-center">
-        <span>
-          <Lucide icon="Info" class="w-4 h-4 mr-2" />
-        </span>
-        <span>
-          Assign specific training topics to employees by matching their IDs with the relevant training sessions.
-          <a
-            href="https://themeforest.net/item/midone-jquery-tailwindcss-html-admin-template/26366820"
-            class="ml-1 underline"
-            target="blank"
-          >
-            Learn More
-          </a>
-        </span>
-        <Alert.DismissButton
-          class="text-white"
-          @click="dismiss"
-          aria-label="Close"
-        >
-          <Lucide icon="X" class="w-4 h-4" />
-        </Alert.DismissButton>
-      </div>
-    </Alert>
-    <!-- BEGIN: Notification -->
-    <div class="col-span-11 intro-y 2xl:col-span-9">
-      <!-- BEGIN: Uplaod Product -->
-      
-      <!-- BEGIN: Product Information -->
-      <div class="p-5 mt-5 intro-y box">
-        <div
-          class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400"
-        >
-          <div class="flex items-center pb-5 text-base font-medium border-b border-slate-200/60 dark:border-darkmode-400">
-            <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" /> Employee list
-          </div>
-          <div class="mt-5">
-            <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
-              <FormLabel class="xl:w-64 xl:!mr-10">
-                <div class="text-left">
-                  <div class="flex items-center">
-                    <div class="font-medium">By Department</div>
-                  </div>
-                  <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                    Sort employees by department to easily view and manage team-specific lists.
-                  </div>
-                </div>
-              </FormLabel>
-              <div class="flex-1 w-full mt-3 xl:mt-0">
+  <div class="flex flex-wrap items-center justify-between w-full">
+      <div class="w-full md:w-1/2">
+              <div class="px-4 py-2">
+              <FormLabel htmlFor="crud-form-6" class="flex flex-col w-full sm:flex-row">
+                Employee list by Department
+                  <span class="mt-1 text-xs sm:ml-auto sm:mt-0 text-slate-500">Required</span>
+                </FormLabel>
                 <select id="crud-form-6" @change="fetchEmployeeDataByDepartment(selectedCategoryType)" v-model="selectedCategoryType" class="w-full border border-gray-300 rounded-lg text-sm  dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80">
                   <option value="" disabled>Select Department</option>
-                  <option value="">All</option>
                   <option v-for="(data, index) in state.departmentData" :key="index" :value="data.name">{{data.name}}</option>
                 </select>
-              </div>
-            </FormInline>
-            <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
-              <FormLabel class="xl:w-64 xl:!mr-10">
-                <div class="text-left">
-                  <div class="flex items-center">
-                    <div class="font-medium">By Unit</div>
-                    
-                  </div>
-                  <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                    Sort employees by  unit to easily view and manage team-specific lists.
-                  </div>
-                </div>
-              </FormLabel>
-              <div class="flex-1 w-full mt-3 xl:mt-0">
+              </div> 
+        </div>
+      <div class="w-full md:w-1/2">
+              <div class="px-4 py-2">
+              <FormLabel htmlFor="crud-form-6" class="flex flex-col w-full sm:flex-row">
+                Employee list by Unit
+                  <span class="mt-1 text-xs sm:ml-auto sm:mt-0 text-slate-500">Required</span>
+                </FormLabel>
                 <select id="crud-form-6" @change="fetchEmployeeDataByUnit(selectedCategoryType)" v-model="selectedCategoryType" class="w-full border border-gray-300 rounded-lg text-sm  dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80">
                   <option value="" disabled>Select Unit</option>
-                  <option value="">All</option>
                   <option v-for="(data, index) in state.unitData" :key="index" :value="data">{{data}}</option>
                 </select>
-              </div>
-            </FormInline>
-          </div>
+              </div> 
         </div>
-      </div>
-      <div class="p-5 mt-5 intro-y box">
-        <div class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400">
-          <div class="overflow-auto intro-y  max-h-96">
+  </div>
+
+
+  <div class="flex flex-wrap justify-between w-full">
+        
+        <div class="w-full md:w-1/2">
+            <div class="px-4 py-2">
+                <!-- BEGIN: Data List -->
+                <div class="overflow-auto intro-y">
                     <Table class="border-spacing-y-[10px] border-separate -mt-2">
                       <Table.Thead>
                         <Table.Tr>
@@ -351,19 +294,19 @@ onMounted(() => {
                             />
                           </FormCheck>
                           </Table.Td>
-                          <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+                          <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
                             {{ report.emp_id }}
                           </Table.Td>
-                          <Table.Td class="whitespace-nowrap box text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+                          <Table.Td class="box text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
                             {{ report.name }}
                           </Table.Td>
-                          <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+                          <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
                             {{ report.designation }}
                           </Table.Td>
-                          <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+                          <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
                             {{ report.department }}
                           </Table.Td>
-                          <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+                          <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
                             {{ report.unit_name }}
                           </Table.Td>
                         </Table.Tr>
@@ -371,121 +314,55 @@ onMounted(() => {
                     </Table>
                    
                   </div>
-                  <div class="flex justify-between py-2 border-t border-gray-300">
-                  <p class="text-right mt-2 w-full"> Required</p>
-                </div>
+                  <!-- END: Data List -->
+            </div> 
         </div>
-      </div>
-      <div class="p-5 mt-5 intro-y box">
-        <div class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400">
-          <div class="flex items-center pb-5 text-base font-medium border-b border-slate-200/60 dark:border-darkmode-400">
-            <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" />   Training Topic
-          </div>
-          <div class="mt-5">
-            <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
-              <FormLabel class="xl:w-64 xl:!mr-10">
-                <div class="text-left">
-                  <div class="flex items-center">
-                    <div class="font-medium">  Training Topic</div>
-                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                      Required
-                    </div>
-                  </div>
-                  <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                    The unique ID of the training topic assigned to the employee.
-                  </div>
-                </div>
+        <div class="w-full md:w-1/2">
+            <div class="px-4 py-2">
+              <FormLabel htmlFor="crud-form-6" class="flex flex-col w-full sm:flex-row">
+                Training Topic
+                <span class="mt-1 text-xs sm:ml-auto sm:mt-0 text-slate-500">Required</span>
               </FormLabel>
-              <div class="flex-1 w-full mt-3 xl:mt-0">
-                <select id="crud-form-6" v-model="selectedtrainingTopic" class="w-full border border-gray-300 rounded-lg text-sm  dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80">
-                  <option value="" disabled>Select Training</option>
-                  <option v-for="(data, index) in state.trainingTopicData" :key="index" :value="data.id">{{ data.name }}</option>
+              <select id="crud-form-6" v-model="selectedtrainingTopic" class="w-full border border-gray-300 rounded-lg">
+                <option value="" disabled>Select Training</option>
+                <option v-for="(data, index) in state.trainingTopicData" :key="index" :value="data.id">{{ data.name }}</option>
               </select>
-              <div class="flex justify-between">
-                  <template v-if="validate.training_topic_id.$error">
-                    <div v-for="(error, index) in validate.training_topic_id.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
-                      {{ error.$message }}
-                    </div>
-                  </template>
-                  <p class="text-right mt-2 w-full"> Required</p>
+              <template v-if="validate.training_topic_id.$error">
+                <div v-for="(error, index) in validate.training_topic_id.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
+                  {{ error.$message }}
                 </div>
-              </div>
-            </FormInline>
-            
-          </div>
-        </div>
-      </div>
-      <div class="w-full px-4 py-4">
-        <p v-if="backendErrors.message" class="text-red-500 text-sm">{{ backendErrors.message }}</p>
-        <template v-if="backendErrors.errors">
-            <div v-for="(messages, field) in backendErrors.errors" :key="field" class="mt-2 text-danger">
-            <p><strong>{{ field }}:</strong></p>
-            <ul>
-                <li v-for="(message, index) in messages" :key="index">{{ message }}</li>
-            </ul>
+              </template>
+            </div> 
+            <div class="w-full px-4 py-4">
+            <template v-if="backendErrors.errors">
+                <div v-for="(messages, field) in backendErrors.errors" :key="field" class="mt-2 text-danger flex">
+                <p class=" capitalize mr-2"><strong>{{ field }}:</strong></p>
+                <ul>
+                    <li v-for="(message, index) in messages" :key="index">{{ message }}</li>
+                </ul>
+                </div>
+            </template>
             </div>
-        </template>
-        </div>
-      <div class="flex flex-col justify-end gap-2 mt-5 md:flex-row">
-        <Button
-          type="button"class="w-full py-3 border-slate-300 dark:border-darkmode-400 text-slate-500 md:w-52">
-          Cancel
-        </Button>
-        <Button variant="primary" type="button" class="w-full py-3 md:w-52" @click="submitForm">
-          Save
-        </Button>
-      </div>
-    </div>
-    <div class="hidden col-span-2 intro-y 2xl:block">
-      <div class="sticky top-0 pt-10">
-        <ul
-          class="text-slate-500 relative before:content-[''] before:w-[2px] before:bg-slate-200 before:dark:bg-darkmode-600 before:h-full before:absolute before:left-0 before:z-[-1]"
-        >
-          <li
-            class="pl-5 mb-4 font-medium border-l-2 border-primary dark:border-primary text-primary"
-          >
-            <a href="">Assign Multiple Training</a>
-          </li>
-          <li
-            class="pl-5 mb-4 border-l-2 border-transparent dark:border-transparent"
-          >
-            <a href="">Be Specific and Clear</a>
-          </li>
-          <li
-            class="pl-5 mb-4 border-l-2 border-transparent dark:border-transparent"
-          >
-            <a href="">Check Input Requirements</a>
-          </li>
-          <li
-            class="pl-5 mb-4 border-l-2 border-transparent dark:border-transparent"
-          >
-            <a href="">Upload Relevant Files</a>
-          </li>
-          
-        </ul>
-        <div
-          class="relative p-5 mt-10 border rounded-md bg-warning/20 dark:bg-darkmode-600 border-warning dark:border-0"
-        >
-          <Lucide
-            icon="Lightbulb"
-            class="absolute top-0 right-0 w-12 h-12 mt-5 mr-3 text-warning/80"
-          />
-          <h2 class="mt-5 text-lg font-medium">Tips</h2>
-          <div
-            class="mt-2 text-xs leading-relaxed text-slate-600 dark:text-slate-500"
-          >
-            <div>
-              When filling out the Assign Multiple Training report, be specific and clear with details, using the correct date format and precise descriptions..
+            <div class="mt-5 text-right">
+              <Button type="button" variant="outline-secondary" class="w-24 mr-4">
+                Cancel
+              </Button>
+              <Button type="button" variant="primary" class="w-24" @click="submitForm">
+                Save
+              </Button>
             </div>
-            <div class="mt-2">
-              Ensure all required fields are accurately completed and boolean options are correctly marked. Upload relevant files and adhere to format and size requirements for attachments.
-            </div>
-          </div>
+            <!-- Display selected employee IDs -->
+         <!-- <div class="px-4 py-4">
+                      <h3>Selected Employee IDs:</h3>
+                      <ul>
+                        <li v-for="(id, idx) in selectedEmployeeIds" :key="idx">{{ id }}</li>
+                      </ul>
+                    </div> -->
         </div>
-      </div>
-    </div>
+        
+
   </div>
-   <!-- BEGIN: Success Notification Content -->
+  <!-- BEGIN: Success Notification Content -->
   <Notification id="success-notification-content" class="flex hidden">
         <Lucide icon="CheckCircle" class="text-success" />
         <div class="ml-4 mr-4">
