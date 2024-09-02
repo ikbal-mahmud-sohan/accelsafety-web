@@ -13,6 +13,7 @@ import Toastify from 'toastify-js';
 import Notification from "@/components/Base/Notification";
 import Preview from "@/components/Base/Preview";
 import { Menu, Popover } from "@/components/Base/Headless";
+import Alert from "@/components/Base/Alert";
 
 
 // Define your state using the reactive function
@@ -159,69 +160,196 @@ onMounted(() => {
 
 <template>
   <div class="flex items-center mt-8 intro-y">
-    <h2 class="mr-auto text-lg font-medium">Assign Training Form</h2>
+    <h2 class="mr-auto text-lg font-medium">Assign Training</h2>
   </div>
-
-  <div class="flex flex-wrap items-center justify-between w-full">
-
-        <div class="w-full md:w-1/2">
-            <div class="px-4 py-2">
-            <FormLabel htmlFor="crud-form-6" class="flex flex-col w-full sm:flex-row">
-              Employee
-                <span class="mt-1 text-xs sm:ml-auto sm:mt-0 text-slate-500">Required</span>
-              </FormLabel>
-              <select id="crud-form-6" v-model="selectedEmployee"  class="w-full border border-gray-300 rounded-lg">
-                <option value="" disabled>Select Employee</option>
-                <option v-for="(data, index) in state.employeeData" :key="index" :value="data.id">{{ data.name }}</option>
-              </select>
-              <template v-if="validate.employee_id.$error">
-                <div v-for="(error, index) in validate.employee_id.$errors" :key="index" class="mt-2 text-danger">
-                  {{ error.$message }}
+  <div class="grid grid-cols-11 pb-20 mt-5 gap-x-6">
+    <!-- BEGIN: Notification -->
+    <Alert
+      variant="primary"
+      dismissible
+      class="col-span-11 mb-6 intro-y box dark:border-darkmode-600"
+      v-slot="{ dismiss }"
+    >
+      <div class="flex items-center">
+        <span>
+          <Lucide icon="Info" class="w-4 h-4 mr-2" />
+        </span>
+        <span>
+          Assign specific training topics to employees by matching their IDs with the relevant training sessions.
+          <a
+            href="https://themeforest.net/item/midone-jquery-tailwindcss-html-admin-template/26366820"
+            class="ml-1 underline"
+            target="blank"
+          >
+            Learn More
+          </a>
+        </span>
+        <Alert.DismissButton
+          class="text-white"
+          @click="dismiss"
+          aria-label="Close"
+        >
+          <Lucide icon="X" class="w-4 h-4" />
+        </Alert.DismissButton>
+      </div>
+    </Alert>
+    <!-- BEGIN: Notification -->
+    <div class="col-span-11 intro-y 2xl:col-span-9">
+      <!-- BEGIN: Uplaod Product -->
+      
+      <!-- BEGIN: Product Information -->
+      <div class="p-5 mt-5 intro-y box">
+        <div
+          class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400"
+        >
+          <div class="flex items-center pb-5 text-base font-medium border-b border-slate-200/60 dark:border-darkmode-400">
+            <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" /> Employee
+          </div>
+          <div class="mt-5">
+            <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+              <FormLabel class="xl:w-64 xl:!mr-10">
+                <div class="text-left">
+                  <div class="flex items-center">
+                    <div class="font-medium">Employee</div>
+                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                      Required
+                    </div>
+                  </div>
+                  <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                    Category or classification of the incident (e.g., Fatality, Lts).
+                  </div>
                 </div>
-              </template>
-            </div> 
-        </div>
-        <div class="w-full md:w-1/2">
-            <div class="px-4 py-2">
-              <FormLabel htmlFor="crud-form-6" class="flex flex-col w-full sm:flex-row">
-                Training Topic
-                <span class="mt-1 text-xs sm:ml-auto sm:mt-0 text-slate-500">Required</span>
               </FormLabel>
-              <select id="crud-form-6" v-model="selectedtrainingTopic" class="w-full border border-gray-300 rounded-lg">
-                <option value="" disabled>Select Training</option>
-                <option v-for="(data, index) in state.trainingTopicData" :key="index" :value="data.id">{{ data.name }}</option>
-                <!-- Add more options as needed -->
-              </select>
-              <template v-if="validate.training_topic_id.$error">
-                <div v-for="(error, index) in validate.training_topic_id.$errors" :key="index" class="mt-2 text-danger">
-                  {{ error.$message }}
+              <div class="flex-1 w-full mt-3 xl:mt-0">
+                    <select id="crud-form-6" v-model="selectedEmployee"  class="w-full border border-gray-300 rounded-lg text-sm">
+                    <option value="" disabled>Select Employee</option>
+                    <option v-for="(data, index) in state.employeeData" :key="index" :value="data.id">{{ data.name }}</option>
+                  </select>
+                  <div class="flex justify-between">
+                    <template v-if="validate.employee_id.$error">
+                      <div v-for="(error, index) in validate.employee_id.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
+                        {{ error.$message }}
+                      </div>
+                    </template>
+                  <p class="text-right mt-2 w-full"> Required, at least 3 characters</p>
                 </div>
-              </template>
-            </div> 
+              </div>
+            </FormInline>
+          </div>
         </div>
-        
-        <div class="w-full px-4 py-4">
-        <!-- <p v-if="backendErrors.message" class="text-red-500 text-sm">{{ backendErrors.message }}</p> -->
+      </div>
+      <div class="p-5 mt-5 intro-y box">
+        <div
+          class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400"
+        >
+          <div class="flex items-center pb-5 text-base font-medium border-b border-slate-200/60 dark:border-darkmode-400">
+            <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" /> Training Topic
+          </div>
+          <div class="mt-5">
+            <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+              <FormLabel class="xl:w-64 xl:!mr-10">
+                <div class="text-left">
+                  <div class="flex items-center">
+                    <div class="font-medium">Training Topic</div>
+                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                      Required
+                    </div>
+                  </div>
+                  <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                    The unique ID of the training topic assigned to the employee.
+                  </div>
+                </div>
+              </FormLabel>
+              <div class="flex-1 w-full mt-3 xl:mt-0">
+                <select id="crud-form-6" v-model="selectedtrainingTopic" class="w-full border border-gray-300 rounded-lg text-sm">
+                  <option value="" disabled>Select Training</option>
+                  <option v-for="(data, index) in state.trainingTopicData" :key="index" :value="data.id">{{ data.name }}</option>
+                  <!-- Add more options as needed -->
+                </select>
+                  <div class="flex justify-between">
+                    <template v-if="validate.training_topic_id.$error">
+                      <div v-for="(error, index) in validate.training_topic_id.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
+                        {{ error.$message }}
+                      </div>
+                    </template>
+                  <p class="text-right mt-2 w-full"> Required, at least 3 characters</p>
+                </div>
+              </div>
+            </FormInline>
+          </div>
+        </div>
+      </div>
+      <div class="w-full px-4 py-4">
+        <p v-if="backendErrors.message" class="text-red-500 text-sm">{{ backendErrors.message }}</p>
         <template v-if="backendErrors.errors">
-            <div v-for="(messages, field) in backendErrors.errors" :key="field" class="mt-2 text-danger flex">
-            <p class=" capitalize mr-2"><strong>{{ field }}:</strong></p>
+            <div v-for="(messages, field) in backendErrors.errors" :key="field" class="mt-2 text-danger">
+            <p><strong>{{ field }}:</strong></p>
             <ul>
                 <li v-for="(message, index) in messages" :key="index">{{ message }}</li>
             </ul>
             </div>
         </template>
         </div>
-        <div class="mt-5 text-right">
-          <Button type="button" variant="outline-secondary" class="w-24 mr-4">
-            Cancel
-          </Button>
-          <Button type="button" variant="primary" class="w-24" @click="submitForm">
-            Save
-          </Button>
+      <div class="flex flex-col justify-end gap-2 mt-5 md:flex-row">
+        <Button
+          type="button"class="w-full py-3 border-slate-300 dark:border-darkmode-400 text-slate-500 md:w-52">
+          Cancel
+        </Button>
+        <Button variant="primary" type="button" class="w-full py-3 md:w-52" @click="submitForm">
+          Save
+        </Button>
+      </div>
+    </div>
+    <div class="hidden col-span-2 intro-y 2xl:block">
+      <div class="sticky top-0 pt-10">
+        <ul
+          class="text-slate-500 relative before:content-[''] before:w-[2px] before:bg-slate-200 before:dark:bg-darkmode-600 before:h-full before:absolute before:left-0 before:z-[-1]"
+        >
+          <li
+            class="pl-5 mb-4 font-medium border-l-2 border-primary dark:border-primary text-primary"
+          >
+            <a href="">Assign Training</a>
+          </li>
+          <li
+            class="pl-5 mb-4 border-l-2 border-transparent dark:border-transparent"
+          >
+            <a href="">Be Specific and Clear</a>
+          </li>
+          <li
+            class="pl-5 mb-4 border-l-2 border-transparent dark:border-transparent"
+          >
+            <a href="">Check Input Requirements</a>
+          </li>
+          <li
+            class="pl-5 mb-4 border-l-2 border-transparent dark:border-transparent"
+          >
+            <a href="">Upload Relevant Files</a>
+          </li>
+          
+        </ul>
+        <div
+          class="relative p-5 mt-10 border rounded-md bg-warning/20 dark:bg-darkmode-600 border-warning dark:border-0"
+        >
+          <Lucide
+            icon="Lightbulb"
+            class="absolute top-0 right-0 w-12 h-12 mt-5 mr-3 text-warning/80"
+          />
+          <h2 class="mt-5 text-lg font-medium">Tips</h2>
+          <div
+            class="mt-2 text-xs leading-relaxed text-slate-600 dark:text-slate-500"
+          >
+            <div>
+              When filling out the Assign Training report, be specific and clear with details, using the correct date format and precise descriptions..
+            </div>
+            <div class="mt-2">
+              Ensure all required fields are accurately completed and boolean options are correctly marked. Upload relevant files and adhere to format and size requirements for attachments.
+            </div>
+          </div>
         </div>
-
+      </div>
+    </div>
   </div>
-  <!-- BEGIN: Success Notification Content -->
+   <!-- BEGIN: Success Notification Content -->
   <Notification id="success-notification-content" class="flex hidden">
         <Lucide icon="CheckCircle" class="text-success" />
         <div class="ml-4 mr-4">
