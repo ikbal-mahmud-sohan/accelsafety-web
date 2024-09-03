@@ -562,20 +562,20 @@ onMounted(() => {
       <div class="p-5 mt-5 intro-y box">
         <div class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400">
           <div class="flex items-center pb-5 text-base font-medium border-b border-slate-200/60 dark:border-darkmode-400">
-            <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" />Department
+            <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" />Employee Type
           </div>
           <div class="mt-5">
             <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
               <FormLabel class="xl:w-64 xl:!mr-10">
                 <div class="text-left">
                   <div class="flex items-center">
-                    <div class="font-medium">Select Department</div>
+                    <div class="font-medium">Select Employee Type</div>
                     <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
                       Required
                     </div>
                   </div>
                   <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                    Department where the employee works.
+                    Employee Type
                   </div>
                 </div>
               </FormLabel>

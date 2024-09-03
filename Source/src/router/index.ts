@@ -125,6 +125,11 @@ const router = createRouter({
           component: () => import("../pages/AccidentForm.vue"),
         },
         {
+          path: "accident-input",
+          name: "accident-input",
+          component: () => import("../pages/AccidentInput.vue"),
+        },
+        {
           path: "accident/:id/update",
           name: "accident-update-form",
           component: () => import("../pages/AccidentUpdateForm.vue"),

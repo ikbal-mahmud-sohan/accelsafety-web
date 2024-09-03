@@ -13,7 +13,7 @@ import {
 } from "@/components/Base/Form";
 import Tippy from "@/components/Base/Tippy";
 import Table from "@/components/Base/Table";
-import { ref, reactive,toRefs } from 'vue';
+import { ref, reactive,toRefs,onMounted } from 'vue';
 import axios, { AxiosError } from 'axios';
 import { ClassicEditor } from "@/components/Base/Ckeditor";
 import TomSelect from "@/components/Base/TomSelect";
@@ -74,6 +74,15 @@ const formData = reactive({
   investigation_lead:'',
   attachment:[] as File[],
 });
+const selectedMonth = ref("");
+const selectedAccidentType = ref("");
+const selectedInjuryType = ref("");
+
+const state = reactive({
+  viewMonth: [] as Array<any>,
+  viewType: [] as Array<any>,
+  viewInjuryType: [] as Array<any>,
+});
 
 interface BackendErrorResponse {
     message: string;
@@ -127,6 +136,10 @@ const submitForm = async () => {
   formData.time_date = time_date.value;
   formData.description = editorData.value;
   formData.incident_category = selectedIncidentCategory.value;
+  formData.month = selectedMonth.value;
+  formData.type_of_accident =selectedAccidentType.value
+  formData.injury_type =selectedInjuryType.value
+
     validate.value.$touch();
     if (validate.value.$invalid) {
         FailedPopUp();
@@ -143,13 +156,13 @@ const submitForm = async () => {
             form.append(`attachment[${index}]`, file);
             });
             console.log("form",form)
-   let  url = config.baseURL+'/api/v1/accident';
-    const response = await axios.post(url, form);
-    console.log('Form submitted successfully:', response.data);
-    if(response.data != undefined){
-        SuccessPopUp();
-      router.push({ name: 'accident-data-list' });
-    }
+            let  url = config.baseURL+'/api/v1/accident';
+              const response = await axios.post(url, form);
+              console.log('Form submitted successfully:', response.data);
+              if(response.data != undefined){
+                  SuccessPopUp();
+                router.push({ name: 'accident-data-list' });
+              }
   } catch (err) {
                 FailedPopUp();
                 const error = err as AxiosError<BackendErrorResponse>;
@@ -176,6 +189,18 @@ const handleFileChange = (event: Event) => {
   const input = event.target as HTMLInputElement;
   if (input.files) {
     formData.attachment = Array.from(input.files);
+  }
+};
+const fetchDropDownData = async () => {
+  try {
+   let  url = config.baseURL+'/api/v1/accident-drop-down';
+    const response = await axios.get(url);
+    state.viewMonth = response.data.Month;
+    state.viewType = response.data.AccidentType;
+    state.viewInjuryType = response.data.InjuryType	;
+    console.log("xyz",state.viewMonth)
+  } catch (error) {
+    console.error('Error fetching data:', error);
   }
 };
 // Ext Function 
@@ -211,6 +236,9 @@ function SuccessPopUp(){
         stopOnFocus: true,
         }).showToast();
 }
+onMounted(() => {
+  fetchDropDownData();
+});
 </script>
 
 <template>
@@ -276,7 +304,14 @@ function SuccessPopUp(){
                 </div>
               </FormLabel>
               <div class="flex-1 w-full mt-3 xl:mt-0">
-                <FormInput id="crud-form-1" v-model.trim="validate.month.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.month.$error,}" placeholder="Input Month"/>
+                <!-- <FormInput id="crud-form-1" v-model.trim="validate.month.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.month.$error,}" placeholder="Input Month"/> -->
+
+                  <select id="crud-form-6" v-model="selectedMonth"  class="border py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 fdark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80">
+                    <option value="" disabled>select month</option>
+                    <option v-for="(data, index) in state.viewMonth" :key="index" :value="data.name">{{ data.name }}</option>
+                  </select>
+
+
                 <template v-if="validate.month.$error">
                   <div v-for="(error, index) in validate.month.$errors" :key="index" class="mt-2 text-danger">
                     {{ error.$message }}
@@ -383,7 +418,11 @@ function SuccessPopUp(){
                 </div>
               </FormLabel>
               <div class="flex-1 w-full mt-3 xl:mt-0">
-                <FormInput id="crud-form-7" v-model.trim="validate.type_of_accident.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.type_of_accident.$error,}" placeholder="Input Type Of Accident"/>
+                <!-- <FormInput id="crud-form-7" v-model.trim="validate.type_of_accident.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.type_of_accident.$error,}" placeholder="Input Type Of Accident"/> -->
+                <select id="crud-form-6" v-model="selectedAccidentType"  class="border py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-1 focus:ring-primary focus:ring-opacity-100 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80">
+                    <option value="" disabled>select type of accident</option>
+                    <option v-for="(data, index) in state.viewType" :key="index" :value="data.name">{{ data.name }}</option>
+                </select>
                 <template v-if="validate.type_of_accident.$error">
                   <div v-for="(error, index) in validate.type_of_accident.$errors" :key="index" class="mt-2 text-danger">
                     {{ error.$message }}
@@ -407,7 +446,11 @@ function SuccessPopUp(){
                 </div>
               </FormLabel>
               <div class="flex-1 w-full mt-3 xl:mt-0">
-                <FormInput id="crud-form-10" v-model.trim="validate.injury_type.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.injury_type.$error,}" placeholder="Input Injury Type"/>
+                <!-- <FormInput id="crud-form-10" v-model.trim="validate.injury_type.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.injury_type.$error,}" placeholder="Input Injury Type"/> -->
+                <select id="crud-form-6" v-model="selectedInjuryType"  class="border py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-1 focus:ring-primary focus:ring-opacity-100 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80">
+                    <option value="" disabled>select injury type</option>
+                    <option v-for="(data, index) in state.viewInjuryType" :key="index" :value="data.name">{{ data.name }}</option>
+                </select>
                 <template v-if="validate.injury_type.$error">
                   <div v-for="(error, index) in validate.injury_type.$errors" :key="index" class="mt-2 text-danger">
                     {{ error.$message }}
@@ -650,7 +693,7 @@ function SuccessPopUp(){
               <FormLabel class="xl:w-64 xl:!mr-10">
                 <div class="text-left">
                   <div class="flex items-center">
-                    <div class="font-medium">Root Cause</div>
+                    <div class="font-medium">Action</div>
                     <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
                       Required
                     </div>
