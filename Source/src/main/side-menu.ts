@@ -65,6 +65,11 @@ const menu: Array<Menu | "divider"> = [
         pageName: "safety-observation-form",
         title: "Add Safety Observationt",
       },
+      {
+        icon: "Activity",
+        pageName: "safety-observation-input",
+        title: "Add Safety Observationt Input",
+      },
     ],
   },
   {

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, reactive, toRefs } from 'vue';
+import { ref, reactive, toRefs,onMounted } from 'vue';
 import axios from 'axios';
 import { ClassicEditor } from "@/components/Base/Ckeditor";
 import Button from "@/components/Base/Button";
@@ -40,7 +40,17 @@ const formData = reactive({
         due_date:'',
         priority_type:'',
 });
+const state = reactive({
+  viewOwnerDepartment: [] as Array<any>,
+  viewRespDepartment: [] as Array<any>,
+  viewPlantName: [] as Array<any>,
+});
 const router = useRouter();
+
+const selectedviewOwnerDepartment = ref("");
+const selectedviewRespDepartment = ref("");
+const selectedviewPlantName = ref("");
+const selectedviewPriorityType = ref("");
 
 
 const categories = ref(["1", "3"]);
@@ -83,22 +93,14 @@ const submitForm = async () => {
     formData.problem_description = editorData.value;
     formData.audit_date = auditdate.value;
     formData.due_date = duedate.value;
+    formData.owner_department = selectedviewOwnerDepartment.value;
+    formData.resp_department = selectedviewRespDepartment.value;
+    formData.plant_name = selectedviewPlantName.value;
+    formData.priority_type = selectedviewPriorityType.value;
     validate.value.$touch();
     console.log(validate.value)
     if (validate.value.$invalid) {
-        const failedEl = document
-        .querySelectorAll("#failed-notification-content")[0]
-        .cloneNode(true) as HTMLElement;
-        failedEl.classList.remove("hidden");
-        Toastify({
-        node: failedEl,
-        duration: 3000,
-        newWindow: true,
-        close: true,
-        gravity: "top",
-        position: "right",
-        stopOnFocus: true,
-        }).showToast();
+      FailedPopUp();
     } else {
         const form = new FormData();
             (Object.keys(formData) as Array<keyof typeof formData>).forEach((key) => {
@@ -126,7 +128,41 @@ const submitForm = async () => {
                 console.error('Error submitting form:', error);
             }
         
-        const successEl = document
+            SuccessPopUp();
+    }
+};
+
+const fetchDropDownData = async () => {
+  try {
+   let  url = config.baseURL+'/api/v1/safety-drop-down';
+    const response = await axios.get(url);
+    state.viewOwnerDepartment = response.data.OwnerDepartment;
+    state.viewRespDepartment = response.data.RespDepartment;
+    state.viewPlantName = response.data.PlantName	;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+};
+// Ext Function 
+
+function FailedPopUp(){
+    const failedEl = document
+        .querySelectorAll("#failed-notification-content")[0]
+        .cloneNode(true) as HTMLElement;
+        failedEl.classList.remove("hidden");
+        Toastify({
+        node: failedEl,
+        duration: 3000,
+        newWindow: true,
+        close: true,
+        gravity: "top",
+        position: "right",
+        stopOnFocus: true,
+        }).showToast();
+}
+function SuccessPopUp(){
+ 
+    const successEl = document
         .querySelectorAll("#success-notification-content")[0]
         .cloneNode(true) as HTMLElement;
         successEl.classList.remove("hidden");
@@ -139,8 +175,10 @@ const submitForm = async () => {
         position: "right",
         stopOnFocus: true,
         }).showToast();
-    }
-};
+}
+onMounted(() => {
+  fetchDropDownData();
+});
 
 </script>
 
@@ -242,7 +280,11 @@ const submitForm = async () => {
                 </div>
               </FormLabel>
               <div class="flex-1 w-full mt-3 xl:mt-0">
-                <FormInput id="crud-form-2" v-model.trim="validate.plant_name.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.plant_name.$error,}" placeholder="Input Plant Name"/>
+                <!-- <FormInput id="crud-form-2" v-model.trim="validate.plant_name.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.plant_name.$error,}" placeholder="Input Plant Name"/> -->
+                <select id="crud-form-6" v-model="selectedviewPlantName"  class="border py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 fdark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80">
+                      <option value="" disabled>select plant name</option>
+                      <option v-for="(data, index) in state.viewPlantName" :key="index" :value="data.name">{{ data.name }}</option>
+                </select>
                 
                 <div class="flex justify-between">
                   <template v-if="validate.plant_name.$error">
@@ -250,7 +292,7 @@ const submitForm = async () => {
                       {{ error.$message }}
                     </div>
                   </template>
-                  <p class="text-right mt-2 w-full"> Required, at least 3 characters</p>
+                  <p class="text-right mt-2 w-full"> Required</p>
                 </div>
               </div>
             </FormInline>
@@ -517,7 +559,11 @@ const submitForm = async () => {
                 </div>
               </FormLabel>
               <div class="flex-1 w-full mt-3 xl:mt-0">
-                <FormInput id="crud-form-7" v-model.trim="validate.resp_department.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.resp_department.$error,}" placeholder="Input Resp Department"/>
+                <!-- <FormInput id="crud-form-7" v-model.trim="validate.resp_department.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.resp_department.$error,}" placeholder="Input Resp Department"/> -->
+                <select id="crud-form-6" v-model="selectedviewRespDepartment"  class="border py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 fdark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80">
+                      <option value="" disabled>select resp department</option>
+                      <option v-for="(data, index) in state.viewRespDepartment" :key="index" :value="data.name">{{ data.name }}</option>
+                </select>
                
                 <div class="flex justify-between">
                   <template v-if="validate.resp_department.$error">
@@ -525,7 +571,7 @@ const submitForm = async () => {
                     {{ error.$message }}
                   </div>
                 </template>
-                  <p class="text-right mt-2 w-full"> Required, at least 3 characters</p>
+                  <p class="text-right mt-2 w-full"> Required</p>
                 </div>
               </div>
             </FormInline>
@@ -544,7 +590,11 @@ const submitForm = async () => {
                 </div>
               </FormLabel>
               <div class="flex-1 w-full mt-3 xl:mt-0">
-                <FormInput id="crud-form-8" v-model.trim="validate.owner_department.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.owner_department.$error,}" placeholder="Input Owner Department"/>
+                <!-- <FormInput id="crud-form-8" v-model.trim="validate.owner_department.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.owner_department.$error,}" placeholder="Input Owner Department"/> -->
+                <select id="crud-form-6" v-model="selectedviewOwnerDepartment"  class="border py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 fdark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80">
+                      <option value="" disabled>select owner department</option>
+                      <option v-for="(data, index) in state.viewOwnerDepartment" :key="index" :value="data.name">{{ data.name }}</option>
+                </select>
                 
                 <div class="flex justify-between">
                   <template v-if="validate.owner_department.$error">
@@ -552,7 +602,7 @@ const submitForm = async () => {
                     {{ error.$message }}
                   </div>
                 </template>
-                  <p class="text-right mt-2 w-full"> Required, at least 3 characters</p>
+                  <p class="text-right mt-2 w-full"> Required</p>
                 </div>
               </div>
             </FormInline>
@@ -617,7 +667,13 @@ const submitForm = async () => {
                 </div>
               </FormLabel>
               <div class="flex-1 w-full mt-3 xl:mt-0">
-                <FormInput id="crud-form-11" v-model.trim="validate.priority_type.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.priority_type.$error,}" placeholder="Input Priority Type"/>  
+                <!-- <FormInput id="crud-form-11" v-model.trim="validate.priority_type.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.priority_type.$error,}" placeholder="Input Priority Type"/>   -->
+                <select id="crud-form-6" v-model="selectedviewPriorityType"  class="border py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 fdark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80">
+                      <option value="" disabled>select priority type</option>
+                      <option value="Low">Low</option>
+                      <option value="medium">medium</option>
+                      <option value="high">high</option>
+                </select>
                 <div class="flex justify-between">
                   <template v-if="validate.priority_type.$error">
                   <div v-for="(error, index) in validate.priority_type.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">

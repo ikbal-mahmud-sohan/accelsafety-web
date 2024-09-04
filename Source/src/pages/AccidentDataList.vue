@@ -115,7 +115,6 @@ onMounted(() => {
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">type of victim employee</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">responsible name</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">deadline</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">type of employee</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">site name</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">time date</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">incident category</Table.Th>
@@ -213,9 +212,6 @@ onMounted(() => {
             </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600 whitespace-nowrap">
               {{ report.deadline }}
-            </Table.Td>
-            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.type_of_employee }}
             </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
               {{ report.site_name }}
