@@ -146,6 +146,11 @@ const router = createRouter({
           component: () => import("../pages/SafetyObservationForm.vue"),
         },
         {
+          path: "safety-observation-input",
+          name: "safety-observation-input",
+          component: () => import("../pages/SafetyObservationInput.vue"),
+        },
+        {
           path: "safety-observatio/:id/update",
           name: "safety-observatio-update-form",
           component: () => import("../pages/SafetyObservatioUpdateForm.vue"),
