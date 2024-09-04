@@ -43,6 +43,11 @@ const menu: Array<Menu | "divider"> = [
         pageName: "accident-form",
         title: "Add Accident",
       },
+      {
+        icon: "Activity",
+        pageName: "accident-input",
+        title: "Add Accident Input",
+      },
     ],
   },
   {
