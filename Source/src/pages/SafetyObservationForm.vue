@@ -747,63 +747,33 @@ onMounted(() => {
               </FormLabel>
               <div class="flex-1 w-full mt-3 xl:mt-0">
                 <FormLabel htmlFor="crud-form-13">Attachment</FormLabel>
-                <!-- <FormInput id="crud-form-13" type="file" class="w-full" placeholder="Input Attachment"
-                    multiple @change="handleFileChange" /> -->
-                    <!-- sohann  -->
                     <div class="flex flex-col items-center justify-center w-full space-y-4">
-                      <!-- File Upload Input -->
-                      <label
-      for="file-upload"
-      class="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-blue-500 hover:bg-gray-50 transition duration-300"
-    >
-      <div class="flex flex-col items-center justify-center pt-5 pb-6">
-        <svg
-          aria-hidden="true"
-          class="w-10 h-10 mb-3 text-gray-400"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M7 16V12a4 4 0 014-4h3m5 8h2a2 2 0 002-2v-5a2 2 0 00-2-2h-2.586a1 1 0 00-.707.293l-2.707 2.707a1 1 0 01-.707.293H13m-4 8H6a2 2 0 01-2-2v-5a2-2h2.586c.265 0 .52.105.707.293l2.707 2.707a1 1 0 00.707.293H18m0 0l2 2M15 12v2m4 0l-4-4"
-          ></path>
-        </svg>
-        <p class="mb-2 text-sm text-gray-500">Click to upload or drag and drop</p>
-        <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
-      </div>
-      <input
-        id="file-upload"
-        type="file"
-        class="hidden"
-        multiple
-        @change="handleFileChange"
-      />
-    </label>
-
-    <!-- Display Uploaded File Names -->
-                  <div v-if="formData.problematic_progressive_images.length" class="w-full space-y-2">
-                    <div
-                      v-for="(file, index) in formData.problematic_progressive_images"
-                      :key="index"
-                      class="flex items-center justify-between p-2 bg-gray-100 rounded-lg shadow"
-                    >
-                      <span class="text-sm text-gray-700 truncate">{{ file.name }}</span>
+                          <label for="file-upload" class="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-blue-500 hover:bg-gray-50 transition duration-300">
+                            <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                              <svg aria-hidden="true" class="w-10 h-10 mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V12a4 4 0 014-4h3m5 8h2a2 2 0 002-2v-5a2 2 0 00-2-2h-2.586a1 1 0 00-.707.293l-2.707 2.707a1 1 0 01-.707.293H13m-4 8H6a2 2 0 01-2-2v-5a2-2h2.586c.265 0 .52.105.707.293l2.707 2.707a1 1 0 00.707.293H18m0 0l2 2M15 12v2m4 0l-4-4"></path>
+                              </svg>
+                              <p class="mb-2 text-sm text-gray-500">Click to upload or drag and drop</p>
+                              <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+                            </div>
+                            <input id="file-upload" type="file" class="hidden" multiple @change="handleFileChange"/>
+                          </label>
+                          
+                        <div v-if="formData.problematic_progressive_images.length" class="w-full space-y-2">
+                          <div v-for="(file, index) in formData.problematic_progressive_images" :key="index" class="flex items-center justify-between p-2 bg-gray-100 rounded-lg shadow">
+                            <span class="text-sm text-gray-700 truncate">{{ file.name }}</span>
+                          </div>
+                        </div>
                     </div>
-                  </div>
-                </div>
                 
-                <div class="flex justify-between">
-                  <template v-if="validate.problematic_progressive_images.$error">
-                  <div v-for="(error, index) in validate.problematic_progressive_images.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
-                    {{ error.$message }}
-                  </div>
-                </template>
-                  <p class="text-right mt-2 w-full"> Required</p>
-                </div>
+                    <div class="flex justify-between">
+                      <template v-if="validate.problematic_progressive_images.$error">
+                      <div v-for="(error, index) in validate.problematic_progressive_images.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
+                        {{ error.$message }}
+                      </div>
+                    </template>
+                      <p class="text-right mt-2 w-full"> Required</p>
+                    </div>
               </div>
             </FormInline>
             

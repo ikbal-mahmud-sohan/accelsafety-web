@@ -51,6 +51,23 @@ const menu: Array<Menu | "divider"> = [
     ],
   },
   {
+    icon: "AlertTriangle",
+    pageName: "Accident Investigation",
+    title: "Accident Inv..",
+    subMenu: [
+      {
+        icon: "Activity",
+        pageName: "accident-investigation-list",
+        title: "Investigation List",
+      },
+      {
+        icon: "Activity",
+        pageName: "accident-investigation-form",
+        title: "Add Investigation",
+      },
+    ],
+  },
+  {
     icon: "Aperture",
     pageName: "Safety Observations",
     title: "Safety Obs...",
