@@ -134,6 +134,16 @@ const router = createRouter({
           name: "accident-update-form",
           component: () => import("../pages/AccidentUpdateForm.vue"),
         },
+        {
+          path: "accident-investigations",
+          name: "accident-investigation-list",
+          component: () => import("../pages/AccidentInvestigationList.vue"),
+        },
+        {
+          path: "accident-investigation",
+          name: "accident-investigation-form",
+          component: () => import("../pages/AccidentInvestigationForm.vue"),
+        },
         // Safety Observation
         {
           path: "safety-observations",
