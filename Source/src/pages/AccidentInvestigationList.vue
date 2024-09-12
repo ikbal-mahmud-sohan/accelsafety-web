@@ -115,20 +115,56 @@ onMounted(() => {
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Investigator Name 4</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Investigator Designation 4 </Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Investigator Sign 4</Table.Th>
-
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">name of the factory</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">date of accident</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">accident time</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">accident shift</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">date of accident</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">effected body part</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Type Of Employee</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Type Of Accident</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Nature Of Injury</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Employee Name</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Employee Department</Table.Th>
-
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Employee ID</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">employee job title</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">employee age</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">employee phone no</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">employee address</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">employee experience</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">area in charge name</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">area in charge phone no</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">witness name</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">witness phone no</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Accident Details</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">accident exact location</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">accident initiatives</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Unsafe Acts</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Unsafe Conditions</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">unsafe acts why therefore 1</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">unsafe conditions why therefore 1</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">management deficiency why therefore 1</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">unsafe acts why therefore 2</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">unsafe conditions why therefore 2</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">management deficiency why therefore 2</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">unsafe acts why therefore 3</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">unsafe conditions why therefore 3</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">management deficiency why therefore 3</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">unsafe acts why therefore 4</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">unsafe conditions why therefore 4</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">management deficiency why therefore 4</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">unsafe acts why therefore 5</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">unsafe conditions why therefore 5</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">management deficiency why therefore 5</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">unsafe acts title</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">unsafe conditions title</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">management deficiency title</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">root cause des1</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">root cause des2</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">root cause des3</Table.Th>
+
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Management Deficiencies</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Root Cause 1</Table.Th>
-
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">corrective action 1</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">person assigned 1</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">target date 1</Table.Th>
@@ -144,10 +180,10 @@ onMounted(() => {
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">target date 3</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">complete date 3</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">reviewed by department name</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">reviewed by unit name</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">approved by name</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">reviewed by department signature</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">reviewed by unit name</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">reviewed by unit signature</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">approved by name</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">approved by signature</Table.Th>
             <Table.Th class="text-center border-b-0 whitespace-nowrap uppercase">ACTIONS</Table.Th>
           </Table.Tr>
@@ -158,7 +194,7 @@ onMounted(() => {
               {{ report.id }}
             </Table.Td>
             <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.investigation_name_1 }}
+              {{ report.name_1 }}
             </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600 whitespace-nowrap">
               {{ report.investigation_designation_1 }}
@@ -176,7 +212,7 @@ onMounted(() => {
               </div>
             </Table.Td>
             <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.investigation_name_2 }}
+              {{ report.name_2 }}
             </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600 whitespace-nowrap">
               {{ report.investigation_designation_2 }}
@@ -194,7 +230,7 @@ onMounted(() => {
               </div>
             </Table.Td>
             <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.investigation_name_3 }}
+              {{ report.name_3 }}
             </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600 whitespace-nowrap">
               {{ report.investigation_designation_3 }}
@@ -212,7 +248,7 @@ onMounted(() => {
               </div>
             </Table.Td>
             <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.investigation_name_4 }}
+              {{ report.name_4 }}
             </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600 whitespace-nowrap">
               {{ report.investigation_designation_4 }}
@@ -228,6 +264,25 @@ onMounted(() => {
                   <span>No Data</span>
                 </template>
               </div>
+            </Table.Td>
+
+            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.name_of_the_factory }}
+            </Table.Td>
+            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.date_of_accident }}
+            </Table.Td>
+            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.accident_time }}
+            </Table.Td>
+            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.accident_shift }}
+            </Table.Td>
+            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.date_of_accident }}
+            </Table.Td>
+            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.effected_body_part }}
             </Table.Td>
             <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
               <div class="flex">
@@ -259,13 +314,45 @@ onMounted(() => {
             <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
               {{ report.emp_id }}
             </Table.Td>
+            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.employee_job_title }}
+            </Table.Td>
+            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.employee_age }}
+            </Table.Td>
+            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.employee_phone_no }}
+            </Table.Td>
+            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.employee_address }}
+            </Table.Td>
+            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.employee_experience }}
+            </Table.Td>
+            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.area_in_charge_name }}
+            </Table.Td>
+            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.area_in_charge_phone_no }}
+            </Table.Td>
+            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.witness_name }}
+            </Table.Td>
+            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.witness_phone_no }}
+            </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
               <div class="relative group">
                 <div class="lg:truncate w-32" v-html="report.accident_details"></div>
                 <div class="top-0 left-0 absolute w-72 bg-white shadow-xl rounded-md z-50 px-4 py-4 hidden group-hover:block" v-html="report.accident_details"></div>
               </div>
             </Table.Td>
-            
+            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.accident_exact_location }}
+            </Table.Td>
+            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.accident_exact_location }}
+            </Table.Td>
             <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
               <div class="flex">
                 <div class="px-1" v-for="(data, index) in report.unsafe_acts" :key="index">
@@ -288,6 +375,69 @@ onMounted(() => {
               </div>
             </Table.Td>
 
+            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.unsafe_acts_why_therefore_1 }}
+            </Table.Td>
+            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.unsafe_conditions_why_therefore_1 }}
+            </Table.Td>
+            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.management_deficiency_why_therefore_1 }}
+            </Table.Td>
+            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.unsafe_acts_why_therefore_2 }}
+            </Table.Td>
+            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.unsafe_conditions_why_therefore_2 }}
+            </Table.Td>
+            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.management_deficiency_why_therefore_2 }}
+            </Table.Td>
+            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.unsafe_acts_why_therefore_3 }}
+            </Table.Td>
+            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.unsafe_conditions_why_therefore_3 }}
+            </Table.Td>
+            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.management_deficiency_why_therefore_3 }}
+            </Table.Td>
+            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.unsafe_acts_why_therefore_4 }}
+            </Table.Td>
+            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.unsafe_conditions_why_therefore_4 }}
+            </Table.Td>
+            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.management_deficiency_why_therefore_4 }}
+            </Table.Td>
+            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.unsafe_acts_why_therefore_5 }}
+            </Table.Td>
+            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.unsafe_conditions_why_therefore_5 }}
+            </Table.Td>
+            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.management_deficiency_why_therefore_5 }}
+            </Table.Td>
+            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.unsafe_acts_title }}
+            </Table.Td>
+            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.unsafe_conditions_title }}
+            </Table.Td>
+            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.management_deficiency_title }}
+            </Table.Td>
+            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.root_cause_des1 }}
+            </Table.Td>
+            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.root_cause_des2 }}
+            </Table.Td>
+            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.root_cause_des3 }}
+            </Table.Td>
             <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
               {{ report.root_cause_1 }}
             </Table.Td>
