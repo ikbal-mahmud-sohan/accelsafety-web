@@ -286,6 +286,7 @@ function SuccessPopUp(){
                     A brief summary of the accident details.
                   </div>
                 </div>
+                
               </FormLabel>
               <div class="flex-1 w-full mt-3 xl:mt-0">
                 <ClassicEditor v-model="editorData" :class="{ 'border-danger': validate.remarks.$error,}" :config="editorConfig" />
