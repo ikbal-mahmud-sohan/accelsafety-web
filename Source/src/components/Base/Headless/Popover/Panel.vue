@@ -58,7 +58,7 @@ const computedClass = computed(() =>
   >
     <div
       :class="[
-        'absolute z-30',
+        'absolute z-50',
         { 'left-0 bottom-[100%]': placement == 'top-start' },
         { 'left-[50%] translate-x-[-50%] bottom-[100%]': placement == 'top' },
         { 'right-0 bottom-[100%]': placement == 'top-end' },
