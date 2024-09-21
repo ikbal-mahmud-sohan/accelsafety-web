@@ -257,6 +257,12 @@ const router = createRouter({
         },
         // accSafety
         {
+          path: "hiras",
+          name: "hira-data-list",
+          component: () => import("../pages/HiraDataList.vue"),
+        },
+        // Hira
+        {
           path: "users-layout-1",
           name: "users-layout-1",
           component: () => import("../pages/UsersLayout1.vue"),

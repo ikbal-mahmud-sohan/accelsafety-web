@@ -118,6 +118,20 @@ const menu: Array<Menu | "divider"> = [
     ],
   },
   {
+    icon: "Pause",
+    pageName: "Hira",
+    title: "Hira",
+    subMenu: [
+      {
+        icon: "Activity",
+        pageName: "hira-data-list",
+        title: "Hira List",
+      },
+      
+      
+    ],
+  },
+  {
     icon: "Box",
     pageName: "Employee Information",
     title: "HR Data",
