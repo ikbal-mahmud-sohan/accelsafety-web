@@ -261,6 +261,11 @@ const router = createRouter({
           name: "hira-data-list",
           component: () => import("../pages/HiraDataList.vue"),
         },
+        {
+          path: "hira-input",
+          name: "hira-data-input",
+          component: () => import("../pages/HiraInput.vue"),
+        },
         // Hira
         {
           path: "users-layout-1",
