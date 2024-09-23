@@ -127,6 +127,11 @@ const menu: Array<Menu | "divider"> = [
         pageName: "hira-data-list",
         title: "Hira List",
       },
+      {
+        icon: "Activity",
+        pageName: "hira-data-input",
+        title: "Add Hira Input",
+      },
       
       
     ],

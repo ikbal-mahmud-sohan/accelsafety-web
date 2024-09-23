@@ -2370,13 +2370,23 @@ onMounted(() => {
                 <Table.Td class="box w-full text-center rounded-l-none rounded-r-none border-x-0 min-h-20 ">
                   <select style="width: 180px !important;" id="crud-form-6" v-model="selectedElimination"  class="border py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-1 focus:ring-primary focus:ring-opacity-100 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 ">
                     <option value="" disabled>Select Elimination</option>
+                    <option value="Elimination">Elimination</option>
+                    <option value="Eliminate the necessity of people gathering by reducing the number of people in the office">Eliminate the necessity of people gathering by reducing the number of people in the office</option>
+                    <option value="during ladle handling by crane No 07,magnet can be put off">during ladle handling by crane No 07,magnet can be put off</option>
                     <option value="NA">NA</option>
+                    <option value="N/A">N/A</option>
+                    <option value="lid and ladle should be shifted seperately">lid and ladle should be shifted seperately</option>
+                    <option value="First remove the ladle lid and then ladle">First remove the ladle lid and then ladle</option>
               </select>
                 </Table.Td>
                 <Table.Td class="box w-full text-center rounded-l-none rounded-r-none border-x-0 min-h-20 ">
                   <select style="width: 180px !important;" id="crud-form-6" v-model="selectedSubstitution"  class="border py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-1 focus:ring-primary focus:ring-opacity-100 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 ">
                     <option value="" disabled>Select Substitution</option>
+                    <option value="Substitute work at office by work from home">Substitute work at office by work from home</option>
                     <option value="NA">NA</option>
+                    <option value="N/A">N/A</option>
+                    <option value="opening without launder taking">opening without launder taking</option>
+                    <option value="Substitution">Substitution</option>
               </select>
                 </Table.Td>
                 <Table.Td class="box w-full text-center rounded-l-none rounded-r-none border-x-0 min-h-20 ">
@@ -2402,7 +2412,10 @@ onMounted(() => {
             <Table.Td class="box w-40 text-center rounded-l-none rounded-r-none border-x-0 min-h-20 ">
               <select style="width: 180px !important;" id="crud-form-6" v-model="formData.mitigation"  class="border py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-1 focus:ring-primary focus:ring-opacity-100 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 ">
                     <option value="" disabled>Select Mitigation</option>
-                    <option value="NA">NA</option>
+                    <option value="LC">LC</option>
+                    <option value="NC">NC</option>
+                    <option value="Control Type">Control Type</option>
+                    <option value="FC">FC</option>
               </select>
             </Table.Td>
             <Table.Td class="box w-40 text-center rounded-l-none rounded-r-none border-x-0 min-h-20 ">
