@@ -137,6 +137,20 @@ const menu: Array<Menu | "divider"> = [
     ],
   },
   {
+    icon: "Target",
+    pageName: "Hse",
+    title: "Hse",
+    subMenu: [
+      {
+        icon: "Activity",
+        pageName: "hse-data-list",
+        title: "Hse List",
+      },
+      
+      
+    ],
+  },
+  {
     icon: "Box",
     pageName: "Employee Information",
     title: "HR Data",

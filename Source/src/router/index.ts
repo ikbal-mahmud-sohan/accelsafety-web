@@ -268,10 +268,55 @@ const router = createRouter({
         },
         // Hira
         {
+          path: "hse",
+          name: "hse-data-list",
+          component: () => import("../pages/HseDataList.vue"),
+        },
+          // sub hse start
+          {
+            path: "hse-control-visitors",
+            name: "hse-control-visitors",
+            component: () => import("../pages/HseControlVisitors.vue"),
+          },
+          {
+            path: "control-visitors-data",
+            name: "control-visitors-data",
+            component: () => import("../pages/HseControlVisitorsData.vue"),
+          },
+          {
+            path: "visitor-log",
+            name: "visitor-log",
+            component: () => import("../pages/HseVisitorLogData.vue"),
+          },
+          {
+            path: "hse-vehicle-safety",
+            name: "hse-vehicle-safety",
+            component: () => import("../pages/HseVehicleSafety.vue"),
+          },
+          {
+            path: "hse-vehicle-safety-checklist",
+            name: "hse-vehicle-safety-checklist",
+            component: () => import("../pages/HseVehicleSafetyChecklist.vue"),
+          },
+          {
+            path: "hse-vehicle-safety-list",
+            name: "hse-vehicle-safety-list",
+            component: () => import("../pages/HseVehicleSafetyChecklistList.vue"),
+          },
+          {
+            path: "hse-vehicle-safety-doc",
+            name: "hse-vehicle-safety-doc",
+            component: () => import("../pages/HseVehicleSafetyDoc.vue"),
+          },
+          // sub hse end
+        
+        // Hse
+        {
           path: "users-layout-1",
           name: "users-layout-1",
           component: () => import("../pages/UsersLayout1.vue"),
         },
+
         {
           path: "users-layout-2",
           name: "users-layout-2",
