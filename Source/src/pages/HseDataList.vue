@@ -31,7 +31,7 @@ import Lucide from "@/components/Base/Lucide";
     
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-4">
-        <router-link :to="{ name: 'accident-investigation-form' }">
+        <router-link :to="{ name: 'hse-safety-power-tools' }">
             <div class="px-4 py-4 bg-white shadow-md rounded-md inline-block">
               <Lucide icon="CloudLightningIcon" class="block mx-auto w-6 h-6" />
             </div>
@@ -43,7 +43,7 @@ import Lucide from "@/components/Base/Lucide";
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-4">
-        <router-link :to="{ name: 'accident-investigation-form' }">
+        <router-link :to="{ name: 'hse-sight-hearin-protection' }">
             <div class="px-4 py-4 bg-white shadow-md rounded-md inline-block">
               <Lucide icon="CodepenIcon" class="block mx-auto w-6 h-6" />
             </div>
