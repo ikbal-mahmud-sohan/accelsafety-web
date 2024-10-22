@@ -294,6 +294,11 @@ const router = createRouter({
             component: () => import("../pages/HseVehicleSafety.vue"),
           },
           {
+            path: "hse-vehicle-safety-doc",
+            name: "hse-vehicle-safety-doc",
+            component: () => import("../pages/HseVehicleSafetyDoc.vue"),
+          },
+          {
             path: "hse-vehicle-safety-checklist",
             name: "hse-vehicle-safety-checklist",
             component: () => import("../pages/HseVehicleSafetyChecklist.vue"),
@@ -303,13 +308,30 @@ const router = createRouter({
             name: "hse-vehicle-safety-list",
             component: () => import("../pages/HseVehicleSafetyChecklistList.vue"),
           },
+          // SafetyPowerTools
           {
-            path: "hse-vehicle-safety-doc",
-            name: "hse-vehicle-safety-doc",
-            component: () => import("../pages/HseVehicleSafetyDoc.vue"),
+            path: "hse-safety-power-tools",
+            name: "hse-safety-power-tools",
+            component: () => import("../pages/HseSafetyPower.vue"),
+          },
+          {
+            path: "hse-safety-power-tools-doc",
+            name: "hse-safety-power-tools-doc",
+            component: () => import("../pages/HseSafetyPowerDoc.vue"),
+          },
+          // Sight and Hearing Protection
+          {
+            path: "hse-sight-hearin-protection",
+            name: "hse-sight-hearin-protection",
+            component: () => import("../pages/HseSightHearinProtection.vue"),
+          },
+          {
+            path: "hse-sight-hearin-protection-doc",
+            name: "hse-sight-hearin-protection-doc",
+            component: () => import("../pages/HseSightHearinProtectionDoc.vue"),
           },
           // sub hse end
-        
+          
         // Hse
         {
           path: "users-layout-1",
