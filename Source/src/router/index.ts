@@ -330,6 +330,129 @@ const router = createRouter({
             name: "hse-sight-hearin-protection-doc",
             component: () => import("../pages/HseSightHearinProtectionDoc.vue"),
           },
+          // Work at Height
+          
+          {
+            path: "hse-work-height",
+            name: "hse-work-height",
+            component: () => import("../pages/HseWorkHeight.vue"),
+          },
+          {
+            path: "hse-work-height-doc",
+            name: "hse-work-height-doc",
+            component: () => import("../pages/HseWorkHeightDoc.vue"),
+          },
+          
+          //SafeCraneOperation
+          {
+            path: "hse-safe-crane-operation",
+            name: "hse-safe-crane-operation",
+            component: () => import("../pages/HseSafeCraneOperation.vue"),
+          },
+          {
+            path: "hse-safe-crane-operation-doc",
+            name: "hse-safe-crane-operation-doc",
+            component: () => import("../pages/HseSafeCraneOperationDoc.vue"),
+          },
+          //MobileCraneSafetyProcedure
+          {
+            path: "hse-mobile-crane-safety-procedure",
+            name: "hse-mobile-crane-safety-procedure",
+            component: () => import("../pages/HseMobileCraneSafetyProcedure.vue"),
+          },
+          {
+            path: "hse-mobile-crane-safety-procedure-doc",
+            name: "hse-mobile-crane-safety-procedure-doc",
+            component: () => import("../pages/HseMobileCraneSafetyProcedureDoc.vue"),
+          },
+          //EntryConfinedSpace
+          {
+            path: "hse-confined-space",
+            name: "hse-confined-space",
+            component: () => import("../pages/HseEntryConfinedSpace.vue"),
+          },
+          {
+            path: "hse-confined-space-doc",
+            name: "hse-confined-space-doc",
+            component: () => import("../pages/HseEntryConfinedSpaceDoc.vue"),
+          },
+          //PressureVessel
+          {
+            path: "hse-pressure-vessel",
+            name: "hse-pressure-vessel",
+            component: () => import("../pages/HsePressureVessel.vue"),
+          },
+          {
+            path: "hse-pressure-vessel-doc",
+            name: "hse-pressure-vessel-doc",
+            component: () => import("../pages/HsePressureVesselDoc.vue"),
+          },
+          //CompressedGasCylinder
+          {
+            path: "hse-compressed-gas-cylinder",
+            name: "hse-compressed-gas-cylinder",
+            component: () => import("../pages/HseCompressedGasCylinder.vue"),
+          },
+          {
+            path: "hse-compressed-gas-cylinder-doc",
+            name: "hse-compressed-gas-cylinder-doc",
+            component: () => import("../pages/HseCompressedGasCylinderDoc.vue"),
+          },
+          //ChemicalHandling
+          {
+            path: "hse-chemical-handling",
+            name: "hse-chemical-handling",
+            component: () => import("../pages/HseChemicalHandling.vue"),
+          },
+          {
+            path: "hse-chemical-handling-doc",
+            name: "hse-chemical-handling-doc",
+            component: () => import("../pages/HseChemicalHandlingDoc.vue"),
+          },
+          //HotWorkProcedure
+          {
+            path: "hse-hot-work-procedure",
+            name: "hse-hot-work-procedure",
+            component: () => import("../pages/HseHotWorkProcedure.vue"),
+          },
+          {
+            path: "hse-hot-work-procedure-doc",
+            name: "hse-hot-work-procedure-doc",
+            component: () => import("../pages/HseHotWorkProcedureDoc.vue"),
+          },
+          //ManagementFireSafetySystem
+          {
+            path: "hse-management-fire-safety-system",
+            name: "hse-management-fire-safety-system",
+            component: () => import("../pages/HseManagementFireSafetySystem.vue"),
+          },
+          {
+            path: "hse-management-fire-safety-system-doc",
+            name: "hse-management-fire-safety-system-doc",
+            component: () => import("../pages/HseManagementFireSafetySystemDoc.vue"),
+          },
+          //MaterialHandlingProcedure 
+          {
+            path: "hse-material-handling-procedure",
+            name: "hse-material-handling-procedure",
+            component: () => import("../pages/HseMaterialHandlingProcedure.vue"),
+          },
+          {
+            path: "hse-material-handling-procedure-doc",
+            name: "hse-material-handling-procedure-doc",
+            component: () => import("../pages/HseMaterialHandlingProcedureDoc.vue"),
+          },
+          //house-keeping
+          {
+            path: "hse-house-keeping",
+            name: "hse-house-keeping",
+            component: () => import("../pages/HseHouseKeeping.vue"),
+          },
+          {
+            path: "hse-house-keeping-doc",
+            name: "hse-house-keeping-doc",
+            component: () => import("../pages/HseHouseKeepingDoc.vue"),
+          },
           // sub hse end
           
         // Hse

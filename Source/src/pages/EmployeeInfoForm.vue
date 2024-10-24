@@ -53,7 +53,7 @@ const router = useRouter();
 const categories = ref(["1", "3"]);
 const editorConfig = {
   toolbar: {
-    items: ["bold", "italic", "link"],
+    items: ['heading','undo', 'redo', 'bold', 'italic', 'link', 'numberedList', 'bulletedList','fontsize'],
   },
 };
 interface BackendErrorResponse {

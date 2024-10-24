@@ -39,7 +39,7 @@ const time_date = ref("");
 const selectedIncidentCategory = ref("");
 const editorConfig = {
   toolbar: {
-    items: ["bold", "italic", "link"],
+    items: ['heading','undo', 'redo', 'bold', 'italic', 'link', 'numberedList', 'bulletedList','fontsize'],
   },
 };
 
