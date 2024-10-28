@@ -453,6 +453,105 @@ const router = createRouter({
             name: "hse-house-keeping-doc",
             component: () => import("../pages/HseHouseKeepingDoc.vue"),
           },
+          //PermitWork
+          {
+            path: "hse-permit-work",
+            name: "hse-permit-work",
+            component: () => import("../pages/HsePermitWork.vue"),
+          },
+          {
+            path: "hse-permit-work-doc",
+            name: "hse-permit-work-doc",
+            component: () => import("../pages/HsePermitWorkDoc.vue"),
+          },
+          //ElectricalSafety
+          {
+            path: "hse-electrical-safety",
+            name: "hse-electrical-safety",
+            component: () => import("../pages/HseElectricalSafety.vue"),
+          },
+          {
+            path: "hse-electrical-safety-doc",
+            name: "hse-electrical-safety-doc",
+            component: () => import("../pages/HseElectricalSafetyDoc.vue"),
+          },
+          //LOTO
+          {
+            path: "hse-loto",
+            name: "hse-loto",
+            component: () => import("../pages/HseLOTO.vue"),
+          },
+          {
+            path: "hse-loto-doc",
+            name: "hse-loto-doc",
+            component: () => import("../pages/HseLOTODoc.vue"),
+          },
+          //ExcavationProcedure
+          {
+            path: "hse-excavation-procedure",
+            name: "hse-excavation-procedure",
+            component: () => import("../pages/HseExcavationProcedure.vue"),
+          },
+          {
+            path: "hse-excavation-procedure-doc",
+            name: "hse-excavation-procedure-doc",
+            component: () => import("../pages/HseExcavationProcedureDoc.vue"),
+          },
+          //Personal Protective Equipment
+          {
+            path: "hse-personal-protective-equipment",
+            name: "hse-personal-protective-equipment",
+            component: () => import("../pages/HsePersonalProtectiveEquipment.vue"),
+          },
+          {
+            path: "hse-personal-protective-equipment-doc",
+            name: "hse-personal-protective-equipment-doc",
+            component: () => import("../pages/HsePersonalProtectiveEquipmentDoc.vue"),
+          },
+          //Safety Signage Management
+          {
+            path: "hse-safety-signage-management",
+            name: "hse-safety-signage-management",
+            component: () => import("../pages/HseSafetySignageManagement.vue"),
+          },
+          {
+            path: "hse-safety-signage-management-doc",
+            name: "hse-safety-signage-management-doc",
+            component: () => import("../pages/HseSafetySignageManagementDoc.vue"),
+          },
+          //FirstAid
+          {
+            path: "hse-first-aid",
+            name: "hse-first-aid",
+            component: () => import("../pages/HseFirstAid.vue"),
+          },
+          {
+            path: "hse-first-aid-doc",
+            name: "hse-first-aid-doc",
+            component: () => import("../pages/HseFirstAidDoc.vue"),
+          },
+          //Standard Operating Procedure
+          // {
+          //   path: "hse-standard-operating-procedure",
+          //   name: "hse-standard-operating-procedure",
+          //   component: () => import("../pages/HseStandardOperatingProcedure.vue"),
+          // },
+          // {
+          //   path: "hse-standard-operating-procedure-doc",
+          //   name: "hse-standard-operating-procedure-doc",
+          //   component: () => import("../pages/HseStandardOperatingProcedureDoc.vue"),
+          // },
+          //Job Safety Analysis
+          {
+            path: "hse-job-safety-analysis",
+            name: "hse-job-safety-analysis",
+            component: () => import("../pages/HseJobSafetyAnalysis.vue"),
+          },
+          {
+            path: "hse-job-safety-analysis-doc",
+            name: "hse-job-safety-analysis-doc",
+            component: () => import("../pages/HseJobSafetyAnalysisDoc.vue"),
+          },
           // sub hse end
           
         // Hse
