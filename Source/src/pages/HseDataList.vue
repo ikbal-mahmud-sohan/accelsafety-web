@@ -161,7 +161,7 @@ import Lucide from "@/components/Base/Lucide";
       <div class="flex justify-center items-center p-4">
         <router-link :to="{ name: 'hse-management-fire-safety-system' }">
             <div class="px-4 py-4 bg-white shadow-md rounded-md inline-block">
-              <Lucide icon="HexagonIcon" class="block mx-auto w-6 h-6" />
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" class="w-6 h-6"><path d="M209.1 8.5c72.9 68 128.7 152.4 162.7 246.1l.7 1.9c7.6 20.9 11.5 42.9 11.5 65.1C384 426.7 297.2 512 192 512S0 426.7 0 321.6c0-22.2 3.9-44.2 11.5-65.1l.7-1.9L57.3 271l-.7 1.9c-5.7 15.6-8.6 32.1-8.6 48.7C48 399.7 112.8 464 192 464s144-64.3 144-142.4c0-16.6-2.9-33.1-8.6-48.7l42.3-15.4-42.3 15.4-.7-1.9c-29-79.8-75-152.2-134.7-212.2C132.3 118.8 86.3 191.2 57.3 271L12.2 254.6C46.2 160.8 102 76.5 174.9 8.5l3.3-3C181.9 2 186.9 0 192 0s10.1 2 13.8 5.5l3.3 3zM189.3 163.8c1.7-2.4 4.4-3.8 7.4-3.8c5 0 9.1 4.1 9.1 9.1l0 10.8c0 7.8 3.1 15.3 8.5 20.8l44.1 45.1c19 19.4 29.6 45.5 29.6 72.6l0 1.6c0 53-43 96-96 96s-96-43-96-96l0-11.4c0-18.4 6.6-36.3 18.6-50.3l6-7c1.8-2.1 4.4-3.3 7.1-3.3c5.2 0 9.4 4.2 9.4 9.4l0 40.9c0 20.8 16.9 37.7 37.7 37.7s37.7-16.9 37.7-37.7l0-1.5c0-10.2-3.9-19.9-11-27.3l-11-11.4c-12.3-12.8-19.2-29.8-19.2-47.5c0-14.4 4.5-28.4 13-40.1l4.9-6.7z"/></svg>
             </div>
         </router-link>
       </div>
@@ -173,7 +173,7 @@ import Lucide from "@/components/Base/Lucide";
       <div class="flex justify-center items-center p-4">
         <router-link :to="{ name: 'hse-material-handling-procedure' }">
             <div class="px-4 py-4 bg-white shadow-md rounded-md inline-block">
-              <Lucide icon="HelpCircleIcon" class="block mx-auto w-6 h-6" />
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-6 h-6"><path class="fa-secondary" opacity=".4" d="M194.9 174.5l46.6-11.6 5.8 23.3 49.6 198.4c17.6 2.4 32.9 12 42.9 25.7l134.4-33.6 23.3-5.8 11.6 46.6-23.3 5.8L351.4 456.9C347.1 488 320.3 512 288 512c-35.3 0-64-28.7-64-64c0-21.3 10.4-40.1 26.3-51.7L223.3 288c-5.3-21.3-10.7-42.7-16-64c-2.2-8.7-4.4-17.5-6.5-26.2l-5.8-23.3zM272 448a16 16 0 1 0 32 0 16 16 0 1 0 -32 0z"/><path class="fa-primary" d="M80 96A48 48 0 1 0 80 0a48 48 0 1 0 0 96zM0 480l0 32 64 0 0-32s0 0 0 0l0-69.5-64-64L0 480zM32 128L0 128l0 32L0 274.7c0 17 6.7 33.3 18.7 45.3l22.6 22.6 56.7 56.7 6.3 37.9 4 24 4 24s0 0 0 0l4 24 .5 2.7 64.9 0-2.2-13.3-4-24s0 0 0 0l-4-24-4-24-8-48-1.7-10.1-7.3-7.3L96 306.7l0-65.1 21.4 32.1 9.5 14.3 17.1 0 79.3 0-16-64-46.1 0-54.5-81.7L97.1 128 80 128l-48 0z"/></svg>
             </div>
         </router-link>
       </div>
@@ -195,9 +195,9 @@ import Lucide from "@/components/Base/Lucide";
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-4">
-        <router-link :to="{ name: 'accident-investigation-form' }">
+        <router-link :to="{ name: 'hse-permit-work' }">
             <div class="px-4 py-4 bg-white shadow-md rounded-md inline-block">
-              <Lucide icon="LifeBuoyIcon" class="block mx-auto w-6 h-6" />
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="w-6 h-6"><path d="M208 64a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zM440.8 288c8.2 .3 15.7 4.7 19.8 11.8l104 176c4.4 7.4 4.5 16.6 .2 24.1s-12.2 12.1-20.8 12.1l-256 0c-7.7 0-15-3.7-19.5-10s-5.7-14.3-3.3-21.6l16-48c3.3-9.8 12.4-16.4 22.8-16.4l35.4 0 20.3-29.5L22.8 246.2c-12.2-5.1-18-19.1-12.9-31.4s19.1-18 31.4-12.9L61 210.1l19.8-36.2C96.2 145.6 125.8 128 158 128l3.8 0c52.3 0 98.5 33.8 114.4 83.6l32.3 101.6 79 32.9 32.8-47.7c4.6-6.8 12.4-10.7 20.6-10.4zm-190.4 1l-20-62.8c-9.5-29.9-37.3-50.2-68.6-50.2l-3.8 0c-14.6 0-28.1 8-35.1 20.8l-17.3 31.8L250.4 289zm188.1 67.6l-66.7 97L364.6 464l137.3 0L438.5 356.6zM81.4 301.1l128 54.4c8.9 3.8 14.6 12.5 14.6 22.1L224 488c0 13.3-10.7 24-24 24s-24-10.7-24-24l0-94.5L87.5 355.9 47 494.7c-3.7 12.7-17 20-29.8 16.3S-2.7 494 1 481.3L49 316.5l7.6-25.9 24.9 10.6z"/></svg>
             </div>
         </router-link>
       </div>
@@ -207,9 +207,9 @@ import Lucide from "@/components/Base/Lucide";
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-4">
-        <router-link :to="{ name: 'accident-investigation-form' }">
+        <router-link :to="{ name: 'hse-electrical-safety' }">
             <div class="px-4 py-4 bg-white shadow-md rounded-md inline-block">
-              <Lucide icon="LoaderIcon" class="block mx-auto w-6 h-6" />
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" class="w-6 h-6"><path d="M70.3 464L320 55.3 570.2 464 70.3 464zM285.9 19.1l-264 432c-7.5 12.3-7.8 27.8-.8 40.4S41.5 512 56 512l528.5 0c14.5 0 27.8-7.8 34.9-20.4s6.8-28.1-.8-40.4L354.1 19.1C346.8 7.2 333.9 0 320 0s-26.9 7.3-34.1 19.1zM312 224a24 24 0 1 0 0-48 24 24 0 1 0 0 48zm36.5 100.1l-19.7-49.2c-8.4-21.1-28.9-34.9-51.6-34.9c-18.6 0-35.9 9.3-46.3 24.8l-4.2 6.4c-2.5 3.7-3.3 8.2-2.3 12.5s3.8 8 7.6 10.2l153.5 88.6-15.2 25.4c-3 4.9-3 11.1-.2 16.1s8.2 8.1 13.9 8.1l96 0c5.8 0 11.1-3.1 13.9-8.1s2.8-11.2-.2-16.1l-48-80c-2.9-4.8-8.1-7.8-13.7-7.8s-10.8 2.9-13.7 7.8L402 355l-53.5-30.9zm-131.6-3.4l-7.5 16.8-32 72c-3.6 8.1 0 17.5 8.1 21.1s17.5 0 21.1-8.1l24.5-55.2L272 392.9l0 23.1c0 8.8 7.2 16 16 16s16-7.2 16-16l0-32c0-5.5-2.8-10.6-7.5-13.6l-64-40-15.6-9.8z"/></svg>
             </div>
         </router-link>
       </div>
@@ -219,9 +219,9 @@ import Lucide from "@/components/Base/Lucide";
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-4">
-        <router-link :to="{ name: 'accident-investigation-form' }">
+        <router-link :to="{ name: 'hse-loto' }">
             <div class="px-4 py-4 bg-white shadow-md rounded-md inline-block">
-              <Lucide icon="MapIcon" class="block mx-auto w-6 h-6" />
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" class="w-6 h-6"><path d="M320 96a32 32 0 1 1 -64 0 32 32 0 1 1 64 0zm21.1 80C367 158.8 384 129.4 384 96c0-53-43-96-96-96s-96 43-96 96c0 33.4 17 62.8 42.9 80L224 176c-17.7 0-32 14.3-32 32s14.3 32 32 32l32 0 0 208-48 0c-53 0-96-43-96-96l0-6.1 7 7c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9L97 263c-9.4-9.4-24.6-9.4-33.9 0L7 319c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l7-7 0 6.1c0 88.4 71.6 160 160 160l80 0 80 0c8 0 15.9-.6 23.6-1.7c-4.8-9-7.6-19.3-7.6-30.3l0-33.3c-5.2 .9-10.5 1.3-16 1.3l-48 0 0-208 32 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-10.9 0zM528 240c17.7 0 32 14.3 32 32l0 48-64 0 0-48c0-17.7 14.3-32 32-32zm-80 32l0 48c-17.7 0-32 14.3-32 32l0 128c0 17.7 14.3 32 32 32l160 0c17.7 0 32-14.3 32-32l0-128c0-17.7-14.3-32-32-32l0-48c0-44.2-35.8-80-80-80s-80 35.8-80 80z"/></svg>
             </div>
         </router-link>
       </div>
@@ -231,9 +231,11 @@ import Lucide from "@/components/Base/Lucide";
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-4">
-        <router-link :to="{ name: 'accident-investigation-form' }">
+        <router-link :to="{ name: 'hse-excavation-procedure' }">
             <div class="px-4 py-4 bg-white shadow-md rounded-md inline-block">
-              <Lucide icon="PackageIcon" class="block mx-auto w-6 h-6" />
+              <svg fill="#000000" class="w-6 h-6" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 451.453 451.453" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 451.453 451.453">
+                <path d="m424.711,0h-94.453c-6.903,0-12.5,5.596-12.5,12.5v27.5h-291.016c-6.903,0-12.5,5.596-12.5,12.5v54.453c0,6.904 5.597,12.5 12.5,12.5h33.398v108.949c0,6.904 5.597,12.5 12.5,12.5 5.277,0 9.571,4.293 9.571,9.571s-4.294,9.571-9.571,9.571c-3.857,0-7.321-2.296-8.824-5.849-2.689-6.357-10.022-9.333-16.382-6.643-6.358,2.689-9.333,10.024-6.644,16.382 5.425,12.824 17.926,21.111 31.85,21.111 19.063,0 34.571-15.509 34.571-34.571 0-14.656-9.169-27.212-22.071-32.233v-98.786h252.617v319.5c0,6.904 5.597,12.5 12.5,12.5h54.453c6.903,0 12.5-5.596 12.5-12.5v-319.5h7.5c6.903,0 12.5-5.596 12.5-12.5v-94.455c0.001-6.904-5.596-12.5-12.499-12.5zm-12.5,94.453h-11.981v-69.453h11.981v69.453zm-69.453-69.453h32.472v69.453h-32.472v-69.453zm-25,69.453h-11.491l-33.273-29.453h44.764v29.453zm-172.237,0h-57.071l28.535-25.259 28.536,25.259zm4.444-29.453h57.07l-28.535,25.259-28.535-25.259zm90.05,4.194l28.535,25.259h-57.07l28.535-25.259zm-200.773-4.194h44.764l-33.273,29.453h-11.491v-29.453zm323.516,240.933l25.259,28.535-25.259,28.535v-57.07zm4.193-32.98l25.26-28.535v57.071l-25.26-28.536zm-4.193-32.98v-57.07l25.259,28.535-25.259,28.535zm0,186.48v-25.733l29.453-33.273v59.006h-29.453zm29.453-247.994l-29.453-33.273v-25.733h29.453v59.006z"/>
+              </svg>
             </div>
         </router-link>
       </div>
@@ -243,9 +245,9 @@ import Lucide from "@/components/Base/Lucide";
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-4">
-        <router-link :to="{ name: 'accident-investigation-form' }">
+        <router-link :to="{ name: 'hse-personal-protective-equipment' }">
             <div class="px-4 py-4 bg-white shadow-md rounded-md inline-block">
-              <Lucide icon="PieChartIcon" class="block mx-auto w-6 h-6" />
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" class="w-6 h-6"><path d="M320 256A128 128 0 1 0 320 0a128 128 0 1 0 0 256zM144 64l-24 0L24 64 0 64 0 88 0 392l0 9.9 7 7 84.8 84.8 17 17 33.9-33.9-17-17L48 382.1 48 112l48 0 0 200 0 9.9 7 7 7 7 17 17 40 40 16 16 1 1 16 16L233.9 392l-16-16-1-1-16-16-23-23L208 305.9l88 88 0 94.1 0 24 24 0 24 0 0-24 0-94.1 88-88L462.1 336l-23 23c0 0 0 0 0 0l-16 16-17 17L440 425.9l17-17 16-16c0 0 0 0 0 0l40-40 17-17 7-7 7-7 0-9.9 0-200 48 0 0 270.1-77.8 77.8-17 17 33.9 33.9 17-17L633 409l7-7 0-9.9 0-304 0-24-24 0-96 0-24 0 0 24 0 214.1-47-47-17-17-17 17-95 95-95-95-17-17-17 17-47 47L144 88l0-24z"/></svg>
             </div>
         </router-link>
       </div>
@@ -255,9 +257,9 @@ import Lucide from "@/components/Base/Lucide";
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-4">
-        <router-link :to="{ name: 'accident-investigation-form' }">
+        <router-link :to="{ name: 'hse-safety-signage-management' }">
             <div class="px-4 py-4 bg-white shadow-md rounded-md inline-block">
-              <Lucide icon="RadioIcon" class="block mx-auto w-6 h-6" />
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-6 h-6"><path d="M140.6 21.2C154.1 7.7 172.4 .1 191.5 .1l129 0c19.1 0 37.4 7.6 50.9 21.1L490.8 140.6c13.5 13.5 21.1 31.8 21.1 50.9l0 129c0 19.1-7.6 37.4-21.1 50.9L371.4 490.8c-13.5 13.5-31.8 21.1-50.9 21.1l-129 0c-19.1 0-37.4-7.6-50.9-21.1L21.2 371.4C7.7 357.9 .1 339.6 .1 320.5l0-129c0-19.1 7.6-37.4 21.1-50.9L140.6 21.2zM175 175c-9.4 9.4-9.4 24.6 0 33.9l47 47-47 47c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l47-47 47 47c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-47-47 47-47c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-47 47-47-47c-9.4-9.4-24.6-9.4-33.9 0z"/></svg>
             </div>
         </router-link>
       </div>
@@ -267,9 +269,9 @@ import Lucide from "@/components/Base/Lucide";
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-4">
-        <router-link :to="{ name: 'accident-investigation-form' }">
+        <router-link :to="{ name: 'hse-first-aid' }">
             <div class="px-4 py-4 bg-white shadow-md rounded-md inline-block">
-              <Lucide icon="SendIcon" class="block mx-auto w-6 h-6" />
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-6 h-6"><path class="fa-secondary" opacity=".4" d="M128 56l0 40 48 0 0-40c0-4.4 3.6-8 8-8l144 0c4.4 0 8 3.6 8 8l0 40 48 0 0-40c0-30.9-25.1-56-56-56L184 0c-30.9 0-56 25.1-56 56z"/><path class="fa-primary" d="M64 96C28.7 96 0 124.7 0 160L0 416c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-256c0-35.3-28.7-64-64-64L64 96zM224 208c0-8.8 7.2-16 16-16l32 0c8.8 0 16 7.2 16 16l0 48 48 0c8.8 0 16 7.2 16 16l0 32c0 8.8-7.2 16-16 16l-48 0 0 48c0 8.8-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16l0-48-48 0c-8.8 0-16-7.2-16-16l0-32c0-8.8 7.2-16 16-16l48 0 0-48z"/></svg>
             </div>
         </router-link>
       </div>
@@ -279,14 +281,14 @@ import Lucide from "@/components/Base/Lucide";
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-4">
-        <router-link :to="{ name: 'accident-investigation-form' }">
+        <router-link :to="{ name: 'hse-job-safety-analysis' }">
             <div class="px-4 py-4 bg-white shadow-md rounded-md inline-block">
-              <Lucide icon="TargetIcon" class="block mx-auto w-6 h-6" />
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-6 h-6"><path d="M256 5.7l11.5 4.4L475 90.2l19.2 7.4 1.2 20.6c2.9 49.7-4.9 125.6-37.3 199.8C425.4 392.8 367 467.1 268.6 509.4L256 514.8l-12.6-5.4C145 467.1 86.6 392.8 53.9 318C21.4 243.7 13.6 167.8 16.6 118.1l1.2-20.6L37 90.2l207.5-80L256 5.7zM280 128l-48 0 0 24 0 112 0 24 48 0 0-24 0-112 0-24zM232 320l0 48 48 0 0-48-48 0z"/></svg>
             </div>
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">Accident Incident Investigation Procedure</p>
+        <p class="text-center">Job Safety Analysis</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
