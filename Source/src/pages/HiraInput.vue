@@ -26,7 +26,7 @@ import HiraService from "./services/hira/hira";
 
 const editorConfig = {
   toolbar: {
-    items: ["bold", "italic", "link"],
+    items: ['heading','undo', 'redo', 'bold', 'italic', 'link', 'numberedList', 'bulletedList','fontsize'],
   },
 };
 

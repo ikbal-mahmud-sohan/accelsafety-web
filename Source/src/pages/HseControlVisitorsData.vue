@@ -21,7 +21,7 @@ import Alert from "@/components/Base/Alert";
 // Insert start
 const editorConfig = {
   toolbar: {
-    items: ["bold", "italic", "link"],
+    items: ['heading','undo', 'redo', 'bold', 'italic', 'link', 'numberedList', 'bulletedList','fontsize'],
   },
 };
 const editorData = ref("");
