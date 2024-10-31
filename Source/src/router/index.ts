@@ -330,6 +330,26 @@ const router = createRouter({
             name: "hse-sight-hearin-protection-doc",
             component: () => import("../pages/HseSightHearinProtectionDoc.vue"),
           },
+          {
+            path: "hse-noise-intensity-measurement-list",
+            name: "hse-noise-intensity-measurement-list",
+            component: () => import("../pages/HseNoiseIntensityMeasurementList.vue"),
+          },
+          {
+            path: "hse-noise-intensity-measurement-create",
+            name: "hse-noise-intensity-measurement-create",
+            component: () => import("../pages/HseNoiseIntensityMeasurementCreate.vue"),
+          },
+          {
+            path: "hse-light-intensity-measurement-list",
+            name: "hse-light-intensity-measurement-list",
+            component: () => import("../pages/HseLightIntensityMeasurementList.vue"),
+          },
+          {
+            path: "hse-light-intensity-measurement-create",
+            name: "hse-light-intensity-measurement-create",
+            component: () => import("../pages/HseLightIntensityMeasurementCreate.vue"),
+          },
           // Work at Height
           
           {
@@ -341,6 +361,16 @@ const router = createRouter({
             path: "hse-work-height-doc",
             name: "hse-work-height-doc",
             component: () => import("../pages/HseWorkHeightDoc.vue"),
+          },
+          {
+            path: "hse-ladder-self-inspection-checklist",
+            name: "hse-ladder-self-inspection-checklist",
+            component: () => import("../pages/HseLadderSelfInspectionChecklist.vue"),
+          },
+          {
+            path: "hse-ladder-self-inspection-list",
+            name: "hse-ladder-self-inspection-list",
+            component: () => import("../pages/HseLadderSelfInspectionList.vue"),
           },
           
           //SafeCraneOperation
@@ -555,6 +585,18 @@ const router = createRouter({
           // sub hse end
           
         // Hse
+
+        // Isgec 
+        {
+          path: "isgec",
+          name: "isgec-data-list",
+          component: () => import("../pages/IsgecDataList.vue"),
+        },
+        {
+          path: "isgec-backhoe-loader",
+          name: "isgec-backhoe-loader",
+          component: () => import("../pages/IsgecBackhoeLoaderList.vue"),
+        },
         {
           path: "users-layout-1",
           name: "users-layout-1",
