@@ -33,6 +33,69 @@ import Button from "@/components/Base/Button";
         </div>
       </div>
     </div>
-    
+    <div class="w-full lg:w-1/3">
+      <div class="p-4">
+        <div class="border py-2">
+          <div class="flex justify-center items-center p-4">
+          <router-link :to="{ name: 'hse-noise-intensity-measurement-create' }">
+              <div class="px-4 py-4 bg-white shadow-md rounded-md inline-block">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-6 h-6"><path d="M256 80C152 80 65.8 156.3 50.4 256l77.6 0 0 224L0 480l0-96 0-96C0 146.6 114.6 32 256 32s256 114.6 256 256l0 96 0 96-128 0 0-224 77.6 0C446.2 156.3 360 80 256 80z"/></svg>
+              </div>
+          </router-link>
+        </div>
+        <div class="py-1">
+          <p class="text-center">Noise Intensity Measurement Create</p>
+        </div>
+        </div>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/3">
+      <div class="p-4">
+        <div class="border py-2">
+          <div class="flex justify-center items-center p-4">
+          <router-link :to="{ name: 'hse-noise-intensity-measurement-list' }">
+              <div class="px-4 py-4 bg-white shadow-md rounded-md inline-block">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-6 h-6"><path d="M256 80C152 80 65.8 156.3 50.4 256l77.6 0 0 224L0 480l0-96 0-96C0 146.6 114.6 32 256 32s256 114.6 256 256l0 96 0 96-128 0 0-224 77.6 0C446.2 156.3 360 80 256 80z"/></svg>
+              </div>
+          </router-link>
+        </div>
+        <div class="py-1">
+          <p class="text-center">Noise Intensity Measurement List</p>
+        </div>
+        </div>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/3">
+      <div class="p-4">
+        <div class="border py-2">
+          <div class="flex justify-center items-center p-4">
+          <router-link :to="{ name: 'hse-light-intensity-measurement-create' }">
+              <div class="px-4 py-4 bg-white shadow-md rounded-md inline-block">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-6 h-6"><path d="M256 80C152 80 65.8 156.3 50.4 256l77.6 0 0 224L0 480l0-96 0-96C0 146.6 114.6 32 256 32s256 114.6 256 256l0 96 0 96-128 0 0-224 77.6 0C446.2 156.3 360 80 256 80z"/></svg>
+              </div>
+          </router-link>
+        </div>
+        <div class="py-1">
+          <p class="text-center">Light Intensity Measurement Create</p>
+        </div>
+        </div>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/3">
+      <div class="p-4">
+        <div class="border py-2">
+          <div class="flex justify-center items-center p-4">
+          <router-link :to="{ name: 'hse-light-intensity-measurement-list' }">
+              <div class="px-4 py-4 bg-white shadow-md rounded-md inline-block">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-6 h-6"><path d="M256 80C152 80 65.8 156.3 50.4 256l77.6 0 0 224L0 480l0-96 0-96C0 146.6 114.6 32 256 32s256 114.6 256 256l0 96 0 96-128 0 0-224 77.6 0C446.2 156.3 360 80 256 80z"/></svg>
+              </div>
+          </router-link>
+        </div>
+        <div class="py-1">
+          <p class="text-center">Light Intensity Measurement List</p>
+        </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>

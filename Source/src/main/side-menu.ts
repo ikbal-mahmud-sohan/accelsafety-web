@@ -151,6 +151,20 @@ const menu: Array<Menu | "divider"> = [
     ],
   },
   {
+    icon: "TruckIcon",
+    pageName: "ISGEC",
+    title: "ISGEC",
+    subMenu: [
+      {
+        icon: "Activity",
+        pageName: "isgec-data-list",
+        title: "ISGEC List",
+      },
+      
+      
+    ],
+  },
+  {
     icon: "Box",
     pageName: "Employee Information",
     title: "HR Data",
