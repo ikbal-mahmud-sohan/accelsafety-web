@@ -330,6 +330,26 @@ const router = createRouter({
             name: "hse-sight-hearin-protection-doc",
             component: () => import("../pages/HseSightHearinProtectionDoc.vue"),
           },
+          {
+            path: "hse-noise-intensity-measurement-create",
+            name: "hse-noise-intensity-measurement-create",
+            component: () => import("../pages/HseNoiseIntensityMeasurementCreate.vue"),
+          },
+          {
+            path: "hse-noise-intensity-measurement-list",
+            name: "hse-noise-intensity-measurement-list",
+            component: () => import("../pages/HseNoiseIntensityMeasurementList.vue"),
+          },
+          {
+            path: "hse-light-intensity-measurement-create",
+            name: "hse-light-intensity-measurement-create",
+            component: () => import("../pages/HseLightIntensityMeasurementCreate.vue"),
+          },
+          {
+            path: "hse-light-intensity-measurement-list",
+            name: "hse-light-intensity-measurement-list",
+            component: () => import("../pages/HseLightIntensityMeasurementList.vue"),
+          },
           // Work at Height
           
           {
