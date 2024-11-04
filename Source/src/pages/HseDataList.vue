@@ -32,8 +32,8 @@ import Lucide from "@/components/Base/Lucide";
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-4">
         <router-link :to="{ name: 'hse-safety-power-tools' }">
-            <div class="px-4 py-4 bg-white shadow-md rounded-md inline-block">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="w-6 h-6"><path d="M352 32L224 32l0 34.3L224 176 159.6 85.8C84.1 121.8 32 198.8 32 288l0 64 512 0 0-66.4c-.9-88.1-52.8-164.1-127.5-199.8L352 176l0-109.7L352 32zM0 408s80 72 288 72s288-72 288-72l0-24L0 384l0 24z"/></svg>
+            <div class="inline-block">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Safety of Power Tools .png" alt="">
             </div>
         </router-link>
       </div>
@@ -44,8 +44,8 @@ import Lucide from "@/components/Base/Lucide";
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-4">
         <router-link :to="{ name: 'hse-sight-hearin-protection' }">
-            <div class="px-4 py-4 bg-white shadow-md rounded-md inline-block">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-6 h-6"><path d="M256 80C152 80 65.8 156.3 50.4 256l77.6 0 0 224L0 480l0-96 0-96C0 146.6 114.6 32 256 32s256 114.6 256 256l0 96 0 96-128 0 0-224 77.6 0C446.2 156.3 360 80 256 80z"/></svg>
+          <div class="inline-block">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Light & Hearing Protection .png" alt="">
             </div>
         </router-link>
       </div>
@@ -56,8 +56,8 @@ import Lucide from "@/components/Base/Lucide";
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-4">
         <router-link :to="{ name: 'hse-work-height' }">
-            <div class="px-4 py-4 bg-white shadow-md rounded-md inline-block">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="w-6 h-6"><path d="M576 176c0 97.2-128.9 176-288 176c-14.9 0-29.6-.7-43.9-2c7.7 15.3 11.9 32.4 11.9 50.2C256 461.9 205.9 512 144.2 512L56 512c-13.3 0-24-10.7-24-24s10.7-24 24-24l88.2 0c35.2 0 63.8-28.6 63.8-63.8c0-24.9-14.5-47.5-37.1-57.9l-44.3-20.5C50.2 290.1 0 236.6 0 176C0 78.8 128.9 0 288 0S576 78.8 576 176zM288 304c132.5 0 240-57.3 240-128s-107.5-128-240-128S48 105.3 48 176s107.5 128 240 128z"/></svg>
+          <div class="inline-block">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Work At Height .png" alt="">
             </div>
         </router-link>
       </div>
@@ -124,8 +124,8 @@ import Lucide from "@/components/Base/Lucide";
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-4">
         <router-link :to="{ name: 'hse-compressed-gas-cylinder' }">
-            <div class="px-4 py-4 bg-white shadow-md rounded-md inline-block">
-              <Lucide icon="DropletIcon" class="block mx-auto w-6 h-6" />
+          <div class="inline-block">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Take Compressed cylinder and pressure vessel from Here.png" alt="">
             </div>
         </router-link>
       </div>
@@ -136,8 +136,8 @@ import Lucide from "@/components/Base/Lucide";
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-4">
         <router-link :to="{ name: 'hse-chemical-handling' }">
-            <div class="px-4 py-4 bg-white shadow-md rounded-md inline-block">
-              <Lucide icon="GitMergeIcon" class="block mx-auto w-6 h-6" />
+          <div class="inline-block">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Chemical Management .webp" alt="">
             </div>
         </router-link>
       </div>
@@ -148,8 +148,8 @@ import Lucide from "@/components/Base/Lucide";
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-4">
         <router-link :to="{ name: 'hse-hot-work-procedure' }">
-            <div class="px-4 py-4 bg-white shadow-md rounded-md inline-block">
-              <Lucide icon="GlobeIcon" class="block mx-auto w-6 h-6" />
+          <div class="inline-block">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Hot_Work_1.png" alt="">
             </div>
         </router-link>
       </div>
@@ -172,8 +172,8 @@ import Lucide from "@/components/Base/Lucide";
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-4">
         <router-link :to="{ name: 'hse-material-handling-procedure' }">
-            <div class="px-4 py-4 bg-white shadow-md rounded-md inline-block">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-6 h-6"><path class="fa-secondary" opacity=".4" d="M194.9 174.5l46.6-11.6 5.8 23.3 49.6 198.4c17.6 2.4 32.9 12 42.9 25.7l134.4-33.6 23.3-5.8 11.6 46.6-23.3 5.8L351.4 456.9C347.1 488 320.3 512 288 512c-35.3 0-64-28.7-64-64c0-21.3 10.4-40.1 26.3-51.7L223.3 288c-5.3-21.3-10.7-42.7-16-64c-2.2-8.7-4.4-17.5-6.5-26.2l-5.8-23.3zM272 448a16 16 0 1 0 32 0 16 16 0 1 0 -32 0z"/><path class="fa-primary" d="M80 96A48 48 0 1 0 80 0a48 48 0 1 0 0 96zM0 480l0 32 64 0 0-32s0 0 0 0l0-69.5-64-64L0 480zM32 128L0 128l0 32L0 274.7c0 17 6.7 33.3 18.7 45.3l22.6 22.6 56.7 56.7 6.3 37.9 4 24 4 24s0 0 0 0l4 24 .5 2.7 64.9 0-2.2-13.3-4-24s0 0 0 0l-4-24-4-24-8-48-1.7-10.1-7.3-7.3L96 306.7l0-65.1 21.4 32.1 9.5 14.3 17.1 0 79.3 0-16-64-46.1 0-54.5-81.7L97.1 128 80 128l-48 0z"/></svg>
+          <div class="inline-block">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Material Handling.png" alt="">
             </div>
         </router-link>
       </div>
@@ -196,8 +196,8 @@ import Lucide from "@/components/Base/Lucide";
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-4">
         <router-link :to="{ name: 'hse-permit-work' }">
-            <div class="px-4 py-4 bg-white shadow-md rounded-md inline-block">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="w-6 h-6"><path d="M208 64a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zM440.8 288c8.2 .3 15.7 4.7 19.8 11.8l104 176c4.4 7.4 4.5 16.6 .2 24.1s-12.2 12.1-20.8 12.1l-256 0c-7.7 0-15-3.7-19.5-10s-5.7-14.3-3.3-21.6l16-48c3.3-9.8 12.4-16.4 22.8-16.4l35.4 0 20.3-29.5L22.8 246.2c-12.2-5.1-18-19.1-12.9-31.4s19.1-18 31.4-12.9L61 210.1l19.8-36.2C96.2 145.6 125.8 128 158 128l3.8 0c52.3 0 98.5 33.8 114.4 83.6l32.3 101.6 79 32.9 32.8-47.7c4.6-6.8 12.4-10.7 20.6-10.4zm-190.4 1l-20-62.8c-9.5-29.9-37.3-50.2-68.6-50.2l-3.8 0c-14.6 0-28.1 8-35.1 20.8l-17.3 31.8L250.4 289zm188.1 67.6l-66.7 97L364.6 464l137.3 0L438.5 356.6zM81.4 301.1l128 54.4c8.9 3.8 14.6 12.5 14.6 22.1L224 488c0 13.3-10.7 24-24 24s-24-10.7-24-24l0-94.5L87.5 355.9 47 494.7c-3.7 12.7-17 20-29.8 16.3S-2.7 494 1 481.3L49 316.5l7.6-25.9 24.9 10.6z"/></svg>
+          <div class="inline-block">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Permit to Work Icon.png" alt="">
             </div>
         </router-link>
       </div>
@@ -208,8 +208,8 @@ import Lucide from "@/components/Base/Lucide";
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-4">
         <router-link :to="{ name: 'hse-electrical-safety' }">
-            <div class="px-4 py-4 bg-white shadow-md rounded-md inline-block">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" class="w-6 h-6"><path d="M70.3 464L320 55.3 570.2 464 70.3 464zM285.9 19.1l-264 432c-7.5 12.3-7.8 27.8-.8 40.4S41.5 512 56 512l528.5 0c14.5 0 27.8-7.8 34.9-20.4s6.8-28.1-.8-40.4L354.1 19.1C346.8 7.2 333.9 0 320 0s-26.9 7.3-34.1 19.1zM312 224a24 24 0 1 0 0-48 24 24 0 1 0 0 48zm36.5 100.1l-19.7-49.2c-8.4-21.1-28.9-34.9-51.6-34.9c-18.6 0-35.9 9.3-46.3 24.8l-4.2 6.4c-2.5 3.7-3.3 8.2-2.3 12.5s3.8 8 7.6 10.2l153.5 88.6-15.2 25.4c-3 4.9-3 11.1-.2 16.1s8.2 8.1 13.9 8.1l96 0c5.8 0 11.1-3.1 13.9-8.1s2.8-11.2-.2-16.1l-48-80c-2.9-4.8-8.1-7.8-13.7-7.8s-10.8 2.9-13.7 7.8L402 355l-53.5-30.9zm-131.6-3.4l-7.5 16.8-32 72c-3.6 8.1 0 17.5 8.1 21.1s17.5 0 21.1-8.1l24.5-55.2L272 392.9l0 23.1c0 8.8 7.2 16 16 16s16-7.2 16-16l0-32c0-5.5-2.8-10.6-7.5-13.6l-64-40-15.6-9.8z"/></svg>
+          <div class="inline-block">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/28.Don’t Touch.png" alt="">
             </div>
         </router-link>
       </div>
@@ -220,8 +220,8 @@ import Lucide from "@/components/Base/Lucide";
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-4">
         <router-link :to="{ name: 'hse-loto' }">
-            <div class="px-4 py-4 bg-white shadow-md rounded-md inline-block">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" class="w-6 h-6"><path d="M320 96a32 32 0 1 1 -64 0 32 32 0 1 1 64 0zm21.1 80C367 158.8 384 129.4 384 96c0-53-43-96-96-96s-96 43-96 96c0 33.4 17 62.8 42.9 80L224 176c-17.7 0-32 14.3-32 32s14.3 32 32 32l32 0 0 208-48 0c-53 0-96-43-96-96l0-6.1 7 7c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9L97 263c-9.4-9.4-24.6-9.4-33.9 0L7 319c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l7-7 0 6.1c0 88.4 71.6 160 160 160l80 0 80 0c8 0 15.9-.6 23.6-1.7c-4.8-9-7.6-19.3-7.6-30.3l0-33.3c-5.2 .9-10.5 1.3-16 1.3l-48 0 0-208 32 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-10.9 0zM528 240c17.7 0 32 14.3 32 32l0 48-64 0 0-48c0-17.7 14.3-32 32-32zm-80 32l0 48c-17.7 0-32 14.3-32 32l0 128c0 17.7 14.3 32 32 32l160 0c17.7 0 32-14.3 32-32l0-128c0-17.7-14.3-32-32-32l0-48c0-44.2-35.8-80-80-80s-80 35.8-80 80z"/></svg>
+            <div class="inline-block">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/LOTO_ICOn1.png" alt="">
             </div>
         </router-link>
       </div>
