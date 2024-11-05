@@ -17,7 +17,7 @@ const state = reactive({
 
 const fetchData = async () => {
   try {
-   let  url = config.baseURL+'/api/v1/hse-ladder-self-inspection-checklist';
+   let  url = config.baseURL+'/api/v1/hse-lifting-loose-gears';
     const response = await axios.get(url);
     state.noiseIntensityMeasurementData = response.data.data;
   } catch (error) {
@@ -26,7 +26,7 @@ const fetchData = async () => {
 };
 const deleteData = async (sID:string) => {
   try {
-    let url = config.baseURL+"/api/v1/hse-ladder-self-inspection-checklist/"+sID;
+    let url = config.baseURL+"/api/v1/hse-lifting-loose-gears/"+sID;
     const response = await axios.delete(url);
     state.noiseIntensityMeasurementData = response.data.data;
   } catch (error) {
@@ -40,12 +40,12 @@ onMounted(() => {
 </script>
 
 <template>
-  <h2 class="mt-10 text-lg font-medium intro-y">Ladder Self Inspection List</h2>
+  <h2 class="mt-10 text-lg font-medium intro-y">Lifting Loose Gears</h2>
   <div class="grid grid-cols-12 gap-6 mt-5">
     <div class="flex flex-wrap items-center col-span-12 mt-2 intro-y sm:flex-nowrap">
-      <router-link :to="{ name: 'hse-ladder-self-inspection-checklist' }">
+      <router-link :to="{ name: 'hse-lifting-loose-gears-create' }">
         <Button variant="primary" class="mr-2 shadow-md">
-          Add Ladder Self Inspection
+          Add Lifting Loose Gears
         </Button>
       </router-link>
       <Menu>
@@ -89,10 +89,13 @@ onMounted(() => {
         <Table.Thead>
           <Table.Tr>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">SL No</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Name of the site</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Date</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Person Inspected</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Position</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">ID Number/Asset Number</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Loose Gears Name</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Loose Gears Specification</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Capacity</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Tested On</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Agency</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Status</Table.Th>
             <Table.Th class="text-center border-b-0 whitespace-nowrap uppercase">ACTIONS</Table.Th>
           </Table.Tr>
         </Table.Thead>
@@ -103,16 +106,25 @@ onMounted(() => {
               {{ report.id }}
             </Table.Td>
             <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.name_of_the_site }}
+              {{ report.asset_nnumber }}
             </Table.Td>
             <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.date }}
+              {{ report.loose_gears_name }}
             </Table.Td>
             <Table.Td class="whitespace-nowrap box text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.person_inspected }}
+              {{ report.loose_gears_specification }}
             </Table.Td>
             <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.position }}
+              {{ report.capacity }}
+            </Table.Td>
+            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.tested_on }}
+            </Table.Td>
+            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.agency }}
+            </Table.Td>
+            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.status }}
             </Table.Td>
            
             <Table.Td
