@@ -384,6 +384,28 @@ const router = createRouter({
             name: "hse-safe-crane-operation-doc",
             component: () => import("../pages/HseSafeCraneOperationDoc.vue"),
           },
+          // Master List of Lifting Equipments
+          {
+            path: "hse-master-listLifting-equipments",
+            name: "hse-master-listLifting-equipments",
+            component: () => import("../pages/HseMasterListLiftingEquipments.vue"),
+          },
+          {
+            path: "hse-master-listLifting-equipments-create",
+            name: "hse-master-listLifting-equipments-create",
+            component: () => import("../pages/HseMasterCreateLiftingEquipments.vue"),
+          },
+          // List of Lifting Loose Gears
+          {
+            path: "hse-lifting-loose-gears",
+            name: "hse-lifting-loose-gears",
+            component: () => import("../pages/HseLiftingLooseGearsList.vue"),
+          },
+          {
+            path: "hse-lifting-loose-gears-create",
+            name: "hse-lifting-loose-gears-create",
+            component: () => import("../pages/HseLiftingLooseGearsCreate.vue"),
+          },
           //MobileCraneSafetyProcedure
           {
             path: "hse-mobile-crane-safety-procedure",
@@ -394,6 +416,16 @@ const router = createRouter({
             path: "hse-mobile-crane-safety-procedure-doc",
             name: "hse-mobile-crane-safety-procedure-doc",
             component: () => import("../pages/HseMobileCraneSafetyProcedureDoc.vue"),
+          },
+          {
+            path: "hse-timber-block-required-under-mobile-crane",
+            name: "hse-timber-block-required-under-mobile-crane",
+            component: () => import("../pages/HseTimberBlockRequiredUnderMobileCrane.vue"),
+          },
+          {
+            path: "hse-mobile-crane-planning-risk-assessment",
+            name: "hse-mobile-crane-planning-risk-assessment",
+            component: () => import("../pages/HseMobileCranePlanningRiskAssessment.vue"),
           },
           //EntryConfinedSpace
           {
@@ -406,6 +438,16 @@ const router = createRouter({
             name: "hse-confined-space-doc",
             component: () => import("../pages/HseEntryConfinedSpaceDoc.vue"),
           },
+          {
+            path: "hse-confined-space",
+            name: "hse-confined-space",
+            component: () => import("../pages/HseConfinedSpace.vue"),
+          },
+          {
+            path: "hse-confined-space-create",
+            name: "hse-confined-space-create",
+            component: () => import("../pages/HseConfinedSpaceCreate.vue"),
+          },
           //PressureVessel
           {
             path: "hse-pressure-vessel",
@@ -416,6 +458,16 @@ const router = createRouter({
             path: "hse-pressure-vessel-doc",
             name: "hse-pressure-vessel-doc",
             component: () => import("../pages/HsePressureVesselDoc.vue"),
+          },
+          {
+            path: "hse-list-pressure-vessels",
+            name: "hse-list-pressure-vessels",
+            component: () => import("../pages/HseListPressureVessels.vue"),
+          },
+          {
+            path: "hse-list-pressure-vessels-create",
+            name: "hse-list-pressure-vessels-create",
+            component: () => import("../pages/HseCreatePressureVessels.vue"),
           },
           //CompressedGasCylinder
           {

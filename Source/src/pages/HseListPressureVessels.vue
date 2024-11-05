@@ -17,7 +17,7 @@ const state = reactive({
 
 const fetchData = async () => {
   try {
-   let  url = config.baseURL+'/api/v1/hse-ladder-self-inspection-checklist';
+   let  url = config.baseURL+'/api/v1/hse-list-pressure-vessels';
     const response = await axios.get(url);
     state.noiseIntensityMeasurementData = response.data.data;
   } catch (error) {
@@ -26,7 +26,7 @@ const fetchData = async () => {
 };
 const deleteData = async (sID:string) => {
   try {
-    let url = config.baseURL+"/api/v1/hse-ladder-self-inspection-checklist/"+sID;
+    let url = config.baseURL+"/api/v1/hse-list-pressure-vessels/"+sID;
     const response = await axios.delete(url);
     state.noiseIntensityMeasurementData = response.data.data;
   } catch (error) {
@@ -40,12 +40,12 @@ onMounted(() => {
 </script>
 
 <template>
-  <h2 class="mt-10 text-lg font-medium intro-y">Ladder Self Inspection List</h2>
+  <h2 class="mt-10 text-lg font-medium intro-y">Master List of Pressure Vessels</h2>
   <div class="grid grid-cols-12 gap-6 mt-5">
     <div class="flex flex-wrap items-center col-span-12 mt-2 intro-y sm:flex-nowrap">
-      <router-link :to="{ name: 'hse-ladder-self-inspection-checklist' }">
+      <router-link :to="{ name: 'hse-list-pressure-vessels-create' }">
         <Button variant="primary" class="mr-2 shadow-md">
-          Add Ladder Self Inspection
+          Add Master List of Pressure Vessels
         </Button>
       </router-link>
       <Menu>
@@ -89,30 +89,57 @@ onMounted(() => {
         <Table.Thead>
           <Table.Tr>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">SL No</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Name of the site</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Date</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Person Inspected</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Position</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Equipment/vessel Type</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Purpose (Where it is used)</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Medium</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Location</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Capacity, m3</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Quantity Nos</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Working Pressure Bar</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Press. Relief Valve (Available/Not Available)</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">PRV Set Point,Bar</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Last Hydro Test Done on</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Status</Table.Th>
             <Table.Th class="text-center border-b-0 whitespace-nowrap uppercase">ACTIONS</Table.Th>
           </Table.Tr>
         </Table.Thead>
-        
         <Table.Tbody v-if="state.noiseIntensityMeasurementData.length !== 0">
           <Table.Tr  v-for="(report, index) in state.noiseIntensityMeasurementData" :key="index" class="intro-x">
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
               {{ report.id }}
             </Table.Td>
             <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.name_of_the_site }}
+              {{ report.vessel_type }}
             </Table.Td>
             <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.date }}
+              {{ report.purpose }}
             </Table.Td>
             <Table.Td class="whitespace-nowrap box text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.person_inspected }}
+              {{ report.medium }}
             </Table.Td>
             <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.position }}
+              {{ report.location }}
+            </Table.Td>
+            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.capacity_m3 }}
+            </Table.Td>
+            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.quantity_nos }}
+            </Table.Td>
+            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.working_pressure_bar }}
+            </Table.Td>
+            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.relief_valve }}
+            </Table.Td>
+            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.prv_set_point_bar }}
+            </Table.Td>
+            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.last_hydro }}
+            </Table.Td>
+            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.status }}
             </Table.Td>
            
             <Table.Td
