@@ -74,7 +74,7 @@ const submitForm = async () => {
                 });
                 console.log('Form submitted successfully:', response.data);
                 if (response.data !== undefined) {
-                    router.push({ name: 'hse-confined-space' });
+                    router.push({ name: 'hse-confined-space-list' });
                 }
         
             } catch (error) {
@@ -259,7 +259,7 @@ function SuccessPopUp(){
                       <FormLabel class="w-full md:w-1/3">
                         <div class="text-left">
                           <div class="flex items-center">
-                            <div class="font-medium">cs_images</div>
+                            <div class="font-medium">Images</div>
                             
                           </div>
                           <div class="mt-3 text-xs leading-relaxed text-slate-500">
@@ -268,7 +268,6 @@ function SuccessPopUp(){
                         </div>
                       </FormLabel>
                       <div class="w-full md:w-2/3 flex-1 ">
-                        <FormLabel htmlFor="crud-form-13">Attachment</FormLabel>
                           <div class="flex flex-col items-center justify-center w-full space-y-4">
                                 <label for="file-upload" class="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-blue-500 hover:bg-gray-50 transition duration-300">
                                   <div class="flex flex-col items-center justify-center pt-5 pb-6">

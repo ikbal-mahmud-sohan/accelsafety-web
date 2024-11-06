@@ -33,6 +33,70 @@ import Button from "@/components/Base/Button";
         </div>
       </div>
     </div>
+    <div class="w-full lg:w-1/3">
+      <div class="p-4">
+        <div class="border py-2">
+          <div class="flex justify-center items-center p-4">
+          <router-link :to="{ name: 'hse-earthing-pit-condition' }">
+              <div class="px-4 py-4 bg-white shadow-md rounded-md inline-block">
+                <Lucide icon="SunriseIcon" class="block mx-auto w-6 h-6" />
+              </div>
+          </router-link>
+        </div>
+        <div class="py-1">
+          <p class="text-center">Earthing Pit Condition</p>
+        </div>
+        </div>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/3">
+      <div class="p-4">
+        <div class="border py-2">
+          <div class="flex justify-center items-center p-4">
+          <router-link :to="{ name: 'hse-earthing-pit-condition-create' }">
+              <div class="px-4 py-4 bg-white shadow-md rounded-md inline-block">
+                <Lucide icon="SunriseIcon" class="block mx-auto w-6 h-6" />
+              </div>
+          </router-link>
+        </div>
+        <div class="py-1">
+          <p class="text-center">Earthing Pit Condition Create</p>
+        </div>
+        </div>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/3">
+      <div class="p-4">
+        <div class="border py-2">
+          <div class="flex justify-center items-center p-4">
+          <router-link :to="{ name: 'hse-safety-checklist-hv-list' }">
+              <div class="px-4 py-4 bg-white shadow-md rounded-md inline-block">
+                <Lucide icon="SunriseIcon" class="block mx-auto w-6 h-6" />
+              </div>
+          </router-link>
+        </div>
+        <div class="py-1">
+          <p class="text-center">Safety checklist HV Testing List</p>
+        </div>
+        </div>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/3">
+      <div class="p-4">
+        <div class="border py-2">
+          <div class="flex justify-center items-center p-4">
+          <router-link :to="{ name: 'hse-safety-checklist-hv-create' }">
+              <div class="px-4 py-4 bg-white shadow-md rounded-md inline-block">
+                <Lucide icon="SunriseIcon" class="block mx-auto w-6 h-6" />
+              </div>
+          </router-link>
+        </div>
+        <div class="py-1">
+          <p class="text-center">Safety checklist HV Testing create</p>
+        </div>
+        </div>
+      </div>
+    </div>
     
   </div>
 </template>

@@ -17,7 +17,7 @@ const state = reactive({
 
 const fetchData = async () => {
   try {
-   let  url = config.baseURL+'/api/v1/hse-list-pressure-vessels';
+   let  url = config.baseURL+'/api/v1/hse-chemical-register';
     const response = await axios.get(url);
     state.noiseIntensityMeasurementData = response.data.data;
   } catch (error) {
@@ -26,7 +26,7 @@ const fetchData = async () => {
 };
 const deleteData = async (sID:string) => {
   try {
-    let url = config.baseURL+"/api/v1/hse-list-pressure-vessels/"+sID;
+    let url = config.baseURL+"/api/v1/hse-chemical-register/"+sID;
     const response = await axios.delete(url);
     state.noiseIntensityMeasurementData = response.data.data;
   } catch (error) {
@@ -40,12 +40,12 @@ onMounted(() => {
 </script>
 
 <template>
-  <h2 class="mt-10 text-lg font-medium intro-y">Master List of Pressure Vessels</h2>
+  <h2 class="mt-10 text-lg font-medium intro-y">Chemical Register</h2>
   <div class="grid grid-cols-12 gap-6 mt-5">
     <div class="flex flex-wrap items-center col-span-12 mt-2 intro-y sm:flex-nowrap">
-      <router-link :to="{ name: 'hse-list-pressure-vessels-create' }">
+      <router-link :to="{ name: 'hse-chemical-register-create' }">
         <Button variant="primary" class="mr-2 shadow-md">
-          Add Master List of Pressure Vessels
+          Add Chemical Register
         </Button>
       </router-link>
       <Menu>
@@ -88,58 +88,75 @@ onMounted(() => {
       <Table class="border-spacing-y-[10px] border-separate -mt-2">
         <Table.Thead>
           <Table.Tr>
-            <Table.Th class="text-left border-0 whitespace-nowrap uppercase">SL No</Table.Th>
-            <Table.Th class="text-left border-0 whitespace-nowrap uppercase">Equipment/vessel Type</Table.Th>
-            <Table.Th class="text-left border-0 whitespace-nowrap uppercase">Purpose (Where it is used)</Table.Th>
-            <Table.Th class="text-left border-0 whitespace-nowrap uppercase">Medium</Table.Th>
-            <Table.Th class="text-left border-0 whitespace-nowrap uppercase">Location</Table.Th>
-            <Table.Th class="text-left border-0 whitespace-nowrap uppercase">Capacity, m3</Table.Th>
-            <Table.Th class="text-left border-0 whitespace-nowrap uppercase">Quantity Nos</Table.Th>
-            <Table.Th class="text-left border-0 whitespace-nowrap uppercase">Working Pressure Bar</Table.Th>
-            <Table.Th class="text-left border-0 whitespace-nowrap uppercase">Press. Relief Valve (Available/Not Available)</Table.Th>
-            <Table.Th class="text-left border-0 whitespace-nowrap uppercase">PRV Set Point,Bar</Table.Th>
-            <Table.Th class="text-left border-0 whitespace-nowrap uppercase">Last Hydro Test Done on</Table.Th>
-            <Table.Th class="text-left border-0 whitespace-nowrap uppercase">Status</Table.Th>
-            <Table.Th class="text-center border-0 whitespace-nowrap uppercase">ACTIONS</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">SL No</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Material Name</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Appearance</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">UoM</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Weight</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">User Dept.</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Hazard Symbols</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Hazard Statement</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Physical Hazards</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Disposal Procedure</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Fire Rating</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">MSDS Available</Table.Th>
+            <Table.Th class="text-center border-b-0 whitespace-nowrap uppercase">ACTIONS</Table.Th>
           </Table.Tr>
         </Table.Thead>
+       
         <Table.Tbody v-if="state.noiseIntensityMeasurementData.length !== 0">
           <Table.Tr  v-for="(report, index) in state.noiseIntensityMeasurementData" :key="index" class="intro-x">
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
               {{ report.id }}
             </Table.Td>
             <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.vessel_type }}
+              {{ report.material_name }}
             </Table.Td>
             <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.purpose }}
+              {{ report.appearance }}
             </Table.Td>
             <Table.Td class="whitespace-nowrap box text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.medium }}
+              {{ report.uom }}
             </Table.Td>
             <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.location }}
+              {{ report.weight }}
             </Table.Td>
             <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.capacity_m3 }}
+              {{ report.user_dept }}
+            </Table.Td>
+            <Table.Td  class="box w-40 rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600"
+            >
+              <div class="flex justify-center">
+                <template v-if="report.hazard_symbols && report.hazard_symbols.length > 0">
+                  <div class="w-16 h-16 image-fit zoom-in" v-for="(img, index) in report.hazard_symbols" :key="index">
+                    <Tippy
+                      as="img"
+                      alt="safety"
+                      class="rounded-full shadow-[0px_0px_0px_2px_#fff,_1px_1px_5px_rgba(0,0,0,0.32)] dark:shadow-[0px_0px_0px_2px_#3f4865,_1px_1px_5px_rgba(0,0,0,0.32)]"
+                      :src="`${config.baseURL}${img}`"
+                      :content="`safety`"
+                    />
+                  </div>
+                </template>
+                <template v-else>
+                  <span>No Data</span>
+                </template>
+              </div>
             </Table.Td>
             <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.quantity_nos }}
+              {{ report.hazard_statement }}
             </Table.Td>
             <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.working_pressure_bar }}
+              {{ report.physical_hazards }}
             </Table.Td>
             <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.relief_valve }}
+              {{ report.disposal_procedure }}
             </Table.Td>
             <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.prv_set_point_bar }}
+              {{ report.fire_rating }}
             </Table.Td>
             <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.last_hydro }}
-            </Table.Td>
-            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.status }}
+              {{ report.msds_available }}
             </Table.Td>
            
             <Table.Td
