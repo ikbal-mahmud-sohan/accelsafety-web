@@ -33,6 +33,38 @@ import Button from "@/components/Base/Button";
         </div>
       </div>
     </div>
+    <div class="w-full lg:w-1/3">
+      <div class="p-4">
+        <div class="border py-2">
+          <div class="flex justify-center items-center p-4">
+          <router-link :to="{ name: 'hse-permit-work-form' }">
+              <div class="px-4 py-4 bg-white shadow-md rounded-md inline-block">
+                <Lucide icon="SunriseIcon" class="block mx-auto w-6 h-6" />
+              </div>
+          </router-link>
+        </div>
+        <div class="py-1">
+          <p class="text-center">Permit to Work Create</p>
+        </div>
+        </div>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/3">
+      <div class="p-4">
+        <div class="border py-2">
+          <div class="flex justify-center items-center p-4">
+          <router-link :to="{ name: 'hse-permit-work-list' }">
+              <div class="px-4 py-4 bg-white shadow-md rounded-md inline-block">
+                <Lucide icon="SunriseIcon" class="block mx-auto w-6 h-6" />
+              </div>
+          </router-link>
+        </div>
+        <div class="py-1">
+          <p class="text-center">Permit to Work List</p>
+        </div>
+        </div>
+      </div>
+    </div>
     
   </div>
 </template>

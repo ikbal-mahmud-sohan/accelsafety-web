@@ -439,8 +439,8 @@ const router = createRouter({
             component: () => import("../pages/HseEntryConfinedSpaceDoc.vue"),
           },
           {
-            path: "hse-confined-space",
-            name: "hse-confined-space",
+            path: "hse-confined-space-list",
+            name: "hse-confined-space-list",
             component: () => import("../pages/HseConfinedSpace.vue"),
           },
           {
@@ -491,11 +491,26 @@ const router = createRouter({
             name: "hse-chemical-handling-doc",
             component: () => import("../pages/HseChemicalHandlingDoc.vue"),
           },
+          {
+            path: "hse-chemical-register-create",
+            name: "hse-chemical-register-create",
+            component: () => import("../pages/HseChemicalRegisterCreate.vue"),
+          },
+          {
+            path: "hse-chemical-register",
+            name: "hse-chemical-register",
+            component: () => import("../pages/HseChemicalRegisterList.vue"),
+          },
           //HotWorkProcedure
           {
             path: "hse-hot-work-procedure",
             name: "hse-hot-work-procedure",
             component: () => import("../pages/HseHotWorkProcedure.vue"),
+          },
+          {
+            path: "hse-hot-work-procedure-doc",
+            name: "hse-hot-work-procedure-doc",
+            component: () => import("../pages/HseHotWorkProcedureDoc.vue"),
           },
           {
             path: "hse-hot-work-procedure-doc",
@@ -546,6 +561,16 @@ const router = createRouter({
             name: "hse-permit-work-doc",
             component: () => import("../pages/HsePermitWorkDoc.vue"),
           },
+          {
+            path: "hse-permit-work-form",
+            name: "hse-permit-work-form",
+            component: () => import("../pages/hsePermitWorkForm.vue"),
+          },
+          {
+            path: "hse-permit-work-list",
+            name: "hse-permit-work-list",
+            component: () => import("../pages/hsePermitWorkList.vue"),
+          },
           //ElectricalSafety
           {
             path: "hse-electrical-safety",
@@ -578,6 +603,26 @@ const router = createRouter({
             path: "hse-excavation-procedure-doc",
             name: "hse-excavation-procedure-doc",
             component: () => import("../pages/HseExcavationProcedureDoc.vue"),
+          },
+          {
+            path: "hse-earthing-pit-condition",
+            name: "hse-earthing-pit-condition",
+            component: () => import("../pages/HseEarthingPitCondition.vue"),
+          },
+          {
+            path: "hse-earthing-pit-condition-create",
+            name: "hse-earthing-pit-condition-create",
+            component: () => import("../pages/HseEarthingPitConditionCreate.vue"),
+          },
+          {
+            path: "hse-safety-checklist-hv-list",
+            name: "hse-safety-checklist-hv-list",
+            component: () => import("../pages/HseSafetyChecklistHVList.vue"),
+          },
+          {
+            path: "hse-safety-checklist-hv-create",
+            name: "hse-safety-checklist-hv-create",
+            component: () => import("../pages/HseSafetyChecklistHV.vue"),
           },
           //Personal Protective Equipment
           {
