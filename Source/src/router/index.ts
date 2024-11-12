@@ -624,6 +624,16 @@ const router = createRouter({
             name: "hse-safety-checklist-hv-create",
             component: () => import("../pages/HseSafetyChecklistHV.vue"),
           },
+          {
+            path: "hse-Safety-tt-list",
+            name: "hse-Safety-tt-list",
+            component: () => import("../pages/HseTransformerTestingList.vue"),
+          },
+          {
+            path: "hse-Safety-tt-create",
+            name: "hse-Safety-tt-create",
+            component: () => import("../pages/HseTransformerTestingCreate.vue"),
+          },
           //Personal Protective Equipment
           {
             path: "hse-personal-protective-equipment",
@@ -681,7 +691,17 @@ const router = createRouter({
           },
           // sub hse end
           
-        // Hse
+          // Hse
+          {
+            path: "hse-jcb-checklists",
+            name: "hse-jcb-checklists",
+            component: () => import("../pages/HseJcbChecklists.vue"),
+          },
+          {
+            path: "hse-jcb-checklists-create",
+            name: "hse-jcb-checklists-create",
+            component: () => import("../pages/HseJcbChecklistsCreate.vue"),
+          },
 
         // Isgec 
         {
