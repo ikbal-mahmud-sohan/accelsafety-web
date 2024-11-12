@@ -293,5 +293,29 @@ import Lucide from "@/components/Base/Lucide";
         <p class="text-center">Other</p>
       </div>
     </div>
+    <div class="w-full lg:w-1/6 md:w-1/3">
+      <div class="flex justify-center items-center p-1">
+        <router-link :to="{ name: 'hse-jcb-checklists-create' }">
+          <div class="inline-block">
+              <img class="w-32 h-32" src="../assets/images/icon/Blueprint.png" alt="">
+            </div>
+        </router-link>
+      </div>
+      <div class="py-1">
+        <p class="text-center">BACKHOE LOADER (JCB) Create</p>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/6 md:w-1/3">
+      <div class="flex justify-center items-center p-1">
+        <router-link :to="{ name: 'hse-jcb-checklists' }">
+          <div class="inline-block">
+              <img class="w-32 h-32" src="../assets/images/icon/Blueprint.png" alt="">
+            </div>
+        </router-link>
+      </div>
+      <div class="py-1">
+        <p class="text-center">BACKHOE LOADER (JCB) List</p>
+      </div>
+    </div>
   </div>
 </template>
