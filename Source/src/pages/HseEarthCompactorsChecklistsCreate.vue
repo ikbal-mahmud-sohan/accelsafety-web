@@ -35,48 +35,39 @@ const formData = reactive({
       make:'',
       model:'',
       isgec:'',
-      jcb_des_1:'',
-      jcb_des_2:'',
-      jcb_des_3:'',
-      jcb_des_4:'',
-      jcb_des_5:'',
-      jcb_des_6:'',
-      jcb_des_7:'',
-      jcb_des_8:'',
-      jcb_des_9:'',
-      jcb_des_10:'',
-      jcb_des_11:'',
-      jcb_des_12:'',
-      jcb_des_13:'',
-      jcb_des_14:'',
-      is_jcb_1:'',
-      is_jcb_2:'',
-      is_jcb_3:'',
-      is_jcb_4:'',
-      is_jcb_5:'',
-      is_jcb_6:'',
-      is_jcb_7:'',
-      is_jcb_8:'',
-      is_jcb_9:'',
-      is_jcb_10:'',
-      is_jcb_11:'',
-      is_jcb_12:'',
-      is_jcb_13:'',
-      is_jcb_14:'',
-      jcb_remarks_1:'',
-      jcb_remarks_2:'',
-      jcb_remarks_3:'',
-      jcb_remarks_4:'',
-      jcb_remarks_5:'',
-      jcb_remarks_6:'',
-      jcb_remarks_7:'',
-      jcb_remarks_8:'',
-      jcb_remarks_9:'',
-      jcb_remarks_10:'',
-      jcb_remarks_11:'',
-      jcb_remarks_12:'',
-      jcb_remarks_13:'',
-      jcb_remarks_14:'',
+      compactor_des_1:'',
+      compactor_des_2:'',
+      compactor_des_3:'',
+      compactor_des_4:'',
+      compactor_des_5:'',
+      compactor_des_6:'',
+      compactor_des_7:'',
+      compactor_des_8:'',
+      compactor_des_9:'',
+      compactor_des_10:'',
+      compactor_des_11:'',
+      is_compactor_1:'',
+      is_compactor_2:'',
+      is_compactor_3:'',
+      is_compactor_4:'',
+      is_compactor_5:'',
+      is_compactor_6:'',
+      is_compactor_7:'',
+      is_compactor_8:'',
+      is_compactor_9:'',
+      is_compactor_10:'',
+      is_compactor_11:'',
+      compactor_remarks_1:'',
+      compactor_remarks_2:'',
+      compactor_remarks_3:'',
+      compactor_remarks_4:'',
+      compactor_remarks_5:'',
+      compactor_remarks_6:'',
+      compactor_remarks_7:'',
+      compactor_remarks_8:'',
+      compactor_remarks_9:'',
+      compactor_remarks_10:'',
+      compactor_remarks_11:'',
       fit:'',
       checked_by: '',
       reviewed_by: '',
@@ -100,9 +91,6 @@ const ishvcomplied8 = ref("");
 const ishvcomplied9 = ref("");
 const ishvcomplied10 = ref("");
 const ishvcomplied11 = ref("");
-const ishvcomplied12 = ref("");
-const ishvcomplied13 = ref("");
-const ishvcomplied14 = ref("");
 const fitUnfit = ref("");
 const isgeccon = ref("");
 
@@ -188,37 +176,31 @@ function SuccessPopUp(){
 }
 
 const submitForm = async () => {
-   formData.jcb_des_1 = 'Hi-Pot Test Voltage to be applied available';
-   formData.jcb_des_2 = 'Cordoning of the area under test done';
-   formData.jcb_des_3 = 'IR before Hi Pot test > 10 Mohm (>minimum value)';
-   formData.jcb_des_4 = 'Proper identification and connection of phase and neutral of variac for input to the kit';
-   formData.jcb_des_5 = 'Flashing light, alarm system working';
-   formData.jcb_des_6 = 'Testing engineer at safe distance from high voltage by locating control unit outside cordoned area';
-   formData.jcb_des_7 = 'Ensure firm connection of leads so that they do not break fall while the test is in progress';
-   formData.jcb_des_8 = 'Leak trip test of Hi-pot set';
-   formData.jcb_des_9 = 'After Hi-Pot test before discharging, isolate 230 V AC power supply by physically removing three pin plug from socket';
-   formData.jcb_des_10 = 'Equipment discharged for sufficient duration by proper discharge rod after Hi-pot test';
-   formData.jcb_des_11 = 'Discharge after DC Hi-Pot should be very slow, gradual and will consume more time';
-   formData.jcb_des_12 = 'Discharge after DC Hi-Pot should be very slow, gradual and will consume more time';
-   formData.jcb_des_13 = 'Discharge after DC Hi-Pot should be very slow, gradual and will consume more time';
-   formData.jcb_des_14 = 'Discharge after DC Hi-Pot should be very slow, gradual and will consume more time';
+   formData.compactor_des_1 = 'Earth compactor should be physically in good condition.';
+   formData.compactor_des_2 = 'No damage in tire (Bolts, crack, cuts & air pressure, etc.)';
+   formData.compactor_des_3 = 'No damage in compacting roller';
+   formData.compactor_des_4 = 'Dangerous and moving part should be covered with fix guard';
+   formData.compactor_des_5 = 'Head & tail light and indicators are in working condition.';
+   formData.compactor_des_6 = 'Side mirror should be in good condition.';
+   formData.compactor_des_7 = 'Wind shield/glass should be in proper condition.';
+   formData.compactor_des_8 = 'Wiper should be in running condition.';
+   formData.compactor_des_9 = 'Front & reverse horn.';
+   formData.compactor_des_10 = 'Fire extinguisher in operator cabin.';
+   formData.compactor_des_11 = 'Operator have valid and suitable license.';
   formData.checked_by_date = checkedbydate.value;
   formData.reviewed_by_date = reviewedbydate.value;
   formData.date = jcbdate.value;
-  formData.is_jcb_1 = ishvcomplied1.value;
-  formData.is_jcb_2 = ishvcomplied2.value;
-  formData.is_jcb_3 = ishvcomplied3.value;
-  formData.is_jcb_4 = ishvcomplied4.value;
-  formData.is_jcb_5 = ishvcomplied5.value;
-  formData.is_jcb_6 = ishvcomplied6.value;
-  formData.is_jcb_7 = ishvcomplied7.value;
-  formData.is_jcb_8 = ishvcomplied8.value;
-  formData.is_jcb_9 = ishvcomplied9.value;
-  formData.is_jcb_10 = ishvcomplied10.value;
-  formData.is_jcb_11 = ishvcomplied11.value;
-  formData.is_jcb_12 = ishvcomplied12.value;
-  formData.is_jcb_13 = ishvcomplied13.value;
-  formData.is_jcb_14 = ishvcomplied14.value;
+  formData.is_compactor_1 = ishvcomplied1.value;
+  formData.is_compactor_2 = ishvcomplied2.value;
+  formData.is_compactor_3 = ishvcomplied3.value;
+  formData.is_compactor_4 = ishvcomplied4.value;
+  formData.is_compactor_5 = ishvcomplied5.value;
+  formData.is_compactor_6 = ishvcomplied6.value;
+  formData.is_compactor_7 = ishvcomplied7.value;
+  formData.is_compactor_8 = ishvcomplied8.value;
+  formData.is_compactor_9 = ishvcomplied9.value;
+  formData.is_compactor_10 = ishvcomplied10.value;
+  formData.is_compactor_11 = ishvcomplied11.value;
   formData.fit = fitUnfit.value;
   formData.isgec = isgeccon.value;
 
@@ -240,7 +222,7 @@ const submitForm = async () => {
             }
           });
             try {
-                let  url = config.baseURL+'/api/v1/jcb-checklists';
+                let  url = config.baseURL+'/api/v1/earth-compactors-checklists';
                 const response = await axios.post(url, form, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
@@ -248,7 +230,7 @@ const submitForm = async () => {
                 });
                 SuccessPopUp();
                 if (response.data !== undefined) {
-                    router.push({ name: 'hse-jcb-checklists' });
+                    router.push({ name: 'hse-earth-compactors-checklists' });
                 }
         
             } catch (error) {
@@ -268,7 +250,7 @@ onMounted(() => {
 
 <template>
   <div class="flex items-center mt-8 intro-y">
-    <h2 class="mr-auto text-lg font-medium">BACKHOE LOADER (JCB)</h2>
+    <h2 class="mr-auto text-lg font-medium">EARTH COMPACTOR</h2>
   </div>
   <div class="grid grid-cols-11 pb-20 mt-5 gap-x-6">
     <!-- BEGIN: Notification -->
@@ -314,7 +296,7 @@ onMounted(() => {
           <div class="p-0 md:p-5 mt-5 intro-y box">
         <div class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400" >
           <div class="flex items-center pb-5 text-base font-medium border-b border-slate-200/60 dark:border-darkmode-400">
-            <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" /> BACKHOE LOADER (JCB)
+            <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" /> EARTH COMPACTOR
           </div>
           <div class="mt-5">
             
@@ -587,7 +569,7 @@ onMounted(() => {
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
                       <div class="font-medium">
-                        Hi-Pot Test Voltage to be applied available
+                        Earth compactor should be physically in good condition.
                       </div>
                     </div>
                 </div>
@@ -619,7 +601,7 @@ onMounted(() => {
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
                       <div>
-                        <FormInput id="crud-form-1" v-model="formData.jcb_remarks_1" class="w-full" type="text" name="jcb_remarks_1" placeholder="Input Remarks"/>
+                        <FormInput id="crud-form-1" v-model="formData.compactor_remarks_1" class="w-full" type="text" name="compactor_remarks_1" placeholder="Input Remarks"/>
                       </div>
                     </div>
                 </div>
@@ -627,7 +609,7 @@ onMounted(() => {
               <div class="flex flex-wrap items-center">
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
-                      <div class="font-medium">Cordoning of the area under test done</div>
+                      <div class="font-medium">No damage in tire (Bolts, crack, cuts & air pressure, etc.)</div>
                       
                     </div>
                 </div>
@@ -659,7 +641,7 @@ onMounted(() => {
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
                       <div>
-                        <FormInput id="crud-form-1" v-model="formData.jcb_remarks_2" class="w-full" type="text" name="jcb_remarks_2" placeholder="Input Remarks"/>
+                        <FormInput id="crud-form-1" v-model="formData.compactor_remarks_2" class="w-full" type="text" name="compactor_remarks_2" placeholder="Input Remarks"/>
                       </div>
                     </div>
                 </div>
@@ -667,7 +649,7 @@ onMounted(() => {
               <div class="flex flex-wrap items-center">
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
-                      <div class="font-medium">IR before Hi Pot test > 10 Mohm (>minimum value)</div>
+                      <div class="font-medium">No damage in compacting roller</div>
                     </div>
                 </div>
                 <div class="md:w-1/3 px-2 w-full">
@@ -697,7 +679,7 @@ onMounted(() => {
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
                       <div>
-                        <FormInput id="crud-form-1" v-model="formData.jcb_remarks_3" class="w-full" type="text" name="jcb_remarks_3" placeholder="Input Remarks"/>
+                        <FormInput id="crud-form-1" v-model="formData.compactor_remarks_3" class="w-full" type="text" name="compactor_remarks_3" placeholder="Input Remarks"/>
                       </div>
                     </div>
                 </div>
@@ -706,7 +688,7 @@ onMounted(() => {
               <div class="flex flex-wrap items-center">
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
-                      <div class="font-medium">Proper identification and connection of phase and neutral of variac for input to the kit</div>
+                      <div class="font-medium">Dangerous and moving part should be covered with fix guard</div>
                     </div>
                 </div>
                 <div class="md:w-1/3 px-2 w-full">
@@ -736,7 +718,7 @@ onMounted(() => {
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
                       <div>
-                        <FormInput id="crud-form-1" v-model="formData.jcb_remarks_4" class="w-full" type="text" name="jcb_remarks_4" placeholder="Input Remarks"/>
+                        <FormInput id="crud-form-1" v-model="formData.compactor_remarks_4" class="w-full" type="text" name="compactor_remarks_4" placeholder="Input Remarks"/>
                       </div>
                     </div>
                 </div>
@@ -745,7 +727,7 @@ onMounted(() => {
               <div class="flex flex-wrap items-center">
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
-                      <div class="font-medium">Flashing light, alarm system working</div>
+                      <div class="font-medium">Head & tail light and indicators are in working condition.</div>
                       
                     </div>
                 </div>
@@ -776,7 +758,7 @@ onMounted(() => {
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
                       <div>
-                        <FormInput id="crud-form-1" v-model="formData.jcb_remarks_5" class="w-full" type="text" name="jcb_remarks_5" placeholder="Input Remarks"/>
+                        <FormInput id="crud-form-1" v-model="formData.compactor_remarks_5" class="w-full" type="text" name="compactor_remarks_5" placeholder="Input Remarks"/>
                       </div>
                     </div>
                 </div>
@@ -784,7 +766,7 @@ onMounted(() => {
               <div class="flex flex-wrap items-center">
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
-                      <div class="font-medium">Testing engineer at safe distance from high voltage by locating control unit outside cordoned area</div>
+                      <div class="font-medium">Side mirror should be in good condition.</div>
                       
                     </div>
                 </div>
@@ -815,7 +797,7 @@ onMounted(() => {
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
                       <div>
-                        <FormInput id="crud-form-1" v-model="formData.jcb_remarks_6" class="w-full" type="text" name="jcb_remarks_6" placeholder="Input Remarks"/>
+                        <FormInput id="crud-form-1" v-model="formData.compactor_remarks_6" class="w-full" type="text" name="compactor_remarks_6" placeholder="Input Remarks"/>
                       </div>
                     </div>
                 </div>
@@ -824,7 +806,7 @@ onMounted(() => {
               <div class="flex flex-wrap items-center">
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
-                      <div class="font-medium">Ensure firm connection of leads so that they do not break fall while the test is in progress</div>
+                      <div class="font-medium">Wind shield/glass should be in proper condition.</div>
                      
                     </div>
                 </div>
@@ -855,7 +837,7 @@ onMounted(() => {
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
                       <div>
-                        <FormInput id="crud-form-1" v-model="formData.jcb_remarks_7" class="w-full" type="text" name="jcb_remarks_7" placeholder="Input Remarks"/>
+                        <FormInput id="crud-form-1" v-model="formData.compactor_remarks_7" class="w-full" type="text" name="compactor_remarks_7" placeholder="Input Remarks"/>
                       </div>
                     </div>
                 </div>
@@ -863,7 +845,7 @@ onMounted(() => {
               <div class="flex flex-wrap items-center">
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
-                      <div class="font-medium">Leak trip test of Hi-pot set</div>
+                      <div class="font-medium">Wiper should be in running condition.</div>
                       
                     </div>
                 </div>
@@ -894,7 +876,7 @@ onMounted(() => {
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
                       <div>
-                        <FormInput id="crud-form-1" v-model="formData.jcb_remarks_8" class="w-full" type="text" name="jcb_remarks_8" placeholder="Input Remarks"/>
+                        <FormInput id="crud-form-1" v-model="formData.compactor_remarks_8" class="w-full" type="text" name="compactor_remarks_8" placeholder="Input Remarks"/>
                       </div>
                     </div>
                 </div>
@@ -902,7 +884,7 @@ onMounted(() => {
               <div class="flex flex-wrap items-center">
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
-                      <div class="font-medium">After Hi-Pot test before discharging, isolate 230 V AC power supply by physically removing three pin plug from socket</div>
+                      <div class="font-medium">Front & reverse horn.</div>
                       
                     </div>
                 </div>
@@ -934,7 +916,7 @@ onMounted(() => {
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
                       <div>
-                        <FormInput id="crud-form-1" v-model="formData.jcb_remarks_9" class="w-full" type="text" name="jcb_remarks_9" placeholder="Input Remarks"/>
+                        <FormInput id="crud-form-1" v-model="formData.compactor_remarks_9" class="w-full" type="text" name="compactor_remarks_9" placeholder="Input Remarks"/>
                       </div>
                     </div>
                 </div>
@@ -942,7 +924,7 @@ onMounted(() => {
               <div class="flex flex-wrap items-center">
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
-                      <div class="font-medium">Equipment discharged for sufficient duration by proper discharge rod after Hi-pot test</div>
+                      <div class="font-medium">Fire extinguisher in operator cabin.</div>
                       
                     </div>
                 </div>
@@ -973,7 +955,7 @@ onMounted(() => {
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
                       <div>
-                        <FormInput id="crud-form-1" v-model="formData.jcb_remarks_10" class="w-full" type="text" name="jcb_remarks_10" placeholder="Input Remarks"/>
+                        <FormInput id="crud-form-1" v-model="formData.compactor_remarks_10" class="w-full" type="text" name="compactor_remarks_10" placeholder="Input Remarks"/>
                       </div>
                     </div>
                 </div>
@@ -981,7 +963,7 @@ onMounted(() => {
               <div class="flex flex-wrap items-center">
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
-                      <div class="font-medium">Discharge after DC Hi-Pot should be very slow, gradual and will consume more time</div>
+                      <div class="font-medium">Operator have valid and suitable license.</div>
                     </div>
                 </div>
                 <div class="md:w-1/3 px-2 w-full">
@@ -1011,121 +993,7 @@ onMounted(() => {
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
                       <div>
-                        <FormInput id="crud-form-1" v-model="formData.jcb_remarks_11" class="w-full" type="text" name="jcb_remarks_11" placeholder="Input Remarks"/>
-                      </div>
-                    </div>
-                </div>
-              </div> 
-              <div class="flex flex-wrap items-center">
-                <div class="md:w-1/3 px-2 w-full">
-                    <div class="p-4">
-                      <div class="font-medium">Discharge after DC Hi-Pot should be very slow, gradual and will consume more time</div>
-                    </div>
-                </div>
-                <div class="md:w-1/3 px-2 w-full">
-                    <div class="p-4">
-                      <div class="flex flex-col justify-between mt-2 sm:flex-row">
-                          <FormCheck class="mr-2">
-                            <FormCheck.Input id="radio-switchl-1" v-model="ishvcomplied12" type="radio" name="hseLadder12" value="Yes" />
-                            <FormCheck.Label htmlFor="radio-switchl-1">
-                                Yes
-                            </FormCheck.Label>
-                        </FormCheck>
-                        <FormCheck class="mr-2">
-                            <FormCheck.Input id="radio-switchl-2" v-model="ishvcomplied12" type="radio" name="hseLadder12" value="No" />
-                            <FormCheck.Label htmlFor="radio-switchl-2">
-                                No
-                            </FormCheck.Label>
-                        </FormCheck>
-                        <FormCheck class="">
-                            <FormCheck.Input id="radio-switchl-3" v-model="ishvcomplied12" type="radio" name="hseLadder12" value="" />
-                            <FormCheck.Label htmlFor="radio-switchl-3">
-                                N/A
-                            </FormCheck.Label>
-                        </FormCheck>
-                      </div>
-                    </div>
-                </div>
-                <div class="md:w-1/3 px-2 w-full">
-                    <div class="p-4">
-                      <div>
-                        <FormInput id="crud-form-1" v-model="formData.jcb_remarks_12" class="w-full" type="text" name="jcb_remarks_12" placeholder="Input Remarks"/>
-                      </div>
-                    </div>
-                </div>
-              </div> 
-              <div class="flex flex-wrap items-center">
-                <div class="md:w-1/3 px-2 w-full">
-                    <div class="p-4">
-                      <div class="font-medium">Discharge after DC Hi-Pot should be very slow, gradual and will consume more time</div>
-                    </div>
-                </div>
-                <div class="md:w-1/3 px-2 w-full">
-                    <div class="p-4">
-                      <div class="flex flex-col justify-between mt-2 sm:flex-row">
-                          <FormCheck class="mr-2">
-                            <FormCheck.Input id="radio-switchm-1" v-model="ishvcomplied13" type="radio" name="hseLadder13" value="Yes" />
-                            <FormCheck.Label htmlFor="radio-switchm-1">
-                                Yes
-                            </FormCheck.Label>
-                        </FormCheck>
-                        <FormCheck class="mr-2">
-                            <FormCheck.Input id="radio-switchm-2" v-model="ishvcomplied13" type="radio" name="hseLadder13" value="No" />
-                            <FormCheck.Label htmlFor="radio-switchm-2">
-                                No
-                            </FormCheck.Label>
-                        </FormCheck>
-                        <FormCheck class="">
-                            <FormCheck.Input id="radio-switchm-3" v-model="ishvcomplied13" type="radio" name="hseLadder13" value="" />
-                            <FormCheck.Label htmlFor="radio-switchm-3">
-                                N/A
-                            </FormCheck.Label>
-                        </FormCheck>
-                      </div>
-                    </div>
-                </div>
-                <div class="md:w-1/3 px-2 w-full">
-                    <div class="p-4">
-                      <div>
-                        <FormInput id="crud-form-1" v-model="formData.jcb_remarks_13" class="w-full" type="text" name="jcb_remarks_13" placeholder="Input Remarks"/>
-                      </div>
-                    </div>
-                </div>
-              </div> 
-              <div class="flex flex-wrap items-center">
-                <div class="md:w-1/3 px-2 w-full">
-                    <div class="p-4">
-                      <div class="font-medium">Discharge after DC Hi-Pot should be very slow, gradual and will consume more time</div>
-                    </div>
-                </div>
-                <div class="md:w-1/3 px-2 w-full">
-                    <div class="p-4">
-                      <div class="flex flex-col justify-between mt-2 sm:flex-row">
-                          <FormCheck class="mr-2">
-                            <FormCheck.Input id="radio-switchn-1" v-model="ishvcomplied14" type="radio" name="hseLadder14" value="Yes" />
-                            <FormCheck.Label htmlFor="radio-switchn-1">
-                                Yes
-                            </FormCheck.Label>
-                        </FormCheck>
-                        <FormCheck class="mr-2">
-                            <FormCheck.Input id="radio-switchn-2" v-model="ishvcomplied14" type="radio" name="hseLadder14" value="No" />
-                            <FormCheck.Label htmlFor="radio-switchn-2">
-                                No
-                            </FormCheck.Label>
-                        </FormCheck>
-                        <FormCheck class="">
-                            <FormCheck.Input id="radio-switchn-3" v-model="ishvcomplied14" type="radio" name="hseLadder14" value="" />
-                            <FormCheck.Label htmlFor="radio-switchn-3">
-                                N/A
-                            </FormCheck.Label>
-                        </FormCheck>
-                      </div>
-                    </div>
-                </div>
-                <div class="md:w-1/3 px-2 w-full">
-                    <div class="p-4">
-                      <div>
-                        <FormInput id="crud-form-1" v-model="formData.jcb_remarks_14" class="w-full" type="text" name="jcb_remarks_14" placeholder="Input Remarks"/>
+                        <FormInput id="crud-form-1" v-model="formData.compactor_remarks_11" class="w-full" type="text" name="compactor_remarks_11" placeholder="Input Remarks"/>
                       </div>
                     </div>
                 </div>
@@ -1133,7 +1001,7 @@ onMounted(() => {
                
           </div>
           <div class="mt-5 flex justify-center items-center">
-            <img class="w-1/2" src="../assets/images/additional/jcb.png" alt="">
+            <img class="w-1/2" src="../assets/images/additional/EARTH-COMPACTOR.png" alt="">
           </div>
           <div class="mt-5">
             <div class="px-2 w-full">
@@ -1474,7 +1342,7 @@ onMounted(() => {
           <li
             class="pl-5 mb-4 font-medium border-l-2 border-primary dark:border-primary text-primary"
           >
-            <a href="">BACKHOE LOADER (JCB)</a>
+            <a href="">EARTH COMPACTOR</a>
           </li>
           <li
             class="pl-5 mb-4 border-l-2 border-transparent dark:border-transparent"
@@ -1505,7 +1373,7 @@ onMounted(() => {
             class="mt-2 text-xs leading-relaxed text-slate-600 dark:text-slate-500"
           >
             <div>
-              When filling out the BACKHOE LOADER (JCB) report, be specific and clear with details, using the correct date format and precise descriptions..
+              When filling out the EARTH COMPACTOR report, be specific and clear with details, using the correct date format and precise descriptions..
             </div>
             <div class="mt-2">
               Ensure all required fields are accurately completed and boolean options are correctly marked. Upload relevant files and adhere to format and size requirements for attachments.
@@ -1519,7 +1387,7 @@ onMounted(() => {
   <Notification id="success-notification-content" class="flex hidden">
         <Lucide icon="CheckCircle" class="text-success" />
         <div class="ml-4 mr-4">
-          <div class="font-medium">BACKHOE LOADER (JCB) success!</div>
+          <div class="font-medium">EARTH COMPACTOR success!</div>
         </div>
       </Notification>
       <!-- END: Success Notification Content -->
@@ -1527,7 +1395,7 @@ onMounted(() => {
       <Notification id="failed-notification-content" class="flex items-center hidden">
         <Lucide icon="XCircle" class="text-danger" />
         <div class="ml-4 mr-4">
-          <div class="font-medium">BACKHOE LOADER (JCB) failed!</div>
+          <div class="font-medium">EARTH COMPACTOR failed!</div>
           <div class="mt-1 text-slate-500">Please check the fileld form.</div>
         </div>
       </Notification>

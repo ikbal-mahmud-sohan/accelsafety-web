@@ -702,6 +702,36 @@ const router = createRouter({
             name: "hse-jcb-checklists-create",
             component: () => import("../pages/HseJcbChecklistsCreate.vue"),
           },
+          {
+            path: "hse-excavator-checklists",
+            name: "hse-excavator-checklists",
+            component: () => import("../pages/HseExcavatorChecklists.vue"),
+          },
+          {
+            path: "hse-excavator-checklists-create",
+            name: "hse-excavator-checklists-create",
+            component: () => import("../pages/HseExcavatorChecklistsCreate.vue"),
+          },
+          {
+            path: "hse-earth-compactors-checklists",
+            name: "hse-earth-compactors-checklists",
+            component: () => import("../pages/HseEarthCompactorsChecklists.vue"),
+          },
+          {
+            path: "hse-earth-compactors-checklists-create",
+            name: "hse-earth-compactors-checklists-create",
+            component: () => import("../pages/HseEarthCompactorsChecklistsCreate.vue"),
+          },
+          {
+            path: "hse-dumper-checklists",
+            name: "hse-dumper-checklists",
+            component: () => import("../pages/HseDumperChecklists.vue"),
+          },
+          {
+            path: "hse-dumper-checklists-create",
+            name: "hse-dumper-checklists-create",
+            component: () => import("../pages/HseDumperChecklistsCreate.vue"),
+          },
 
         // Isgec 
         {
