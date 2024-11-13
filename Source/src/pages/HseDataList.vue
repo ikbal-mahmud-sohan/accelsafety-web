@@ -317,5 +317,77 @@ import Lucide from "@/components/Base/Lucide";
         <p class="text-center">BACKHOE LOADER (JCB) List</p>
       </div>
     </div>
+    <div class="w-full lg:w-1/6 md:w-1/3">
+      <div class="flex justify-center items-center p-1">
+        <router-link :to="{ name: 'hse-excavator-checklists-create' }">
+          <div class="inline-block">
+              <img class="w-32 h-32" src="../assets/images/icon/Blueprint.png" alt="">
+            </div>
+        </router-link>
+      </div>
+      <div class="py-1">
+        <p class="text-center">EXCAVATOR Create</p>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/6 md:w-1/3">
+      <div class="flex justify-center items-center p-1">
+        <router-link :to="{ name: 'hse-excavator-checklists' }">
+          <div class="inline-block">
+              <img class="w-32 h-32" src="../assets/images/icon/Blueprint.png" alt="">
+            </div>
+        </router-link>
+      </div>
+      <div class="py-1">
+        <p class="text-center">EXCAVATOR List</p>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/6 md:w-1/3">
+      <div class="flex justify-center items-center p-1">
+        <router-link :to="{ name: 'hse-earth-compactors-checklists-create' }">
+          <div class="inline-block">
+              <img class="w-32 h-32" src="../assets/images/icon/Blueprint.png" alt="">
+            </div>
+        </router-link>
+      </div>
+      <div class="py-1">
+        <p class="text-center">EARTH COMPACTOR Create</p>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/6 md:w-1/3">
+      <div class="flex justify-center items-center p-1">
+        <router-link :to="{ name: 'hse-earth-compactors-checklists' }">
+          <div class="inline-block">
+              <img class="w-32 h-32" src="../assets/images/icon/Blueprint.png" alt="">
+            </div>
+        </router-link>
+      </div>
+      <div class="py-1">
+        <p class="text-center">EARTH COMPACTOR List</p>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/6 md:w-1/3">
+      <div class="flex justify-center items-center p-1">
+        <router-link :to="{ name: 'hse-dumper-checklists-create' }">
+          <div class="inline-block">
+              <img class="w-32 h-32" src="../assets/images/icon/Blueprint.png" alt="">
+            </div>
+        </router-link>
+      </div>
+      <div class="py-1">
+        <p class="text-center">DUMPER Create</p>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/6 md:w-1/3">
+      <div class="flex justify-center items-center p-1">
+        <router-link :to="{ name: 'hse-dumper-checklists' }">
+          <div class="inline-block">
+              <img class="w-32 h-32" src="../assets/images/icon/Blueprint.png" alt="">
+            </div>
+        </router-link>
+      </div>
+      <div class="py-1">
+        <p class="text-center">DUMPER List</p>
+      </div>
+    </div>
   </div>
 </template>

@@ -35,48 +35,54 @@ const formData = reactive({
       make:'',
       model:'',
       isgec:'',
-      jcb_des_1:'',
-      jcb_des_2:'',
-      jcb_des_3:'',
-      jcb_des_4:'',
-      jcb_des_5:'',
-      jcb_des_6:'',
-      jcb_des_7:'',
-      jcb_des_8:'',
-      jcb_des_9:'',
-      jcb_des_10:'',
-      jcb_des_11:'',
-      jcb_des_12:'',
-      jcb_des_13:'',
-      jcb_des_14:'',
-      is_jcb_1:'',
-      is_jcb_2:'',
-      is_jcb_3:'',
-      is_jcb_4:'',
-      is_jcb_5:'',
-      is_jcb_6:'',
-      is_jcb_7:'',
-      is_jcb_8:'',
-      is_jcb_9:'',
-      is_jcb_10:'',
-      is_jcb_11:'',
-      is_jcb_12:'',
-      is_jcb_13:'',
-      is_jcb_14:'',
-      jcb_remarks_1:'',
-      jcb_remarks_2:'',
-      jcb_remarks_3:'',
-      jcb_remarks_4:'',
-      jcb_remarks_5:'',
-      jcb_remarks_6:'',
-      jcb_remarks_7:'',
-      jcb_remarks_8:'',
-      jcb_remarks_9:'',
-      jcb_remarks_10:'',
-      jcb_remarks_11:'',
-      jcb_remarks_12:'',
-      jcb_remarks_13:'',
-      jcb_remarks_14:'',
+      dumper_des_1:'',
+      dumper_des_2:'',
+      dumper_des_3:'',
+      dumper_des_4:'',
+      dumper_des_5:'',
+      dumper_des_6:'',
+      dumper_des_7:'',
+      dumper_des_8:'',
+      dumper_des_9:'',
+      dumper_des_10:'',
+      dumper_des_11:'',
+      dumper_des_12:'',
+      dumper_des_13:'',
+      dumper_des_14:'',
+      dumper_des_15:'',
+      dumper_des_16:'',
+      is_dumper_1:'',
+      is_dumper_2:'',
+      is_dumper_3:'',
+      is_dumper_4:'',
+      is_dumper_5:'',
+      is_dumper_6:'',
+      is_dumper_7:'',
+      is_dumper_8:'',
+      is_dumper_9:'',
+      is_dumper_10:'',
+      is_dumper_11:'',
+      is_dumper_12:'',
+      is_dumper_13:'',
+      is_dumper_14:'',
+      is_dumper_15:'',
+      is_dumper_16:'',
+      dumper_remarks_1:'',
+      dumper_remarks_2:'',
+      dumper_remarks_3:'',
+      dumper_remarks_4:'',
+      dumper_remarks_5:'',
+      dumper_remarks_6:'',
+      dumper_remarks_7:'',
+      dumper_remarks_8:'',
+      dumper_remarks_9:'',
+      dumper_remarks_10:'',
+      dumper_remarks_11:'',
+      dumper_remarks_12:'',
+      dumper_remarks_13:'',
+      dumper_remarks_14:'',
+      dumper_remarks_15:'',
+      dumper_remarks_16:'',
       fit:'',
       checked_by: '',
       reviewed_by: '',
@@ -103,6 +109,8 @@ const ishvcomplied11 = ref("");
 const ishvcomplied12 = ref("");
 const ishvcomplied13 = ref("");
 const ishvcomplied14 = ref("");
+const ishvcomplied15 = ref("");
+const ishvcomplied16 = ref("");
 const fitUnfit = ref("");
 const isgeccon = ref("");
 
@@ -188,37 +196,41 @@ function SuccessPopUp(){
 }
 
 const submitForm = async () => {
-   formData.jcb_des_1 = 'Hi-Pot Test Voltage to be applied available';
-   formData.jcb_des_2 = 'Cordoning of the area under test done';
-   formData.jcb_des_3 = 'IR before Hi Pot test > 10 Mohm (>minimum value)';
-   formData.jcb_des_4 = 'Proper identification and connection of phase and neutral of variac for input to the kit';
-   formData.jcb_des_5 = 'Flashing light, alarm system working';
-   formData.jcb_des_6 = 'Testing engineer at safe distance from high voltage by locating control unit outside cordoned area';
-   formData.jcb_des_7 = 'Ensure firm connection of leads so that they do not break fall while the test is in progress';
-   formData.jcb_des_8 = 'Leak trip test of Hi-pot set';
-   formData.jcb_des_9 = 'After Hi-Pot test before discharging, isolate 230 V AC power supply by physically removing three pin plug from socket';
-   formData.jcb_des_10 = 'Equipment discharged for sufficient duration by proper discharge rod after Hi-pot test';
-   formData.jcb_des_11 = 'Discharge after DC Hi-Pot should be very slow, gradual and will consume more time';
-   formData.jcb_des_12 = 'Discharge after DC Hi-Pot should be very slow, gradual and will consume more time';
-   formData.jcb_des_13 = 'Discharge after DC Hi-Pot should be very slow, gradual and will consume more time';
-   formData.jcb_des_14 = 'Discharge after DC Hi-Pot should be very slow, gradual and will consume more time';
+   formData.dumper_des_1 = 'Operator cabin should be fully covered and made by sound quality of material.';
+   formData.dumper_des_2 = 'Carrier should be in good condition.';
+   formData.dumper_des_3 = 'No damage in tire (Bolts, crack, cuts & air pressure, etc.';
+   formData.dumper_des_4 = 'Side mirror should be in good condition.';
+   formData.dumper_des_5 = 'Head & tail light and indicators are in working condition.';
+   formData.dumper_des_6 = 'Wiper should be in running condition.';
+   formData.dumper_des_7 = 'Wind shield/glass should be in proper condition.';
+   formData.dumper_des_8 = 'Seatbelt should be available.';
+   formData.dumper_des_9 = 'Red triangle/reflective tape should be fixed in front of vehicle';
+   formData.dumper_des_10 = 'Hydraulic cylinder and hoses should be in good condition and free from leakage';
+   formData.dumper_des_11 = 'Registration number should be written.';
+   formData.dumper_des_12 = 'Front & reverse horn.';
+   formData.dumper_des_13 = 'Fire extinguisher in operator cabin.';
+   formData.dumper_des_14 = 'Operator have valid and suitable license.';
+   formData.dumper_des_15 = 'OFirst aid kit should be available.';
+   formData.dumper_des_16 = 'Normal break & emergency (hand) break should be in functional & operational condition.';
   formData.checked_by_date = checkedbydate.value;
   formData.reviewed_by_date = reviewedbydate.value;
   formData.date = jcbdate.value;
-  formData.is_jcb_1 = ishvcomplied1.value;
-  formData.is_jcb_2 = ishvcomplied2.value;
-  formData.is_jcb_3 = ishvcomplied3.value;
-  formData.is_jcb_4 = ishvcomplied4.value;
-  formData.is_jcb_5 = ishvcomplied5.value;
-  formData.is_jcb_6 = ishvcomplied6.value;
-  formData.is_jcb_7 = ishvcomplied7.value;
-  formData.is_jcb_8 = ishvcomplied8.value;
-  formData.is_jcb_9 = ishvcomplied9.value;
-  formData.is_jcb_10 = ishvcomplied10.value;
-  formData.is_jcb_11 = ishvcomplied11.value;
-  formData.is_jcb_12 = ishvcomplied12.value;
-  formData.is_jcb_13 = ishvcomplied13.value;
-  formData.is_jcb_14 = ishvcomplied14.value;
+  formData.is_dumper_1 = ishvcomplied1.value;
+  formData.is_dumper_2 = ishvcomplied2.value;
+  formData.is_dumper_3 = ishvcomplied3.value;
+  formData.is_dumper_4 = ishvcomplied4.value;
+  formData.is_dumper_5 = ishvcomplied5.value;
+  formData.is_dumper_6 = ishvcomplied6.value;
+  formData.is_dumper_7 = ishvcomplied7.value;
+  formData.is_dumper_8 = ishvcomplied8.value;
+  formData.is_dumper_9 = ishvcomplied9.value;
+  formData.is_dumper_10 = ishvcomplied10.value;
+  formData.is_dumper_11 = ishvcomplied11.value;
+  formData.is_dumper_12 = ishvcomplied12.value;
+  formData.is_dumper_13 = ishvcomplied13.value;
+  formData.is_dumper_14 = ishvcomplied14.value;
+  formData.is_dumper_15 = ishvcomplied15.value;
+  formData.is_dumper_16 = ishvcomplied16.value;
   formData.fit = fitUnfit.value;
   formData.isgec = isgeccon.value;
 
@@ -240,7 +252,7 @@ const submitForm = async () => {
             }
           });
             try {
-                let  url = config.baseURL+'/api/v1/jcb-checklists';
+                let  url = config.baseURL+'/api/v1/dumper-checklists';
                 const response = await axios.post(url, form, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
@@ -248,7 +260,7 @@ const submitForm = async () => {
                 });
                 SuccessPopUp();
                 if (response.data !== undefined) {
-                    router.push({ name: 'hse-jcb-checklists' });
+                    router.push({ name: 'hse-dumper-checklists' });
                 }
         
             } catch (error) {
@@ -268,7 +280,7 @@ onMounted(() => {
 
 <template>
   <div class="flex items-center mt-8 intro-y">
-    <h2 class="mr-auto text-lg font-medium">BACKHOE LOADER (JCB)</h2>
+    <h2 class="mr-auto text-lg font-medium">DUMPER</h2>
   </div>
   <div class="grid grid-cols-11 pb-20 mt-5 gap-x-6">
     <!-- BEGIN: Notification -->
@@ -314,7 +326,7 @@ onMounted(() => {
           <div class="p-0 md:p-5 mt-5 intro-y box">
         <div class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400" >
           <div class="flex items-center pb-5 text-base font-medium border-b border-slate-200/60 dark:border-darkmode-400">
-            <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" /> BACKHOE LOADER (JCB)
+            <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" /> DUMPER
           </div>
           <div class="mt-5">
             
@@ -582,12 +594,13 @@ onMounted(() => {
             </div>
             
           </div>
+          
           <div class="mt-5 border">
               <div class="flex flex-wrap items-center">
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
                       <div class="font-medium">
-                        Hi-Pot Test Voltage to be applied available
+                        Operator cabin should be fully covered and made by sound quality of material.
                       </div>
                     </div>
                 </div>
@@ -619,7 +632,7 @@ onMounted(() => {
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
                       <div>
-                        <FormInput id="crud-form-1" v-model="formData.jcb_remarks_1" class="w-full" type="text" name="jcb_remarks_1" placeholder="Input Remarks"/>
+                        <FormInput id="crud-form-1" v-model="formData.dumper_remarks_1" class="w-full" type="text" name="dumper_remarks_1" placeholder="Input Remarks"/>
                       </div>
                     </div>
                 </div>
@@ -627,7 +640,7 @@ onMounted(() => {
               <div class="flex flex-wrap items-center">
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
-                      <div class="font-medium">Cordoning of the area under test done</div>
+                      <div class="font-medium">Carrier should be in good condition.</div>
                       
                     </div>
                 </div>
@@ -659,7 +672,7 @@ onMounted(() => {
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
                       <div>
-                        <FormInput id="crud-form-1" v-model="formData.jcb_remarks_2" class="w-full" type="text" name="jcb_remarks_2" placeholder="Input Remarks"/>
+                        <FormInput id="crud-form-1" v-model="formData.dumper_remarks_2" class="w-full" type="text" name="dumper_remarks_2" placeholder="Input Remarks"/>
                       </div>
                     </div>
                 </div>
@@ -667,7 +680,7 @@ onMounted(() => {
               <div class="flex flex-wrap items-center">
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
-                      <div class="font-medium">IR before Hi Pot test > 10 Mohm (>minimum value)</div>
+                      <div class="font-medium">No damage in tire (Bolts, crack, cuts & air pressure, etc.)</div>
                     </div>
                 </div>
                 <div class="md:w-1/3 px-2 w-full">
@@ -697,7 +710,7 @@ onMounted(() => {
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
                       <div>
-                        <FormInput id="crud-form-1" v-model="formData.jcb_remarks_3" class="w-full" type="text" name="jcb_remarks_3" placeholder="Input Remarks"/>
+                        <FormInput id="crud-form-1" v-model="formData.dumper_remarks_3" class="w-full" type="text" name="dumper_remarks_3" placeholder="Input Remarks"/>
                       </div>
                     </div>
                 </div>
@@ -706,7 +719,7 @@ onMounted(() => {
               <div class="flex flex-wrap items-center">
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
-                      <div class="font-medium">Proper identification and connection of phase and neutral of variac for input to the kit</div>
+                      <div class="font-medium">Side mirror should be in good condition.</div>
                     </div>
                 </div>
                 <div class="md:w-1/3 px-2 w-full">
@@ -736,16 +749,15 @@ onMounted(() => {
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
                       <div>
-                        <FormInput id="crud-form-1" v-model="formData.jcb_remarks_4" class="w-full" type="text" name="jcb_remarks_4" placeholder="Input Remarks"/>
+                        <FormInput id="crud-form-1" v-model="formData.dumper_remarks_4" class="w-full" type="text" name="dumper_remarks_4" placeholder="Input Remarks"/>
                       </div>
                     </div>
                 </div>
-              </div> 
-             
+              </div>            
               <div class="flex flex-wrap items-center">
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
-                      <div class="font-medium">Flashing light, alarm system working</div>
+                      <div class="font-medium">Head & tail light and indicators are in working condition.</div>
                       
                     </div>
                 </div>
@@ -776,7 +788,7 @@ onMounted(() => {
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
                       <div>
-                        <FormInput id="crud-form-1" v-model="formData.jcb_remarks_5" class="w-full" type="text" name="jcb_remarks_5" placeholder="Input Remarks"/>
+                        <FormInput id="crud-form-1" v-model="formData.dumper_remarks_5" class="w-full" type="text" name="dumper_remarks_5" placeholder="Input Remarks"/>
                       </div>
                     </div>
                 </div>
@@ -784,7 +796,7 @@ onMounted(() => {
               <div class="flex flex-wrap items-center">
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
-                      <div class="font-medium">Testing engineer at safe distance from high voltage by locating control unit outside cordoned area</div>
+                      <div class="font-medium">Wiper should be in running condition.</div>
                       
                     </div>
                 </div>
@@ -815,16 +827,15 @@ onMounted(() => {
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
                       <div>
-                        <FormInput id="crud-form-1" v-model="formData.jcb_remarks_6" class="w-full" type="text" name="jcb_remarks_6" placeholder="Input Remarks"/>
+                        <FormInput id="crud-form-1" v-model="formData.dumper_remarks_6" class="w-full" type="text" name="dumper_remarks_6" placeholder="Input Remarks"/>
                       </div>
                     </div>
                 </div>
-              </div> 
-              
+              </div>              
               <div class="flex flex-wrap items-center">
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
-                      <div class="font-medium">Ensure firm connection of leads so that they do not break fall while the test is in progress</div>
+                      <div class="font-medium">Wind shield/glass should be in proper condition.</div>
                      
                     </div>
                 </div>
@@ -855,7 +866,7 @@ onMounted(() => {
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
                       <div>
-                        <FormInput id="crud-form-1" v-model="formData.jcb_remarks_7" class="w-full" type="text" name="jcb_remarks_7" placeholder="Input Remarks"/>
+                        <FormInput id="crud-form-1" v-model="formData.dumper_remarks_7" class="w-full" type="text" name="dumper_remarks_7" placeholder="Input Remarks"/>
                       </div>
                     </div>
                 </div>
@@ -863,7 +874,7 @@ onMounted(() => {
               <div class="flex flex-wrap items-center">
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
-                      <div class="font-medium">Leak trip test of Hi-pot set</div>
+                      <div class="font-medium">Seatbelt should be available..</div>
                       
                     </div>
                 </div>
@@ -894,7 +905,7 @@ onMounted(() => {
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
                       <div>
-                        <FormInput id="crud-form-1" v-model="formData.jcb_remarks_8" class="w-full" type="text" name="jcb_remarks_8" placeholder="Input Remarks"/>
+                        <FormInput id="crud-form-1" v-model="formData.dumper_remarks_8" class="w-full" type="text" name="dumper_remarks_8" placeholder="Input Remarks"/>
                       </div>
                     </div>
                 </div>
@@ -902,7 +913,7 @@ onMounted(() => {
               <div class="flex flex-wrap items-center">
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
-                      <div class="font-medium">After Hi-Pot test before discharging, isolate 230 V AC power supply by physically removing three pin plug from socket</div>
+                      <div class="font-medium">Red triangle/reflective tape should be fixed in front of vehicle</div>
                       
                     </div>
                 </div>
@@ -934,7 +945,7 @@ onMounted(() => {
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
                       <div>
-                        <FormInput id="crud-form-1" v-model="formData.jcb_remarks_9" class="w-full" type="text" name="jcb_remarks_9" placeholder="Input Remarks"/>
+                        <FormInput id="crud-form-1" v-model="formData.dumper_remarks_9" class="w-full" type="text" name="dumper_remarks_9" placeholder="Input Remarks"/>
                       </div>
                     </div>
                 </div>
@@ -942,7 +953,7 @@ onMounted(() => {
               <div class="flex flex-wrap items-center">
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
-                      <div class="font-medium">Equipment discharged for sufficient duration by proper discharge rod after Hi-pot test</div>
+                      <div class="font-medium">Hydraulic cylinder and hoses should be in good condition and free from leakage</div>
                       
                     </div>
                 </div>
@@ -973,7 +984,7 @@ onMounted(() => {
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
                       <div>
-                        <FormInput id="crud-form-1" v-model="formData.jcb_remarks_10" class="w-full" type="text" name="jcb_remarks_10" placeholder="Input Remarks"/>
+                        <FormInput id="crud-form-1" v-model="formData.dumper_remarks_10" class="w-full" type="text" name="dumper_remarks_10" placeholder="Input Remarks"/>
                       </div>
                     </div>
                 </div>
@@ -981,7 +992,7 @@ onMounted(() => {
               <div class="flex flex-wrap items-center">
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
-                      <div class="font-medium">Discharge after DC Hi-Pot should be very slow, gradual and will consume more time</div>
+                      <div class="font-medium">Registration number should be written</div>
                     </div>
                 </div>
                 <div class="md:w-1/3 px-2 w-full">
@@ -1011,7 +1022,7 @@ onMounted(() => {
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
                       <div>
-                        <FormInput id="crud-form-1" v-model="formData.jcb_remarks_11" class="w-full" type="text" name="jcb_remarks_11" placeholder="Input Remarks"/>
+                        <FormInput id="crud-form-1" v-model="formData.dumper_remarks_11" class="w-full" type="text" name="dumper_remarks_11" placeholder="Input Remarks"/>
                       </div>
                     </div>
                 </div>
@@ -1019,7 +1030,7 @@ onMounted(() => {
               <div class="flex flex-wrap items-center">
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
-                      <div class="font-medium">Discharge after DC Hi-Pot should be very slow, gradual and will consume more time</div>
+                      <div class="font-medium">Front & reverse horn.</div>
                     </div>
                 </div>
                 <div class="md:w-1/3 px-2 w-full">
@@ -1049,7 +1060,7 @@ onMounted(() => {
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
                       <div>
-                        <FormInput id="crud-form-1" v-model="formData.jcb_remarks_12" class="w-full" type="text" name="jcb_remarks_12" placeholder="Input Remarks"/>
+                        <FormInput id="crud-form-1" v-model="formData.dumper_remarks_11" class="w-full" type="text" name="dumper_remarks_11" placeholder="Input Remarks"/>
                       </div>
                     </div>
                 </div>
@@ -1057,7 +1068,7 @@ onMounted(() => {
               <div class="flex flex-wrap items-center">
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
-                      <div class="font-medium">Discharge after DC Hi-Pot should be very slow, gradual and will consume more time</div>
+                      <div class="font-medium">Fire extinguisher in operator cabin</div>
                     </div>
                 </div>
                 <div class="md:w-1/3 px-2 w-full">
@@ -1087,7 +1098,7 @@ onMounted(() => {
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
                       <div>
-                        <FormInput id="crud-form-1" v-model="formData.jcb_remarks_13" class="w-full" type="text" name="jcb_remarks_13" placeholder="Input Remarks"/>
+                        <FormInput id="crud-form-1" v-model="formData.dumper_remarks_11" class="w-full" type="text" name="dumper_remarks_11" placeholder="Input Remarks"/>
                       </div>
                     </div>
                 </div>
@@ -1095,7 +1106,7 @@ onMounted(() => {
               <div class="flex flex-wrap items-center">
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
-                      <div class="font-medium">Discharge after DC Hi-Pot should be very slow, gradual and will consume more time</div>
+                      <div class="font-medium">Operator have valid and suitable license</div>
                     </div>
                 </div>
                 <div class="md:w-1/3 px-2 w-full">
@@ -1125,7 +1136,83 @@ onMounted(() => {
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
                       <div>
-                        <FormInput id="crud-form-1" v-model="formData.jcb_remarks_14" class="w-full" type="text" name="jcb_remarks_14" placeholder="Input Remarks"/>
+                        <FormInput id="crud-form-1" v-model="formData.dumper_remarks_11" class="w-full" type="text" name="dumper_remarks_11" placeholder="Input Remarks"/>
+                      </div>
+                    </div>
+                </div>
+              </div> 
+              <div class="flex flex-wrap items-center">
+                <div class="md:w-1/3 px-2 w-full">
+                    <div class="p-4">
+                      <div class="font-medium">First aid kit should be available</div>
+                    </div>
+                </div>
+                <div class="md:w-1/3 px-2 w-full">
+                    <div class="p-4">
+                      <div class="flex flex-col justify-between mt-2 sm:flex-row">
+                          <FormCheck class="mr-2">
+                            <FormCheck.Input id="radio-switcho-1" v-model="ishvcomplied15" type="radio" name="hseLadder15" value="Yes" />
+                            <FormCheck.Label htmlFor="radio-switcho-1">
+                                Yes
+                            </FormCheck.Label>
+                        </FormCheck>
+                        <FormCheck class="mr-2">
+                            <FormCheck.Input id="radio-switcho-2" v-model="ishvcomplied15" type="radio" name="hseLadder15" value="No" />
+                            <FormCheck.Label htmlFor="radio-switcho-2">
+                                No
+                            </FormCheck.Label>
+                        </FormCheck>
+                        <FormCheck class="">
+                            <FormCheck.Input id="radio-switcho-3" v-model="ishvcomplied15" type="radio" name="hseLadder15" value="" />
+                            <FormCheck.Label htmlFor="radio-switcho-3">
+                                N/A
+                            </FormCheck.Label>
+                        </FormCheck>
+                      </div>
+                    </div>
+                </div>
+                <div class="md:w-1/3 px-2 w-full">
+                    <div class="p-4">
+                      <div>
+                        <FormInput id="crud-form-1" v-model="formData.dumper_remarks_11" class="w-full" type="text" name="dumper_remarks_11" placeholder="Input Remarks"/>
+                      </div>
+                    </div>
+                </div>
+              </div> 
+              <div class="flex flex-wrap items-center">
+                <div class="md:w-1/3 px-2 w-full">
+                    <div class="p-4">
+                      <div class="font-medium">Normal break & emergency (hand) break should be in functional & operational condition</div>
+                    </div>
+                </div>
+                <div class="md:w-1/3 px-2 w-full">
+                    <div class="p-4">
+                      <div class="flex flex-col justify-between mt-2 sm:flex-row">
+                          <FormCheck class="mr-2">
+                            <FormCheck.Input id="radio-switchp-1" v-model="ishvcomplied16" type="radio" name="hseLadder16" value="Yes" />
+                            <FormCheck.Label htmlFor="radio-switchp-1">
+                                Yes
+                            </FormCheck.Label>
+                        </FormCheck>
+                        <FormCheck class="mr-2">
+                            <FormCheck.Input id="radio-switchp-2" v-model="ishvcomplied16" type="radio" name="hseLadder16" value="No" />
+                            <FormCheck.Label htmlFor="radio-switchp-2">
+                                No
+                            </FormCheck.Label>
+                        </FormCheck>
+                        <FormCheck class="">
+                            <FormCheck.Input id="radio-switchp-3" v-model="ishvcomplied16" type="radio" name="hseLadder16" value="" />
+                            <FormCheck.Label htmlFor="radio-switchp-3">
+                                N/A
+                            </FormCheck.Label>
+                        </FormCheck>
+                      </div>
+                    </div>
+                </div>
+                <div class="md:w-1/3 px-2 w-full">
+                    <div class="p-4">
+                      <div>
+                        <FormInput id="crud-form-1" v-model="formData.dumper_remarks_11" class="w-full" type="text" name="dumper_remarks_11" placeholder="Input Remarks"/>
                       </div>
                     </div>
                 </div>
@@ -1133,7 +1220,7 @@ onMounted(() => {
                
           </div>
           <div class="mt-5 flex justify-center items-center">
-            <img class="w-1/2" src="../assets/images/additional/jcb.png" alt="">
+            <img class="w-1/2" src="../assets/images/additional/DUMPER.png" alt="">
           </div>
           <div class="mt-5">
             <div class="px-2 w-full">
@@ -1474,7 +1561,7 @@ onMounted(() => {
           <li
             class="pl-5 mb-4 font-medium border-l-2 border-primary dark:border-primary text-primary"
           >
-            <a href="">BACKHOE LOADER (JCB)</a>
+            <a href="">DUMPER</a>
           </li>
           <li
             class="pl-5 mb-4 border-l-2 border-transparent dark:border-transparent"
@@ -1505,7 +1592,7 @@ onMounted(() => {
             class="mt-2 text-xs leading-relaxed text-slate-600 dark:text-slate-500"
           >
             <div>
-              When filling out the BACKHOE LOADER (JCB) report, be specific and clear with details, using the correct date format and precise descriptions..
+              When filling out the DUMPER report, be specific and clear with details, using the correct date format and precise descriptions..
             </div>
             <div class="mt-2">
               Ensure all required fields are accurately completed and boolean options are correctly marked. Upload relevant files and adhere to format and size requirements for attachments.
@@ -1519,7 +1606,7 @@ onMounted(() => {
   <Notification id="success-notification-content" class="flex hidden">
         <Lucide icon="CheckCircle" class="text-success" />
         <div class="ml-4 mr-4">
-          <div class="font-medium">BACKHOE LOADER (JCB) success!</div>
+          <div class="font-medium">DUMPER success!</div>
         </div>
       </Notification>
       <!-- END: Success Notification Content -->
@@ -1527,7 +1614,7 @@ onMounted(() => {
       <Notification id="failed-notification-content" class="flex items-center hidden">
         <Lucide icon="XCircle" class="text-danger" />
         <div class="ml-4 mr-4">
-          <div class="font-medium">BACKHOE LOADER (JCB) failed!</div>
+          <div class="font-medium">DUMPER failed!</div>
           <div class="mt-1 text-slate-500">Please check the fileld form.</div>
         </div>
       </Notification>
