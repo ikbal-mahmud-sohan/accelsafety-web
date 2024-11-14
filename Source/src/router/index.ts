@@ -732,6 +732,38 @@ const router = createRouter({
             name: "hse-dumper-checklists-create",
             component: () => import("../pages/HseDumperChecklistsCreate.vue"),
           },
+          {
+            path: "hse-concrete-mixer-checklists",
+            name: "hse-concrete-mixer-checklists",
+            component: () => import("../pages/HseConcreteMixerChecklists.vue"),
+          },
+          {
+            path: "hse-concrete-mixer-checklists-create",
+            name: "hse-concrete-mixer-checklists-create",
+            component: () => import("../pages/HseConcreteMixerChecklistsCreate.vue"),
+          },
+          {
+            path: "hse-transit-mixers-checklists",
+            name: "hse-transit-mixers-checklists",
+            component: () => import("../pages/HseTransitMixersChecklists.vue"),
+          },
+          {
+            path: "hse-transit-mixers-checklists-create",
+            name: "hse-transit-mixers-checklists-create",
+            component: () => import("../pages/HseTransitMixersChecklistsCreate.vue"),
+          },
+          {
+            path: "hse-concrete-pump-checklists",
+            name: "hse-concrete-pump-checklists",
+            component: () => import("../pages/HseConcretePumpChecklists.vue"),
+          },
+          {
+            path: "hse-concrete-pump-checklists-create",
+            name: "hse-concrete-pump-checklists-create",
+            component: () => import("../pages/HseConcretePumpChecklistsCreate.vue"),
+          },
+
+         
 
         // Isgec 
         {

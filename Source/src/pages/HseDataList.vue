@@ -309,7 +309,7 @@ import Lucide from "@/components/Base/Lucide";
       <div class="flex justify-center items-center p-1">
         <router-link :to="{ name: 'hse-jcb-checklists' }">
           <div class="inline-block">
-              <img class="w-32 h-32" src="../assets/images/icon/Blueprint.png" alt="">
+              <img class="w-32 h-32" src="../assets/images/icon/Construction Barrier.png" alt="">
             </div>
         </router-link>
       </div>
@@ -333,7 +333,7 @@ import Lucide from "@/components/Base/Lucide";
       <div class="flex justify-center items-center p-1">
         <router-link :to="{ name: 'hse-excavator-checklists' }">
           <div class="inline-block">
-              <img class="w-32 h-32" src="../assets/images/icon/Blueprint.png" alt="">
+              <img class="w-32 h-32" src="../assets/images/icon/Construction Barrier.png" alt="">
             </div>
         </router-link>
       </div>
@@ -357,7 +357,7 @@ import Lucide from "@/components/Base/Lucide";
       <div class="flex justify-center items-center p-1">
         <router-link :to="{ name: 'hse-earth-compactors-checklists' }">
           <div class="inline-block">
-              <img class="w-32 h-32" src="../assets/images/icon/Blueprint.png" alt="">
+              <img class="w-32 h-32" src="../assets/images/icon/Construction Barrier.png" alt="">
             </div>
         </router-link>
       </div>
@@ -381,12 +381,108 @@ import Lucide from "@/components/Base/Lucide";
       <div class="flex justify-center items-center p-1">
         <router-link :to="{ name: 'hse-dumper-checklists' }">
           <div class="inline-block">
-              <img class="w-32 h-32" src="../assets/images/icon/Blueprint.png" alt="">
+              <img class="w-32 h-32" src="../assets/images/icon/Construction Barrier.png" alt="">
             </div>
         </router-link>
       </div>
       <div class="py-1">
         <p class="text-center">DUMPER List</p>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/6 md:w-1/3">
+      <div class="flex justify-center items-center p-1">
+        <router-link :to="{ name: 'hse-dumper-checklists-create' }">
+          <div class="inline-block">
+              <img class="w-32 h-32" src="../assets/images/icon/Blueprint.png" alt="">
+            </div>
+        </router-link>
+      </div>
+      <div class="py-1">
+        <p class="text-center">DUMPER Create</p>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/6 md:w-1/3">
+      <div class="flex justify-center items-center p-1">
+        <router-link :to="{ name: 'hse-dumper-checklists' }">
+          <div class="inline-block">
+              <img class="w-32 h-32" src="../assets/images/icon/Construction Barrier.png" alt="">
+            </div>
+        </router-link>
+      </div>
+      <div class="py-1">
+        <p class="text-center">DUMPER List</p>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/6 md:w-1/3">
+      <div class="flex justify-center items-center p-1">
+        <router-link :to="{ name: 'hse-concrete-mixer-checklists-create' }">
+          <div class="inline-block">
+              <img class="w-32 h-32" src="../assets/images/icon/Cement Mixer.png" alt="">
+            </div>
+        </router-link>
+      </div>
+      <div class="py-1">
+        <p class="text-center">CONCRETE MIXER Create</p>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/6 md:w-1/3">
+      <div class="flex justify-center items-center p-1">
+        <router-link :to="{ name: 'hse-concrete-mixer-checklists' }">
+          <div class="inline-block">
+              <img class="w-32 h-32" src="../assets/images/icon/Cement Mixer.png" alt="">
+            </div>
+        </router-link>
+      </div>
+      <div class="py-1">
+        <p class="text-center">CONCRETE MIXER List</p>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/6 md:w-1/3">
+      <div class="flex justify-center items-center p-1">
+        <router-link :to="{ name: 'hse-transit-mixers-checklists-create' }">
+          <div class="inline-block">
+              <img class="w-32 h-32" src="../assets/images/icon/Blueprint.png" alt="">
+            </div>
+        </router-link>
+      </div>
+      <div class="py-1">
+        <p class="text-center">TRANSIT MIXER Create</p>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/6 md:w-1/3">
+      <div class="flex justify-center items-center p-1">
+        <router-link :to="{ name: 'hse-transit-mixers-checklists' }">
+          <div class="inline-block">
+              <img class="w-32 h-32" src="../assets/images/icon/Construction Barrier.png" alt="">
+            </div>
+        </router-link>
+      </div>
+      <div class="py-1">
+        <p class="text-center">TRANSIT MIXER List</p>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/6 md:w-1/3">
+      <div class="flex justify-center items-center p-1">
+        <router-link :to="{ name: 'hse-concrete-pump-checklists-create' }">
+          <div class="inline-block">
+              <img class="w-32 h-32" src="../assets/images/icon/Blueprint.png" alt="">
+            </div>
+        </router-link>
+      </div>
+      <div class="py-1">
+        <p class="text-center">Concrete Pump Create</p>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/6 md:w-1/3">
+      <div class="flex justify-center items-center p-1">
+        <router-link :to="{ name: 'hse-concrete-pump-checklists' }">
+          <div class="inline-block">
+              <img class="w-32 h-32" src="../assets/images/icon/Construction Barrier.png" alt="">
+            </div>
+        </router-link>
+      </div>
+      <div class="py-1">
+        <p class="text-center">Concrete Pump List</p>
       </div>
     </div>
   </div>
