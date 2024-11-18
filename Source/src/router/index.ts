@@ -6,10 +6,16 @@ const router = createRouter({
   routes: [
     {
       path: "/",
+      name: "home",
+      component: () => import("../pages/Login.vue"),
+    },
+    {
+      path: "/",
       component: Layout,
       children: [
+        
         {
-          path: "/",
+          path: "/dashboard",
           name: "dashboard-overview-1",
           component: () => import("../pages/DashboardOverview1.vue"),
         },
@@ -1013,6 +1019,16 @@ const router = createRouter({
       path: "/register",
       name: "register",
       component: () => import("../pages/Register.vue"),
+    },
+    {
+      path: "/reset-password-email",
+      name: "reset-password-email",
+      component: () => import("../pages/ResetPasswordEmail.vue"),
+    },
+    {
+      path: "/email-notifications",
+      name: "email-notifications",
+      component: () => import("../pages/EmailNotification.vue"),
     },
     {
       path: "/error-page",

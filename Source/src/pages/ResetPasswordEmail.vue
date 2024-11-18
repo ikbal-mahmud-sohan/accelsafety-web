@@ -15,19 +15,13 @@ import axios, { AxiosError } from 'axios';
 
 
 const formData = reactive({
-     name:'',
      email:'',
-     password:'',
-     password_confirmation:'',
 });
 const router = useRouter();
 
 
 const rules = {
-        name: {required},
         email: {required,email},
-        password: {required, minLength: minLength(6) },
-        password_confirmation: {required, minLength: minLength(6) }
 };
 const validate = useVuelidate(rules, toRefs(formData));
 const backendErrors = reactive<{
@@ -52,15 +46,15 @@ const submitForm = async () => {
     } else {
                
             try {
-                let  url = config.baseURL+'/api/auth/register';
+                let  url = config.baseURL+'/api/auth/reset/email';
                 const response = await axios.post(url, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
                 });
                 console.log('Form submitted successfully:', response.data);
-                if (response.data !== undefined) {
-                    router.push({ name: 'dashboard-overview-1' });
+                if (response !== undefined) {
+                  router.push({ name: 'email-notifications' });
                 }
         
             } catch (err) {
@@ -91,9 +85,9 @@ const submitForm = async () => {
     <ThemeSwitcher />
     <div class="container relative z-10 sm:px-10">
       <div class="block grid-cols-2 gap-4 xl:grid">
-        <!-- BEGIN: Register Info -->
+        <!-- BEGIN: Login Info -->
         <div class="flex-col hidden min-h-screen xl:flex">
-          <a href="" class="flex items-center pt-5 -intro-x">
+          <a href="/" class="flex items-center pt-5 -intro-x">
             <img
               alt="Midone Tailwind HTML Admin Template"
               class="w-20"
@@ -110,7 +104,7 @@ const submitForm = async () => {
               class="mt-10 text-4xl font-medium leading-tight text-white -intro-x"
             >
               A few more clicks to <br />
-              sign up to your account.
+              sign in to your account.
             </div>
             <div
               class="mt-5 text-lg text-white -intro-x text-opacity-70 dark:text-slate-400"
@@ -119,20 +113,18 @@ const submitForm = async () => {
             </div>
           </div>
         </div>
-        <!-- END: Register Info -->
-        <!-- BEGIN: Register Form -->
-        <div class="flex h-screen py-5 my-10 xl:h-auto xl:py-0 xl:my-0">
+        <!-- END: Login Info -->
+        <!-- BEGIN: Reset Form -->
+        <div  class="flex h-screen py-5 my-10 xl:h-auto xl:py-0 xl:my-0">
           <div
             class="w-full px-5 py-8 mx-auto my-auto bg-white rounded-md shadow-md xl:ml-20 dark:bg-darkmode-600 xl:bg-transparent sm:px-8 xl:p-0 xl:shadow-none sm:w-3/4 lg:w-2/4 xl:w-auto"
           >
             <h2
               class="text-2xl font-bold text-center intro-x xl:text-3xl xl:text-left"
             >
-              Sign Up
+              Reset Password
             </h2>
-            <div
-              class="mt-2 text-center intro-x text-slate-400 dark:text-slate-400 xl:hidden"
-            >
+            <div class="mt-2 text-center intro-x text-slate-400 xl:hidden">
               A few more clicks to sign in to your account. Manage all your
               e-commerce accounts in one place
             </div>
@@ -140,105 +132,33 @@ const submitForm = async () => {
               <FormInput
                 type="text"
                 class="block px-4 py-3 intro-x login__input min-w-full xl:min-w-[350px]"
-                placeholder="Name"
-                v-model.trim="validate.name.$model" name="name":class="{ 'border-danger': validate.name.$error,}"
-              />
-              <template v-if="validate.name.$error">
-                    <div v-for="(error, index) in validate.name.$errors" :key="index" class="mt-2 text-danger">
-                      {{ error.$message }}
-                    </div>
-                </template>
-                
-              <FormInput
-                type="text"
-                class="block px-4 py-3 mt-4 intro-x login__input min-w-full xl:min-w-[350px]"
-                placeholder="Email"
                 v-model.trim="validate.email.$model" name="email":class="{ 'border-danger': validate.email.$error,}"
-              />
-              <template v-if="validate.email.$error">
+                placeholder="Email"/>
+                <template v-if="validate.email.$error">
                     <div v-for="(error, index) in validate.email.$errors" :key="index" class="mt-2 text-danger">
                       {{ error.$message }}
                     </div>
                 </template>
-              <FormInput
-                type="text"
-                class="block px-4 py-3 mt-4 intro-x login__input min-w-full xl:min-w-[350px]"
-                placeholder="Password"
-                v-model.trim="validate.password.$model" name="password":class="{ 'border-danger': validate.password.$error,}"
-              />
-              <template v-if="validate.password.$error">
-                    <div v-for="(error, index) in validate.password.$errors" :key="index" class="mt-2 text-danger">
-                      {{ error.$message }}
-                    </div>
-                </template>
-              <FormInput
-                type="text"
-                class="block px-4 py-3 mt-4 intro-x login__input min-w-full xl:min-w-[350px]"
-                placeholder="Password Confirmation"
-                v-model.trim="validate.password_confirmation.$model" name="password_confirmation":class="{ 'border-danger': validate.password_confirmation.$error,}"
-              />
-              <template v-if="validate.password_confirmation.$error">
-                    <div v-for="(error, index) in validate.password_confirmation.$errors" :key="index" class="mt-2 text-danger">
-                      {{ error.$message }}
-                    </div>
-                </template>
-              <!-- <div class="grid w-full h-1 grid-cols-12 gap-4 mt-3 intro-x">
-                <div class="h-full col-span-3 rounded bg-success"></div>
-                <div class="h-full col-span-3 rounded bg-success"></div>
-                <div class="h-full col-span-3 rounded bg-success"></div>
-                <div
-                  class="h-full col-span-3 rounded bg-slate-100 dark:bg-darkmode-800"
-                ></div>
-              </div> -->
-              <!-- <a
-                href=""
-                class="block mt-2 text-xs intro-x text-slate-500 sm:text-sm"
-              >
-                What is a secure password?
-              </a> -->
-              
-              
             </div>
-            <div
-              class="flex items-center mt-4 text-xs intro-x text-slate-600 dark:text-slate-500 sm:text-sm"
-            >
-              <FormCheck.Input
-                id="remember-me"
-                type="checkbox"
-                class="mr-2 border"
-              />
-              <label class="cursor-pointer select-none" htmlFor="remember-me">
-                I agree to the Envato
-              </label>
-              <a class="ml-1 text-primary dark:text-slate-200" href="">
-                Privacy Policy
-              </a>
-              .
-            </div>
-            <div class="mt-5 text-center intro-x xl:mt-8 xl:text-left">
-                  <p class="text-red-500">{{ backendErrors.message }}</p>
-            </div>
+            
             <div class="mt-5 text-center intro-x xl:mt-8 xl:text-left">
               <Button
                 variant="primary"
                 class="w-full px-4 py-3 align-top xl:w-32 xl:mr-3"
                 @click="submitForm"
               >
-                Register
+                reset
               </Button>
-              <router-link :to="{ name: 'login' }">
-                <Button
-                variant="outline-secondary"
-                class="w-full px-4 py-3 mt-3 align-top xl:w-32 xl:mt-0"
-              >
-                Sign in
-              </Button>
-              </router-link>
-              
+             
             </div>
+            <div class="mt-5 text-center intro-x xl:mt-8 xl:text-left">
+                  <p class="text-red-500">{{ backendErrors.message }}</p>
+            </div>
+            
           </div>
         </div>
-        <!-- END: Register Form -->
+      
+        <!-- END: Login Form -->
       </div>
     </div>
   </div>

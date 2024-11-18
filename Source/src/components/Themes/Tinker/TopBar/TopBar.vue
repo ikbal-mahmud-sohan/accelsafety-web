@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref } from "vue";
 import Lucide from "@/components/Base/Lucide";
 import Breadcrumb from "@/components/Base/Breadcrumb";
 import { FormInput } from "@/components/Base/Form";
@@ -7,6 +6,13 @@ import { Menu, Popover } from "@/components/Base/Headless";
 import fakerData from "@/utils/faker";
 import _ from "lodash";
 import { TransitionRoot } from "@headlessui/vue";
+import { ref, reactive, toRefs } from 'vue';
+import { useRouter } from 'vue-router';
+import { required, minLength, email, integer, maxLength } from '@vuelidate/validators';
+import useVuelidate from '@vuelidate/core';
+import config from "@/config";
+import axios, { AxiosError } from 'axios';
+import { getToken,removeToken } from './../../../../auth/setToken'
 
 const searchDropdown = ref(false);
 const showSearchDropdown = () => {
@@ -14,6 +20,52 @@ const showSearchDropdown = () => {
 };
 const hideSearchDropdown = () => {
   searchDropdown.value = false;
+};
+const state = reactive({
+    token: getToken(),  // Set initial token from localStorage if it exists
+});
+const backendErrors = reactive<{
+    message: string;
+    errors: { [key: string]: string[] };
+}>({
+    message: '',
+    errors: {}
+});
+interface BackendErrorResponse {
+    message: string;
+    errors: {
+        [key: string]: string[];
+    };
+}
+const router = useRouter();
+
+const submitForm = async () => {
+        console.log("logout",state.token)
+        try {
+                let  url = config.baseURL+'/api/logout';
+                const response = await axios.get(url, {
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
+                if (response.data !== undefined) {
+                    removeToken()
+                    router.push({ name: 'home' });
+                }
+        
+            } catch (err) {
+              const error = err as AxiosError<BackendErrorResponse>;
+              if (error.response) {
+                  const backendError = error.response.data;
+                  console.error('Error submitting form:', backendError.message);
+                  backendErrors.message = backendError.message;
+                  backendErrors.errors = backendError.errors || {};
+              } else if (error.request) {
+                  console.error('No response received:', error.request);
+              } else {
+                  console.error('Error:', error.message);
+              }
+            }
 };
 </script>
 
@@ -210,9 +262,14 @@ const hideSearchDropdown = () => {
           <Lucide icon="HelpCircle" class="w-4 h-4 mr-2" /> Help
         </Menu.Item>
         <Menu.Divider class="bg-white/[0.08]" />
-        <Menu.Item class="hover:bg-white/5">
+        <Menu.Item class="hover:bg-white/5" @click="submitForm">
           <Lucide icon="ToggleRight" class="w-4 h-4 mr-2" /> Logout
         </Menu.Item>
+        <!-- <router-link :to="{ name: 'home' }">
+          <Menu.Item class="hover:bg-white/5" >
+            <Lucide icon="ToggleRight" class="w-4 h-4 mr-2" /> Logout
+          </Menu.Item>
+        </router-link> -->
       </Menu.Items>
     </Menu>
   </div>
