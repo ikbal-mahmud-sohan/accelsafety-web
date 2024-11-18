@@ -10,19 +10,26 @@ import Tippy from '@/components/Base/Tippy';
 import { Dialog, Menu } from '@/components/Base/Headless';
 import Table from '@/components/Base/Table';
 import config from "@/config";
+import { getToken } from './../auth/setToken'
 
 // Define your state using the reactive function
 const state = reactive({
   viewData: [] as Array<any>,
   headers: [] as Array<any>,   
   maxLen: 0 as number,
+  token: getToken(),
 });
 
 // Fetch data from the API and update the state
 const fetchData = async () => {
+  console.log("tr",state.token)
   try {
     let  url = config.baseURL+'/api/v1/training-assesments';
-    const response = await axios.get(url);
+    const response = await axios.get(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     state.viewData = response.data.TrainingAssessment;
 
     // let maxTrainingLength = 0;

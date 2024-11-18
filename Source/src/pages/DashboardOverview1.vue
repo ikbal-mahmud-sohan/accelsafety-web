@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import _ from "lodash";
-import { ref, provide } from "vue";
+import { ref, provide,reactive } from "vue";
 import fakerData from "@/utils/faker";
 import Button from "@/components/Base/Button";
 import Pagination from "@/components/Base/Pagination";
@@ -19,9 +19,15 @@ import SimpleLineChart1 from "@/components/SimpleLineChart1";
 import LeafletMap from "@/components/LeafletMap";
 import { Menu } from "@/components/Base/Headless";
 import Table from "@/components/Base/Table";
+import { getToken } from './../auth/setToken'
+
 
 const salesReportFilter = ref<string>("");
 const importantNotesRef = ref<TinySliderElement>();
+
+  const state = reactive({
+    token: getToken(),  // Set initial token from localStorage if it exists
+});
 
 provide("bind[importantNotesRef]", (el: TinySliderElement) => {
   importantNotesRef.value = el;
@@ -33,6 +39,8 @@ const prevImportantNotes = () => {
 const nextImportantNotes = () => {
   importantNotesRef.value?.tns.goTo("next");
 };
+// const token = getToken();
+console.log('Global token:', state.token);
 </script>
 
 <template>
