@@ -15,6 +15,8 @@ import Preview from "@/components/Base/Preview";
 import { Menu, Popover } from "@/components/Base/Headless";
 import Alert from "@/components/Base/Alert";
 import Litepicker from "@/components/Base/Litepicker";
+import { getToken } from './../auth/setToken'
+
 
 
 
@@ -97,6 +99,10 @@ const isHseLadderDes11 = ref("");
 const isHseLadderDes12 = ref("");
 const isHseLadderDes13 = ref("");
 const isHseLadderDes14 = ref("");
+
+const state = reactive({
+  token: getToken(),
+});
 
 
 interface BackendErrorResponse {
@@ -193,7 +199,11 @@ const submitForm = async () => {
   } else {
     try {
       const url = config.baseURL + '/api/v1/hse-ladder-self-inspection-checklist';
-      const response = await axios.post(url, formData);
+      const response = await axios.post(url, formData,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
       if (response.data != undefined) {
         SuccessPopUp();
         router.push({ name: 'hse-ladder-self-inspection-list' });

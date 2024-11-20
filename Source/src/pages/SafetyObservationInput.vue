@@ -28,6 +28,8 @@ import Notification from "@/components/Base/Notification";
 import Preview from "@/components/Base/Preview";
 import Litepicker from "@/components/Base/Litepicker";
 import Alert from "@/components/Base/Alert";
+import { getToken } from './../auth/setToken'
+
 
 
 const router = useRouter();
@@ -57,6 +59,8 @@ const state = reactive({
   respDepartment: [] as Array<any>,
   ownerDepartment : [] as Array<any>,
   plantName : [] as Array<any>,
+  token: getToken(),
+
 });
 
 interface BackendErrorResponse {
@@ -89,7 +93,11 @@ const backendErrors = reactive<{
 
   try {
       let  url = config.baseURL+'/api/v1/safety-resp-department';
-      const response = await axios.post(url, formDataMonth);
+      const response = await axios.post(url, formDataMonth,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
       console.log('Form submitted successfully:', response.data);
       if(response.data != undefined){
           SuccessPopUp();
@@ -125,7 +133,11 @@ const backendErrors = reactive<{
 
   try {
       let  url = config.baseURL+'/api/v1/safety-owner-department';
-      const response = await axios.post(url, formDataType);
+      const response = await axios.post(url, formDataType,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
       if(response.data != undefined){
           SuccessTypePopUp();
           state.ownerDepartment  = response.data.data;
@@ -160,7 +172,11 @@ const backendErrors = reactive<{
 
   try {
       let  url = config.baseURL+'/api/v1/safety-plant';
-      const response = await axios.post(url, formDataInjuryType);
+      const response = await axios.post(url, formDataInjuryType,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
       if(response.data != undefined){
           SuccessInjuryTypePopUp();
           state.plantName  = response.data.data;
@@ -190,7 +206,11 @@ const backendErrors = reactive<{
 const fetchRespDepartmentData = async () => {
   try {
    let  url = config.baseURL+'/api/v1/safety-resp-department';
-    const response = await axios.get(url);
+    const response = await axios.get(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     state.respDepartment = response.data.data;
     console.log("xyz",state.respDepartment)
   } catch (error) {
@@ -200,7 +220,11 @@ const fetchRespDepartmentData = async () => {
 const fetchOwnerDepartmentData = async () => {
   try {
    let  url = config.baseURL+'/api/v1/safety-owner-department';
-    const response = await axios.get(url);
+    const response = await axios.get(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     state.ownerDepartment  = response.data.data;
     console.log("xyz",state.ownerDepartment )
   } catch (error) {
@@ -210,7 +234,11 @@ const fetchOwnerDepartmentData = async () => {
 const fetchPlantNameData = async () => {
   try {
    let  url = config.baseURL+'/api/v1/safety-plant';
-    const response = await axios.get(url);
+    const response = await axios.get(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     state.plantName  = response.data.data;
     console.log("xyz",state.ownerDepartment )
   } catch (error) {
@@ -222,7 +250,11 @@ const deleteRespDepartment = async (sID:string) => {
 
   try {
     let url = config.baseURL+"/api/v1/safety-resp-department/"+sID;
-    const response = await axios.delete(url);
+    const response = await axios.delete(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     state.respDepartment = response.data.data;
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -231,7 +263,11 @@ const deleteRespDepartment = async (sID:string) => {
 const deleteOwnerDepartment = async (sID:string) => {
   try {
     let url = config.baseURL+"/api/v1/safety-owner-department/"+sID;
-    const response = await axios.delete(url);
+    const response = await axios.delete(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     state.ownerDepartment  = response.data.data;
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -240,7 +276,11 @@ const deleteOwnerDepartment = async (sID:string) => {
 const deletePlantName = async (sID:string) => {
   try {
     let url = config.baseURL+"/api/v1/safety-plant/"+sID;
-    const response = await axios.delete(url);
+    const response = await axios.delete(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     state.plantName  = response.data.data;
   } catch (error) {
     console.error('Error fetching data:', error);

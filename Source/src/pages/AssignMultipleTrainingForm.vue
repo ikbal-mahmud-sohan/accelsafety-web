@@ -15,6 +15,8 @@ import Preview from "@/components/Base/Preview";
 import { Menu, Popover } from "@/components/Base/Headless";
 import Table from '@/components/Base/Table';
 import Alert from "@/components/Base/Alert";
+import { getToken } from './../auth/setToken'
+
 
 
 // Define your state using the reactive function
@@ -23,6 +25,8 @@ const state = reactive({
   trainingTopicData: [] as Array<any>,
   departmentData: [] as Array<any>,
   unitData: [] as Array<any>,
+  token: getToken(),
+
 });
 
 import {
@@ -122,7 +126,11 @@ const submitForm = async () => {
   } else {
     try {
       const url = config.baseURL + '/api/v1/assign-multiple-training';
-      const response = await axios.post(url, payload);
+      const response = await axios.post(url, payload,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
       if (response.data != undefined) {
         SuccessPopUp();
         router.push({ name: 'training-data-list' });
@@ -146,7 +154,11 @@ const submitForm = async () => {
 const fetchEmployeeDataByDepartment = async (payload:any) => {
   try {
    let  url = config.baseURL+'/api/v1/employee?department='+payload;
-    const response = await axios.get(url);
+    const response = await axios.get(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     state.employeeData = response.data.data;
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -155,7 +167,11 @@ const fetchEmployeeDataByDepartment = async (payload:any) => {
 const fetchEmployeeDataByUnit = async (payload:any) => {
   try {
    let  url = config.baseURL+'/api/v1/employee?unit_name='+payload;
-    const response = await axios.get(url);
+    const response = await axios.get(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     state.employeeData = response.data.data;
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -164,7 +180,11 @@ const fetchEmployeeDataByUnit = async (payload:any) => {
 const fetchEmployeeData = async () => {
   try {
    let  url = config.baseURL+'/api/v1/employee';
-    const response = await axios.get(url);
+    const response = await axios.get(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     state.employeeData = response.data.data;
 
     console.log("sohan 1",state.employeeData)
@@ -175,7 +195,11 @@ const fetchEmployeeData = async () => {
 const fetchTrainingTopicData = async () => {
   try {
    let  url = config.baseURL+'/api/v1/trainingTopics';
-    const response = await axios.get(url);
+    const response = await axios.get(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     state.trainingTopicData = response.data.data;
 
   } catch (error) {
@@ -185,7 +209,11 @@ const fetchTrainingTopicData = async () => {
 const fetchUnitData = async () => {
   try {
    let  url = config.baseURL+'/api/v1/unit';
-    const response = await axios.get(url);
+    const response = await axios.get(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     state.unitData = response.data.unit_names;
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -194,7 +222,11 @@ const fetchUnitData = async () => {
 const fetchDepartmentData = async () => {
   try {
    let  url = config.baseURL+'/api/v1/department';
-    const response = await axios.get(url);
+    const response = await axios.get(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     state.departmentData = response.data.data;
   } catch (error) {
     console.error('Error fetching data:', error);

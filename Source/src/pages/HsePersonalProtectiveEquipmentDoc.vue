@@ -16,6 +16,7 @@ import { useRouter } from 'vue-router';
 import Toastify from 'toastify-js';
 import { ClassicEditor } from "@/components/Base/Ckeditor";
 import Alert from "@/components/Base/Alert";
+import { getToken } from './../auth/setToken'
 
 
 // Insert start
@@ -37,6 +38,7 @@ const cvUpdateformData = reactive({
         approved_by:'',
         updated_by:'',
 });
+
 const router = useRouter();
 const rules = {
         descriptions: {required,minLength: minLength(3),},
@@ -57,6 +59,8 @@ const submitForm = async () => {
                 const response = await axios.post(url, cvformData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
+                    'Authorization': state.token,
+
                 },
                 });
                 console.log('Form submitted successfully:', response.data);
@@ -82,6 +86,8 @@ const updateForm = async () => {
                 const response = await axios.post(url, cvUpdateformData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
+                    'Authorization': state.token,
+
                 },
                 });
                 console.log('Form submitted successfully:', response.data);
@@ -100,6 +106,8 @@ const ApprovedCv = async () => {
                 const response = await axios.post(url, cvUpdateformData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
+                    'Authorization': state.token,
+
                 },
                 });
                 console.log('Form submitted successfully:', response.data.data.id);
@@ -119,6 +127,7 @@ const state = reactive({
   AddControlVisitorsHSE01: false,
   UpdateControlVisitorsHSE01: false,
   viewData: [] as Array<any>,
+  token: getToken(),
 
 });
 
@@ -146,7 +155,11 @@ async function UpdateControlVisitorsHSE01 (ID:any){
 const fetchDropDownData = async () => {
   try {
    let  url = config.baseURL+'/api/v1/hse-personal-protective';
-    const response = await axios.get(url);
+    const response = await axios.get(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     state.viewData = response.data.data;
     cvformData.id = response.data.data.map((item: any) => item.id).join(',');
     fetchcvUpdateData();
@@ -157,7 +170,11 @@ const fetchDropDownData = async () => {
 const fetchcvUpdateData = async () => {
   try {
    let  url = config.baseURL+'/api/v1/hse-personal-protective/'+cvformData.id;
-    const response = await axios.get(url);
+    const response = await axios.get(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     cvUpdateformData.descriptions = response.data.data.descriptions;
     updateeditorData.value = response.data.data.descriptions;
     

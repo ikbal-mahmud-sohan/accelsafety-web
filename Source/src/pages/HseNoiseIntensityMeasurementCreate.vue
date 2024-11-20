@@ -7,6 +7,8 @@ import { useRouter } from 'vue-router';
 import Notification from "@/components/Base/Notification";
 import Lucide from "@/components/Base/Lucide";
 import config from "@/config";
+import { getToken } from './../auth/setToken'
+
 import {
   FormInput,
   FormLabel,
@@ -32,6 +34,10 @@ const formData = reactive({
 });
 
 const router = useRouter();
+
+const state = reactive({
+  token: getToken(),
+});
 
 
 const categories = ref(["1", "3"]);
@@ -69,6 +75,8 @@ const submitForm = async () => {
                 const response = await axios.post(url, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
+                    'Authorization': state.token,
+
                 },
                 });
                 console.log('Form submitted successfully:', response.data);

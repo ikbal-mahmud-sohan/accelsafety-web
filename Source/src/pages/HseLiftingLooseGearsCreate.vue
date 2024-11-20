@@ -15,8 +15,7 @@ import Preview from "@/components/Base/Preview";
 import { Menu, Popover } from "@/components/Base/Headless";
 import Alert from "@/components/Base/Alert";
 import Litepicker from "@/components/Base/Litepicker";
-
-
+import { getToken } from './../auth/setToken'
 
 
 // Define your state using the reactive function
@@ -59,6 +58,10 @@ const rules = {
       agency:{required},
        
 };
+const state = reactive({
+  token: getToken(),
+
+});
 
 const validate = useVuelidate(rules, toRefs(formData));
 const backendErrors = reactive<{
@@ -109,7 +112,11 @@ const submitForm = async () => {
   } else {
     try {
       const url = config.baseURL + '/api/v1/hse-lifting-loose-gears';
-      const response = await axios.post(url, formData);
+      const response = await axios.post(url, formData,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
       if (response.data != undefined) {
         SuccessPopUp();
         router.push({ name: 'hse-lifting-loose-gears' });

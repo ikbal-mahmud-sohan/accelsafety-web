@@ -7,6 +7,8 @@ import { useRouter } from 'vue-router';
 import Notification from "@/components/Base/Notification";
 import Lucide from "@/components/Base/Lucide";
 import config from "@/config";
+import { getToken } from './../auth/setToken'
+
 import {
   FormInput,
   FormLabel,
@@ -44,6 +46,8 @@ const state = reactive({
   viewOwnerDepartment: [] as Array<any>,
   viewRespDepartment: [] as Array<any>,
   viewPlantName: [] as Array<any>,
+  token: getToken(),
+
 });
 const router = useRouter();
 
@@ -117,6 +121,7 @@ const submitForm = async () => {
                 const response = await axios.post(url, form, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
+                    'Authorization': state.token,
                 },
                 });
                 console.log('Form submitted successfully:', response.data);
@@ -135,7 +140,11 @@ const submitForm = async () => {
 const fetchDropDownData = async () => {
   try {
    let  url = config.baseURL+'/api/v1/safety-drop-down';
-    const response = await axios.get(url);
+    const response = await axios.get(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     state.viewOwnerDepartment = response.data.OwnerDepartment;
     state.viewRespDepartment = response.data.RespDepartment;
     state.viewPlantName = response.data.PlantName	;

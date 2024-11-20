@@ -15,6 +15,8 @@ import Preview from "@/components/Base/Preview";
 import { Menu, Popover } from "@/components/Base/Headless";
 import Alert from "@/components/Base/Alert";
 import Litepicker from "@/components/Base/Litepicker";
+import { getToken } from './../auth/setToken'
+
 
 
 
@@ -46,6 +48,11 @@ const issuedate = ref("");
 const revisiondate = ref("");
 const lastmeasureddate = ref("");
 const nextmeasuringdate = ref("");
+
+const state = reactive({
+  token: getToken(),
+
+});
 
 
 interface BackendErrorResponse {
@@ -123,7 +130,11 @@ const submitForm = async () => {
   } else {
     try {
       const url = config.baseURL + '/api/v1/hse-earthing-pit-condition';
-      const response = await axios.post(url, formData);
+      const response = await axios.post(url, formData,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
       if (response.data != undefined) {
         SuccessPopUp();
         router.push({ name: 'hse-earthing-pit-condition' });

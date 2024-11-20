@@ -15,6 +15,8 @@ import { required, minLength, email, integer, maxLength } from '@vuelidate/valid
 import Toastify from 'toastify-js';
 import Alert from "@/components/Base/Alert";
 import _ from "lodash";
+import { getToken } from './../auth/setToken'
+
 
 const formData = reactive({
         confined_space_no:'',
@@ -23,6 +25,10 @@ const formData = reactive({
         cs_image:[] as File[],
 });
 
+const state = reactive({
+  token: getToken(),
+
+});
 const router = useRouter();
 
 
@@ -70,6 +76,8 @@ const submitForm = async () => {
                 const response = await axios.post(url, form, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
+                    'Authorization': state.token,
+
                 },
                 });
                 console.log('Form submitted successfully:', response.data);

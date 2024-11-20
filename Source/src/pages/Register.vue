@@ -52,7 +52,7 @@ const submitForm = async () => {
     } else {
                
             try {
-                let  url = config.baseURL+'/api/auth/register';
+                let  url = config.baseURL+'/api/register';
                 const response = await axios.post(url, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
@@ -60,7 +60,7 @@ const submitForm = async () => {
                 });
                 console.log('Form submitted successfully:', response.data);
                 if (response.data !== undefined) {
-                    router.push({ name: 'dashboard-overview-1' });
+                    router.push({ name: 'login' });
                 }
         
             } catch (err) {

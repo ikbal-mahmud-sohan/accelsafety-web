@@ -28,7 +28,7 @@ import Notification from "@/components/Base/Notification";
 import Preview from "@/components/Base/Preview";
 import Litepicker from "@/components/Base/Litepicker";
 import Alert from "@/components/Base/Alert";
-
+import { getToken } from './../auth/setToken'
 
 const router = useRouter();
 const subcategory = ref(["0"]);
@@ -57,6 +57,8 @@ const state = reactive({
   accidentMonths: [] as Array<any>,
   accidentTypess: [] as Array<any>,
   accidentInjuryTypess: [] as Array<any>,
+  token: getToken(),
+
 });
 
 interface BackendErrorResponse {
@@ -89,7 +91,11 @@ const backendErrors = reactive<{
 
   try {
       let  url = config.baseURL+'/api/v1/accident-month';
-      const response = await axios.post(url, formDataMonth);
+      const response = await axios.post(url, formDataMonth,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
       console.log('Form submitted successfully:', response.data);
       if(response.data != undefined){
           SuccessPopUp();
@@ -125,7 +131,11 @@ const backendErrors = reactive<{
 
   try {
       let  url = config.baseURL+'/api/v1/accident-type';
-      const response = await axios.post(url, formDataType);
+      const response = await axios.post(url, formDataType,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
       if(response.data != undefined){
           SuccessTypePopUp();
           state.accidentTypess = response.data.data;
@@ -160,7 +170,11 @@ const backendErrors = reactive<{
 
   try {
       let  url = config.baseURL+'/api/v1/accident-injury-type';
-      const response = await axios.post(url, formDataInjuryType);
+      const response = await axios.post(url, formDataInjuryType,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
       if(response.data != undefined){
           SuccessInjuryTypePopUp();
           state.accidentInjuryTypess = response.data.data;
@@ -190,7 +204,11 @@ const backendErrors = reactive<{
 const fetchAccidentMonthData = async () => {
   try {
    let  url = config.baseURL+'/api/v1/accident-month';
-    const response = await axios.get(url);
+    const response = await axios.get(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     state.accidentMonths = response.data.data;
     console.log("xyz",state.accidentMonths)
   } catch (error) {
@@ -200,7 +218,11 @@ const fetchAccidentMonthData = async () => {
 const fetchAccidentTypeData = async () => {
   try {
    let  url = config.baseURL+'/api/v1/accident-type';
-    const response = await axios.get(url);
+    const response = await axios.get(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     state.accidentTypess = response.data.data;
     console.log("xyz",state.accidentTypess)
   } catch (error) {
@@ -210,7 +232,11 @@ const fetchAccidentTypeData = async () => {
 const fetchAccidentInjuryTypeData = async () => {
   try {
    let  url = config.baseURL+'/api/v1/accident-injury-type';
-    const response = await axios.get(url);
+    const response = await axios.get(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     state.accidentInjuryTypess = response.data.data;
     console.log("xyz",state.accidentTypess)
   } catch (error) {
@@ -222,7 +248,11 @@ const deleteData = async (sID:string) => {
 
   try {
     let url = config.baseURL+"/api/v1/accident-month/"+sID;
-    const response = await axios.delete(url);
+    const response = await axios.delete(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     state.accidentMonths = response.data.data;
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -231,7 +261,11 @@ const deleteData = async (sID:string) => {
 const deleteAcTypeData = async (sID:string) => {
   try {
     let url = config.baseURL+"/api/v1/accident-type/"+sID;
-    const response = await axios.delete(url);
+    const response = await axios.delete(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     state.accidentTypess = response.data.data;
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -240,7 +274,11 @@ const deleteAcTypeData = async (sID:string) => {
 const deleteInjuryAcTypeData = async (sID:string) => {
   try {
     let url = config.baseURL+"/api/v1/accident-injury-type/"+sID;
-    const response = await axios.delete(url);
+    const response = await axios.delete(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     state.accidentInjuryTypess = response.data.data;
   } catch (error) {
     console.error('Error fetching data:', error);

@@ -15,6 +15,8 @@ import Preview from "@/components/Base/Preview";
 import { Menu, Popover } from "@/components/Base/Headless";
 import Alert from "@/components/Base/Alert";
 import Litepicker from "@/components/Base/Litepicker";
+import { getToken } from './../auth/setToken'
+
 
 
 
@@ -41,6 +43,10 @@ const formData = reactive({
 });
 const router = useRouter();
 const testedOn = ref("");
+
+const state = reactive({
+  token: getToken(),
+});
 
 
 interface BackendErrorResponse {
@@ -114,7 +120,11 @@ const submitForm = async () => {
   } else {
     try {
       const url = config.baseURL + '/api/v1/hse-list-pressure-vessels';
-      const response = await axios.post(url, formData);
+      const response = await axios.post(url, formData,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
       if (response.data != undefined) {
         SuccessPopUp();
         router.push({ name: 'hse-list-pressure-vessels' });

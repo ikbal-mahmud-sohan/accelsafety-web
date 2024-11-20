@@ -10,10 +10,14 @@ import Tippy from '@/components/Base/Tippy';
 import { Dialog, Menu } from '@/components/Base/Headless';
 import Table from '@/components/Base/Table';
 import config from "@/config";
+import { getToken } from './../auth/setToken'
+
 
 // Define your state using the reactive function
 const state = reactive({
   accidentReports: [] as Array<any>,
+  token: getToken(),
+
 });
 
 
@@ -21,7 +25,11 @@ const state = reactive({
 const fetchData = async () => {
   try {
    let  url = config.baseURL+'/api/v1/accident-investigation';
-    const response = await axios.get(url);
+    const response = await axios.get(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     state.accidentReports = response.data.data;
     console.log("sohan",state.accidentReports)
   } catch (error) {
@@ -31,7 +39,11 @@ const fetchData = async () => {
 const deleteData = async (sID:string) => {
   try {
     let url = config.baseURL+"/api/v1/accident-investigation/"+sID;
-    const response = await axios.delete(url);
+    const response = await axios.delete(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     state.accidentReports = response.data.data;
 
   } catch (error) {

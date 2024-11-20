@@ -22,6 +22,8 @@ import Toastify from 'toastify-js';
 import Notification from "@/components/Base/Notification";
 import Alert from "@/components/Base/Alert";
 import HiraService from "./services/hira/hira";
+import { getToken } from './../auth/setToken'
+
 
 
 const editorConfig = {
@@ -72,6 +74,8 @@ const state = reactive({
   hiraEngineering: [] as Array<any>,
   hiraAdministrative: [] as Array<any>,
   hiraPPE: [] as Array<any>,
+  token: getToken(),
+
 });
 
 interface BackendErrorResponse {
@@ -111,7 +115,11 @@ const backendErrors = reactive<{
 
   try {
       let  url = config.baseURL+'/api/v1/hira-process';
-      const response = await axios.post(url, formDataProcess);
+      const response = await axios.post(url, formDataProcess,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
       if(response.data != undefined){
         new HiraService().SuccessPopUp();
 
@@ -147,7 +155,11 @@ const backendErrors = reactive<{
 
   try {
       let  url = config.baseURL+'/api/v1/hira-activity';
-      const response = await axios.post(url, formDataActivity);
+      const response = await axios.post(url, formDataActivity,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
       if(response.data != undefined){
           new HiraService().SuccessTypePopUp();
           state.hiraActivity = response.data.data;
@@ -182,7 +194,11 @@ const backendErrors = reactive<{
 
   try {
       let  url = config.baseURL+'/api/v1/hira-location';
-      const response = await axios.post(url, formDataLocation);
+      const response = await axios.post(url, formDataLocation,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
       if(response.data != undefined){
          new HiraService().SuccessInjuryTypePopUp();
           state.hiraLocation = response.data.data;
@@ -217,7 +233,11 @@ const backendErrors = reactive<{
 
   try {
       let  url = config.baseURL+'/api/v1/hira-occupations';
-      const response = await axios.post(url, formDataOccupations);
+      const response = await axios.post(url, formDataOccupations,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
       if(response.data != undefined){
         new HiraService().SuccessOccupationsPopUp();
           state.hiraOccupations = response.data.data;
@@ -252,7 +272,11 @@ const backendErrors = reactive<{
 
   try {
       let  url = config.baseURL+'/api/v1/hira-event';
-      const response = await axios.post(url, formDataEvent);
+      const response = await axios.post(url, formDataEvent,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
       if(response.data != undefined){
         new HiraService().SuccessEventPopUp();
           state.hiraEvent = response.data.data;
@@ -287,7 +311,11 @@ const backendErrors = reactive<{
 
   try {
       let  url = config.baseURL+'/api/v1/hira-cause';
-      const response = await axios.post(url, formDataCause);
+      const response = await axios.post(url, formDataCause,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
       if(response.data != undefined){
         new HiraService().SuccessCausePopUp();
           state.hiraCause = response.data.data;
@@ -322,7 +350,11 @@ const backendErrors = reactive<{
 
   try {
       let  url = config.baseURL+'/api/v1/hira-impact';
-      const response = await axios.post(url, formDataImpact);
+      const response = await axios.post(url, formDataImpact,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
       if(response.data != undefined){
         new HiraService().SuccessImpactPopUp();
           state.hiraImpact = response.data.data;
@@ -357,7 +389,11 @@ const backendErrors = reactive<{
 
   try {
       let  url = config.baseURL+'/api/v1/hira-engineering';
-      const response = await axios.post(url, formDataEngineering);
+      const response = await axios.post(url, formDataEngineering,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
       if(response.data != undefined){
         new HiraService().SuccessEngineeringPopUp();
           state.hiraEngineering = response.data.data;
@@ -392,7 +428,11 @@ const backendErrors = reactive<{
 
   try {
       let  url = config.baseURL+'/api/v1/hira-administrative';
-      const response = await axios.post(url, formDataAdministrative);
+      const response = await axios.post(url, formDataAdministrative,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
       if(response.data != undefined){
         new HiraService().SuccessAdministrativePopUp();
           state.hiraAdministrative = response.data.data;
@@ -427,7 +467,11 @@ const backendErrors = reactive<{
 
   try {
       let  url = config.baseURL+'/api/v1/hira-ppe';
-      const response = await axios.post(url, formDataPPE);
+      const response = await axios.post(url, formDataPPE,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
       if(response.data != undefined){
         new HiraService().SuccessPPEPopUp();
           state.hiraPPE = response.data.data;
@@ -458,7 +502,11 @@ const backendErrors = reactive<{
 const fetchProcess = async () => {
   try {
    let  url = config.baseURL+'/api/v1/hira-process';
-    const response = await axios.get(url);
+    const response = await axios.get(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     state.hiraProcess = response.data.data;
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -467,7 +515,11 @@ const fetchProcess = async () => {
 const fetchActivityData = async () => {
   try {
    let  url = config.baseURL+'/api/v1/hira-activity';
-    const response = await axios.get(url);
+    const response = await axios.get(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     state.hiraActivity = response.data.data;
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -476,7 +528,11 @@ const fetchActivityData = async () => {
 const fetchAccidentInjuryTypeData = async () => {
   try {
    let  url = config.baseURL+'/api/v1/hira-location';
-    const response = await axios.get(url);
+    const response = await axios.get(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     state.hiraLocation = response.data.data;
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -485,7 +541,11 @@ const fetchAccidentInjuryTypeData = async () => {
 const fetchOccupationsData = async () => {
   try {
    let  url = config.baseURL+'/api/v1/hira-occupations';
-    const response = await axios.get(url);
+    const response = await axios.get(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     state.hiraOccupations = response.data.data;
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -494,7 +554,11 @@ const fetchOccupationsData = async () => {
 const fetchEventData = async () => {
   try {
    let  url = config.baseURL+'/api/v1/hira-event';
-    const response = await axios.get(url);
+    const response = await axios.get(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     state.hiraEvent = response.data.data;
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -503,7 +567,11 @@ const fetchEventData = async () => {
 const fetchCauseData = async () => {
   try {
    let  url = config.baseURL+'/api/v1/hira-cause';
-    const response = await axios.get(url);
+    const response = await axios.get(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     state.hiraCause = response.data.data;
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -512,7 +580,11 @@ const fetchCauseData = async () => {
 const fetchImpactData = async () => {
   try {
    let  url = config.baseURL+'/api/v1/hira-impact';
-    const response = await axios.get(url);
+    const response = await axios.get(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     state.hiraImpact = response.data.data;
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -521,7 +593,11 @@ const fetchImpactData = async () => {
 const fetchEngineeringData = async () => {
   try {
    let  url = config.baseURL+'/api/v1/hira-engineering';
-    const response = await axios.get(url);
+    const response = await axios.get(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     state.hiraEngineering = response.data.data;
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -530,7 +606,11 @@ const fetchEngineeringData = async () => {
 const fetchAdministrativeData = async () => {
   try {
    let  url = config.baseURL+'/api/v1/hira-administrative';
-    const response = await axios.get(url);
+    const response = await axios.get(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     state.hiraAdministrative = response.data.data;
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -539,7 +619,11 @@ const fetchAdministrativeData = async () => {
 const fetchPPEData = async () => {
   try {
    let  url = config.baseURL+'/api/v1/hira-ppe';
-    const response = await axios.get(url);
+    const response = await axios.get(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     state.hiraPPE = response.data.data;
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -548,7 +632,11 @@ const fetchPPEData = async () => {
 const deleteData = async (sID:string) => {
   try {
     let url = config.baseURL+"/api/v1/hira-process/"+sID;
-    const response = await axios.delete(url);
+    const response = await axios.delete(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     state.hiraProcess = response.data.data;
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -557,7 +645,11 @@ const deleteData = async (sID:string) => {
 const deleteAcTypeData = async (sID:string) => {
   try {
     let url = config.baseURL+"/api/v1/hira-activity/"+sID;
-    const response = await axios.delete(url);
+    const response = await axios.delete(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     state.hiraActivity = response.data.data;
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -566,7 +658,11 @@ const deleteAcTypeData = async (sID:string) => {
 const deleteInjuryAcTypeData = async (sID:string) => {
   try {
     let url = config.baseURL+"/api/v1/hira-location/"+sID;
-    const response = await axios.delete(url);
+    const response = await axios.delete(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     state.hiraLocation = response.data.data;
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -575,7 +671,11 @@ const deleteInjuryAcTypeData = async (sID:string) => {
 const deleteOccupationsData = async (sID:string) => {
   try {
     let url = config.baseURL+"/api/v1/hira-occupations/"+sID;
-    const response = await axios.delete(url);
+    const response = await axios.delete(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     state.hiraOccupations = response.data.data;
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -584,7 +684,11 @@ const deleteOccupationsData = async (sID:string) => {
 const deleteEventData = async (sID:string) => {
   try {
     let url = config.baseURL+"/api/v1/hira-event/"+sID;
-    const response = await axios.delete(url);
+    const response = await axios.delete(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     state.hiraEvent = response.data.data;
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -593,7 +697,11 @@ const deleteEventData = async (sID:string) => {
 const deleteCauseData = async (sID:string) => {
   try {
     let url = config.baseURL+"/api/v1/hira-cause/"+sID;
-    const response = await axios.delete(url);
+    const response = await axios.delete(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     state.hiraCause = response.data.data;
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -602,7 +710,11 @@ const deleteCauseData = async (sID:string) => {
 const deleteImpactData = async (sID:string) => {
   try {
     let url = config.baseURL+"/api/v1/hira-impact/"+sID;
-    const response = await axios.delete(url);
+    const response = await axios.delete(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     state.hiraImpact = response.data.data;
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -611,7 +723,11 @@ const deleteImpactData = async (sID:string) => {
 const deleteEngineeringData = async (sID:string) => {
   try {
     let url = config.baseURL+"/api/v1/hira-engineering/"+sID;
-    const response = await axios.delete(url);
+    const response = await axios.delete(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     state.hiraEngineering = response.data.data;
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -620,7 +736,11 @@ const deleteEngineeringData = async (sID:string) => {
 const deleteAdministrativeData = async (sID:string) => {
   try {
     let url = config.baseURL+"/api/v1/hira-administrative/"+sID;
-    const response = await axios.delete(url);
+    const response = await axios.delete(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     state.hiraAdministrative = response.data.data;
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -629,7 +749,11 @@ const deleteAdministrativeData = async (sID:string) => {
 const deletePPEData = async (sID:string) => {
   try {
     let url = config.baseURL+"/api/v1/hira-ppe/"+sID;
-    const response = await axios.delete(url);
+    const response = await axios.delete(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     state.hiraPPE = response.data.data;
   } catch (error) {
     console.error('Error fetching data:', error);

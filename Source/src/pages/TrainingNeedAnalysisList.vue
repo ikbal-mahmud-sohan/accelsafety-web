@@ -22,7 +22,6 @@ const state = reactive({
 
 // Fetch data from the API and update the state
 const fetchData = async () => {
-  console.log("tr",state.token)
   try {
     let  url = config.baseURL+'/api/v1/training-assesments';
     const response = await axios.get(url,{
@@ -32,17 +31,6 @@ const fetchData = async () => {
                 });
     state.viewData = response.data.TrainingAssessment;
 
-    // let maxTrainingLength = 0;
-    // state.viewData.forEach((item) => {
-    //   const length = item.employee.assign_trainings?.length || 0;
-    //   if (length > maxTrainingLength) {
-    //     maxTrainingLength = length;
-    //   }
-    //   state.maxLen = maxTrainingLength
-    // });
-
-
-    // Assuming each training object has a 'assign_trainings' array to derive headers
     if (state.viewData.length) {
       const firstTraining = state.viewData[0].employee.assign_trainings;
       state.headers = firstTraining.map((_: any, index: number) => ({
@@ -52,7 +40,6 @@ const fetchData = async () => {
       }));
     }
 
-    console.log("res", response.data);
   } catch (error) {
     console.error('Error fetching data:', error);
   }
@@ -120,24 +107,6 @@ onMounted(() => {
                 </div>
               </Table.Td>
            </template>
-             <!-- <template v-for="(ast, index) in data.employee.assign_trainings" :key="index">
-             <p>{{index}}</p>
-                  <Table.Td v-if="index<state.maxLen" class="text-center">
-                    <Button variant="soft-danger" rounded class="w-24 mb-2 mr-1">
-                      No Data
-                    </Button>
-                  </Table.Td>
-                  <Table.Td v-if="data.employee.assign_trainings.length<state.maxLen" class="text-center">
-                    <Button variant="soft-danger" rounded class="w-24 mb-2 mr-1">
-                      No Data
-                    </Button>
-                  </Table.Td>
-                  <Table.Td v-if="data.employee.assign_trainings.length<state.maxLen" class="text-center">
-                    <Button variant="soft-danger" rounded class="w-24 mb-2 mr-1">
-                      No Data
-                    </Button>
-                  </Table.Td>
-            </template> -->
           </Table.Tr>
         </Table.Tbody>
       </Table>

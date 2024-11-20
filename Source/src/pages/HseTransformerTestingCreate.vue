@@ -15,6 +15,7 @@ import Preview from "@/components/Base/Preview";
 import { Menu, Popover } from "@/components/Base/Headless";
 import Alert from "@/components/Base/Alert";
 import Litepicker from "@/components/Base/Litepicker";
+import { getToken } from './../auth/setToken'
 
 
 
@@ -178,6 +179,10 @@ function SuccessPopUp(){
         stopOnFocus: true,
         }).showToast();
 }
+const state = reactive({
+  token: getToken(),
+
+});
 
 const submitForm = async () => {
    formData.stt_1_descriptions = 'Magnetic Balance Test: While doing magnetic balance test from LV side the area should be well cordoned off to prevent anybody from coming close to the equipment which may include connected switchgear';
@@ -237,6 +242,7 @@ const submitForm = async () => {
                 const response = await axios.post(url, form, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
+                    'Authorization': state.token,
                 },
                 });
                 SuccessPopUp();

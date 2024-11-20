@@ -15,6 +15,8 @@ import Preview from "@/components/Base/Preview";
 import { Menu, Popover } from "@/components/Base/Headless";
 import Alert from "@/components/Base/Alert";
 import Litepicker from "@/components/Base/Litepicker";
+import { getToken } from './../auth/setToken'
+
 
 
 
@@ -84,6 +86,11 @@ const ishvcomplied8 = ref("");
 const ishvcomplied9 = ref("");
 const ishvcomplied10 = ref("");
 const ishvcomplied11 = ref("");
+
+const state = reactive({
+  token: getToken(),
+
+});
 
 
 interface BackendErrorResponse {
@@ -184,34 +191,6 @@ const submitForm = async () => {
   formData.is_hv_complied_9 = ishvcomplied9.value;
   formData.is_hv_complied_10 = ishvcomplied10.value;
   formData.is_hv_complied_11 = ishvcomplied11.value;
-  // validate.value.$touch();
-  // console.log(validate.value);
-  // if (validate.value.$invalid) {
-  //   FailedPopUp();
-  // } else {
-    
-  //   try {
-  //     const url = config.baseURL + '/api/v1/hse-safety-checklist-hv';
-  //     console.log("url",url)
-  //     const response = await axios.post(url, formData);
-  //     if (response.data != undefined) {
-  //       SuccessPopUp();
-  //       router.push({ name: 'hse-safety-checklist-hv-list' });
-  //     }
-  //   } catch (err) {
-  //     FailedPopUp();
-  //     const error = err as AxiosError<BackendErrorResponse>;
-  //     if (error.response) {
-  //       const backendError = error.response.data;
-  //       backendErrors.message = backendError.message;
-  //       backendErrors.errors = backendError.errors || {};
-  //     } else if (error.request) {
-  //       console.error('No response received:', error.request);
-  //     } else {
-  //       console.error('Error:', error.message);
-  //     }
-  //   }
-  // }
 
   validate.value.$touch();
     console.log(validate.value)
@@ -235,6 +214,7 @@ const submitForm = async () => {
                 const response = await axios.post(url, form, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
+                    'Authorization': state.token,
                 },
                 });
                 SuccessPopUp();

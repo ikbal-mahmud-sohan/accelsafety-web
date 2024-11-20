@@ -7,6 +7,8 @@ import { useRouter,useRoute } from 'vue-router';
 import Notification from "@/components/Base/Notification";
 import Lucide from "@/components/Base/Lucide";
 import config from "@/config";
+import { getToken } from './../auth/setToken'
+
 import {
   FormInput,
   FormLabel,
@@ -18,6 +20,10 @@ import Toastify from 'toastify-js';
 const formData = reactive({
     remarks: '',
     verified_image:[] as File[]
+});
+const state = reactive({
+  token: getToken(),
+
 });
 const router = useRouter();
 const route = useRoute();
@@ -112,6 +118,7 @@ const submitForm = async () => {
                 const response = await axios.post(url, form, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
+                    'Authorization': state.token,
                 },
                 });
                 if (response.data !== undefined) {
