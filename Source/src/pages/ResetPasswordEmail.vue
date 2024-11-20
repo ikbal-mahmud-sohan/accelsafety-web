@@ -46,7 +46,7 @@ const submitForm = async () => {
     } else {
                
             try {
-                let  url = config.baseURL+'/api/auth/reset/email';
+                let  url = config.baseURL+'/api/reset/email';
                 const response = await axios.post(url, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',

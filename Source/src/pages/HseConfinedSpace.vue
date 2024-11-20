@@ -10,15 +10,23 @@ import Tippy from '@/components/Base/Tippy';
 import { Dialog, Menu } from '@/components/Base/Headless';
 import Table from '@/components/Base/Table';
 import config from "@/config";
+import { getToken } from './../auth/setToken'
+
 
 const state = reactive({
   noiseIntensityMeasurementData: [] as Array<any>,
+  token: getToken(),
+
 });
 
 const fetchData = async () => {
   try {
    let  url = config.baseURL+'/api/v1/hse-confined-space';
-    const response = await axios.get(url);
+    const response = await axios.get(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     state.noiseIntensityMeasurementData = response.data.data;
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -27,7 +35,11 @@ const fetchData = async () => {
 const deleteData = async (sID:string) => {
   try {
     let url = config.baseURL+"/api/v1/hse-confined-space/"+sID;
-    const response = await axios.delete(url);
+    const response = await axios.delete(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     state.noiseIntensityMeasurementData = response.data.data;
   } catch (error) {
     console.error('Error fetching data:', error);

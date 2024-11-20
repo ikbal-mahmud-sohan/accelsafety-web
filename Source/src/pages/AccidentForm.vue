@@ -28,6 +28,8 @@ import Notification from "@/components/Base/Notification";
 import Preview from "@/components/Base/Preview";
 import Litepicker from "@/components/Base/Litepicker";
 import Alert from "@/components/Base/Alert";
+import { getToken } from './../auth/setToken'
+
 
 
 const router = useRouter();
@@ -82,6 +84,8 @@ const state = reactive({
   viewMonth: [] as Array<any>,
   viewType: [] as Array<any>,
   viewInjuryType: [] as Array<any>,
+  token: getToken(),
+
 });
 
 interface BackendErrorResponse {
@@ -157,8 +161,11 @@ const submitForm = async () => {
             });
             console.log("form",form)
             let  url = config.baseURL+'/api/v1/accident';
-              const response = await axios.post(url, form);
-              console.log('Form submitted successfully:', response.data);
+              const response = await axios.post(url, form,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
               if(response.data != undefined){
                   SuccessPopUp();
                 router.push({ name: 'accident-data-list' });
@@ -194,7 +201,11 @@ const handleFileChange = (event: Event) => {
 const fetchDropDownData = async () => {
   try {
    let  url = config.baseURL+'/api/v1/accident-drop-down';
-    const response = await axios.get(url);
+    const response = await axios.get(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     state.viewMonth = response.data.Month;
     state.viewType = response.data.AccidentType;
     state.viewInjuryType = response.data.InjuryType	;

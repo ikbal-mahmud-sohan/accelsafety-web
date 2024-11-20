@@ -12,8 +12,6 @@ import config from "@/config";
 import axios, { AxiosError } from 'axios';
 
 
-
-
 </script>
 
 <template>

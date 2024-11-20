@@ -1,0 +1,68 @@
+import { createRouter, createWebHistory } from "vue-router";
+import Layout from "@/themes";
+
+const router = createRouter({
+  history: createWebHistory(import.meta.env.BASE_URL),
+  routes: [
+    {
+      path: "/",
+      name: "home",
+      component: () => import("../pages/Login.vue"),
+    },
+    {
+      path: "/",
+      component: Layout,
+      children: [
+        
+        {
+          path: "/dashboard",
+          name: "dashboard-overview-1",
+          component: () => import("../pages/DashboardOverview1.vue"),
+        },
+        {
+          path: "dashboard-overview-2",
+          name: "dashboard-overview-2",
+          component: () => import("../pages/DashboardOverview2.vue"),
+        },
+        {
+          path: "dashboard-overview-3",
+          name: "dashboard-overview-3",
+          component: () => import("../pages/DashboardOverview3.vue"),
+        },
+        {
+          path: "dashboard-overview-4",
+          name: "dashboard-overview-4",
+          component: () => import("../pages/DashboardOverview4.vue"),
+        },
+       
+      ],
+    },
+    {
+      path: "/login",
+      name: "login",
+      component: () => import("../pages/Login.vue"),
+    },
+    {
+      path: "/register",
+      name: "register",
+      component: () => import("../pages/Register.vue"),
+    },
+    {
+      path: "/reset-password-email",
+      name: "reset-password-email",
+      component: () => import("../pages/ResetPasswordEmail.vue"),
+    },
+    {
+      path: "/email-notifications",
+      name: "email-notifications",
+      component: () => import("../pages/EmailNotification.vue"),
+    },
+    {
+      path: "/error-page",
+      name: "error-page",
+      component: () => import("../pages/ErrorPage.vue"),
+    },
+  ],
+});
+
+export default router;

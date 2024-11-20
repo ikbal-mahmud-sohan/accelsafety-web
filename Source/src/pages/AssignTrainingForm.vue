@@ -14,12 +14,16 @@ import Notification from "@/components/Base/Notification";
 import Preview from "@/components/Base/Preview";
 import { Menu, Popover } from "@/components/Base/Headless";
 import Alert from "@/components/Base/Alert";
+import { getToken } from './../auth/setToken'
+
 
 
 // Define your state using the reactive function
 const state = reactive({
   employeeData: [] as Array<any>,
   trainingTopicData: [] as Array<any>,
+  token: getToken(),
+
 });
 
 import {
@@ -108,7 +112,11 @@ const submitForm = async () => {
   } else {
     try {
       const url = config.baseURL + '/api/v1/assign-training';
-      const response = await axios.post(url, formData);
+      const response = await axios.post(url, formData,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
       if (response.data != undefined) {
         SuccessPopUp();
         router.push({ name: 'training-data-list' });
@@ -133,7 +141,11 @@ const submitForm = async () => {
 const fetchEmployeeData = async () => {
   try {
    let  url = config.baseURL+'/api/v1/employee';
-    const response = await axios.get(url);
+    const response = await axios.get(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     state.employeeData = response.data.data;
 
     console.log("sohan 1",state.employeeData)
@@ -144,7 +156,11 @@ const fetchEmployeeData = async () => {
 const fetchTrainingTopicData = async () => {
   try {
    let  url = config.baseURL+'/api/v1/trainingTopics';
-    const response = await axios.get(url);
+    const response = await axios.get(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     state.trainingTopicData = response.data.data;
     console.log("sohan 2",state.trainingTopicData)
 

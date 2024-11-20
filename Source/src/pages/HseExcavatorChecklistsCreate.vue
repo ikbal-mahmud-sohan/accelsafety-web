@@ -15,6 +15,8 @@ import Preview from "@/components/Base/Preview";
 import { Menu, Popover } from "@/components/Base/Headless";
 import Alert from "@/components/Base/Alert";
 import Litepicker from "@/components/Base/Litepicker";
+import { getToken } from './../auth/setToken'
+
 
 
 
@@ -106,6 +108,10 @@ const ishvcomplied14 = ref("");
 const fitUnfit = ref("");
 const isgeccon = ref("");
 
+const state = reactive({
+  token: getToken(),
+
+});
 
 interface BackendErrorResponse {
     message: string;
@@ -244,6 +250,7 @@ const submitForm = async () => {
                 const response = await axios.post(url, form, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
+                    'Authorization': state.token,
                 },
                 });
                 SuccessPopUp();

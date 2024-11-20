@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Layout from "@/themes";
+import { getToken } from "../auth/setToken";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -373,6 +374,8 @@ const router = createRouter({
             name: "hse-ladder-self-inspection-checklist",
             component: () => import("../pages/HseLadderSelfInspectionChecklist.vue"),
           },
+
+          // ok ok ok 
           {
             path: "hse-ladder-self-inspection-list",
             name: "hse-ladder-self-inspection-list",
@@ -470,6 +473,7 @@ const router = createRouter({
             name: "hse-list-pressure-vessels",
             component: () => import("../pages/HseListPressureVessels.vue"),
           },
+          // dot 
           {
             path: "hse-list-pressure-vessels-create",
             name: "hse-list-pressure-vessels-create",
@@ -673,17 +677,7 @@ const router = createRouter({
             name: "hse-first-aid-doc",
             component: () => import("../pages/HseFirstAidDoc.vue"),
           },
-          //Standard Operating Procedure
-          // {
-          //   path: "hse-standard-operating-procedure",
-          //   name: "hse-standard-operating-procedure",
-          //   component: () => import("../pages/HseStandardOperatingProcedure.vue"),
-          // },
-          // {
-          //   path: "hse-standard-operating-procedure-doc",
-          //   name: "hse-standard-operating-procedure-doc",
-          //   component: () => import("../pages/HseStandardOperatingProcedureDoc.vue"),
-          // },
+          
           //Job Safety Analysis
           {
             path: "hse-job-safety-analysis",
@@ -1037,5 +1031,20 @@ const router = createRouter({
     },
   ],
 });
-
+// route auth 
+router.beforeEach((to, from, next) => {
+  const token = getToken(); 
+  if (
+    to.path !== "/" &&
+    to.path !== "/login" &&
+    to.path !== "/register" &&
+    to.path !== "/reset-password-email" &&
+    to.path !== "/error-page"
+  ) {
+    if (!token) {
+      return next({ name: "login" });
+    }
+  }
+  next();
+});
 export default router;

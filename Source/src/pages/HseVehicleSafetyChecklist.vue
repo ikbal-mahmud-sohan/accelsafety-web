@@ -19,6 +19,8 @@ import Preview from "@/components/Base/Preview";
 import Litepicker from "@/components/Base/Litepicker";
 import Alert from "@/components/Base/Alert";
 import _ from "lodash";
+import { getToken } from './../auth/setToken'
+
 
 
 const formData = reactive({
@@ -88,6 +90,8 @@ const state = reactive({
   viewOwnerDepartment: [] as Array<any>,
   viewRespDepartment: [] as Array<any>,
   viewPlantName: [] as Array<any>,
+  token: getToken(),
+
 });
 const router = useRouter();
 
@@ -151,10 +155,11 @@ const submitForm = async () => {
 
             try {
                 let  url = config.baseURL+'/api/v1/hse-vehicle-safety';
-                console.log("sohan",url)
                 const response = await axios.post(url, form, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
+                    'Authorization': state.token,
+
                 },
                 });
                 console.log('Form submitted successfully:', response.data);

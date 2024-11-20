@@ -20,12 +20,18 @@ import _ from "lodash";
 import Tippy from "@/components/Base/Tippy";
 import Table from "@/components/Base/Table";
 import TomSelect from "@/components/Base/TomSelect";
+import { getToken } from './../auth/setToken'
+
 
 const formData = reactive({
     remarks: '',
     corrective_image:[] as File[],
     importance_level: '',
     work_accomplished_by: '',
+});
+const state = reactive({
+  token: getToken(),
+
 });
 const router = useRouter();
 const route = useRoute();
@@ -120,6 +126,8 @@ const submitForm = async () => {
                 const response = await axios.post(url, form, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
+                    'Authorization': state.token,
+
                 },
                 });
                 if (response.data !== undefined) {

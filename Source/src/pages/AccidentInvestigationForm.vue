@@ -28,6 +28,8 @@ import Notification from "@/components/Base/Notification";
 import Preview from "@/components/Base/Preview";
 import Litepicker from "@/components/Base/Litepicker";
 import Alert from "@/components/Base/Alert";
+import { getToken } from './../auth/setToken'
+
 
 
 const router = useRouter();
@@ -139,6 +141,8 @@ const selectedEmployee = ref("");
 const state = reactive({
   viewEmp: [] as Array<any>,
   selectEmpData: [] as Array<any>,
+  token: getToken(),
+
 });
 
 interface BackendErrorResponse {
@@ -385,7 +389,11 @@ const submitForm = async () => {
 
    try {
             let  url = config.baseURL+'/api/v1/accident-investigation';
-              const response = await axios.post(url, form);
+              const response = await axios.post(url, form,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
               console.log('Form submitted successfully:', response.data);
               if(response.data != undefined){
                   SuccessPopUp();
@@ -417,7 +425,11 @@ const submitForm = async () => {
 const fetchEmpData = async () => {
   try {
    let  url = config.baseURL+'/api/v1/employee';
-    const response = await axios.get(url);
+    const response = await axios.get(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     state.viewEmp = response.data.data;
     console.log("viewEmp",state.viewEmp)
   } catch (error) {
@@ -428,7 +440,11 @@ const fetchEmpData = async () => {
 const selectedEmpOne = async (sID:string) => {
   try {
     let url = config.baseURL+"/api/v1/employee/"+sID;
-    const response = await axios.get(url);
+    const response = await axios.get(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     formData.investigation_designation_1 = response.data.data.designation;
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -438,7 +454,11 @@ const selectedEmpOne = async (sID:string) => {
 const selectedEmpTwo = async (sID:string) => {
   try {
     let url = config.baseURL+"/api/v1/employee/"+sID;
-    const response = await axios.get(url);
+    const response = await axios.get(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     formData.investigation_designation_2 = response.data.data.designation;
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -448,7 +468,11 @@ const selectedEmpTwo = async (sID:string) => {
 const selectedEmpThree = async (sID:string) => {
   try {
     let url = config.baseURL+"/api/v1/employee/"+sID;
-    const response = await axios.get(url);
+    const response = await axios.get(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     formData.investigation_designation_3 = response.data.data.designation;
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -457,7 +481,11 @@ const selectedEmpThree = async (sID:string) => {
 const selectedEmpFour = async (sID:string) => {
   try {
     let url = config.baseURL+"/api/v1/employee/"+sID;
-    const response = await axios.get(url);
+    const response = await axios.get(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     formData.investigation_designation_4 = response.data.data.designation;
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -466,7 +494,11 @@ const selectedEmpFour = async (sID:string) => {
 const selectedEmployees = async (sID:string) => {
   try {
     let url = config.baseURL+"/api/v1/employee/"+sID;
-    const response = await axios.get(url);
+    const response = await axios.get(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     console.log("response.data.data",response.data.data)
     formData.employee_department = response.data.data.department;
     formData.emp_id = response.data.data.emp_id;

@@ -8,6 +8,8 @@ import Lucide from "@/components/Base/Lucide";
 import { ClassicEditor } from "@/components/Base/Ckeditor";
 import Preview from "@/components/Base/Preview";
 import Litepicker from "@/components/Base/Litepicker";
+import { getToken } from './../auth/setToken'
+
 
 import config from "@/config";
 import {
@@ -110,6 +112,10 @@ const ptwdate1 = ref("");
 const ptwdate2 = ref("");
 const ptwdate3 = ref("");
 const ptwdate4 = ref("");
+
+const state = reactive({
+  token: getToken(),
+});
 
 
 
@@ -280,6 +286,8 @@ const submitForm = async () => {
                 const response = await axios.post(url, form, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
+                    'Authorization': state.token,
+
                 },
                 });
                 SuccessPopUp();

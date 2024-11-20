@@ -10,6 +10,8 @@ import config from "@/config";
 import Alert from "@/components/Base/Alert";
 import Preview from "@/components/Base/Preview";
 import Litepicker from "@/components/Base/Litepicker";
+import { getToken } from './../auth/setToken'
+
 import {
   FormInput,
   FormLabel,
@@ -25,6 +27,10 @@ const formData = reactive({
 const router = useRouter();
 const route = useRoute();
 const editorData = ref("");
+
+const state = reactive({
+  token: getToken(),
+});
 
 const editorConfig = {
   toolbar: {
@@ -82,6 +88,7 @@ const submitForm = async () => {
                 const response = await axios.post(url, form, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
+                    'Authorization': state.token,
                 },
                 });
                 if (response.data !== undefined) {

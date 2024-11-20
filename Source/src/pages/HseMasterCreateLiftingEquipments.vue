@@ -15,9 +15,7 @@ import Preview from "@/components/Base/Preview";
 import { Menu, Popover } from "@/components/Base/Headless";
 import Alert from "@/components/Base/Alert";
 import Litepicker from "@/components/Base/Litepicker";
-
-
-
+import { getToken } from './../auth/setToken'
 
 // Define your state using the reactive function
 
@@ -52,6 +50,11 @@ interface BackendErrorResponse {
 }
 const selectedtrainingTopic = ref("");
 const selectedEmployee = ref("");
+
+const state = reactive({
+  token: getToken(),
+
+});
 
 const rules = {
       location:{required},
@@ -115,7 +118,11 @@ const submitForm = async () => {
   } else {
     try {
       const url = config.baseURL + '/api/v1/hse-master-listLifting-equipments';
-      const response = await axios.post(url, formData);
+      const response = await axios.post(url, formData,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
       if (response.data != undefined) {
         SuccessPopUp();
         router.push({ name: 'hse-master-listLifting-equipments' });

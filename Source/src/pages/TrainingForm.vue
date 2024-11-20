@@ -12,6 +12,8 @@ import config from "@/config";
 import Toastify from 'toastify-js';
 import Notification from "@/components/Base/Notification";
 import Alert from "@/components/Base/Alert";
+import { getToken } from './../auth/setToken'
+
 
 
 import {
@@ -24,6 +26,10 @@ import {
 const formData = reactive({
       name:'',
       descriptions:'',
+});
+const state = reactive({
+  token: getToken(),
+
 });
 const router = useRouter();
 
@@ -95,7 +101,11 @@ const submitForm = async () => {
 
    try {
    let  url = config.baseURL+'/api/v1/trainingTopics';
-    const response = await axios.post(url, formData);
+    const response = await axios.post(url, formData,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     console.log('Form submitted successfully:', response.data);
     if(response.data != undefined){
         SuccessPopUp();
