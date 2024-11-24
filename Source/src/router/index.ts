@@ -762,6 +762,87 @@ const router = createRouter({
             name: "hse-concrete-pump-checklists-create",
             component: () => import("../pages/HseConcretePumpChecklistsCreate.vue"),
           },
+          // sohan 
+          {
+            path: "hse-boom-placer-checklists",
+            name: "hse-boom-placer-checklists",
+            component: () => import("../pages/HseBoomPlacerChecklists.vue"),
+          },
+          {
+            path: "hse-boom-placer-checklists-create",
+            name: "hse-boom-placer-checklists-create",
+            component: () => import("../pages/HseBoomPlacerChecklistsCreate.vue"),
+          },
+          {
+            path: "hse-electrical-vibrator-checklists",
+            name: "hse-electrical-vibrator-checklists",
+            component: () => import("../pages/HseEelectricalVibratorChecklists.vue"),
+          },
+          {
+            path: "hse-electrical-vibrator-checklists-create",
+            name: "hse-electrical-vibrator-checklists-create",
+            component: () => import("../pages/HseEelectricalVibratorChecklistsCreate.vue"),
+          },
+          {
+            path: "hse-bar-cutting-machine-checklists",
+            name: "hse-bar-cutting-machine-checklists",
+            component: () => import("../pages/HseBarCuttingMachineChecklists.vue"),
+          },
+          {
+            path: "hse-bar-cutting-machine-checklists-create",
+            name: "hse-bar-cutting-machine-checklists-create",
+            component: () => import("../pages/HseBarCuttingMachineChecklistsCreate.vue"),
+          },
+          {
+            path: "hse-bar-bending-machine-checklists",
+            name: "hse-bar-bending-machine-checklists",
+            component: () => import("../pages/HseBarBendingMachineChecklists.vue"),
+          },
+          {
+            path: "hse-bar-bending-machine-checklists-create",
+            name: "hse-bar-bending-machine-checklists-create",
+            component: () => import("../pages/HseBarBendingMachineChecklistsCreate.vue"),
+          },
+          {
+            path: "hse-breaker-checklists",
+            name: "hse-breaker-checklists",
+            component: () => import("../pages/HseBreakerChecklists.vue"),
+          },
+          {
+            path: "hse-breaker-checklists-create",
+            name: "hse-breaker-checklists-create",
+            component: () => import("../pages/HseBreakerChecklistsCreate.vue"),
+          },
+          {
+            path: "hse-drill-machine-checklists",
+            name: "hse-drill-machine-checklists",
+            component: () => import("../pages/HseDrillMachineChecklists.vue"),
+          },
+          {
+            path: "hse-drill-machine-checklists-create",
+            name: "hse-drill-machine-checklists-create",
+            component: () => import("../pages/HseDrillMachineChecklistsCreate.vue"),
+          },
+          {
+            path: "hse-hydra-checklists",
+            name: "hse-hydra-checklists",
+            component: () => import("../pages/HseHydraChecklists.vue"),
+          },
+          {
+            path: "hse-hydra-checklists-create",
+            name: "hse-hydra-checklists-create",
+            component: () => import("../pages/HseHydraChecklistsCreate.vue"),
+          },
+          {
+            path: "hse-mobile-crane-checklists",
+            name: "hse-mobile-crane-checklists",
+            component: () => import("../pages/HseMobileCraneChecklists.vue"),
+          },
+          {
+            path: "hse-mobile-crane-checklists-create",
+            name: "hse-mobile-crane-checklists-create",
+            component: () => import("../pages/HseMobileCraneChecklistsCreate.vue"),
+          },
 
          
 
