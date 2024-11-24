@@ -485,5 +485,199 @@ import Lucide from "@/components/Base/Lucide";
         <p class="text-center">Concrete Pump List</p>
       </div>
     </div>
+    <div class="w-full lg:w-1/6 md:w-1/3">
+      <div class="flex justify-center items-center p-1">
+        <router-link :to="{ name: 'hse-boom-placer-checklists-create' }">
+          <div class="inline-block">
+              <img class="w-32 h-32" src="../assets/images/icon/Blueprint.png" alt="">
+            </div>
+        </router-link>
+      </div>
+      <div class="py-1">
+        <p class="text-center">Boom Placer Create</p>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/6 md:w-1/3">
+      <div class="flex justify-center items-center p-1">
+        <router-link :to="{ name: 'hse-boom-placer-checklists' }">
+          <div class="inline-block">
+              <img class="w-32 h-32" src="../assets/images/icon/Construction Barrier.png" alt="">
+            </div>
+        </router-link>
+      </div>
+      <div class="py-1">
+        <p class="text-center">Boom Placer List</p>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/6 md:w-1/3">
+      <div class="flex justify-center items-center p-1">
+        <router-link :to="{ name: 'hse-electrical-vibrator-checklists-create' }">
+          <div class="inline-block">
+              <img class="w-32 h-32" src="../assets/images/icon/Blueprint.png" alt="">
+            </div>
+        </router-link>
+      </div>
+      <div class="py-1">
+        <p class="text-center">Electrical Vibrator Create</p>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/6 md:w-1/3">
+      <div class="flex justify-center items-center p-1">
+        <router-link :to="{ name: 'hse-electrical-vibrator-checklists' }">
+          <div class="inline-block">
+              <img class="w-32 h-32" src="../assets/images/icon/Construction Barrier.png" alt="">
+            </div>
+        </router-link>
+      </div>
+      <div class="py-1">
+        <p class="text-center">Electrical Vibrator List</p>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/6 md:w-1/3">
+      <div class="flex justify-center items-center p-1">
+        <router-link :to="{ name: 'hse-bar-cutting-machine-checklists-create' }">
+          <div class="inline-block">
+              <img class="w-32 h-32" src="../assets/images/icon/Blueprint.png" alt="">
+            </div>
+        </router-link>
+      </div>
+      <div class="py-1">
+        <p class="text-center">Bar Cutting Machine Create</p>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/6 md:w-1/3">
+      <div class="flex justify-center items-center p-1">
+        <router-link :to="{ name: 'hse-bar-cutting-machine-checklists' }">
+          <div class="inline-block">
+              <img class="w-32 h-32" src="../assets/images/icon/Construction Barrier.png" alt="">
+            </div>
+        </router-link>
+      </div>
+      <div class="py-1">
+        <p class="text-center">Bar Cutting Machine List</p>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/6 md:w-1/3">
+      <div class="flex justify-center items-center p-1">
+        <router-link :to="{ name: 'hse-bar-bending-machine-checklists-create' }">
+          <div class="inline-block">
+              <img class="w-32 h-32" src="../assets/images/icon/Blueprint.png" alt="">
+            </div>
+        </router-link>
+      </div>
+      <div class="py-1">
+        <p class="text-center">Bar Bending Machine Create</p>
+      </div>
+    </div>
+    
+    <div class="w-full lg:w-1/6 md:w-1/3">
+      <div class="flex justify-center items-center p-1">
+        <router-link :to="{ name: 'hse-bar-bending-machine-checklists' }">
+          <div class="inline-block">
+              <img class="w-32 h-32" src="../assets/images/icon/Construction Barrier.png" alt="">
+            </div>
+        </router-link>
+      </div>
+      <div class="py-1">
+        <p class="text-center">Bar Bending Machine List</p>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/6 md:w-1/3">
+      <div class="flex justify-center items-center p-1">
+        <router-link :to="{ name: 'hse-breaker-checklists-create' }">
+          <div class="inline-block">
+              <img class="w-32 h-32" src="../assets/images/icon/Blueprint.png" alt="">
+            </div>
+        </router-link>
+      </div>
+      <div class="py-1">
+        <p class="text-center">Breaker Create</p>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/6 md:w-1/3">
+      <div class="flex justify-center items-center p-1">
+        <router-link :to="{ name: 'hse-breaker-checklists' }">
+          <div class="inline-block">
+              <img class="w-32 h-32" src="../assets/images/icon/Construction Barrier.png" alt="">
+            </div>
+        </router-link>
+      </div>
+      <div class="py-1">
+        <p class="text-center">Breaker List</p>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/6 md:w-1/3">
+      <div class="flex justify-center items-center p-1">
+        <router-link :to="{ name: 'hse-drill-machine-checklists-create' }">
+          <div class="inline-block">
+              <img class="w-32 h-32" src="../assets/images/icon/Blueprint.png" alt="">
+            </div>
+        </router-link>
+      </div>
+      <div class="py-1">
+        <p class="text-center">Drill Machine Create</p>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/6 md:w-1/3">
+      <div class="flex justify-center items-center p-1">
+        <router-link :to="{ name: 'hse-drill-machine-checklists' }">
+          <div class="inline-block">
+              <img class="w-32 h-32" src="../assets/images/icon/Construction Barrier.png" alt="">
+            </div>
+        </router-link>
+      </div>
+      <div class="py-1">
+        <p class="text-center">Drill Machine List</p>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/6 md:w-1/3">
+      <div class="flex justify-center items-center p-1">
+        <router-link :to="{ name: 'hse-hydra-checklists-create' }">
+          <div class="inline-block">
+              <img class="w-32 h-32" src="../assets/images/icon/Blueprint.png" alt="">
+            </div>
+        </router-link>
+      </div>
+      <div class="py-1">
+        <p class="text-center">Hydra Create</p>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/6 md:w-1/3">
+      <div class="flex justify-center items-center p-1">
+        <router-link :to="{ name: 'hse-hydra-checklists' }">
+          <div class="inline-block">
+              <img class="w-32 h-32" src="../assets/images/icon/Construction Barrier.png" alt="">
+            </div>
+        </router-link>
+      </div>
+      <div class="py-1">
+        <p class="text-center">Hydra List</p>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/6 md:w-1/3">
+      <div class="flex justify-center items-center p-1">
+        <router-link :to="{ name: 'hse-mobile-crane-checklists-create' }">
+          <div class="inline-block">
+              <img class="w-32 h-32" src="../assets/images/icon/Blueprint.png" alt="">
+            </div>
+        </router-link>
+      </div>
+      <div class="py-1">
+        <p class="text-center">Mobile Crane Create</p>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/6 md:w-1/3">
+      <div class="flex justify-center items-center p-1">
+        <router-link :to="{ name: 'hse-mobile-crane-checklists' }">
+          <div class="inline-block">
+              <img class="w-32 h-32" src="../assets/images/icon/Construction Barrier.png" alt="">
+            </div>
+        </router-link>
+      </div>
+      <div class="py-1">
+        <p class="text-center">Mobile Crane List</p>
+      </div>
+    </div>
+  
   </div>
 </template>
