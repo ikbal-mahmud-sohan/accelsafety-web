@@ -678,6 +678,102 @@ import Lucide from "@/components/Base/Lucide";
         <p class="text-center">Mobile Crane List</p>
       </div>
     </div>
+    <div class="w-full lg:w-1/6 md:w-1/3">
+      <div class="flex justify-center items-center p-1">
+        <router-link :to="{ name: 'hse-tower-crane-checklists-create' }">
+          <div class="inline-block">
+              <img class="w-32 h-32" src="../assets/images/icon/Blueprint.png" alt="">
+            </div>
+        </router-link>
+      </div>
+      <div class="py-1">
+        <p class="text-center">16 Tower Crane Create</p>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/6 md:w-1/3">
+      <div class="flex justify-center items-center p-1">
+        <router-link :to="{ name: 'hse-tower-crane-checklists' }">
+          <div class="inline-block">
+              <img class="w-32 h-32" src="../assets/images/icon/Construction Barrier.png" alt="">
+            </div>
+        </router-link>
+      </div>
+      <div class="py-1">
+        <p class="text-center">16 Tower Crane List</p>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/6 md:w-1/3">
+      <div class="flex justify-center items-center p-1">
+        <router-link :to="{ name: 'diesel-generator-checklists-create' }">
+          <div class="inline-block">
+              <img class="w-32 h-32" src="../assets/images/icon/Blueprint.png" alt="">
+            </div>
+        </router-link>
+      </div>
+      <div class="py-1">
+        <p class="text-center">17 Diesel Generator Create</p>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/6 md:w-1/3">
+      <div class="flex justify-center items-center p-1">
+        <router-link :to="{ name: 'diesel-generator-checklists' }">
+          <div class="inline-block">
+              <img class="w-32 h-32" src="../assets/images/icon/Construction Barrier.png" alt="">
+            </div>
+        </router-link>
+      </div>
+      <div class="py-1">
+        <p class="text-center">17 Diesel Generator List</p>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/6 md:w-1/3">
+      <div class="flex justify-center items-center p-1">
+        <router-link :to="{ name: 'power-distribution-panel-checklists-create' }">
+          <div class="inline-block">
+              <img class="w-32 h-32" src="../assets/images/icon/Blueprint.png" alt="">
+            </div>
+        </router-link>
+      </div>
+      <div class="py-1">
+        <p class="text-center">18 Power/Sub Distribution Panel Create</p>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/6 md:w-1/3">
+      <div class="flex justify-center items-center p-1">
+        <router-link :to="{ name: 'power-distribution-panel-checklists' }">
+          <div class="inline-block">
+              <img class="w-32 h-32" src="../assets/images/icon/Construction Barrier.png" alt="">
+            </div>
+        </router-link>
+      </div>
+      <div class="py-1">
+        <p class="text-center">18 Power/Sub Distribution Panel List</p>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/6 md:w-1/3">
+      <div class="flex justify-center items-center p-1">
+        <router-link :to="{ name: 'gas-cutting-set-checklists-create' }">
+          <div class="inline-block">
+              <img class="w-32 h-32" src="../assets/images/icon/Blueprint.png" alt="">
+            </div>
+        </router-link>
+      </div>
+      <div class="py-1">
+        <p class="text-center">19 Gas Cutting Set Create</p>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/6 md:w-1/3">
+      <div class="flex justify-center items-center p-1">
+        <router-link :to="{ name: 'gas-cutting-set-checklists' }">
+          <div class="inline-block">
+              <img class="w-32 h-32" src="../assets/images/icon/Construction Barrier.png" alt="">
+            </div>
+        </router-link>
+      </div>
+      <div class="py-1">
+        <p class="text-center">19 Gas Cutting Set List</p>
+      </div>
+    </div>
   
   </div>
 </template>

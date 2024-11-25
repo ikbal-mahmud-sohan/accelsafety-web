@@ -843,6 +843,46 @@ const router = createRouter({
             name: "hse-mobile-crane-checklists-create",
             component: () => import("../pages/HseMobileCraneChecklistsCreate.vue"),
           },
+          {
+            path: "hse-tower-crane-checklists",
+            name: "hse-tower-crane-checklists",
+            component: () => import("../pages/HseTowerCraneChecklists.vue"),
+          },
+          {
+            path: "hse-tower-crane-checklists-create",
+            name: "hse-tower-crane-checklists-create",
+            component: () => import("../pages/HseTowerCraneChecklistsCreate.vue"),
+          },
+          {
+            path: "diesel-generator-checklists",
+            name: "diesel-generator-checklists",
+            component: () => import("../pages/HseDieselGeneratorChecklists.vue"),
+          },
+          {
+            path: "diesel-generator-checklists-create",
+            name: "diesel-generator-checklists-create",
+            component: () => import("../pages/HseDieselGeneratorChecklistsCreate.vue"),
+          },
+          {
+            path: "power-distribution-panel-checklists",
+            name: "power-distribution-panel-checklists",
+            component: () => import("../pages/HsePowerDistributionChecklists.vue"),
+          },
+          {
+            path: "power-distribution-panel-checklists-create",
+            name: "power-distribution-panel-checklists-create",
+            component: () => import("../pages/HsePowerDistributionChecklistsCreate.vue"),
+          },
+          {
+            path: "gas-cutting-set-checklists",
+            name: "gas-cutting-set-checklists",
+            component: () => import("../pages/HseGasCuttingSetChecklists.vue"),
+          },
+          {
+            path: "gas-cutting-set-checklists-create",
+            name: "gas-cutting-set-checklists-create",
+            component: () => import("../pages/HseGasCuttingSetChecklistsCreate.vue"),
+          },
 
          
 
