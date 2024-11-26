@@ -876,8 +876,11 @@ onMounted(() => {
             <img class="w-1/2" src="../assets/images/additional/CementMixer.png" alt="">
           </div>
           <div class="mt-5">
+            <div class="flex items-center pb-5 text-base font-medium border-b border-slate-200/60 dark:border-darkmode-400">
+                <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" /> Verifier
+            </div>
             <div class="px-2 w-full">
-                    <div class="p-4 flex flex-wrap items-center">
+                    <div class="py-6 px-2 flex flex-wrap items-center">
                       <label class="mt-2 pr-4 font-medium">Condition</label>
                       <div class="flex flex-col justify-between mt-2 sm:flex-row">
                           <FormCheck class="mr-2">
