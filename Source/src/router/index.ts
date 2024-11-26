@@ -883,6 +883,46 @@ const router = createRouter({
             name: "gas-cutting-set-checklists-create",
             component: () => import("../pages/HseGasCuttingSetChecklistsCreate.vue"),
           },
+          {
+            path: "portable-grinder-checklists",
+            name: "portable-grinder-checklists",
+            component: () => import("../pages/HsePortableGrinderChecklists.vue"),
+          },
+          {
+            path: "portable-grinder-checklists-create",
+            name: "portable-grinder-checklists-create",
+            component: () => import("../pages/HsePortableGrinderChecklistsCreate.vue"),
+          },
+          {
+            path: "welding-machine-checklists",
+            name: "welding-machine-checklists",
+            component: () => import("../pages/HseWeldingMachineChecklists.vue"),
+          },
+          {
+            path: "welding-machine-checklists-create",
+            name: "welding-machine-checklists-create",
+            component: () => import("../pages/HseWeldingMachineChecklistsCreate.vue"),
+          },
+          {
+            path: "electrical-pump-checklists",
+            name: "electrical-pump-checklists",
+            component: () => import("../pages/HseelEctricalPumpChecklists.vue"),
+          },
+          {
+            path: "electrical-pump-checklists-create",
+            name: "electrical-pump-checklists-create",
+            component: () => import("../pages/HseelEctricalPumpChecklistsCreate.vue"),
+          },
+          {
+            path: "winch-machine-checklists",
+            name: "winch-machine-checklists",
+            component: () => import("../pages/HseelWinchMachineChecklists.vue"),
+          },
+          {
+            path: "winch-machine-checklists-create",
+            name: "winch-machine-checklists-create",
+            component: () => import("../pages/HseelWinchMachineChecklistsCreate.vue"),
+          },
 
          
 
