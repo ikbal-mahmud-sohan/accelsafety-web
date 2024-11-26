@@ -34,30 +34,27 @@ const formData = reactive({
       make:'',
       model:'',
       isgec:'',
-      bar_cutting_des_1:'',
-      bar_cutting_des_2:'',
-      bar_cutting_des_3:'',
-      bar_cutting_des_4:'',
-      bar_cutting_des_5:'',
-      bar_cutting_des_6:'',
-      bar_cutting_des_7:'',
-      bar_cutting_des_8:'',
-      is_bar_cutting_1:'',
-      is_bar_cutting_2:'',
-      is_bar_cutting_3:'',
-      is_bar_cutting_4:'',
-      is_bar_cutting_5:'',
-      is_bar_cutting_6:'',
-      is_bar_cutting_7:'',
-      is_bar_cutting_8:'',
-      bar_cutting_remarks_1:'',
-      bar_cutting_remarks_2:'',
-      bar_cutting_remarks_3:'',
-      bar_cutting_remarks_4:'',
-      bar_cutting_remarks_5:'',
-      bar_cutting_remarks_6:'',
-      bar_cutting_remarks_7:'',
-      bar_cutting_remarks_8:'',
+      electrical_pump_des_1:'',
+      electrical_pump_des_2:'',
+      electrical_pump_des_3:'',
+      electrical_pump_des_4:'',
+      electrical_pump_des_5:'',
+      electrical_pump_des_6:'',
+      electrical_pump_des_7:'',
+      is_electrical_pump_1:'',
+      is_electrical_pump_2:'',
+      is_electrical_pump_3:'',
+      is_electrical_pump_4:'',
+      is_electrical_pump_5:'',
+      is_electrical_pump_6:'',
+      is_electrical_pump_7:'',
+      electrical_pump_remarks_1:'',
+      electrical_pump_remarks_2:'',
+      electrical_pump_remarks_3:'',
+      electrical_pump_remarks_4:'',
+      electrical_pump_remarks_5:'',
+      electrical_pump_remarks_6:'',
+      electrical_pump_remarks_7:'',
       fit:'',
       checked_by: '',
       reviewed_by: '',
@@ -77,7 +74,6 @@ const ishvcomplied4 = ref("");
 const ishvcomplied5 = ref("");
 const ishvcomplied6 = ref("");
 const ishvcomplied7 = ref("");
-const ishvcomplied8 = ref("");
 const fitUnfit = ref("");
 const isgeccon = ref("");
 
@@ -167,25 +163,23 @@ function SuccessPopUp(){
 }
 
 const submitForm = async () => {
-   formData.bar_cutting_des_1 = 'Physical condition of body should be good & sound';
-   formData.bar_cutting_des_2 = 'Power cable should be free from damages and connection taken through industrial plug';
-   formData.bar_cutting_des_3 = 'Junction box of motor should be free from defects';
-   formData.bar_cutting_des_4 = 'On/off switch should be properly insulated';
-   formData.bar_cutting_des_5 = 'Rotating part of machine should be covered by fixed guard';
-   formData.bar_cutting_des_6 = 'Needle should be tightly connected with motor';
-   formData.bar_cutting_des_7 = 'Needle should be free from damages';
-   formData.bar_cutting_des_8 = 'Machine should be grounded as per IS 3043:1987';
+   formData.electrical_pump_des_1 = 'Physical condition of pump should be good.';
+   formData.electrical_pump_des_2 = 'Power cable should be free from damages and connection taken through industrial plug';
+   formData.electrical_pump_des_3 = 'Cable entry point should be fully packed, so that water can’t enter';
+   formData.electrical_pump_des_4 = 'Junction box of motor should be free from defects';
+   formData.electrical_pump_des_5 = 'On/off switch should be properly insulated';
+   formData.electrical_pump_des_6 = 'Rotating part of machine should be covered by fixed guard';
+   formData.electrical_pump_des_7 = 'Machine should be grounded as per IS 3043:1987';
   formData.checked_by_date = checkedbydate.value;
   formData.reviewed_by_date = reviewedbydate.value;
   formData.date = jcbdate.value;
-  formData.is_bar_cutting_1 = ishvcomplied1.value;
-  formData.is_bar_cutting_2 = ishvcomplied2.value;
-  formData.is_bar_cutting_3 = ishvcomplied3.value;
-  formData.is_bar_cutting_4 = ishvcomplied4.value;
-  formData.is_bar_cutting_5 = ishvcomplied5.value;
-  formData.is_bar_cutting_6 = ishvcomplied6.value;
-  formData.is_bar_cutting_7 = ishvcomplied7.value;
-  formData.is_bar_cutting_8 = ishvcomplied8.value;
+  formData.is_electrical_pump_1 = ishvcomplied1.value;
+  formData.is_electrical_pump_2 = ishvcomplied2.value;
+  formData.is_electrical_pump_3 = ishvcomplied3.value;
+  formData.is_electrical_pump_4 = ishvcomplied4.value;
+  formData.is_electrical_pump_5 = ishvcomplied5.value;
+  formData.is_electrical_pump_6 = ishvcomplied6.value;
+  formData.is_electrical_pump_7 = ishvcomplied7.value;
   formData.fit = fitUnfit.value;
   formData.isgec = isgeccon.value;
 
@@ -207,7 +201,7 @@ const submitForm = async () => {
             }
           });
             try {
-                let  url = config.baseURL+'/api/v1/bar-cutting-machine-checklists';
+                let  url = config.baseURL+'/api/v1/electrical-pump-checklists';
                 const response = await axios.post(url, form, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
@@ -216,7 +210,7 @@ const submitForm = async () => {
                 });
                 SuccessPopUp();
                 if (response.data !== undefined) {
-                    router.push({ name: 'hse-bar-cutting-machine-checklists' });
+                    router.push({ name: 'electrical-pump-checklists' });
                 }
         
             } catch (error) {
@@ -236,7 +230,7 @@ onMounted(() => {
 
 <template>
   <div class="flex items-center mt-8 intro-y">
-    <h2 class="mr-auto text-lg font-medium">Bar Cutting Machine</h2>
+    <h2 class="mr-auto text-lg font-medium">Electrical Pump/Motor</h2>
   </div>
   <div class="grid grid-cols-11 pb-20 mt-5 gap-x-6">
     <!-- BEGIN: Notification -->
@@ -282,7 +276,7 @@ onMounted(() => {
           <div class="p-0 md:p-5 mt-5 intro-y box">
         <div class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400" >
           <div class="flex items-center pb-5 text-base font-medium border-b border-slate-200/60 dark:border-darkmode-400">
-            <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" /> Bar Cutting Machine
+            <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" /> Electrical Pump/Motor
           </div>
           <div class="mt-5">
             
@@ -555,7 +549,7 @@ onMounted(() => {
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
                       <div class="font-medium">
-                        Physical condition of body should be good & sound
+                        Physical condition of pump should be good.
                       </div>
                     </div>
                 </div>
@@ -587,7 +581,7 @@ onMounted(() => {
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
                       <div>
-                        <FormInput id="crud-form-1" v-model="formData.bar_cutting_remarks_1" class="w-full" type="text" name="bar_cutting_remarks_1" placeholder="Input Remarks"/>
+                        <FormInput id="crud-form-1" v-model="formData.electrical_pump_remarks_1" class="w-full" type="text" name="electrical_pump_remarks_1" placeholder="Input Remarks"/>
                       </div>
                     </div>
                 </div>
@@ -627,7 +621,7 @@ onMounted(() => {
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
                       <div>
-                        <FormInput id="crud-form-1" v-model="formData.bar_cutting_remarks_2" class="w-full" type="text" name="bar_cutting_remarks_2" placeholder="Input Remarks"/>
+                        <FormInput id="crud-form-1" v-model="formData.electrical_pump_remarks_2" class="w-full" type="text" name="electrical_pump_remarks_2" placeholder="Input Remarks"/>
                       </div>
                     </div>
                 </div>
@@ -635,7 +629,7 @@ onMounted(() => {
               <div class="flex flex-wrap items-center">
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
-                      <div class="font-medium">Junction box of motor should be free from defects</div>
+                      <div class="font-medium">Cable entry point should be fully packed, so that water can’t enter</div>
                     </div>
                 </div>
                 <div class="md:w-1/3 px-2 w-full">
@@ -665,7 +659,7 @@ onMounted(() => {
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
                       <div>
-                        <FormInput id="crud-form-1" v-model="formData.bar_cutting_remarks_3" class="w-full" type="text" name="bar_cutting_remarks_3" placeholder="Input Remarks"/>
+                        <FormInput id="crud-form-1" v-model="formData.electrical_pump_remarks_3" class="w-full" type="text" name="electrical_pump_remarks_3" placeholder="Input Remarks"/>
                       </div>
                     </div>
                 </div>
@@ -674,7 +668,7 @@ onMounted(() => {
               <div class="flex flex-wrap items-center">
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
-                      <div class="font-medium">On/off switch should be properly insulated</div>
+                      <div class="font-medium">Junction box of motor should be free from defects</div>
                     </div>
                 </div>
                 <div class="md:w-1/3 px-2 w-full">
@@ -704,7 +698,7 @@ onMounted(() => {
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
                       <div>
-                        <FormInput id="crud-form-1" v-model="formData.bar_cutting_remarks_4" class="w-full" type="text" name="bar_cutting_remarks_4" placeholder="Input Remarks"/>
+                        <FormInput id="crud-form-1" v-model="formData.electrical_pump_remarks_4" class="w-full" type="text" name="electrical_pump_remarks_4" placeholder="Input Remarks"/>
                       </div>
                     </div>
                 </div>
@@ -713,7 +707,7 @@ onMounted(() => {
               <div class="flex flex-wrap items-center">
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
-                      <div class="font-medium">Rotating part of machine should be covered by fixed guard</div>
+                      <div class="font-medium">On/off switch should be properly insulated</div>
                       
                     </div>
                 </div>
@@ -744,7 +738,7 @@ onMounted(() => {
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
                       <div>
-                        <FormInput id="crud-form-1" v-model="formData.bar_cutting_remarks_5" class="w-full" type="text" name="bar_cutting_remarks_5" placeholder="Input Remarks"/>
+                        <FormInput id="crud-form-1" v-model="formData.electrical_pump_remarks_5" class="w-full" type="text" name="electrical_pump_remarks_5" placeholder="Input Remarks"/>
                       </div>
                     </div>
                 </div>
@@ -752,7 +746,7 @@ onMounted(() => {
               <div class="flex flex-wrap items-center">
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
-                      <div class="font-medium">Needle should be tightly connected with motor</div>
+                      <div class="font-medium">Rotating part of machine should be covered by fixed guard</div>
                       
                     </div>
                 </div>
@@ -783,7 +777,7 @@ onMounted(() => {
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
                       <div>
-                        <FormInput id="crud-form-1" v-model="formData.bar_cutting_remarks_6" class="w-full" type="text" name="bar_cutting_remarks_6" placeholder="Input Remarks"/>
+                        <FormInput id="crud-form-1" v-model="formData.electrical_pump_remarks_6" class="w-full" type="text" name="electrical_pump_remarks_6" placeholder="Input Remarks"/>
                       </div>
                     </div>
                 </div>
@@ -792,7 +786,7 @@ onMounted(() => {
               <div class="flex flex-wrap items-center">
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
-                      <div class="font-medium">Needle should be free from damages</div>
+                      <div class="font-medium">Machine should be grounded as per IS 3043:1987</div>
                      
                     </div>
                 </div>
@@ -823,55 +817,15 @@ onMounted(() => {
                 <div class="md:w-1/3 px-2 w-full">
                     <div class="p-4">
                       <div>
-                        <FormInput id="crud-form-1" v-model="formData.bar_cutting_remarks_7" class="w-full" type="text" name="bar_cutting_remarks_7" placeholder="Input Remarks"/>
+                        <FormInput id="crud-form-1" v-model="formData.electrical_pump_remarks_7" class="w-full" type="text" name="electrical_pump_remarks_7" placeholder="Input Remarks"/>
                       </div>
                     </div>
                 </div>
               </div> 
-              <div class="flex flex-wrap items-center">
-                <div class="md:w-1/3 px-2 w-full">
-                    <div class="p-4">
-                      <div class="font-medium">Machine should be grounded as per IS 3043:1987</div>
-                      
-                    </div>
-                </div>
-                <div class="md:w-1/3 px-2 w-full">
-                    <div class="p-4">
-                      <div class="flex flex-col justify-between mt-2 sm:flex-row">
-                          <FormCheck class="mr-2">
-                            <FormCheck.Input id="radio-switchh-1" v-model="ishvcomplied8" type="radio" name="hseLadder8" value="Yes" />
-                            <FormCheck.Label htmlFor="radio-switchh-1">
-                                Yes
-                            </FormCheck.Label>
-                        </FormCheck>
-                        <FormCheck class="mr-2">
-                            <FormCheck.Input id="radio-switchh-2" v-model="ishvcomplied8" type="radio" name="hseLadder8" value="No" />
-                            <FormCheck.Label htmlFor="radio-switchh-2">
-                                No
-                            </FormCheck.Label>
-                        </FormCheck>
-                        <FormCheck class="">
-                            <FormCheck.Input id="radio-switchh-3" v-model="ishvcomplied8" type="radio" name="hseLadder8" value="" />
-                            <FormCheck.Label htmlFor="radio-switchh-3">
-                                N/A
-                            </FormCheck.Label>
-                        </FormCheck>
-                      </div>
-                    </div>
-                </div>
-                <div class="md:w-1/3 px-2 w-full">
-                    <div class="p-4">
-                      <div>
-                        <FormInput id="crud-form-1" v-model="formData.bar_cutting_remarks_8" class="w-full" type="text" name="bar_cutting_remarks_8" placeholder="Input Remarks"/>
-                      </div>
-                    </div>
-                </div>
-              </div> 
-             
                
           </div>
           <div class="mt-5 flex justify-center items-center">
-            <img class="w-1/2 " src="../assets/images/additional/BarCutting.png" alt="">
+            <img class="w-1/2 " src="../assets/images/additional/ElectricalPump.png" alt="">
           </div>
           <div class="mt-5">
             <div class="px-2 w-full">
@@ -1212,7 +1166,7 @@ onMounted(() => {
           <li
             class="pl-5 mb-4 font-medium border-l-2 border-primary dark:border-primary text-primary"
           >
-            <a href="">Bar Cutting Machine</a>
+            <a href="">Electrical Pump/Motor</a>
           </li>
           <li
             class="pl-5 mb-4 border-l-2 border-transparent dark:border-transparent"
@@ -1243,7 +1197,7 @@ onMounted(() => {
             class="mt-2 text-xs leading-relaxed text-slate-600 dark:text-slate-500"
           >
             <div>
-              When filling out the Bar Cutting Machine report, be specific and clear with details, using the correct date format and precise descriptions..
+              When filling out the Electrical Pump/Motor report, be specific and clear with details, using the correct date format and precise descriptions..
             </div>
             <div class="mt-2">
               Ensure all required fields are accurately completed and boolean options are correctly marked. Upload relevant files and adhere to format and size requirements for attachments.
@@ -1257,7 +1211,7 @@ onMounted(() => {
   <Notification id="success-notification-content" class="flex hidden">
         <Lucide icon="CheckCircle" class="text-success" />
         <div class="ml-4 mr-4">
-          <div class="font-medium">Bar Cutting Machine success!</div>
+          <div class="font-medium">Electrical Pump/Motor success!</div>
         </div>
       </Notification>
       <!-- END: Success Notification Content -->
@@ -1265,7 +1219,7 @@ onMounted(() => {
       <Notification id="failed-notification-content" class="flex items-center hidden">
         <Lucide icon="XCircle" class="text-danger" />
         <div class="ml-4 mr-4">
-          <div class="font-medium">Bar Cutting Machine failed!</div>
+          <div class="font-medium">Electrical Pump/Motor failed!</div>
           <div class="mt-1 text-slate-500">Please check the fileld form.</div>
         </div>
       </Notification>
