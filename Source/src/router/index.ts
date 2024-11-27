@@ -963,6 +963,46 @@ const router = createRouter({
             name: "sand-blasting-set-checklists-create",
             component: () => import("../pages/HseSandBlastingSetChecklistsCreate.vue"),
           },
+          {
+            path: "fire-extinguisher-checklists",
+            name: "fire-extinguisher-checklists",
+            component: () => import("../pages/HseFireExtinguisherChecklists.vue"),
+          },
+          {
+            path: "fire-extinguisher-checklists-create",
+            name: "fire-extinguisher-checklists-create",
+            component: () => import("../pages/HseFireExtinguisherChecklistsCreate.vue"),
+          },
+          {
+            path: "bench-cutting-machine-checklists",
+            name: "bench-cutting-machine-checklists",
+            component: () => import("../pages/HseBenchCuttingMachineChecklists.vue"),
+          },
+          {
+            path: "bench-cutting-machine-checklists-create",
+            name: "bench-cutting-machine-checklists-create",
+            component: () => import("../pages/HseBenchCuttingMachineChecklistsCreate.vue"),
+          },
+          {
+            path: "pedestal-grinder-checklists",
+            name: "pedestal-grinder-checklists",
+            component: () => import("../pages/HsePedestalGrinderChecklists.vue"),
+          },
+          {
+            path: "pedestal-grinder-checklists-create",
+            name: "pedestal-grinder-checklists-create",
+            component: () => import("../pages/HsePedestalGrinderChecklistsCreate.vue"),
+          },
+          {
+            path: "circular-saw-checklists",
+            name: "circular-saw-checklists",
+            component: () => import("../pages/HseCircularSawChecklists.vue"),
+          },
+          {
+            path: "circular-saw-checklists-create",
+            name: "circular-saw-checklists-create",
+            component: () => import("../pages/HseCircularSawChecklistsCreate.vue"),
+          },
 
          
 
