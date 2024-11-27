@@ -847,6 +847,102 @@ import Lucide from "@/components/Base/Lucide";
         <p class="text-center">23-Winch Machine List</p>
       </div>
     </div>
+    <div class="w-full lg:w-1/6 md:w-1/3">
+      <div class="flex justify-center items-center p-1">
+        <router-link :to="{ name: 'chain-pulley-block-checklists-create' }">
+          <div class="inline-block">
+              <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/ChainPulleyBlock.png" alt="">
+            </div>
+        </router-link>
+      </div>
+      <div class="py-1">
+        <p class="text-center">24-Chain Pulley Block Create</p>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/6 md:w-1/3">
+      <div class="flex justify-center items-center p-1">
+        <router-link :to="{ name: 'chain-pulley-block-checklists' }">
+          <div class="inline-block">
+              <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/ChainPulleyBlock.png" alt="">
+            </div>
+        </router-link>
+      </div>
+      <div class="py-1">
+        <p class="text-center">24-Chain Pulley Block List</p>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/6 md:w-1/3">
+      <div class="flex justify-center items-center p-1">
+        <router-link :to="{ name: 'lifting-tools-tackles-checklists-create' }">
+          <div class="inline-block">
+              <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/LiftingToolsTackles.png" alt="">
+            </div>
+        </router-link>
+      </div>
+      <div class="py-1">
+        <p class="text-center">25-Lifting Tools Tackles Create</p>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/6 md:w-1/3">
+      <div class="flex justify-center items-center p-1">
+        <router-link :to="{ name: 'lifting-tools-tackles-checklists' }">
+          <div class="inline-block">
+              <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/LiftingToolsTackles.png" alt="">
+            </div>
+        </router-link>
+      </div>
+      <div class="py-1">
+        <p class="text-center">25-Lifting Tools Tackles List</p>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/6 md:w-1/3">
+      <div class="flex justify-center items-center p-1">
+        <router-link :to="{ name: 'air-compressor-checklists-create' }">
+          <div class="inline-block">
+              <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/AirCompressor.png" alt="">
+            </div>
+        </router-link>
+      </div>
+      <div class="py-1">
+        <p class="text-center">26 Air Compressor Create</p>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/6 md:w-1/3">
+      <div class="flex justify-center items-center p-1">
+        <router-link :to="{ name: 'air-compressor-checklists' }">
+          <div class="inline-block">
+              <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/AirCompressor.png" alt="">
+            </div>
+        </router-link>
+      </div>
+      <div class="py-1">
+        <p class="text-center">26 Air Compressor List</p>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/6 md:w-1/3">
+      <div class="flex justify-center items-center p-1">
+        <router-link :to="{ name: 'sand-blasting-set-checklists-create' }">
+          <div class="inline-block">
+              <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/SandBlastingSet.png" alt="">
+            </div>
+        </router-link>
+      </div>
+      <div class="py-1">
+        <p class="text-center">27-Grit / Sand Blasting Set Create</p>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/6 md:w-1/3">
+      <div class="flex justify-center items-center p-1">
+        <router-link :to="{ name: 'sand-blasting-set-checklists' }">
+          <div class="inline-block">
+              <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/SandBlastingSet.png" alt="">
+            </div>
+        </router-link>
+      </div>
+      <div class="py-1">
+        <p class="text-center">27-Grit / Sand Blasting Set List</p>
+      </div>
+    </div>
   
   </div>
 </template>

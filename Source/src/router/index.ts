@@ -923,6 +923,46 @@ const router = createRouter({
             name: "winch-machine-checklists-create",
             component: () => import("../pages/HseelWinchMachineChecklistsCreate.vue"),
           },
+          {
+            path: "chain-pulley-block-checklists",
+            name: "chain-pulley-block-checklists",
+            component: () => import("../pages/HseChainPulleyBlockChecklists.vue"),
+          },
+          {
+            path: "chain-pulley-block-checklists-create",
+            name: "chain-pulley-block-checklists-create",
+            component: () => import("../pages/HseChainPulleyBlockChecklistsCreate.vue"),
+          },
+          {
+            path: "lifting-tools-tackles-checklists",
+            name: "lifting-tools-tackles-checklists",
+            component: () => import("../pages/HseLiftingToolsTacklesChecklists.vue"),
+          },
+          {
+            path: "lifting-tools-tackles-checklists-create",
+            name: "lifting-tools-tackles-checklists-create",
+            component: () => import("../pages/HseLiftingToolsTacklesChecklistsCreate.vue"),
+          },
+          {
+            path: "air-compressor-checklists",
+            name: "air-compressor-checklists",
+            component: () => import("../pages/HseAirCompressorChecklists.vue"),
+          },
+          {
+            path: "air-compressor-checklists-create",
+            name: "air-compressor-checklists-create",
+            component: () => import("../pages/HseAirCompressorChecklistsCreate.vue"),
+          },
+          {
+            path: "sand-blasting-set-checklists",
+            name: "sand-blasting-set-checklists",
+            component: () => import("../pages/HseSandBlastingSetChecklists.vue"),
+          },
+          {
+            path: "sand-blasting-set-checklists-create",
+            name: "sand-blasting-set-checklists-create",
+            component: () => import("../pages/HseSandBlastingSetChecklistsCreate.vue"),
+          },
 
          
 
