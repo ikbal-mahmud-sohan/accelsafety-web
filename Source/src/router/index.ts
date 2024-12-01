@@ -1003,6 +1003,46 @@ const router = createRouter({
             name: "circular-saw-checklists-create",
             component: () => import("../pages/HseCircularSawChecklistsCreate.vue"),
           },
+          {
+            path: "batching-plant-checklists",
+            name: "batching-plant-checklists",
+            component: () => import("../pages/HseBatchingPlantChecklists.vue"),
+          },
+          {
+            path: "batching-plant-checklists-create",
+            name: "batching-plant-checklists-create",
+            component: () => import("../pages/HseBatchingPlantChecklistsCreate.vue"),
+          },
+          {
+            path: "ambulance-checklists",
+            name: "ambulance-checklists",
+            component: () => import("../pages/HseAmbulanceChecklists.vue"),
+          },
+          {
+            path: "ambulance-checklists-create",
+            name: "ambulance-checklists-create",
+            component: () => import("../pages/HseAmbulanceChecklistsCreate.vue"),
+          },
+          {
+            path: "skidSteer-loader-checklists",
+            name: "skidSteer-loader-checklists",
+            component: () => import("../pages/HseSkidSteerLoaderChecklists.vue"),
+          },
+          {
+            path: "skidSteer-loader-checklists-create",
+            name: "skidSteer-loader-checklists-create",
+            component: () => import("../pages/HseSkidSteerLoaderChecklistsCreate.vue"),
+          },
+          {
+            path: "grader-checklists",
+            name: "grader-checklists",
+            component: () => import("../pages/HseGraderChecklists.vue"),
+          },
+          {
+            path: "grader-checklists-create",
+            name: "grader-checklists-create",
+            component: () => import("../pages/HseGraderChecklistsCreate.vue"),
+          },
 
          
 
