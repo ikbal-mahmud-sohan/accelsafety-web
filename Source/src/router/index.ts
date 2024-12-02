@@ -1043,8 +1043,46 @@ const router = createRouter({
             name: "grader-checklists-create",
             component: () => import("../pages/HseGraderChecklistsCreate.vue"),
           },
-
-         
+          {
+            path: "gantry-crane-checklists",
+            name: "gantry-crane-checklists",
+            component: () => import("../pages/HseGantryCraneChecklists.vue"),
+          },
+          {
+            path: "gantry-crane-checklists-create",
+            name: "gantry-crane-checklists-create",
+            component: () => import("../pages/HseGantryCraneChecklistsCreate.vue"),
+          },
+          {
+            path: "eot-crane-checklists",
+            name: "eot-crane-checklists",
+            component: () => import("../pages/HseEotCraneChecklists.vue"),
+          },
+          {
+            path: "eot-crane-checklists-create",
+            name: "eot-crane-checklists-create",
+            component: () => import("../pages/HseEotCraneChecklistsCreate.vue"),
+          },
+          {
+            path: "trailer-checklists",
+            name: "trailer-checklists",
+            component: () => import("../pages/HseTrailerChecklists.vue"),
+          },
+          {
+            path: "trailer-checklists-create",
+            name: "trailer-checklists-create",
+            component: () => import("../pages/HseTrailerChecklistsCreate.vue"),
+          },
+          {
+            path: "four-wheeler-checklists",
+            name: "four-wheeler-checklists",
+            component: () => import("../pages/HseFourWheelerChecklists.vue"),
+          },
+          {
+            path: "four-wheeler-checklists-create",
+            name: "four-wheeler-checklists-create",
+            component: () => import("../pages/HseFourWheelerChecklistsCreate.vue"),
+          },
 
         // Isgec 
         {
