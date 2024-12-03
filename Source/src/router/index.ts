@@ -1083,6 +1083,46 @@ const router = createRouter({
             name: "four-wheeler-checklists-create",
             component: () => import("../pages/HseFourWheelerChecklistsCreate.vue"),
           },
+          {
+            path: "bus-checklists",
+            name: "bus-checklists",
+            component: () => import("../pages/HseBusChecklists.vue"),
+          },
+          {
+            path: "bus-checklists-create",
+            name: "bus-checklists-create",
+            component: () => import("../pages/HseBusChecklistsCreate.vue"),
+          },
+          {
+            path: "diesel-tanker-checklists",
+            name: "diesel-tanker-checklists",
+            component: () => import("../pages/HseDieselTankerChecklists.vue"),
+          },
+          {
+            path: "diesel-tanker-checklists-create",
+            name: "diesel-tanker-checklists-create",
+            component: () => import("../pages/HseDieselTankerChecklistsCreate.vue"),
+          },
+          {
+            path: "water-tanker-checklists",
+            name: "water-tanker-checklists",
+            component: () => import("../pages/HseWaterTankerChecklists.vue"),
+          },
+          {
+            path: "water-tanker-checklists-create",
+            name: "water-tanker-checklists-create",
+            component: () => import("../pages/HseWaterTankerChecklistsCreate.vue"),
+          },
+          {
+            path: "bike-checklists",
+            name: "bike-checklists",
+            component: () => import("../pages/HseBikeChecklists.vue"),
+          },
+          {
+            path: "bike-checklists-create",
+            name: "bike-checklists-create",
+            component: () => import("../pages/HseBikeChecklistsCreate.vue"),
+          },
 
         // Isgec 
         {
