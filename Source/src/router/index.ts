@@ -16,6 +16,11 @@ const router = createRouter({
       children: [
         
         {
+          path: "/safety-observation-dashboard",
+          name: "safety-observation-dashboard",
+          component: () => import("../pages/SafetyObservationDashboard.vue"),
+        },
+        {
           path: "/dashboard",
           name: "dashboard-overview-1",
           component: () => import("../pages/DashboardOverview1.vue"),
@@ -1123,18 +1128,6 @@ const router = createRouter({
             name: "bike-checklists-create",
             component: () => import("../pages/HseBikeChecklistsCreate.vue"),
           },
-
-        // Isgec 
-        {
-          path: "isgec",
-          name: "isgec-data-list",
-          component: () => import("../pages/IsgecDataList.vue"),
-        },
-        {
-          path: "isgec-backhoe-loader",
-          name: "isgec-backhoe-loader",
-          component: () => import("../pages/IsgecBackhoeLoaderList.vue"),
-        },
         {
           path: "users-layout-1",
           name: "users-layout-1",

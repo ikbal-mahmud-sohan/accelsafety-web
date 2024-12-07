@@ -9,23 +9,30 @@ import { getColor } from "@/utils/colors";
 const props = defineProps<{
   width?: number;
   height?: number;
+  chartData: number[]; // Array of numbers for chart data
+  labels: string[];    // Array of strings for chart labels
 }>();
 
 const colorScheme = computed(() => useColorSchemeStore().colorScheme);
 const darkMode = computed(() => useDarkModeStore().darkMode);
 
-const chartData = [15, 10, 65];
 const chartColors = () => [
-  getColor("pending", 0.9),
-  getColor("warning", 0.9),
   getColor("primary", 0.9),
+  getColor("secondary", 0.9),
+  getColor("success", 0.9),
+  getColor("info", 0.9),
+  getColor("warning", 0.9),
+  getColor("pending", 0.9),
+  getColor("danger", 0.9),
+  getColor("light", 0.9),
+  getColor("dark", 0.9),
 ];
 const data = computed<ChartData>(() => {
   return {
-    labels: ["31 - 50 Years old", ">= 50 Years old", "17 - 30 Years old"],
+    labels: props.labels,
     datasets: [
       {
-        data: chartData,
+        data: props.chartData,
         backgroundColor: colorScheme.value ? chartColors() : "",
         hoverBackgroundColor: colorScheme.value ? chartColors() : "",
         borderWidth: 5,

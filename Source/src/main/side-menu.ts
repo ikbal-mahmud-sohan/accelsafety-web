@@ -8,6 +8,11 @@ const menu: Array<Menu | "divider"> = [
     subMenu: [
       {
         icon: "Activity",
+        pageName: "safety-observation-dashboard",
+        title: "Safety Observation Dashboard",
+      },
+      {
+        icon: "Activity",
         pageName: "dashboard-overview-1",
         title: "Overview 1",
       },
@@ -150,20 +155,7 @@ const menu: Array<Menu | "divider"> = [
       
     ],
   },
-  {
-    icon: "TruckIcon",
-    pageName: "ISGEC",
-    title: "ISGEC",
-    subMenu: [
-      {
-        icon: "Activity",
-        pageName: "isgec-data-list",
-        title: "ISGEC List",
-      },
-      
-      
-    ],
-  },
+ 
   {
     icon: "Box",
     pageName: "Employee Information",
