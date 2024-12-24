@@ -295,55 +295,33 @@ import Lucide from "@/components/Base/Lucide";
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'hse-jcb-checklists-create' }">
+        <router-link :to="{ name: 'hse-jcb' }">
           <div class="inline-block">
               <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/jcb.png" alt="">
             </div>
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">1-Backhoe Loader (JCB) Create</p>
+        <p class="text-center">1-Backhoe Loader (JCB)</p>
       </div>
     </div>
+   
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'hse-jcb-checklists' }">
-          <div class="inline-block">
-              <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/jcb.png" alt="">
-            </div>
-        </router-link>
-      </div>
-      <div class="py-1">
-        <p class="text-center">1-Backhoe Loader (JCB) List</p>
-      </div>
-    </div>
-    <div class="w-full lg:w-1/6 md:w-1/3">
-      <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'hse-excavator-checklists-create' }">
+        <router-link :to="{ name: 'hse-excavator' }">
           <div class="inline-block">
               <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/excavator.png" alt="">
             </div>
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">2-Excavator Create</p>
+        <p class="text-center">2-Excavator</p>
       </div>
     </div>
+    
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'hse-excavator-checklists' }">
-          <div class="inline-block">
-              <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/excavator.png" alt="">
-            </div>
-        </router-link>
-      </div>
-      <div class="py-1">
-        <p class="text-center">2-Excavator List</p>
-      </div>
-    </div>
-    <div class="w-full lg:w-1/6 md:w-1/3">
-      <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'hse-dumper-checklists-create' }">
+        <router-link :to="{ name: 'hse-dumper' }">
           <div class="inline-block">
               <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/DUMPER.png" alt="">
             </div>
@@ -355,161 +333,79 @@ import Lucide from "@/components/Base/Lucide";
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'hse-dumper-checklists' }">
-          <div class="inline-block">
-              <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/DUMPER.png" alt="">
-            </div>
-        </router-link>
-      </div>
-      <div class="py-1">
-        <p class="text-center">3-Dumper List</p>
-      </div>
-    </div>
-    <div class="w-full lg:w-1/6 md:w-1/3">
-      <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'hse-earth-compactors-checklists-create' }">
+        <router-link :to="{ name: 'hse-earth-compactors' }">
           <div class="inline-block">
               <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/EARTH-COMPACTOR.png" alt="">
             </div>
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">4-Earth Compactor Create</p>
-      </div>
-    </div>
-    <div class="w-full lg:w-1/6 md:w-1/3">
-      <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'hse-earth-compactors-checklists' }">
-          <div class="inline-block">
-              <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/EARTH-COMPACTOR.png" alt="">
-            </div>
-        </router-link>
-      </div>
-      <div class="py-1">
-        <p class="text-center">4-Earth Compactor List</p>
+        <p class="text-center">4-Earth Compactor</p>
       </div>
     </div>
    
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'hse-concrete-mixer-checklists-create' }">
+        <router-link :to="{ name: 'hse-concrete-mixer' }">
           <div class="inline-block">
               <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Cement Mixer.png" alt="">
             </div>
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">5-Concrete Mixer Create</p>
+        <p class="text-center">5-Concrete Mixer</p>
       </div>
     </div>
+    
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'hse-concrete-mixer-checklists' }">
-          <div class="inline-block">
-              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Cement Mixer.png" alt="">
-            </div>
-        </router-link>
-      </div>
-      <div class="py-1">
-        <p class="text-center">5-Concrete Mixer List</p>
-      </div>
-    </div>
-    <div class="w-full lg:w-1/6 md:w-1/3">
-      <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'hse-transit-mixers-checklists-create' }">
+        <router-link :to="{ name: 'hse-transit-mixer' }">
           <div class="inline-block">
               <img class="w-44 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/TRANSITMIXER.png" alt="">
             </div>
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">6-Transit Mixer Create</p>
+        <p class="text-center">6-Transit Mixer</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'hse-transit-mixers-checklists' }">
-          <div class="inline-block">
-              <img class="w-44 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/TRANSITMIXER.png" alt="">
-            </div>
-        </router-link>
-      </div>
-      <div class="py-1">
-        <p class="text-center">6-Transit Mixer List</p>
-      </div>
-    </div>
-    <div class="w-full lg:w-1/6 md:w-1/3">
-      <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'hse-concrete-pump-checklists-create' }">
+        <router-link :to="{ name: 'hse-concrete-pump' }">
           <div class="inline-block">
               <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/ConcretePump.png" alt="">
             </div>
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">7-Concrete Pump Create</p>
+        <p class="text-center">7-Concrete Pump</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'hse-concrete-pump-checklists' }">
-          <div class="inline-block">
-              <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/ConcretePump.png" alt="">
-            </div>
-        </router-link>
-      </div>
-      <div class="py-1">
-        <p class="text-center">7-Concrete Pump List</p>
-      </div>
-    </div>
-    <div class="w-full lg:w-1/6 md:w-1/3">
-      <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'hse-boom-placer-checklists-create' }">
+        <router-link :to="{ name: 'hse-boom-placer' }">
           <div class="inline-block">
               <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/BoomPlacer.png" alt="">
             </div>
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">8-Boom Placer Create</p>
+        <p class="text-center">8-Boom Placer</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'hse-boom-placer-checklists' }">
-          <div class="inline-block">
-              <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/BoomPlacer.png" alt="">
-            </div>
-        </router-link>
-      </div>
-      <div class="py-1">
-        <p class="text-center">8-Boom Placer List</p>
-      </div>
-    </div>
-    <div class="w-full lg:w-1/6 md:w-1/3">
-      <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'hse-electrical-vibrator-checklists-create' }">
+        <router-link :to="{ name: 'hse-electrical-vibrator' }">
           <div class="inline-block">
               <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/ElectricalVibrator.png" alt="">
             </div>
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">9-Electrical Vibrator Create</p>
+        <p class="text-center">9-Electrical Vibrator</p>
       </div>
     </div>
-    <div class="w-full lg:w-1/6 md:w-1/3">
-      <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'hse-electrical-vibrator-checklists' }">
-          <div class="inline-block">
-              <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/ElectricalVibrator.png" alt="">
-            </div>
-        </router-link>
-      </div>
-      <div class="py-1">
-        <p class="text-center">9-Electrical Vibrator List</p>
-      </div>
-    </div>
+    
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-1">
         <router-link :to="{ name: 'hse-bar-cutting-machine-checklists-create' }">
@@ -536,584 +432,302 @@ import Lucide from "@/components/Base/Lucide";
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'hse-bar-bending-machine-checklists-create' }">
+        <router-link :to="{ name: 'hse-bar-bending-machine' }">
           <div class="inline-block">
               <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/Bar_Bending_Machine.png" alt="">
             </div>
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">11-Bar Bending Machine Create</p>
+        <p class="text-center">11-Bar Bending Machine</p>
       </div>
     </div>
     
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'hse-bar-bending-machine-checklists' }">
-          <div class="inline-block">
-              <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/Bar_Bending_Machine.png" alt="">
-            </div>
-        </router-link>
-      </div>
-      <div class="py-1">
-        <p class="text-center">11-Bar Bending Machine List</p>
-      </div>
-    </div>
-    <div class="w-full lg:w-1/6 md:w-1/3">
-      <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'hse-breaker-checklists-create' }">
+        <router-link :to="{ name: 'hse-breaker' }">
           <div class="inline-block">
               <img class="w-56 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/Breaker.png" alt="">
             </div>
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">12-Breaker Create</p>
+        <p class="text-center">12-Breaker</p>
       </div>
     </div>
+   
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'hse-breaker-checklists' }">
-          <div class="inline-block">
-              <img class="w-56 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/Breaker.png" alt="">
-            </div>
-        </router-link>
-      </div>
-      <div class="py-1">
-        <p class="text-center">12-Breaker List</p>
-      </div>
-    </div>
-    <div class="w-full lg:w-1/6 md:w-1/3">
-      <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'hse-drill-machine-checklists-create' }">
+        <router-link :to="{ name: 'hse-drill-machine' }">
           <div class="inline-block">
               <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/Drill_Machine.png" alt="">
             </div>
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">13-Drill Machine Create</p>
+        <p class="text-center">13-Drill Machine</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'hse-drill-machine-checklists' }">
-          <div class="inline-block">
-              <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/Drill_Machine.png" alt="">
-            </div>
-        </router-link>
-      </div>
-      <div class="py-1">
-        <p class="text-center">13-Drill Machine List</p>
-      </div>
-    </div>
-    <div class="w-full lg:w-1/6 md:w-1/3">
-      <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'hse-hydra-checklists-create' }">
+        <router-link :to="{ name: 'hse-hydra' }">
           <div class="inline-block">
               <img class="w-56 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/Hydra.png" alt="">
             </div>
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">14-Hydra Create</p>
+        <p class="text-center">14-Hydra</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'hse-hydra-checklists' }">
-          <div class="inline-block">
-              <img class="w-56 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/Hydra.png" alt="">
-            </div>
-        </router-link>
-      </div>
-      <div class="py-1">
-        <p class="text-center">14-Hydra List</p>
-      </div>
-    </div>
-    <div class="w-full lg:w-1/6 md:w-1/3">
-      <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'hse-mobile-crane-checklists-create' }">
+        <router-link :to="{ name: 'hse-mobile-crane' }">
           <div class="inline-block">
               <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/Mobile_Crane.png" alt="">
             </div>
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">15-Mobile Crane Create</p>
+        <p class="text-center">15-Mobile Crane</p>
       </div>
     </div>
+   
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'hse-mobile-crane-checklists' }">
-          <div class="inline-block">
-              <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/Mobile_Crane.png" alt="">
-            </div>
-        </router-link>
-      </div>
-      <div class="py-1">
-        <p class="text-center">15-Mobile Crane List</p>
-      </div>
-    </div>
-    <div class="w-full lg:w-1/6 md:w-1/3">
-      <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'hse-tower-crane-checklists-create' }">
+        <router-link :to="{ name: 'hse-tower-crane' }">
           <div class="inline-block">
               <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/TOWER CRANE.png" alt="">
             </div>
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">16-Tower Crane Create</p>
+        <p class="text-center">16-Tower Crane</p>
       </div>
     </div>
+    
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'hse-tower-crane-checklists' }">
-          <div class="inline-block">
-              <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/TOWER CRANE.png" alt="">
-            </div>
-        </router-link>
-      </div>
-      <div class="py-1">
-        <p class="text-center">16-Tower Crane List</p>
-      </div>
-    </div>
-    <div class="w-full lg:w-1/6 md:w-1/3">
-      <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'diesel-generator-checklists-create' }">
+        <router-link :to="{ name: 'hse-diesel-generator' }">
           <div class="inline-block">
               <img class="w-52 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/17DieselGenerato.png" alt="">
             </div>
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">17-Diesel Generator Create</p>
+        <p class="text-center">17-Diesel Generator</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'diesel-generator-checklists' }">
-          <div class="inline-block">
-              <img class="w-52 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/17DieselGenerato.png" alt="">
-            </div>
-        </router-link>
-      </div>
-      <div class="py-1">
-        <p class="text-center">17-Diesel Generator List</p>
-      </div>
-    </div>
-    <div class="w-full lg:w-1/6 md:w-1/3">
-      <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'power-distribution-panel-checklists-create' }">
+        <router-link :to="{ name: 'hse-distribution-panel' }">
           <div class="inline-block">
               <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/SubDistribution.png" alt="">
             </div>
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">18-Power/Sub Distribution Panel Create</p>
+        <p class="text-center">18-Power/Sub Distribution Panel</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'power-distribution-panel-checklists' }">
-          <div class="inline-block">
-              <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/SubDistribution.png" alt="">
-            </div>
-        </router-link>
-      </div>
-      <div class="py-1">
-        <p class="text-center">18-Power/Sub Distribution Panel List</p>
-      </div>
-    </div>
-    <div class="w-full lg:w-1/6 md:w-1/3">
-      <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'gas-cutting-set-checklists-create' }">
+        <router-link :to="{ name: 'hse-gas-cutting-set' }">
           <div class="inline-block">
               <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/GasCuttingSet.png" alt="">
             </div>
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">19-Gas Cutting Set Create</p>
+        <p class="text-center">19-Gas Cutting Set</p>
       </div>
     </div>
+    
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'gas-cutting-set-checklists' }">
-          <div class="inline-block">
-              <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/GasCuttingSet.png" alt="">
-            </div>
-        </router-link>
-      </div>
-      <div class="py-1">
-        <p class="text-center">19-Gas Cutting Set List</p>
-      </div>
-    </div>
-    <div class="w-full lg:w-1/6 md:w-1/3">
-      <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'portable-grinder-checklists-create' }">
+        <router-link :to="{ name: 'hse-portable-grinder' }">
           <div class="inline-block">
               <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/PortableGrinder.png" alt="">
             </div>
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">20-Portable Grinder Create</p>
+        <p class="text-center">20-Portable Grinder</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'portable-grinder-checklists' }">
-          <div class="inline-block">
-              <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/PortableGrinder.png" alt="">
-            </div>
-        </router-link>
-      </div>
-      <div class="py-1">
-        <p class="text-center">20-Portable Grinder List</p>
-      </div>
-    </div>
-    <div class="w-full lg:w-1/6 md:w-1/3">
-      <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'welding-machine-checklists-create' }">
+        <router-link :to="{ name: 'hse-welding-machine' }">
           <div class="inline-block">
               <img class="w-52 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/WeldingMachine.png" alt="">
             </div>
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">21-Welding Machine Create</p>
+        <p class="text-center">21-Welding Machine</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'welding-machine-checklists' }">
-          <div class="inline-block">
-              <img class="w-52 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/WeldingMachine.png" alt="">
-            </div>
-        </router-link>
-      </div>
-      <div class="py-1">
-        <p class="text-center">21-Welding Machine List</p>
-      </div>
-    </div>
-    <div class="w-full lg:w-1/6 md:w-1/3">
-      <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'electrical-pump-checklists-create' }">
+        <router-link :to="{ name: 'hse-electrical-pump' }">
           <div class="inline-block">
               <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/ElectricalPump.png" alt="">
             </div>
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">22-Electrical Pump/Motor Create</p>
+        <p class="text-center">22-Electrical Pump/Motor</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'electrical-pump-checklists' }">
-          <div class="inline-block">
-              <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/ElectricalPump.png" alt="">
-            </div>
-        </router-link>
-      </div>
-      <div class="py-1">
-        <p class="text-center">22-Electrical Pump/Motor List</p>
-      </div>
-    </div>
-    <div class="w-full lg:w-1/6 md:w-1/3">
-      <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'winch-machine-checklists-create' }">
+        <router-link :to="{ name: 'hse-winch-machine' }">
           <div class="inline-block">
               <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/WinchMachine.png" alt="">
             </div>
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">23-Winch Machine Create</p>
+        <p class="text-center">23-Winch Machine</p>
       </div>
     </div>
+    
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'winch-machine-checklists' }">
-          <div class="inline-block">
-              <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/WinchMachine.png" alt="">
-            </div>
-        </router-link>
-      </div>
-      <div class="py-1">
-        <p class="text-center">23-Winch Machine List</p>
-      </div>
-    </div>
-    <div class="w-full lg:w-1/6 md:w-1/3">
-      <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'chain-pulley-block-checklists-create' }">
+        <router-link :to="{ name: 'hse-chain-pulley-block' }">
           <div class="inline-block">
               <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/ChainPulleyBlock.png" alt="">
             </div>
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">24-Chain Pulley Block Create</p>
+        <p class="text-center">24-Chain Pulley Block</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'chain-pulley-block-checklists' }">
-          <div class="inline-block">
-              <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/ChainPulleyBlock.png" alt="">
-            </div>
-        </router-link>
-      </div>
-      <div class="py-1">
-        <p class="text-center">24-Chain Pulley Block List</p>
-      </div>
-    </div>
-    <div class="w-full lg:w-1/6 md:w-1/3">
-      <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'lifting-tools-tackles-checklists-create' }">
+        <router-link :to="{ name: 'hse-lifting-tools-tackles' }">
           <div class="inline-block">
               <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/LiftingToolsTackles.png" alt="">
             </div>
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">25-Lifting Tools Tackles Create</p>
+        <p class="text-center">25-Lifting Tools Tackles</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'lifting-tools-tackles-checklists' }">
-          <div class="inline-block">
-              <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/LiftingToolsTackles.png" alt="">
-            </div>
-        </router-link>
-      </div>
-      <div class="py-1">
-        <p class="text-center">25-Lifting Tools Tackles List</p>
-      </div>
-    </div>
-    <div class="w-full lg:w-1/6 md:w-1/3">
-      <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'air-compressor-checklists-create' }">
+        <router-link :to="{ name: 'hse-air-compressor' }">
           <div class="inline-block">
               <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/AirCompressor.png" alt="">
             </div>
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">26 Air Compressor Create</p>
+        <p class="text-center">26 Air Compressor</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'air-compressor-checklists' }">
-          <div class="inline-block">
-              <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/AirCompressor.png" alt="">
-            </div>
-        </router-link>
-      </div>
-      <div class="py-1">
-        <p class="text-center">26 Air Compressor List</p>
-      </div>
-    </div>
-    <div class="w-full lg:w-1/6 md:w-1/3">
-      <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'sand-blasting-set-checklists-create' }">
+        <router-link :to="{ name: 'hse-sand-blasting-set' }">
           <div class="inline-block">
               <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/SandBlastingSet.png" alt="">
             </div>
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">27-Grit / Sand Blasting Set Create</p>
+        <p class="text-center">27-Grit / Sand Blasting Set</p>
       </div>
     </div>
+    
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'sand-blasting-set-checklists' }">
-          <div class="inline-block">
-              <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/SandBlastingSet.png" alt="">
-            </div>
-        </router-link>
-      </div>
-      <div class="py-1">
-        <p class="text-center">27-Grit / Sand Blasting Set List</p>
-      </div>
-    </div>
-    <div class="w-full lg:w-1/6 md:w-1/3">
-      <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'fire-extinguisher-checklists-create' }">
+        <router-link :to="{ name: 'hse-fire-extinguisher' }">
           <div class="inline-block">
               <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/FireExtinguisher.png" alt="">
             </div>
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">28-Fire Extinguisher Create</p>
+        <p class="text-center">28-Fire Extinguisher</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'fire-extinguisher-checklists' }">
-          <div class="inline-block">
-              <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/FireExtinguisher.png" alt="">
-            </div>
-        </router-link>
-      </div>
-      <div class="py-1">
-        <p class="text-center">28-Fire Extinguisher List</p>
-      </div>
-    </div>
-    <div class="w-full lg:w-1/6 md:w-1/3">
-      <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'bench-cutting-machine-checklists-create' }">
+        <router-link :to="{ name: 'hse-bench-cutting-machine' }">
           <div class="inline-block">
               <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/BenchCuttingMachine.png" alt="">
             </div>
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">29-Bench Cutting Machine Create</p>
+        <p class="text-center">29-Bench Cutting Machine</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'bench-cutting-machine-checklists' }">
-          <div class="inline-block">
-              <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/BenchCuttingMachine.png" alt="">
-            </div>
-        </router-link>
-      </div>
-      <div class="py-1">
-        <p class="text-center">29-Bench Cutting Machine List</p>
-      </div>
-    </div>
-    <div class="w-full lg:w-1/6 md:w-1/3">
-      <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'pedestal-grinder-checklists-create' }">
+        <router-link :to="{ name: 'hse-pedestal-grinder' }">
           <div class="inline-block">
               <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/PedestalGrinder.png" alt="">
             </div>
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">30-Pedestal Grinder Create</p>
+        <p class="text-center">30-Pedestal Grinder</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'pedestal-grinder-checklists' }">
-          <div class="inline-block">
-              <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/PedestalGrinder.png" alt="">
-            </div>
-        </router-link>
-      </div>
-      <div class="py-1">
-        <p class="text-center">30-Pedestal Grinder List</p>
-      </div>
-    </div>
-    <div class="w-full lg:w-1/6 md:w-1/3">
-      <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'circular-saw-checklists-create' }">
+        <router-link :to="{ name: 'hse-circular-saw' }">
           <div class="inline-block">
               <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/CircularSaw.png" alt="">
             </div>
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">31-Circular Saw Create</p>
+        <p class="text-center">31-Circular Saw</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'circular-saw-checklists' }">
-          <div class="inline-block">
-              <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/CircularSaw.png" alt="">
-            </div>
-        </router-link>
-      </div>
-      <div class="py-1">
-        <p class="text-center">31-Circular Saw List</p>
-      </div>
-    </div>
-    <div class="w-full lg:w-1/6 md:w-1/3">
-      <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'batching-plant-checklists-create' }">
+        <router-link :to="{ name: 'hse-batching-plant' }">
           <div class="inline-block">
               <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/32BatchingPlant.png" alt="">
             </div>
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">32-Batching Plant Create</p>
+        <p class="text-center">32-Batching Plant</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'batching-plant-checklists' }">
-          <div class="inline-block">
-              <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/32BatchingPlant.png" alt="">
-            </div>
-        </router-link>
-      </div>
-      <div class="py-1">
-        <p class="text-center">32-Batching Plant List</p>
-      </div>
-    </div>
-    <div class="w-full lg:w-1/6 md:w-1/3">
-      <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'ambulance-checklists-create' }">
+        <router-link :to="{ name: 'hse-ambulance' }">
           <div class="inline-block">
               <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/33Ambulance.png" alt="">
             </div>
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">33-Ambulance Create</p>
+        <p class="text-center">33-Ambulance</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'ambulance-checklists' }">
-          <div class="inline-block">
-              <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/33Ambulance.png" alt="">
-            </div>
-        </router-link>
-      </div>
-      <div class="py-1">
-        <p class="text-center">33-Ambulance List</p>
-      </div>
-    </div>
-    <div class="w-full lg:w-1/6 md:w-1/3">
-      <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'skidSteer-loader-checklists-create' }">
+        <router-link :to="{ name: 'hse-skidSteer-loader' }">
           <div class="inline-block">
               <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/34SkidSteerLoader.png" alt="">
             </div>
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">34-Skid Steer Loader Create</p>
+        <p class="text-center">34-Skid Steer Loader</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'skidSteer-loader-checklists' }">
-          <div class="inline-block">
-              <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/34SkidSteerLoader.png" alt="">
-            </div>
-        </router-link>
-      </div>
-      <div class="py-1">
-        <p class="text-center">34-Skid Steer Loader List</p>
-      </div>
-    </div>
-    <div class="w-full lg:w-1/6 md:w-1/3">
-      <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'grader-checklists-create' }">
+        <router-link :to="{ name: 'hse-grader' }">
           <div class="inline-block">
               <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/35Grader.png" alt="">
             </div>
@@ -1121,18 +735,6 @@ import Lucide from "@/components/Base/Lucide";
       </div>
       <div class="py-1">
         <p class="text-center">35-Grader Create</p>
-      </div>
-    </div>
-    <div class="w-full lg:w-1/6 md:w-1/3">
-      <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'grader-checklists' }">
-          <div class="inline-block">
-              <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/35Grader.png" alt="">
-            </div>
-        </router-link>
-      </div>
-      <div class="py-1">
-        <p class="text-center">35-Grader List</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
@@ -1161,123 +763,63 @@ import Lucide from "@/components/Base/Lucide";
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'eot-crane-checklists-create' }">
+        <router-link :to="{ name: 'hse-eot-crane' }">
           <div class="inline-block">
               <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/37EotCrane.png" alt="">
             </div>
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">37-Eot Crane Create</p>
+        <p class="text-center">37-Eot Crane</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'eot-crane-checklists' }">
-          <div class="inline-block">
-              <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/37EotCrane.png" alt="">
-            </div>
-        </router-link>
-      </div>
-      <div class="py-1">
-        <p class="text-center">37-Eot Crane List</p>
-      </div>
-    </div>
-    <div class="w-full lg:w-1/6 md:w-1/3">
-      <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'trailer-checklists-create' }">
+        <router-link :to="{ name: 'hse-trailer' }">
           <div class="inline-block">
               <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/39Trailer.png" alt="">
             </div>
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">39-Trailer Create</p>
+        <p class="text-center">39-Trailer</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'trailer-checklists' }">
-          <div class="inline-block">
-              <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/39Trailer.png" alt="">
-            </div>
-        </router-link>
-      </div>
-      <div class="py-1">
-        <p class="text-center">39-Trailer List</p>
-      </div>
-    </div>
-    <div class="w-full lg:w-1/6 md:w-1/3">
-      <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'four-wheeler-checklists-create' }">
+        <router-link :to="{ name: 'hse-four-wheeler' }">
           <div class="inline-block">
               <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/40FourWheeler.png" alt="">
             </div>
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">40-Four Wheeler Create</p>
+        <p class="text-center">40-Four Wheeler</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'four-wheeler-checklists' }">
-          <div class="inline-block">
-              <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/40FourWheeler.png" alt="">
-            </div>
-        </router-link>
-      </div>
-      <div class="py-1">
-        <p class="text-center">40-Four Wheeler List</p>
-      </div>
-    </div>
-    <div class="w-full lg:w-1/6 md:w-1/3">
-      <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'bus-checklists-create' }">
+        <router-link :to="{ name: 'hse-bus' }">
           <div class="inline-block">
               <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/41Bus.png" alt="">
             </div>
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">41-Bus Create</p>
-      </div>
-    </div>
-    <div class="w-full lg:w-1/6 md:w-1/3">
-      <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'bus-checklists' }">
-          <div class="inline-block">
-              <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/41Bus.png" alt="">
-            </div>
-        </router-link>
-      </div>
-      <div class="py-1">
-        <p class="text-center">41-Bus List</p>
+        <p class="text-center">41-Bus</p>
       </div>
     </div>
     
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'diesel-tanker-checklists-create' }">
+        <router-link :to="{ name: 'hse-diesel-tanker' }">
           <div class="inline-block">
               <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/42DieselTanker.png" alt="">
             </div>
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">42-Diesel Tanker Create</p>
-      </div>
-    </div>
-    <div class="w-full lg:w-1/6 md:w-1/3">
-      <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'diesel-tanker-checklists' }">
-          <div class="inline-block">
-              <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/42DieselTanker.png" alt="">
-            </div>
-        </router-link>
-      </div>
-      <div class="py-1">
-        <p class="text-center">42-Diesel Tanker List</p>
+        <p class="text-center">42-Diesel Tanker</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
@@ -1306,26 +848,14 @@ import Lucide from "@/components/Base/Lucide";
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'bike-checklists-create' }">
+        <router-link :to="{ name: 'hse-bike' }">
           <div class="inline-block">
               <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/71Bike.png" alt="">
             </div>
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">71-Bike Create</p>
-      </div>
-    </div>
-    <div class="w-full lg:w-1/6 md:w-1/3">
-      <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'bike-checklists' }">
-          <div class="inline-block">
-              <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/71Bike.png" alt="">
-            </div>
-        </router-link>
-      </div>
-      <div class="py-1">
-        <p class="text-center">71-Bike List</p>
+        <p class="text-center">71-Bike</p>
       </div>
     </div>
   
