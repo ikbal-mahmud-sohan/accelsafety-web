@@ -1,160 +1,102 @@
 <script setup lang="ts">
-import { ref, reactive, toRefs,onMounted } from 'vue';
-import axios from 'axios';
+import { ref, reactive, toRefs, onMounted } from 'vue';
+import axios, { AxiosError } from 'axios';
 import { ClassicEditor } from "@/components/Base/Ckeditor";
 import Button from "@/components/Base/Button";
-import { useRouter } from 'vue-router';
+import { useRouter,useRoute } from 'vue-router';
 import Notification from "@/components/Base/Notification";
 import Lucide from "@/components/Base/Lucide";
 import config from "@/config";
-import { getToken } from './../auth/setToken'
-
 import {
   FormInput,
   FormLabel,
-  FormSwitch,
 } from "@/components/Base/Form";
 import useVuelidate from '@vuelidate/core';
 import { required, minLength, email, integer, maxLength } from '@vuelidate/validators';
 import Toastify from 'toastify-js';
-import Preview from "@/components/Base/Preview";
 import Litepicker from "@/components/Base/Litepicker";
 import Alert from "@/components/Base/Alert";
 import _ from "lodash";
-import fakerData from "@/utils/faker";
 import Tippy from "@/components/Base/Tippy";
 import Table from "@/components/Base/Table";
 import TomSelect from "@/components/Base/TomSelect";
+import Preview from "@/components/Base/Preview";
+import { getToken } from './../auth/setToken'
 
 
 const formData = reactive({
-        auditor:'',
-        plant_name:'',
-        location:'',
-        audit_date:'',
-        category:'',
-        problem_description:'',
-        problematic_progressive_images:[] as File[],
-        root_cause:'',
-        resp_department:'',
-        owner_department:'',
-        improvement_actions:'',
-        due_date:'',
-        priority_type:'',
+    remarks: '',
+    importance_level: '',
+    work_accomplished_by: '',
+    auditor:'',
+    plant_name:'',
+    location:'',
+    audit_date:'',
+    category:'',
+    problem_description:'',
+    root_cause:'',
+    resp_department:'',
+    owner_department:'',
+    improvement_actions:'',
+    due_date:'',
+    priority_type:'',
 });
 const state = reactive({
+  token: getToken(),
   viewOwnerDepartment: [] as Array<any>,
   viewRespDepartment: [] as Array<any>,
   viewPlantName: [] as Array<any>,
-  token: getToken(),
 
 });
 const router = useRouter();
-
+const route = useRoute();
+const editorData = ref("");
+const problemEditorData = ref("");
+const auditdate = ref("");
+const duedate = ref("");
 const selectedviewOwnerDepartment = ref("");
 const selectedviewRespDepartment = ref("");
 const selectedviewPlantName = ref("");
 const selectedviewPriorityType = ref("");
 const selectedCategory = ref("");
 
-
-const categories = ref(["1", "3"]);
 const editorConfig = {
   toolbar: {
     items: ['heading','undo', 'redo', 'bold', 'italic', 'link', 'numberedList', 'bulletedList','fontsize'],
   },
 };
-const editorData = ref("");
-const auditdate = ref("");
-const duedate = ref("");
+interface BackendErrorResponse {
+    message: string;
+    errors: {
+        [key: string]: string[];
+    };
+}
 
-const handleFileChange = (event: Event) => {
-  const input = event.target as HTMLInputElement;
-  if (input.files) {
-    formData.problematic_progressive_images = Array.from(input.files);
-  }
-};
 
 const rules = {
-        auditor: {required,minLength: minLength(3),},
-        plant_name: {required,},
-        location: { required, minLength: minLength(3),},
-        audit_date: {required },
-        problematic_progressive_images: {required },
-        category: { required, minLength: minLength(3),},
-        problem_description: { required, minLength: minLength(3),},
-        root_cause: { required, minLength: minLength(3),},
-        resp_department: { required, minLength: minLength(3),},
-        owner_department: { required, minLength: minLength(3),},
-        improvement_actions: { required, minLength: minLength(3),},
-        due_date: { required, minLength: minLength(3),},
-        priority_type: { required, minLength: minLength(3),},
+    remarks: {required,minLength: minLength(3),},
+    auditor: {required,minLength: minLength(3),},
+    plant_name: {required,},
+    location: { required, minLength: minLength(3),},
+    audit_date: {required },
+    category: { required, minLength: minLength(3),},
+    problem_description: { required, minLength: minLength(3),},
+    root_cause: { required, minLength: minLength(3),},
+    resp_department: { required, minLength: minLength(3),},
+    owner_department: { required, minLength: minLength(3),},
+    improvement_actions: { required, minLength: minLength(3),},
+    due_date: { required, minLength: minLength(3),},
+    priority_type: { required, minLength: minLength(3),},
 };
 
 const validate = useVuelidate(rules, toRefs(formData));
-
-
-const submitForm = async () => {
-    formData.problem_description = editorData.value;
-    formData.audit_date = auditdate.value;
-    formData.due_date = duedate.value;
-    formData.owner_department = selectedviewOwnerDepartment.value;
-    formData.resp_department = selectedviewRespDepartment.value;
-    formData.plant_name = selectedviewPlantName.value;
-    formData.priority_type = selectedviewPriorityType.value;
-    formData.category = selectedCategory.value;
-    validate.value.$touch();
-    console.log(validate.value)
-    if (validate.value.$invalid) {
-      FailedPopUp();
-    } else {
-        const form = new FormData();
-            (Object.keys(formData) as Array<keyof typeof formData>).forEach((key) => {
-            if (key !== 'problematic_progressive_images') {
-                form.append(key, formData[key] as string);
-            }
-            });
-            formData.problematic_progressive_images.forEach((file, index) => {
-            form.append(`problematic_progressive_images[${index}]`, file);
-            });
-
-            try {
-                let  url = config.baseURL+'/api/v1/safety';
-                const response = await axios.post(url, form, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                    'Authorization': state.token,
-                },
-                });
-                console.log('Form submitted successfully:', response.data);
-                if (response.data !== undefined) {
-                    router.push({ name: 'safety-observation-data-list' });
-                }
-        
-            } catch (error) {
-                console.error('Error submitting form:', error);
-            }
-        
-            SuccessPopUp();
-    }
-};
-
-const fetchDropDownData = async () => {
-  try {
-   let  url = config.baseURL+'/api/v1/safety-drop-down';
-    const response = await axios.get(url,{
-                headers: {
-                    'Authorization': state.token,
-                },
-                });
-    state.viewOwnerDepartment = response.data.OwnerDepartment;
-    state.viewRespDepartment = response.data.RespDepartment;
-    state.viewPlantName = response.data.PlantName	;
-  } catch (error) {
-    console.error('Error fetching data:', error);
-  }
-};
-// Ext Function 
+const backendErrors = reactive<{
+    message: string;
+    errors: { [key: string]: string[] };
+}>({
+    message: '',
+    errors: {}
+});
 
 function FailedPopUp(){
     const failedEl = document
@@ -187,7 +129,120 @@ function SuccessPopUp(){
         stopOnFocus: true,
         }).showToast();
 }
+
+
+
+const submitForm = async () => {
+  console.log("sds",editorData.value)
+    formData.remarks = editorData.value;
+    formData.problem_description = problemEditorData.value;
+    formData.audit_date = auditdate.value;
+    formData.due_date = duedate.value;
+    formData.owner_department = selectedviewOwnerDepartment.value;
+    formData.resp_department = selectedviewRespDepartment.value;
+    formData.plant_name = selectedviewPlantName.value;
+    formData.priority_type = selectedviewPriorityType.value;
+    formData.category = selectedCategory.value;
+
+    validate.value.$touch();
+    console.log(validate.value)
+    if (validate.value.$invalid) {
+        FailedPopUp()
+    } else {
+        const form = new FormData();
+          Object.keys(formData).forEach((key) => {
+              form.append(key, formData[key]);
+          });
+            let id = route.params.id;
+            let sID =id.toString()
+            let url = config.baseURL+'/api/v1/admin-safety/'+sID;
+            try {
+                const response = await axios.post(url, form, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'Authorization': state.token,
+
+                },
+                });
+                if (response.data !== undefined) {
+                    SuccessPopUp();
+                    router.push({ name: 'safety-observation-data-list' });
+                }
+        
+            } catch (err) {
+                FailedPopUp();
+                const error = err as AxiosError<BackendErrorResponse>;
+
+                if (error.response) {
+                    const backendError = error.response.data;
+                    console.error('Error submitting form:', backendError.message);
+                    backendErrors.message = backendError.message;
+                    backendErrors.errors = backendError.errors || {};
+                } else if (error.request) {
+                    console.error('No response received:', error.request);
+                } else {
+                    console.error('Error:', error.message);
+                }
+            }
+       
+    }
+};
+const fetchDropDownData = async () => {
+  try {
+   let  url = config.baseURL+'/api/v1/safety-drop-down';
+    const response = await axios.get(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
+    state.viewOwnerDepartment = response.data.OwnerDepartment;
+    state.viewRespDepartment = response.data.RespDepartment;
+    state.viewPlantName = response.data.PlantName	;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+};
+const fetchData = async () => {
+  let id = route.params.id;
+  let ID =id.toString()
+  try {
+   let  url = config.baseURL+'/api/v1/safety/'+ID;
+    const response = await axios.get(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
+    // state.accidentReports = response.data.data;
+    // formData.remarks = response.data.data.remarks
+    editorData.value = response.data.data.remarks
+    formData.importance_level = response.data.data.importance_level
+    formData.work_accomplished_by = response.data.data.work_accomplished_by
+    formData.auditor = response.data.data.auditor
+    selectedviewPlantName.value = response.data.data.plant_name;
+    // formData.plant_name = response.data.data.plant_name
+    formData.location = response.data.data.location
+    // formData.audit_date = response.data.data.audit_date
+    auditdate.value = response.data.data.audit_date
+    // formData.category = response.data.data.category
+    selectedCategory.value = response.data.data.category
+    // formData.problem_description = response.data.data.problem_description
+    problemEditorData.value = response.data.data.problem_description
+    formData.root_cause = response.data.data.root_cause
+    // formData.resp_department = response.data.data.resp_department
+    selectedviewRespDepartment.value = response.data.data.resp_department
+    // formData.owner_department = response.data.data.owner_department
+    selectedviewOwnerDepartment.value = response.data.data.owner_department
+    formData.improvement_actions = response.data.data.improvement_actions
+    // formData.due_date = response.data.data.due_date
+    duedate.value = response.data.data.due_date
+    // formData.priority_type = response.data.data.priority_type
+    selectedviewPriorityType.value = response.data.data.priority_type
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+};
 onMounted(() => {
+  fetchData();
   fetchDropDownData();
 });
 
@@ -195,7 +250,7 @@ onMounted(() => {
 
 <template>
   <div class="flex items-center mt-8 intro-y">
-    <h2 class="mr-auto text-lg font-medium">Add Safety Observationt </h2>
+    <h2 class="mr-auto text-lg font-medium">Approved Safety Observationt</h2>
   </div>
   <div class="grid grid-cols-11 pb-20 mt-5 gap-x-6">
     <!-- BEGIN: Notification -->
@@ -228,12 +283,9 @@ onMounted(() => {
         </Alert.DismissButton>
       </div>
     </Alert>
-    
     <!-- BEGIN: Notification -->
     <div class="col-span-11 intro-y 2xl:col-span-9">
       <!-- BEGIN: Uplaod Product -->
-      
-      <!-- BEGIN: Product Information -->
       <div class="p-5 mt-5 intro-y box">
         <div
           class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400"
@@ -274,7 +326,7 @@ onMounted(() => {
       <div class="p-5 mt-5 intro-y box">
         <div class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400" >
           <div class="flex items-center pb-5 text-base font-medium border-b border-slate-200/60 dark:border-darkmode-400">
-            <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" />Plant Name
+            <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" />Plant
           </div>
           <div class="mt-5">
             <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
@@ -310,13 +362,6 @@ onMounted(() => {
             </FormInline>
             
           </div>
-        </div>
-      </div>
-      <div class="p-5 mt-5 intro-y box">
-        <div class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400" >
-          <div class="flex items-center pb-5 text-base font-medium border-b border-slate-200/60 dark:border-darkmode-400">
-            <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" />Location
-          </div>
           <div class="mt-5">
             <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
               <FormLabel class="xl:w-64 xl:!mr-10">
@@ -345,10 +390,10 @@ onMounted(() => {
                 </div>
               </div>
             </FormInline>
-           
           </div>
         </div>
       </div>
+      
       <div class="p-5 mt-5 intro-y box">
         <div class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400" >
           <div class="flex items-center pb-5 text-base font-medium border-b border-slate-200/60 dark:border-darkmode-400">
@@ -421,8 +466,6 @@ onMounted(() => {
                     </Preview.Panel>
                  
                 </Preview>
-                
-                <FormHelp class="text-right"> Required</FormHelp>
                 <div class="flex justify-between">
                   <template v-if="validate.audit_date.$error">
                   <div v-for="(error, index) in validate.audit_date.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
@@ -744,62 +787,6 @@ onMounted(() => {
         </div>
       </div>
       
-      <div class="p-5 mt-5 intro-y box">
-        <div class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400" >
-          <div class="flex items-center pb-5 text-base font-medium border-b border-slate-200/60 dark:border-darkmode-400">
-            <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" />Attachment
-          </div>
-          <div class="mt-5">
-            <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
-              <FormLabel class="xl:w-64 xl:!mr-10">
-                <div class="text-left">
-                  <div class="flex items-center">
-                    <div class="font-medium">Problematic Progressive Images</div>
-                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                      Required
-                    </div>
-                  </div>
-                  <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                    Images showing the progression of the identified problem.
-                  </div>
-                </div>
-              </FormLabel>
-              <div class="flex-1 w-full mt-3 xl:mt-0">
-                <FormLabel htmlFor="crud-form-13">Attachment</FormLabel>
-                    <div class="flex flex-col items-center justify-center w-full space-y-4">
-                          <label for="file-upload" class="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-blue-500 hover:bg-gray-50 transition duration-300">
-                            <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                              <svg aria-hidden="true" class="w-10 h-10 mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V12a4 4 0 014-4h3m5 8h2a2 2 0 002-2v-5a2 2 0 00-2-2h-2.586a1 1 0 00-.707.293l-2.707 2.707a1 1 0 01-.707.293H13m-4 8H6a2 2 0 01-2-2v-5a2-2h2.586c.265 0 .52.105.707.293l2.707 2.707a1 1 0 00.707.293H18m0 0l2 2M15 12v2m4 0l-4-4"></path>
-                              </svg>
-                              <p class="mb-2 text-sm text-gray-500">Click to upload or drag and drop</p>
-                              <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
-                            </div>
-                            <input id="file-upload" type="file" class="hidden" multiple @change="handleFileChange"/>
-                          </label>
-                          
-                        <div v-if="formData.problematic_progressive_images.length" class="w-full space-y-2">
-                          <div v-for="(file, index) in formData.problematic_progressive_images" :key="index" class="flex items-center justify-between p-2 bg-gray-100 rounded-lg shadow">
-                            <span class="text-sm text-gray-700 truncate">{{ file.name }}</span>
-                          </div>
-                        </div>
-                    </div>
-                
-                    <div class="flex justify-between">
-                      <template v-if="validate.problematic_progressive_images.$error">
-                      <div v-for="(error, index) in validate.problematic_progressive_images.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
-                        {{ error.$message }}
-                      </div>
-                    </template>
-                      <p class="text-right mt-2 w-full"> Required</p>
-                    </div>
-              </div>
-            </FormInline>
-            
-            
-          </div>
-        </div>
-      </div>
       
       <div class="p-5 mt-5 intro-y box">
         <div class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400" >
@@ -823,7 +810,7 @@ onMounted(() => {
                 </div>
               </FormLabel>
               <div class="flex-1 w-full mt-3 xl:mt-0">
-                <ClassicEditor v-model="editorData" :class="{ 'border-danger': validate.problem_description.$error,}" :config="editorConfig" />
+                <ClassicEditor v-model="problemEditorData" :class="{ 'border-danger': validate.problem_description.$error,}" :config="editorConfig" />
                 
                 <div class="flex justify-between">
                   <template v-if="validate.problem_description.$error">
@@ -839,13 +826,120 @@ onMounted(() => {
           </div>
         </div>
       </div>
+      
+      <!-- BEGIN: Product Information -->
+      <div class="p-5 mt-5 intro-y box">
+        <div
+          class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400"
+        >
+          <div class="flex items-center pb-5 text-base font-medium border-b border-slate-200/60 dark:border-darkmode-400">
+            <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" /> Importance
+          </div>
+          <div class="mt-5">
+            <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+              <FormLabel class="xl:w-64 xl:!mr-10">
+                <div class="text-left">
+                  <div class="flex items-center">
+                    <div class="font-medium">Importance Level</div>
+                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                      Optional
+                    </div>
+                  </div>
+                  <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                    The significance or urgency level of the issue.
+                  </div>
+                </div>
+              </FormLabel>
+              <div class="flex-1 w-full mt-3 xl:mt-0">
+                <FormInput v-model="formData.importance_level" id="crud-form-1" type="text" class="w-full" placeholder="Input Importance Level"/>
+              </div>
+            </FormInline>
+          </div>
+        </div>
+      </div>
+      <div class="p-5 mt-5 intro-y box">
+        <div class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400" >
+          <div class="flex items-center pb-5 text-base font-medium border-b border-slate-200/60 dark:border-darkmode-400">
+            <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" />Work Accomplished By
+          </div>
+          <div class="mt-5">
+            <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+              <FormLabel class="xl:w-64 xl:!mr-10">
+                <div class="text-left">
+                  <div class="flex items-center">
+                    <div class="font-medium">Work Accomplished By</div>
+                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                      Optional
+                    </div>
+                  </div>
+                  <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                    The individual or team responsible for implementing corrective actions.
+                  </div>
+                </div>
+              </FormLabel>
+              <div class="flex-1 w-full mt-3 xl:mt-0">
+                <FormInput v-model="formData.work_accomplished_by" id="crud-form-1" type="text" class="w-full" placeholder="Input Work Accomplished By"/>
+                
+              </div>
+            </FormInline>
+            
+          </div>
+        </div>
+      </div>
+     
+      
+      <div class="p-5 mt-5 intro-y box">
+        <div class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400" >
+          <div class="flex items-center pb-5 text-base font-medium border-b border-slate-200/60 dark:border-darkmode-400">
+            <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" />Remarks
+          </div>
+          <div class="mt-5">
+            
+            <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+              <FormLabel class="xl:w-64 xl:!mr-10">
+                <div class="text-left">
+                  <div class="flex items-center">
+                    <div class="font-medium">Remarks</div>
+                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                      Required
+                    </div>
+                  </div>
+                  <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                    Additional comments or notes regarding the audit or issue.
+                  </div>
+                </div>
+              </FormLabel>
+              <div class="flex-1 w-full mt-3 xl:mt-0">
+                <ClassicEditor v-model="editorData" :class="{ 'border-danger': validate.remarks.$error,}" :config="editorConfig" />
+                
+                <div class="flex justify-between">
+                  <template v-if="validate.remarks.$error">
+                  <div v-for="(error, index) in validate.remarks.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
+                    {{ error.$message }}
+                  </div>
+                </template>
+                  <p class="text-right mt-2 w-full"> Required, at least 3 character</p>
+                </div>
+              </div>
+            </FormInline>
+            
+          </div>
+        </div>
+      </div>
+      <div class="w-full px-4 py-4">
+        <p v-if="backendErrors.message" class="text-red-500 text-sm">{{ backendErrors.message }}</p>
+        <template v-if="backendErrors.errors">
+            <div v-for="(messages, field) in backendErrors.errors" :key="field" class="mt-2 text-danger">
+            <p><strong>{{ field }}:</strong></p>
+            <ul>
+                <li v-for="(message, index) in messages" :key="index">{{ message }}</li>
+            </ul>
+            </div>
+        </template>
+        </div>
       <div class="flex flex-col justify-end gap-2 mt-5 md:flex-row">
-        <Button
-          type="button"class="w-full py-3 border-slate-300 dark:border-darkmode-400 text-slate-500 md:w-52">
-          Cancel
-        </Button>
         <Button variant="primary" type="button" class="w-full py-3 md:w-52" @click="submitForm">
-          Save
+          Closed
         </Button>
       </div>
     </div>
@@ -857,7 +951,7 @@ onMounted(() => {
           <li
             class="pl-5 mb-4 font-medium border-l-2 border-primary dark:border-primary text-primary"
           >
-            <a href="">Step 1</a>
+            <a href="">Step 3</a>
           </li>
           <li
             class="pl-5 mb-4 border-l-2 border-transparent dark:border-transparent"
@@ -888,7 +982,7 @@ onMounted(() => {
             class="mt-2 text-xs leading-relaxed text-slate-600 dark:text-slate-500"
           >
             <div>
-              When filling out the safety observations report, be specific and clear with details, using the correct date format and precise descriptions..
+              When filling out the accident report, be specific and clear with details, using the correct date format and precise descriptions..
             </div>
             <div class="mt-2">
               Ensure all required fields are accurately completed and boolean options are correctly marked. Upload relevant files and adhere to format and size requirements for attachments.

@@ -172,6 +172,11 @@ const router = createRouter({
           name: "safety-observatio-update-form",
           component: () => import("../pages/SafetyObservatioUpdateForm.vue"),
         },
+        {
+          path: "admin-safety-observatio/:id/update",
+          name: "admin-safety-observatio-update-form",
+          component: () => import("../pages/AdminSafetyObservatioUpdateForm.vue"),
+        },
         // Training
         {
           path: "trainings",
@@ -693,6 +698,11 @@ const router = createRouter({
           
           // Hse
           {
+            path: "hse-jcb",
+            name: "hse-jcb",
+            component: () => import("../pages/HseJcb.vue"),
+          },
+          {
             path: "hse-jcb-checklists",
             name: "hse-jcb-checklists",
             component: () => import("../pages/HseJcbChecklists.vue"),
@@ -701,6 +711,11 @@ const router = createRouter({
             path: "hse-jcb-checklists-create",
             name: "hse-jcb-checklists-create",
             component: () => import("../pages/HseJcbChecklistsCreate.vue"),
+          },
+          {
+            path: "hse-excavator",
+            name: "hse-excavator",
+            component: () => import("../pages/HseExcavator.vue"),
           },
           {
             path: "hse-excavator-checklists",
@@ -713,6 +728,11 @@ const router = createRouter({
             component: () => import("../pages/HseExcavatorChecklistsCreate.vue"),
           },
           {
+            path: "hse-earth-compactors",
+            name: "hse-earth-compactors",
+            component: () => import("../pages/HseEarthCompactors.vue"),
+          },
+          {
             path: "hse-earth-compactors-checklists",
             name: "hse-earth-compactors-checklists",
             component: () => import("../pages/HseEarthCompactorsChecklists.vue"),
@@ -721,6 +741,11 @@ const router = createRouter({
             path: "hse-earth-compactors-checklists-create",
             name: "hse-earth-compactors-checklists-create",
             component: () => import("../pages/HseEarthCompactorsChecklistsCreate.vue"),
+          },
+          {
+            path: "hse-dumper",
+            name: "hse-dumper",
+            component: () => import("../pages/HseDumper.vue"),
           },
           {
             path: "hse-dumper-checklists",
@@ -733,6 +758,11 @@ const router = createRouter({
             component: () => import("../pages/HseDumperChecklistsCreate.vue"),
           },
           {
+            path: "hse-concrete-mixer",
+            name: "hse-concrete-mixer",
+            component: () => import("../pages/HseConcreteMixer.vue"),
+          },
+          {
             path: "hse-concrete-mixer-checklists",
             name: "hse-concrete-mixer-checklists",
             component: () => import("../pages/HseConcreteMixerChecklists.vue"),
@@ -741,6 +771,11 @@ const router = createRouter({
             path: "hse-concrete-mixer-checklists-create",
             name: "hse-concrete-mixer-checklists-create",
             component: () => import("../pages/HseConcreteMixerChecklistsCreate.vue"),
+          },
+          {
+            path: "hse-transit-mixer",
+            name: "hse-transit-mixer",
+            component: () => import("../pages/HseTransitMixer.vue"),
           },
           {
             path: "hse-transit-mixers-checklists",
@@ -753,6 +788,11 @@ const router = createRouter({
             component: () => import("../pages/HseTransitMixersChecklistsCreate.vue"),
           },
           {
+            path: "hse-concrete-pump",
+            name: "hse-concrete-pump",
+            component: () => import("../pages/HseConcretePump.vue"),
+          },
+          {
             path: "hse-concrete-pump-checklists",
             name: "hse-concrete-pump-checklists",
             component: () => import("../pages/HseConcretePumpChecklists.vue"),
@@ -762,7 +802,11 @@ const router = createRouter({
             name: "hse-concrete-pump-checklists-create",
             component: () => import("../pages/HseConcretePumpChecklistsCreate.vue"),
           },
-          // sohan 
+          {
+            path: "hse-boom-placer",
+            name: "hse-boom-placer",
+            component: () => import("../pages/HseBoomPlacer.vue"),
+          }, 
           {
             path: "hse-boom-placer-checklists",
             name: "hse-boom-placer-checklists",
@@ -774,6 +818,11 @@ const router = createRouter({
             component: () => import("../pages/HseBoomPlacerChecklistsCreate.vue"),
           },
           {
+            path: "hse-electrical-vibrator",
+            name: "hse-electrical-vibrator",
+            component: () => import("../pages/HseElectricalVibrator.vue"),
+          }, 
+          {
             path: "hse-electrical-vibrator-checklists",
             name: "hse-electrical-vibrator-checklists",
             component: () => import("../pages/HseEelectricalVibratorChecklists.vue"),
@@ -782,6 +831,11 @@ const router = createRouter({
             path: "hse-electrical-vibrator-checklists-create",
             name: "hse-electrical-vibrator-checklists-create",
             component: () => import("../pages/HseEelectricalVibratorChecklistsCreate.vue"),
+          },
+          {
+            path: "hse-bar-cutting-machine",
+            name: "hse-bar-cutting-machine",
+            component: () => import("../pages/HsebarCuttingMachine.vue"),
           },
           {
             path: "hse-bar-cutting-machine-checklists",
@@ -794,6 +848,11 @@ const router = createRouter({
             component: () => import("../pages/HseBarCuttingMachineChecklistsCreate.vue"),
           },
           {
+            path: "hse-bar-bending-machine",
+            name: "hse-bar-bending-machine",
+            component: () => import("../pages/HseBarBendingMachine.vue"),
+          },
+          {
             path: "hse-bar-bending-machine-checklists",
             name: "hse-bar-bending-machine-checklists",
             component: () => import("../pages/HseBarBendingMachineChecklists.vue"),
@@ -802,6 +861,11 @@ const router = createRouter({
             path: "hse-bar-bending-machine-checklists-create",
             name: "hse-bar-bending-machine-checklists-create",
             component: () => import("../pages/HseBarBendingMachineChecklistsCreate.vue"),
+          },
+          {
+            path: "hse-breaker",
+            name: "hse-breaker",
+            component: () => import("../pages/HseBreaker.vue"),
           },
           {
             path: "hse-breaker-checklists",
@@ -814,6 +878,11 @@ const router = createRouter({
             component: () => import("../pages/HseBreakerChecklistsCreate.vue"),
           },
           {
+            path: "hse-drill-machine",
+            name: "hse-drill-machine",
+            component: () => import("../pages/HseDrillMachine.vue"),
+          },
+          {
             path: "hse-drill-machine-checklists",
             name: "hse-drill-machine-checklists",
             component: () => import("../pages/HseDrillMachineChecklists.vue"),
@@ -822,6 +891,11 @@ const router = createRouter({
             path: "hse-drill-machine-checklists-create",
             name: "hse-drill-machine-checklists-create",
             component: () => import("../pages/HseDrillMachineChecklistsCreate.vue"),
+          },
+          {
+            path: "hse-hydra",
+            name: "hse-hydra",
+            component: () => import("../pages/HseHydra.vue"),
           },
           {
             path: "hse-hydra-checklists",
@@ -834,6 +908,11 @@ const router = createRouter({
             component: () => import("../pages/HseHydraChecklistsCreate.vue"),
           },
           {
+            path: "hse-mobile-crane",
+            name: "hse-mobile-crane",
+            component: () => import("../pages/HseMobileCrane.vue"),
+          },
+          {
             path: "hse-mobile-crane-checklists",
             name: "hse-mobile-crane-checklists",
             component: () => import("../pages/HseMobileCraneChecklists.vue"),
@@ -842,6 +921,11 @@ const router = createRouter({
             path: "hse-mobile-crane-checklists-create",
             name: "hse-mobile-crane-checklists-create",
             component: () => import("../pages/HseMobileCraneChecklistsCreate.vue"),
+          },
+          {
+            path: "hse-tower-crane",
+            name: "hse-tower-crane",
+            component: () => import("../pages/HseTowerCrane.vue"),
           },
           {
             path: "hse-tower-crane-checklists",
@@ -854,6 +938,11 @@ const router = createRouter({
             component: () => import("../pages/HseTowerCraneChecklistsCreate.vue"),
           },
           {
+            path: "hse-diesel-generator",
+            name: "hse-diesel-generator",
+            component: () => import("../pages/HseDieselGenerator.vue"),
+          },
+          {
             path: "diesel-generator-checklists",
             name: "diesel-generator-checklists",
             component: () => import("../pages/HseDieselGeneratorChecklists.vue"),
@@ -862,6 +951,11 @@ const router = createRouter({
             path: "diesel-generator-checklists-create",
             name: "diesel-generator-checklists-create",
             component: () => import("../pages/HseDieselGeneratorChecklistsCreate.vue"),
+          },
+          {
+            path: "hse-distribution-panel",
+            name: "hse-distribution-panel",
+            component: () => import("../pages/HseDistributionPanel.vue"),
           },
           {
             path: "power-distribution-panel-checklists",
@@ -874,6 +968,11 @@ const router = createRouter({
             component: () => import("../pages/HsePowerDistributionChecklistsCreate.vue"),
           },
           {
+            path: "hse-gas-cutting-set",
+            name: "hse-gas-cutting-set",
+            component: () => import("../pages/HseGasCuttingSet.vue"),
+          },
+          {
             path: "gas-cutting-set-checklists",
             name: "gas-cutting-set-checklists",
             component: () => import("../pages/HseGasCuttingSetChecklists.vue"),
@@ -882,6 +981,11 @@ const router = createRouter({
             path: "gas-cutting-set-checklists-create",
             name: "gas-cutting-set-checklists-create",
             component: () => import("../pages/HseGasCuttingSetChecklistsCreate.vue"),
+          },
+          {
+            path: "hse-portable-grinder",
+            name: "hse-portable-grinder",
+            component: () => import("../pages/HsePortableGrinder.vue"),
           },
           {
             path: "portable-grinder-checklists",
@@ -894,6 +998,11 @@ const router = createRouter({
             component: () => import("../pages/HsePortableGrinderChecklistsCreate.vue"),
           },
           {
+            path: "hse-welding-machine",
+            name: "hse-welding-machine",
+            component: () => import("../pages/HseWeldingMachine.vue"),
+          },
+          {
             path: "welding-machine-checklists",
             name: "welding-machine-checklists",
             component: () => import("../pages/HseWeldingMachineChecklists.vue"),
@@ -902,6 +1011,11 @@ const router = createRouter({
             path: "welding-machine-checklists-create",
             name: "welding-machine-checklists-create",
             component: () => import("../pages/HseWeldingMachineChecklistsCreate.vue"),
+          },
+          {
+            path: "hse-electrical-pump",
+            name: "hse-electrical-pump",
+            component: () => import("../pages/HseElectricalPump.vue"),
           },
           {
             path: "electrical-pump-checklists",
@@ -914,6 +1028,11 @@ const router = createRouter({
             component: () => import("../pages/HseelEctricalPumpChecklistsCreate.vue"),
           },
           {
+            path: "hse-winch-machine",
+            name: "hse-winch-machine",
+            component: () => import("../pages/HseWinchMachine.vue"),
+          },
+          {
             path: "winch-machine-checklists",
             name: "winch-machine-checklists",
             component: () => import("../pages/HseelWinchMachineChecklists.vue"),
@@ -922,6 +1041,11 @@ const router = createRouter({
             path: "winch-machine-checklists-create",
             name: "winch-machine-checklists-create",
             component: () => import("../pages/HseelWinchMachineChecklistsCreate.vue"),
+          },
+          {
+            path: "hse-chain-pulley-block",
+            name: "hse-chain-pulley-block",
+            component: () => import("../pages/HseChainPulleyBlock.vue"),
           },
           {
             path: "chain-pulley-block-checklists",
@@ -934,6 +1058,11 @@ const router = createRouter({
             component: () => import("../pages/HseChainPulleyBlockChecklistsCreate.vue"),
           },
           {
+            path: "hse-lifting-tools-tackles",
+            name: "hse-lifting-tools-tackles",
+            component: () => import("../pages/HseliftingToolsTackles.vue"),
+          },
+          {
             path: "lifting-tools-tackles-checklists",
             name: "lifting-tools-tackles-checklists",
             component: () => import("../pages/HseLiftingToolsTacklesChecklists.vue"),
@@ -942,6 +1071,11 @@ const router = createRouter({
             path: "lifting-tools-tackles-checklists-create",
             name: "lifting-tools-tackles-checklists-create",
             component: () => import("../pages/HseLiftingToolsTacklesChecklistsCreate.vue"),
+          },
+          {
+            path: "hse-air-compressor",
+            name: "hse-air-compressor",
+            component: () => import("../pages/HseAirCompressor.vue"),
           },
           {
             path: "air-compressor-checklists",
@@ -954,6 +1088,11 @@ const router = createRouter({
             component: () => import("../pages/HseAirCompressorChecklistsCreate.vue"),
           },
           {
+            path: "hse-sand-blasting-set",
+            name: "hse-sand-blasting-set",
+            component: () => import("../pages/HseSandBlastingSet.vue"),
+          },
+          {
             path: "sand-blasting-set-checklists",
             name: "sand-blasting-set-checklists",
             component: () => import("../pages/HseSandBlastingSetChecklists.vue"),
@@ -962,6 +1101,11 @@ const router = createRouter({
             path: "sand-blasting-set-checklists-create",
             name: "sand-blasting-set-checklists-create",
             component: () => import("../pages/HseSandBlastingSetChecklistsCreate.vue"),
+          },
+          {
+            path: "hse-fire-extinguisher",
+            name: "hse-fire-extinguisher",
+            component: () => import("../pages/HseFireExtinguisher.vue"),
           },
           {
             path: "fire-extinguisher-checklists",
@@ -974,6 +1118,11 @@ const router = createRouter({
             component: () => import("../pages/HseFireExtinguisherChecklistsCreate.vue"),
           },
           {
+            path: "hse-bench-cutting-machine",
+            name: "hse-bench-cutting-machine",
+            component: () => import("../pages/HseBenchCuttingMachine.vue"),
+          },
+          {
             path: "bench-cutting-machine-checklists",
             name: "bench-cutting-machine-checklists",
             component: () => import("../pages/HseBenchCuttingMachineChecklists.vue"),
@@ -982,6 +1131,11 @@ const router = createRouter({
             path: "bench-cutting-machine-checklists-create",
             name: "bench-cutting-machine-checklists-create",
             component: () => import("../pages/HseBenchCuttingMachineChecklistsCreate.vue"),
+          },
+          {
+            path: "hse-pedestal-grinder",
+            name: "hse-pedestal-grinder",
+            component: () => import("../pages/HsePedestalGrinder.vue"),
           },
           {
             path: "pedestal-grinder-checklists",
@@ -994,6 +1148,11 @@ const router = createRouter({
             component: () => import("../pages/HsePedestalGrinderChecklistsCreate.vue"),
           },
           {
+            path: "hse-circular-saw",
+            name: "hse-circular-saw",
+            component: () => import("../pages/HseCircularSaw.vue"),
+          },
+          {
             path: "circular-saw-checklists",
             name: "circular-saw-checklists",
             component: () => import("../pages/HseCircularSawChecklists.vue"),
@@ -1002,6 +1161,11 @@ const router = createRouter({
             path: "circular-saw-checklists-create",
             name: "circular-saw-checklists-create",
             component: () => import("../pages/HseCircularSawChecklistsCreate.vue"),
+          },
+          {
+            path: "hse-batching-plant",
+            name: "hse-batching-plant",
+            component: () => import("../pages/HseBatchingPlant.vue"),
           },
           {
             path: "batching-plant-checklists",
@@ -1014,6 +1178,11 @@ const router = createRouter({
             component: () => import("../pages/HseBatchingPlantChecklistsCreate.vue"),
           },
           {
+            path: "hse-ambulance",
+            name: "hse-ambulance",
+            component: () => import("../pages/HseAmbulance.vue"),
+          },
+          {
             path: "ambulance-checklists",
             name: "ambulance-checklists",
             component: () => import("../pages/HseAmbulanceChecklists.vue"),
@@ -1022,6 +1191,11 @@ const router = createRouter({
             path: "ambulance-checklists-create",
             name: "ambulance-checklists-create",
             component: () => import("../pages/HseAmbulanceChecklistsCreate.vue"),
+          },
+          {
+            path: "hse-skidSteer-loader",
+            name: "hse-skidSteer-loader",
+            component: () => import("../pages/HseSkidSteerLoader.vue"),
           },
           {
             path: "skidSteer-loader-checklists",
@@ -1034,6 +1208,11 @@ const router = createRouter({
             component: () => import("../pages/HseSkidSteerLoaderChecklistsCreate.vue"),
           },
           {
+            path: "hse-grader",
+            name: "hse-grader",
+            component: () => import("../pages/HseGrader.vue"),
+          },
+          {
             path: "grader-checklists",
             name: "grader-checklists",
             component: () => import("../pages/HseGraderChecklists.vue"),
@@ -1042,6 +1221,11 @@ const router = createRouter({
             path: "grader-checklists-create",
             name: "grader-checklists-create",
             component: () => import("../pages/HseGraderChecklistsCreate.vue"),
+          },
+          {
+            path: "hse-gantry-crane",
+            name: "hse-gantry-crane",
+            component: () => import("../pages/HseGantryCrane.vue"),
           },
           {
             path: "gantry-crane-checklists",
@@ -1054,6 +1238,11 @@ const router = createRouter({
             component: () => import("../pages/HseGantryCraneChecklistsCreate.vue"),
           },
           {
+            path: "hse-eot-crane",
+            name: "hse-eot-crane",
+            component: () => import("../pages/HseEotCrane.vue"),
+          },
+          {
             path: "eot-crane-checklists",
             name: "eot-crane-checklists",
             component: () => import("../pages/HseEotCraneChecklists.vue"),
@@ -1062,6 +1251,11 @@ const router = createRouter({
             path: "eot-crane-checklists-create",
             name: "eot-crane-checklists-create",
             component: () => import("../pages/HseEotCraneChecklistsCreate.vue"),
+          },
+          {
+            path: "hse-trailer",
+            name: "hse-trailer",
+            component: () => import("../pages/HseTrailer.vue"),
           },
           {
             path: "trailer-checklists",
@@ -1074,6 +1268,11 @@ const router = createRouter({
             component: () => import("../pages/HseTrailerChecklistsCreate.vue"),
           },
           {
+            path: "hse-four-wheeler",
+            name: "hse-four-wheeler",
+            component: () => import("../pages/HseFourWheeler.vue"),
+          },
+          {
             path: "four-wheeler-checklists",
             name: "four-wheeler-checklists",
             component: () => import("../pages/HseFourWheelerChecklists.vue"),
@@ -1082,6 +1281,11 @@ const router = createRouter({
             path: "four-wheeler-checklists-create",
             name: "four-wheeler-checklists-create",
             component: () => import("../pages/HseFourWheelerChecklistsCreate.vue"),
+          },
+          {
+            path: "hse-bus",
+            name: "hse-bus",
+            component: () => import("../pages/HseBus.vue"),
           },
           {
             path: "bus-checklists",
@@ -1094,6 +1298,11 @@ const router = createRouter({
             component: () => import("../pages/HseBusChecklistsCreate.vue"),
           },
           {
+            path: "hse-diesel-tanker",
+            name: "hse-diesel-tanker",
+            component: () => import("../pages/HseDieselTanker.vue"),
+          },
+          {
             path: "diesel-tanker-checklists",
             name: "diesel-tanker-checklists",
             component: () => import("../pages/HseDieselTankerChecklists.vue"),
@@ -1104,6 +1313,11 @@ const router = createRouter({
             component: () => import("../pages/HseDieselTankerChecklistsCreate.vue"),
           },
           {
+            path: "hse-water-tanker",
+            name: "hse-water-tanker",
+            component: () => import("../pages/HseWaterTanker.vue"),
+          },
+          {
             path: "water-tanker-checklists",
             name: "water-tanker-checklists",
             component: () => import("../pages/HseWaterTankerChecklists.vue"),
@@ -1112,6 +1326,11 @@ const router = createRouter({
             path: "water-tanker-checklists-create",
             name: "water-tanker-checklists-create",
             component: () => import("../pages/HseWaterTankerChecklistsCreate.vue"),
+          },
+          {
+            path: "hse-bike",
+            name: "hse-bike",
+            component: () => import("../pages/HseBike.vue"),
           },
           {
             path: "bike-checklists",

@@ -1,0 +1,5 @@
+{
+            path: "hse-vehicle-safety",
+            name: "hse-vehicle-safety",
+            component: () => import("../pages/HseVehicleSafety.vue"),
+          },

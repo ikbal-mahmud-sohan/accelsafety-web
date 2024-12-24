@@ -184,12 +184,16 @@ onMounted(() => {
               <div
                 :class="[
                   'flex items-center justify-center',
-                  { 'text-success':report.status },
-                  { 'text-danger': !report.status },
+                  {
+                    'text-success': report.status === 'open',
+                    'text-warning': report.status === 'pending',
+                    'text-danger': report.status === 'closed',
+                  }
                 ]"
               >
                 <Lucide icon="CheckSquare" class="w-4 h-4 mr-2" />
-                {{ report.status ? "Active" : "Inactive" }}
+                <!-- {{ report.status ? "Active" : "Inactive" }} -->
+                  {{ report.status }}
               </div>
             </Table.Td>
             
@@ -239,6 +243,10 @@ onMounted(() => {
               ]"
             >
               <div class="flex items-center justify-center">
+                <router-link :to="{name:'admin-safety-observatio-update-form', params:{id:report.id} }" class="flex items-center mr-3">
+                  <Lucide icon="CheckSquare" class="w-4 h-4 mr-1" />
+                  Approved
+                </router-link>
                 <router-link :to="{name:'safety-observatio-update-form', params:{id:report.id} }" class="flex items-center mr-3">
                   <Lucide icon="CheckSquare" class="w-4 h-4 mr-1" />
                   Edit
