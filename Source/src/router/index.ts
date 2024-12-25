@@ -147,8 +147,18 @@ const router = createRouter({
           component: () => import("../pages/AccidentInvestigationList.vue"),
         },
         {
-          path: "accident-investigation",
+          path: "accident-investigation/:id",
           name: "accident-investigation-form",
+          component: () => import("../pages/AssignAccidentInvestigation.vue"),
+        },
+        {
+          path: "accident-investigation/:id/update",
+          name: "accident-investigation-update-form",
+          component: () => import("../pages/AccidentInvestigationUpdateForm.vue"),
+        },
+        {
+          path: "accident-investigation/:id/admin/update",
+          name: "accident-investigation-admin-update",
           component: () => import("../pages/AccidentInvestigationForm.vue"),
         },
         // Safety Observation
