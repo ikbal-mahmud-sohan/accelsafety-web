@@ -110,10 +110,6 @@ onMounted(() => {
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase"> ID </Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase"> MONTH </Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase"> date </Table.Th>
-            <!-- <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">NAME</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase"> DESIGNATIONS</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">SUPERVISOR</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">department</Table.Th> -->
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">type of accident</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">description</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">zone location</Table.Th>
@@ -152,18 +148,7 @@ onMounted(() => {
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600 whitespace-nowrap">
               {{ report.date }}
             </Table.Td>
-            <!-- <Table.Td class="box text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.name }}
-            </Table.Td>
-            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.designation }}
-            </Table.Td>
-            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.supervisor }}
-            </Table.Td>
-            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.department }}
-            </Table.Td> -->
+            
             <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
               {{ report.type_of_accident }}
             </Table.Td>
@@ -299,14 +284,15 @@ onMounted(() => {
               class="box w-40 text-center rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600"
             >
               <div
-                :class="[
-                  'flex items-center justify-center',
-                  { 'text-success':report.status },
-                  { 'text-danger': !report.status },
-                ]"
+              :class="[
+                'flex items-center justify-center',
+                report.status === 'Created' ? 'text-blue-500' : '',
+                report.status === 'Open' ? 'text-green-500' : '',  
+                report.status === 'Closed' ? 'text-red-500' : ''   
+              ]"
               >
                 <Lucide icon="CheckSquare" class="w-4 h-4 mr-2" />
-                {{ report.status ? "Active" : "Inactive" }}
+                  {{ report.status }}
               </div>
             </Table.Td>
             <Table.Td
@@ -316,6 +302,10 @@ onMounted(() => {
               ]"
             >
               <div class="flex items-center justify-center">
+                <router-link :to="{name:'accident-investigation-form', params:{id:report.id} }" class="flex items-center mr-3">
+                  <Lucide icon="CheckSquare" class="w-4 h-4 mr-1" />
+                  Assigned
+                </router-link>
                 <router-link :to="{name:'accident-update-form', params:{id:report.id} }" class="flex items-center mr-3">
                   <Lucide icon="CheckSquare" class="w-4 h-4 mr-1" />
                   Edit
