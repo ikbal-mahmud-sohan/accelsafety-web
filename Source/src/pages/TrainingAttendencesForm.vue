@@ -14,6 +14,8 @@ import {
 import useVuelidate from '@vuelidate/core';
 import { required, minLength, email, integer, maxLength } from '@vuelidate/validators';
 import Toastify from 'toastify-js';
+import { getToken } from './../auth/setToken'
+
 
 const formData = reactive({
         serial_number:'',
@@ -32,6 +34,8 @@ const formData = reactive({
 const state = reactive({
   trainingTopicData: [] as Array<any>,
   employeeData: [] as Array<any>,
+  token: getToken(),
+
 
 });
 const router = useRouter();
@@ -98,6 +102,8 @@ const submitForm = async () => {
                 const response = await axios.post(url, form, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
+                    'Authorization': state.token,
+
                 },
                 });
                 console.log('Form submitted successfully:', response.data);
@@ -128,7 +134,11 @@ const submitForm = async () => {
 const fetchTrainingTopicData = async () => {
   try {
    let  url = config.baseURL+'/api/v1/trainingTopics';
-    const response = await axios.get(url);
+    const response = await axios.get(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     state.trainingTopicData = response.data.data;
 
   } catch (error) {
@@ -138,7 +148,11 @@ const fetchTrainingTopicData = async () => {
 const fetchEmployeeData = async () => {
   try {
    let  url = config.baseURL+'/api/v1/employee';
-    const response = await axios.get(url);
+    const response = await axios.get(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     state.employeeData = response.data.data;
 
     console.log("sohan 1",state.employeeData)

@@ -43,16 +43,12 @@ const editorConfig = {
 const formData = reactive({
     investigation_name_1 : '',
     investigation_designation_1 : '',
-    investigation_sign_1: [] as File[],
     investigation_name_2 : '',
     investigation_designation_2 : '',
-    investigation_sign_2: [] as File[],
     investigation_name_3 : '',
     investigation_designation_3 : '',
-    investigation_sign_3: [] as File[],
     investigation_name_4 : '',
     investigation_designation_4 : '',
-    investigation_sign_4: [] as File[],
     accident_id: '',
 });
 
@@ -78,45 +74,18 @@ interface BackendErrorResponse {
         [key: string]: string[];
     };
 }
-const investigationSign1FileChange = (event: Event) => {
-  const input = event.target as HTMLInputElement;
-  if (input.files) {
-    formData.investigation_sign_1 = Array.from(input.files);
-  }
-};
-const investigationSign2FileChange = (event: Event) => {
-  const input = event.target as HTMLInputElement;
-  if (input.files) {
-    formData.investigation_sign_2 = Array.from(input.files);
-  }
-};
-const investigationSign3FileChange = (event: Event) => {
-  const input = event.target as HTMLInputElement;
-  if (input.files) {
-    formData.investigation_sign_3 = Array.from(input.files);
-  }
-};
-const investigationSign4FileChange = (event: Event) => {
-  const input = event.target as HTMLInputElement;
-  if (input.files) {
-    formData.investigation_sign_4 = Array.from(input.files);
-  }
-};
+
 
 
 const rules = {
       investigation_name_1: {required},
       investigation_designation_1: {required},
-      investigation_sign_1: {required},
       investigation_name_2: {required},
       investigation_designation_2: {required},
-      investigation_sign_2: {required},
       investigation_name_3: {required},
       investigation_designation_3: {required},
-      investigation_sign_3: {required},
       investigation_name_4: {required},
       investigation_designation_4: {required},
-      investigation_sign_4: {required},
       accident_id: {required},
 };
 
@@ -145,11 +114,8 @@ const submitForm = async () => {
     } else {
      
     const form = new FormData();
-
     Object.entries(formData).forEach(([key, value]) => {
-             if (value instanceof File) {
-              form.append(key, value);
-            } else if (Array.isArray(value)) {
+            if (Array.isArray(value)) {
               value.forEach((item) => {
                 form.append(`${key}[]`, item);
               });
@@ -157,8 +123,6 @@ const submitForm = async () => {
               form.append(key, String(value));
             }
           });
-    console.log("form ssssss",form)
-
    try {
             let  url = config.baseURL+'/api/v1/accident-investigation';
               const response = await axios.post(url, form,{
@@ -304,7 +268,7 @@ onMounted(() => {
 
 <template>
   <div class="flex items-center mt-8 intro-y">
-    <h2 class="mr-auto text-lg font-medium">Add Accident Investigation</h2>
+    <h2 class="mr-auto text-lg font-medium">Initiate Investigation</h2>
   </div>
   <div class="grid grid-cols-11 pb-20 mt-5 gap-x-6">
     <!-- BEGIN: Notification -->
@@ -336,184 +300,142 @@ onMounted(() => {
             <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" />Investigation Team
           </div>
           <div class="mt-5">
-              <div class="hidden md:flex justify-between py-5 items-center bg-gray-200">
-                  <div class="w-40 ">
-                      <div class="px-4 py-4"> No. </div>
-                  </div>
-                  <div class="w-1/4">
-                      <div class="px-4 py-4 "> Name </div>
-                  </div>
-                  <div class="w-1/4">
-                      <div class="px-4 py-4 "> Designation &amp; Department </div>
-                  </div>
-                  <div class="w-1/4">
-                      <div class="px-4 py-4 "> Sign </div>
-                  </div>
-              </div>
-              <div class="flex flex-wrap justify-between py-5 items-center border-b ">
-                  <div class="w-full md:w-40 h-full">
-                      <div class="px-4 py-4 ">Investigator 1 </div>
-                  </div>
-                  <div class="w-full md:w-1/4">
-                      <div class="px-4 py-4 "> 
-                          <select id="crud-form-6" v-model="selectedEmp1" @change="selectedEmpOne(selectedEmp1)"  class="border py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 fdark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80">
-                              <option value="" disabled>select Investigator</option>
-                              <option v-for="(data, index) in state.viewEmp" :key="index" :value="data.id">{{ data.name }}</option>
-                          </select>
-                       </div>
-                       <template v-if="validate.investigation_name_1.$error">
-                        <div v-for="(error, index) in validate.investigation_name_1.$errors" :key="index" class="mt-2 text-danger px-4">
-                          {{ error.$message }}
-                        </div>
-                      </template>
-                  </div>
-                  <div class="w-full md:w-1/4">
-                      <div class="px-4 py-4 "> 
-                        <div class="">
-                            <FormInput id="crud-form-16" v-model.trim="validate.investigation_designation_1.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.investigation_designation_1.$error,}" placeholder="Input Investigator Designation"/>
-                          </div>
-                       </div>
-                       <template v-if="validate.investigation_designation_1.$error">
-                          <div v-for="(error, index) in validate.investigation_designation_1.$errors" :key="index" class="mt-2 text-danger px-4">
-                            {{ error.$message }}
-                          </div>
-                        </template>
-                  </div>
-                  <div class="w-full md:w-1/4">
-                      <div class="px-4 py-4"> 
-                        <input id="investigationSign1FileChange" type="file" class="" multiple @change="investigationSign1FileChange"/>
-                       </div>
-                       <template v-if="validate.investigation_sign_1.$error">
-                        <div v-for="(error, index) in validate.investigation_sign_1.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap px-4">
-                          {{ error.$message }}
-                        </div>
-                      </template>
-                  </div>
-              </div>
-              <div class="flex flex-wrap justify-between py-5 items-center border-b ">
-                  <div class="w-full md:w-40 h-full">
-                      <div class="px-4 py-4 ">Investigator 2 </div>
-                  </div>
-                  <div class="w-full md:w-1/4">
-                      <div class="px-4 py-4 "> 
-                        <select id="crud-form-6" v-model="selectedEmp2" @change="selectedEmpTwo(selectedEmp2)"  class="border py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 fdark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80">
-                            <option value="" disabled>select Investigator</option>
-                            <option v-for="(data, index) in state.viewEmp" :key="index" :value="data.id">{{ data.name }}</option>
-                        </select>
-                       </div>
-                       <template v-if="validate.investigation_name_2.$error">
-                        <div v-for="(error, index) in validate.investigation_name_2.$errors" :key="index" class="mt-2 text-danger px-4">
-                          {{ error.$message }}
-                        </div>
-                      </template>
-                  </div>
-                  <div class="w-full md:w-1/4">
-                      <div class="px-4 py-4 "> 
-                        <div class="">
-                          <FormInput id="crud-form-16" v-model.trim="validate.investigation_designation_2.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.investigation_designation_2.$error,}" placeholder="Input Investigator Designation"/>
-                          </div>
-                       </div>
-                       <template v-if="validate.investigation_designation_2.$error">
-                          <div v-for="(error, index) in validate.investigation_designation_2.$errors" :key="index" class="mt-2 text-danger px-4">
-                            {{ error.$message }}
-                          </div>
-                        </template>
-                       
-                  </div>
-                  <div class="w-full md:w-1/4">
-                      <div class="px-4 py-4 "> 
-                        <input id="investigationSign2FileChange" type="file" class="" multiple @change="investigationSign2FileChange"/>
+            <div class="overflow-x-auto">
+                <Table>
+                    <Table.Thead variant="dark">
+                        <Table.Tr>
+                            <Table.Th class="whitespace-nowrap">#</Table.Th>
+                            <Table.Th class="whitespace-nowrap">
+                              No.
+                            </Table.Th>
+                            <Table.Th class="whitespace-nowrap"> Name </Table.Th>
+                            <Table.Th class="whitespace-nowrap"> Designation &amp; Department </Table.Th>
+                        </Table.Tr>
+                    </Table.Thead>
+                    <Table.Tbody>
+                        <Table.Tr>
+                            <Table.Td>1</Table.Td>
+                            <Table.Td>Investigator 1</Table.Td>
+                            <Table.Td>
+                              <div class=" py-2 "> 
+                                  <select id="crud-form-6" v-model="selectedEmp1" @change="selectedEmpOne(selectedEmp1)"  class="border py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 fdark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80">
+                                      <option value="" disabled>select Investigator</option>
+                                      <option v-for="(data, index) in state.viewEmp" :key="index" :value="data.id">{{ data.name }}</option>
+                                  </select>
+                              </div>
+                              <template v-if="validate.investigation_name_1.$error">
+                                <div v-for="(error, index) in validate.investigation_name_1.$errors" :key="index" class="mt-2 text-danger px-4">
+                                  {{ error.$message }}
+                                </div>
+                              </template>
+                            </Table.Td>
+                            <Table.Td>
+                              <div class=" py-2 "> 
+                                <div class="">
+                                    <FormInput id="crud-form-16" v-model.trim="validate.investigation_designation_1.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.investigation_designation_1.$error,}" placeholder="Input Investigator Designation"/>
+                                  </div>
+                              </div>
+                              <template v-if="validate.investigation_designation_1.$error">
+                                  <div v-for="(error, index) in validate.investigation_designation_1.$errors" :key="index" class="mt-2 text-danger px-4">
+                                    {{ error.$message }}
+                                  </div>
+                                </template>
+                            </Table.Td>
+                        </Table.Tr>
+                        <Table.Tr>
+                            <Table.Td>2</Table.Td>
+                            <Table.Td>Investigator 2</Table.Td>
+                            <Table.Td>
+                              <div class=" py-2 "> 
+                                <select id="crud-form-6" v-model="selectedEmp2" @change="selectedEmpTwo(selectedEmp2)"  class="border py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 fdark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80">
+                                    <option value="" disabled>select Investigator</option>
+                                    <option v-for="(data, index) in state.viewEmp" :key="index" :value="data.id">{{ data.name }}</option>
+                                </select>
+                              </div>
+                              <template v-if="validate.investigation_name_2.$error">
+                                <div v-for="(error, index) in validate.investigation_name_2.$errors" :key="index" class="mt-2 text-danger px-4">
+                                  {{ error.$message }}
+                                </div>
+                              </template>
+                            </Table.Td>
+                            <Table.Td>
+                              <div class=" py-2 "> 
+                                <div class="">
+                                  <FormInput id="crud-form-16" v-model.trim="validate.investigation_designation_2.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.investigation_designation_2.$error,}" placeholder="Input Investigator Designation"/>
+                                  </div>
+                              </div>
+                              <template v-if="validate.investigation_designation_2.$error">
+                                  <div v-for="(error, index) in validate.investigation_designation_2.$errors" :key="index" class="mt-2 text-danger px-4">
+                                    {{ error.$message }}
+                                  </div>
+                                </template>
+                            </Table.Td>
+                        </Table.Tr>
+                        <Table.Tr>
+                            <Table.Td>3</Table.Td>
+                            <Table.Td>Investigator 3</Table.Td>
+                            <Table.Td>
+                              <div class=" py-2 "> 
+                                <select id="crud-form-6" v-model="selectedEmp3" @change="selectedEmpThree(selectedEmp3)"  class="border py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 fdark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80">
+                                    <option value="" disabled>select Investigator</option>
+                                    <option v-for="(data, index) in state.viewEmp" :key="index" :value="data.id">{{ data.name }}</option>
+                                </select>
+                              </div>
+                              <template v-if="validate.investigation_name_3.$error">
+                                <div v-for="(error, index) in validate.investigation_name_3.$errors" :key="index" class="mt-2 text-danger px-4">
+                                  {{ error.$message }}
+                                </div>
+                              </template>
+                            </Table.Td>
+                            <Table.Td>
+                              <div class=" py-2 "> 
+                                <div class="">
+                                  <FormInput id="crud-form-16" v-model.trim="validate.investigation_designation_3.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.investigation_designation_3.$error,}" placeholder="Input Investigator Designation"/>
+                                  </div>
+                              </div>
+                              <template v-if="validate.investigation_designation_3.$error">
+                                  <div v-for="(error, index) in validate.investigation_designation_3.$errors" :key="index" class="mt-2 text-danger px-4">
+                                    {{ error.$message }}
+                                  </div>
+                                </template>
+                            </Table.Td>
+                        </Table.Tr>
+                        <Table.Tr>
+                            <Table.Td>4</Table.Td>
+                            <Table.Td>Investigator 4</Table.Td>
+                            <Table.Td>
+                              <div class=" py-2 "> 
+                                <select id="crud-form-6" v-model="selectedEmp4" @change="selectedEmpFour(selectedEmp4)"  class="border py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 fdark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80">
+                                    <option value="" disabled>select Investigator</option>
+                                    <option v-for="(data, index) in state.viewEmp" :key="index" :value="data.id">{{ data.name }}</option>
+                                </select>
+                              </div>
+                              <template v-if="validate.investigation_name_4.$error">
+                                <div v-for="(error, index) in validate.investigation_name_4.$errors" :key="index" class="mt-2 text-danger px-4">
+                                  {{ error.$message }}
+                                </div>
+                              </template>
+                            </Table.Td>
+                            <Table.Td>
+                              <div class=" py-2 "> 
+                                <div class="">
+                                  <FormInput id="crud-form-16" v-model.trim="validate.investigation_designation_4.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.investigation_designation_4.$error,}" placeholder="Input Investigator Designation"/>
+                                  </div>
+                              </div>
+                              <template v-if="validate.investigation_designation_4.$error">
+                                  <div v-for="(error, index) in validate.investigation_designation_4.$errors" :key="index" class="mt-2 text-danger px-4">
+                                    {{ error.$message }}
+                                  </div>
+                                </template>
+                            </Table.Td>
+                        </Table.Tr>
+                    </Table.Tbody>
+                </Table>
+                
+            </div>
 
-                       </div>
-                       <template v-if="validate.investigation_sign_2.$error">
-                        <div v-for="(error, index) in validate.investigation_sign_2.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap px-4">
-                          {{ error.$message }}
-                        </div>
-                      </template>
-                  </div>
-              </div>
-              <div class="flex flex-wrap justify-between py-5 items-center border-b ">
-                  <div class="w-full md:w-40 h-full">
-                      <div class="px-4 py-4 ">Investigator 3 </div>
-                  </div>
-                  <div class="w-full md:w-1/4">
-                      <div class="px-4 py-4 "> 
-                        <select id="crud-form-6" v-model="selectedEmp3" @change="selectedEmpThree(selectedEmp3)"  class="border py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 fdark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80">
-                            <option value="" disabled>select Investigator</option>
-                            <option v-for="(data, index) in state.viewEmp" :key="index" :value="data.id">{{ data.name }}</option>
-                        </select>
-                       </div>
-                       <template v-if="validate.investigation_name_3.$error">
-                        <div v-for="(error, index) in validate.investigation_name_3.$errors" :key="index" class="mt-2 text-danger px-4">
-                          {{ error.$message }}
-                        </div>
-                      </template>
-                  </div>
-                  <div class="w-full md:w-1/4">
-                      <div class="px-4 py-4 "> 
-                        <div class="">
-                          <FormInput id="crud-form-16" v-model.trim="validate.investigation_designation_3.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.investigation_designation_3.$error,}" placeholder="Input Investigator Designation"/>
-                          </div>
-                       </div>
-                       <template v-if="validate.investigation_designation_3.$error">
-                          <div v-for="(error, index) in validate.investigation_designation_3.$errors" :key="index" class="mt-2 text-danger px-4">
-                            {{ error.$message }}
-                          </div>
-                        </template>
-                  </div>
-                  <div class="w-full md:w-1/4">
-                      <div class="px-4 py-4 "> 
-                        <input id="investigationSign3FileChange" type="file" class="" multiple @change="investigationSign3FileChange"/>
-                       </div>
-                       <template v-if="validate.investigation_sign_3.$error">
-                        <div v-for="(error, index) in validate.investigation_sign_3.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap px-4">
-                          {{ error.$message }}
-                        </div>
-                      </template>
-                  </div>
-              </div>
-              <div class="flex flex-wrap justify-between py-5 items-center border-b ">
-                  <div class="w-full md:w-40 h-full">
-                      <div class="px-4 py-4 ">Investigator 4 </div>
-                  </div>
-                  <div class="w-full md:w-1/4">
-                      <div class="px-4 py-4 "> 
-                        <select id="crud-form-6" v-model="selectedEmp4" @change="selectedEmpFour(selectedEmp4)"  class="border py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 fdark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80">
-                            <option value="" disabled>select Investigator</option>
-                            <option v-for="(data, index) in state.viewEmp" :key="index" :value="data.id">{{ data.name }}</option>
-                        </select>
-                       </div>
-                       <template v-if="validate.investigation_name_4.$error">
-                        <div v-for="(error, index) in validate.investigation_name_4.$errors" :key="index" class="mt-2 text-danger px-4">
-                          {{ error.$message }}
-                        </div>
-                      </template>
-                  </div>
-                  <div class="w-full md:w-1/4">
-                      <div class="px-4 py-4 "> 
-                        <div class="">
-                          <FormInput id="crud-form-16" v-model.trim="validate.investigation_designation_4.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.investigation_designation_4.$error,}" placeholder="Input Investigator Designation"/>
-                          </div>
-                       </div>
-                       <template v-if="validate.investigation_designation_4.$error">
-                          <div v-for="(error, index) in validate.investigation_designation_4.$errors" :key="index" class="mt-2 text-danger px-4">
-                            {{ error.$message }}
-                          </div>
-                        </template>
-                       
-                  </div>
-                  <div class="w-full md:w-1/4">
-                      <div class="px-4 py-4 "> 
-                        <input id="investigationSign4FileChange" type="file" class="" multiple @change="investigationSign4FileChange"/>
-                       </div>
-                       <template v-if="validate.investigation_sign_4.$error">
-                        <div v-for="(error, index) in validate.investigation_sign_4.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap px-4">
-                          {{ error.$message }}
-                        </div>
-                      </template>
-                  </div>
-              </div>
           </div>
+          
         </div>
       </div>
 

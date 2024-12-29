@@ -10,11 +10,15 @@ import Tippy from '@/components/Base/Tippy';
 import { Dialog, Menu } from '@/components/Base/Headless';
 import Table from '@/components/Base/Table';
 import config from "@/config";
+import { getToken } from './../auth/setToken'
+
 
 // Define your state using the reactive function
 const state = reactive({
   viewData: [] as Array<any>,
   departmentData: [] as Array<any>,
+  token: getToken(),
+
 });
 
 
@@ -22,7 +26,11 @@ const state = reactive({
 const fetchData = async () => {
   try {
    let  url = config.baseURL+'/api/v1/employee';
-    const response = await axios.get(url);
+    const response = await axios.get(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     state.viewData = response.data.data;
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -32,7 +40,11 @@ const fetchData = async () => {
 const deleteData = async (sID:string) => {
   try {
     let url = config.baseURL+"/api/v1/employee/"+sID;
-    const response = await axios.delete(url);
+    const response = await axios.delete(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     state.viewData = response.data.data;
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -99,6 +111,7 @@ onMounted(() => {
           <Table.Tr>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase"> ID </Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Employee ID</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Employee Email</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">NAME</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">First Name</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Last Name</Table.Th>
@@ -117,6 +130,9 @@ onMounted(() => {
             </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
               {{ report.emp_id }}
+            </Table.Td>
+            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.emp_email }}
             </Table.Td>
             <Table.Td class="box text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
               {{ report.name }}

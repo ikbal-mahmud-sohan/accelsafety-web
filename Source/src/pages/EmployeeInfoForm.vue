@@ -14,12 +14,16 @@ import Notification from "@/components/Base/Notification";
 import Preview from "@/components/Base/Preview";
 import { Menu, Popover } from "@/components/Base/Headless";
 import Alert from "@/components/Base/Alert";
+import { getToken } from './../auth/setToken'
+
 
 
 // Define your state using the reactive function
 const state = reactive({
   departmentData: [] as Array<any>,
   designationData: [] as Array<any>,
+  token: getToken(),
+
 });
 
 import {
@@ -32,6 +36,7 @@ import {
 const formData = reactive({
   name:'',
   emp_id:'',
+  emp_email:'',
   first_name:'',
   last_name:'',
   unit_name:'',
@@ -69,6 +74,7 @@ const selectedEmployeeType = ref("");
 const rules = {
         name: {required},
         emp_id: {required,},
+        emp_email: {required,},
         first_name: {required,},
         last_name: {required,},
         unit_name: {required,},
@@ -130,6 +136,7 @@ console.log("formData xyz",formData)
             const response = await axios.post(url, designationformData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
+                'Authorization': state.token,
             },
             });
     
@@ -148,6 +155,7 @@ console.log("formData xyz",formData)
           const response = await axios.post(url, departmentformData, {
           headers: {
               'Content-Type': 'multipart/form-data',
+              'Authorization': state.token,
           },
           });
   
@@ -167,7 +175,11 @@ console.log("formData xyz",formData)
   } else {
     try {
       const url = config.baseURL + '/api/v1/employee';
-      const response = await axios.post(url, formData);
+      const response = await axios.post(url, formData,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
       if (response.data != undefined) {
         SuccessPopUp();
         router.push({ name: 'employee-info-list' });
@@ -199,7 +211,11 @@ function designationChange(){
 const fetchDepartmentData = async () => {
   try {
    let  url = config.baseURL+'/api/v1/department';
-    const response = await axios.get(url);
+    const response = await axios.get(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     state.departmentData = response.data.data;
 
     console.log("sohan",state.departmentData)
@@ -210,7 +226,11 @@ const fetchDepartmentData = async () => {
 const fetchDesignationData = async () => {
   try {
    let  url = config.baseURL+'/api/v1/designation';
-    const response = await axios.get(url);
+    const response = await axios.get(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
     state.designationData = response.data.data;
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -292,6 +312,32 @@ onMounted(() => {
                       </div>
                     </template>
                   <p class="text-right mt-2 w-full"> Required</p>
+                </div>
+              </div>
+            </FormInline>
+            <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+              <FormLabel class="xl:w-64 xl:!mr-10">
+                <div class="text-left">
+                  <div class="flex items-center">
+                    <div class="font-medium">Email</div>
+                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                      Required
+                    </div>
+                  </div>
+                  <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                    Email of the employee.
+                  </div>
+                </div>
+              </FormLabel>
+              <div class="flex-1 w-full mt-3 xl:mt-0">
+                <FormInput id="crud-form-3" v-model.trim="validate.emp_email.$model" class="w-full" type="text" name="emp_email":class="{ 'border-danger': validate.emp_email.$error,}" placeholder="Input Email"/>
+                  <div class="flex justify-between">
+                    <template v-if="validate.emp_email.$error">
+                      <div v-for="(error, index) in validate.emp_email.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
+                        {{ error.$message }}
+                      </div>
+                    </template>
+                  <p class="text-right mt-2 w-full"> Required, at least 3 characters</p>
                 </div>
               </div>
             </FormInline>

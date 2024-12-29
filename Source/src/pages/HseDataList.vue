@@ -281,18 +281,7 @@ import Lucide from "@/components/Base/Lucide";
         <p class="text-center">Job Safety Analysis</p>
       </div>
     </div>
-    <div class="w-full lg:w-1/6 md:w-1/3">
-      <div class="flex justify-center items-center p-1">
-        <router-link :to="{ name: 'accident-investigation-form' }">
-          <div class="inline-block">
-              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/15.Safety Harness.png" alt="">
-            </div>
-        </router-link>
-      </div>
-      <div class="py-1">
-        <p class="text-center">Other</p>
-      </div>
-    </div>
+   
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-1">
         <router-link :to="{ name: 'hse-jcb' }">

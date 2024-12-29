@@ -46,6 +46,7 @@ const state = reactive({
   viewOwnerDepartment: [] as Array<any>,
   viewRespDepartment: [] as Array<any>,
   viewPlantName: [] as Array<any>,
+  viewEmp: [] as Array<any>,
   token: getToken(),
 
 });
@@ -56,6 +57,8 @@ const selectedviewRespDepartment = ref("");
 const selectedviewPlantName = ref("");
 const selectedviewPriorityType = ref("");
 const selectedCategory = ref("");
+const selectedEmp1 = ref("");
+
 
 
 const categories = ref(["1", "3"]);
@@ -80,7 +83,6 @@ const rules = {
         plant_name: {required,},
         location: { required, minLength: minLength(3),},
         audit_date: {required },
-        problematic_progressive_images: {required },
         category: { required, minLength: minLength(3),},
         problem_description: { required, minLength: minLength(3),},
         root_cause: { required, minLength: minLength(3),},
@@ -103,6 +105,7 @@ const submitForm = async () => {
     formData.plant_name = selectedviewPlantName.value;
     formData.priority_type = selectedviewPriorityType.value;
     formData.category = selectedCategory.value;
+    formData.auditor = selectedEmp1.value;
     validate.value.$touch();
     console.log(validate.value)
     if (validate.value.$invalid) {
@@ -126,10 +129,7 @@ const submitForm = async () => {
                     'Authorization': state.token,
                 },
                 });
-                console.log('Form submitted successfully:', response.data);
-                if (response.data !== undefined) {
-                    router.push({ name: 'safety-observation-data-list' });
-                }
+                router.push({ name: 'safety-observation-data-list' });
         
             } catch (error) {
                 console.error('Error submitting form:', error);
@@ -150,6 +150,19 @@ const fetchDropDownData = async () => {
     state.viewOwnerDepartment = response.data.OwnerDepartment;
     state.viewRespDepartment = response.data.RespDepartment;
     state.viewPlantName = response.data.PlantName	;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+};
+const fetchEmpData = async () => {
+  try {
+   let  url = config.baseURL+'/api/v1/employee';
+    const response = await axios.get(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
+    state.viewEmp = response.data.data;
   } catch (error) {
     console.error('Error fetching data:', error);
   }
@@ -189,6 +202,7 @@ function SuccessPopUp(){
 }
 onMounted(() => {
   fetchDropDownData();
+  fetchEmpData();
 });
 
 </script>
@@ -251,7 +265,11 @@ onMounted(() => {
                               </div>
                             </FormLabel>
                             <div class="flex-1 w-full mt-3 xl:mt-0">
-                              <FormInput id="crud-form-1" v-model.trim="validate.auditor.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.auditor.$error,}" placeholder="Input Auditor"/>
+                              <!-- <FormInput id="crud-form-1" v-model.trim="validate.auditor.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.auditor.$error,}" placeholder="Input Auditor"/> -->
+                              <select id="crud-form-6" v-model="selectedEmp1"   class="border py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 fdark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 text-gray-500 ">
+                                      <option value="" disabled>select auditor</option>
+                                      <option v-for="(data, index) in state.viewEmp" :key="index" :value="data.name">{{ data.name }}</option>
+                              </select>
                               <div class="flex justify-between">
                                 <template v-if="validate.auditor.$error">
                                 <div v-for="(error, index) in validate.auditor.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
@@ -280,7 +298,7 @@ onMounted(() => {
                           </FormLabel>
                           <div class="flex-1 w-full mt-3 xl:mt-0">
                             <!-- <FormInput id="crud-form-2" v-model.trim="validate.plant_name.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.plant_name.$error,}" placeholder="Input Plant Name"/> -->
-                            <select id="crud-form-6" v-model="selectedviewPlantName"  class="border py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 fdark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80">
+                            <select id="crud-form-6" v-model="selectedviewPlantName"  class="border py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 fdark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 text-gray-500">
                                   <option value="" disabled>select plant name</option>
                                   <option v-for="(data, index) in state.viewPlantName" :key="index" :value="data.name">{{ data.name }}</option>
                             </select>
@@ -498,7 +516,7 @@ onMounted(() => {
                         <div class="flex-1 w-full mt-3 xl:mt-0">
                           <!-- <FormInput id="crud-form-5" v-model.trim="validate.category.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.category.$error,}" placeholder="Input Category"/> -->
 
-                          <select id="crud-form-6" v-model="selectedCategory"  class="border py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 fdark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80">
+                          <select id="crud-form-6" v-model="selectedCategory"  class="border py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 fdark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 text-gray-500">
                                 <option value="" disabled>select category</option>
                                 <option value="near me">near me</option>
                                 <option value="unsafe acts">unsafe acts</option>
@@ -533,7 +551,7 @@ onMounted(() => {
                         </FormLabel>
                         <div class="flex-1 w-full mt-3 xl:mt-0">
                           <!-- <FormInput id="crud-form-7" v-model.trim="validate.resp_department.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.resp_department.$error,}" placeholder="Input Resp Department"/> -->
-                          <select id="crud-form-6" v-model="selectedviewRespDepartment"  class="border py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 fdark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80">
+                          <select id="crud-form-6" v-model="selectedviewRespDepartment"  class="border py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 fdark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 text-gray-500">
                                 <option value="" disabled>select resp department</option>
                                 <option v-for="(data, index) in state.viewRespDepartment" :key="index" :value="data.name">{{ data.name }}</option>
                           </select>
@@ -565,7 +583,7 @@ onMounted(() => {
                           </FormLabel>
                           <div class="flex-1 w-full mt-3 xl:mt-0">
                             <!-- <FormInput id="crud-form-8" v-model.trim="validate.owner_department.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.owner_department.$error,}" placeholder="Input Owner Department"/> -->
-                            <select id="crud-form-6" v-model="selectedviewOwnerDepartment"  class="border py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 fdark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80">
+                            <select id="crud-form-6" v-model="selectedviewOwnerDepartment"  class="border py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 fdark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 text-gray-500">
                                   <option value="" disabled>select owner department</option>
                                   <option v-for="(data, index) in state.viewOwnerDepartment" :key="index" :value="data.name">{{ data.name }}</option>
                             </select>
@@ -624,7 +642,7 @@ onMounted(() => {
                           </FormLabel>
                           <div class="flex-1 w-full mt-3 xl:mt-0">
                             <!-- <FormInput id="crud-form-11" v-model.trim="validate.priority_type.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.priority_type.$error,}" placeholder="Input Priority Type"/>   -->
-                            <select id="crud-form-6" v-model="selectedviewPriorityType"  class="border py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 fdark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80">
+                            <select id="crud-form-6" v-model="selectedviewPriorityType"  class="border py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 fdark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 text-gray-500">
                                   <option value="" disabled>select priority type</option>
                                   <option value="Low">Low</option>
                                   <option value="medium">medium</option>
@@ -703,15 +721,6 @@ onMounted(() => {
                                       <span class="text-sm text-gray-700 truncate">{{ file.name }}</span>
                                     </div>
                                   </div>
-                              </div>
-                          
-                              <div class="flex justify-between">
-                                <template v-if="validate.problematic_progressive_images.$error">
-                                <div v-for="(error, index) in validate.problematic_progressive_images.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
-                                  {{ error.$message }}
-                                </div>
-                              </template>
-                                <p class="text-right mt-2 w-full"> Required</p>
                               </div>
                         </div>
                       </FormInline>
