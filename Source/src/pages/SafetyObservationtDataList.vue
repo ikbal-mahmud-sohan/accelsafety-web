@@ -107,7 +107,6 @@ onMounted(() => {
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Audit Date</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Category</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Problem Description</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Problematic Progressive Images</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Root Cause</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Resp Department</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Owner Department</Table.Th>
@@ -148,21 +147,7 @@ onMounted(() => {
                 <div class="top-0 left-0 absolute w-72 bg-white shadow-xl rounded-md z-50 px-4 py-4 hidden group-hover:block" v-html="report.problem_description"></div>
               </div>
             </Table.Td>
-            <Table.Td
-              class="box w-40 rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600"
-            >
-              <div class="flex justify-center">
-                <div class="w-16 h-16 image-fit zoom-in" v-for="(img, index) in report.problematic_progressive_images" :key="index" >
-                  <Tippy
-                    as="img"
-                    alt="safety"
-                    class="rounded-full shadow-[0px_0px_0px_2px_#fff,_1px_1px_5px_rgba(0,0,0,0.32)] dark:shadow-[0px_0px_0px_2px_#3f4865,_1px_1px_5px_rgba(0,0,0,0.32)]"
-                    :src="`${config.baseURL}${img}`"
-                    :content="`safety`"
-                  />
-                </div>
-              </div>
-            </Table.Td>
+            
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
               {{ report.root_cause }}
             </Table.Td>

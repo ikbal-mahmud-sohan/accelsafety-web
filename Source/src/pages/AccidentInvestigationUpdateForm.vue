@@ -258,9 +258,9 @@ const rules = {
       reviewed_by_department_name: {required},
       reviewed_by_unit_name: {required},
       approved_by_name: {required},
-      reviewed_by_department_signature: {required},
-      reviewed_by_unit_signature: {required},
-      approved_by_signature: {required},  
+      // reviewed_by_department_signature: {required},
+      // reviewed_by_unit_signature: {required},
+      // approved_by_signature: {required},  
       name_of_the_factory: {required},  
       date_of_accident: {required},  
       accident_time: {required},  
@@ -317,6 +317,9 @@ const submitForm = async () => {
   formData.unsafe_acts = selectedunsafeActs.value
   formData.unsafe_conditions = selectedunsafeConditions.value
   formData.management_deficiencies = selectedmanagementDeficiencies.value
+  formData.reviewed_by_department_name = selectedEmp1.value
+  formData.reviewed_by_unit_name = selectedEmp2.value
+  formData.approved_by_name = selectedEmp3.value
 
   
     console.log("validate.value",validate.value)
@@ -1735,7 +1738,11 @@ management_deficiency_title -->
                             </div>
                           </div>
                         </FormLabel>
-                        <FormInput id="crud-form-11" v-model.trim="validate.reviewed_by_department_name.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.reviewed_by_department_name.$error,}" placeholder="Input Reviewed By Department Name"/>  
+                        <!-- <FormInput id="crud-form-11" v-model.trim="validate.reviewed_by_department_name.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.reviewed_by_department_name.$error,}" placeholder="Input Reviewed By Department Name"/>   -->
+                        <select id="crud-form-6" v-model="selectedEmp1"   class="border py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 fdark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 text-gray-500 ">
+                                      <option value="" disabled>select manager</option>
+                                      <option v-for="(data, index) in state.viewEmp" :key="index" :value="data.name">{{ data.name }}</option>
+                          </select>
                     </div>
                     <template v-if="validate.reviewed_by_department_name.$error">
                             <div v-for="(error, index) in validate.reviewed_by_department_name.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
@@ -1758,11 +1765,7 @@ management_deficiency_title -->
                       <input id="reviewedByDepartmentSignaturFileChange" type="file" class="" multiple @change="reviewedByDepartmentSignaturFileChange"/>
   
                     </div>
-                    <template v-if="validate.reviewed_by_department_signature.$error">
-                        <div v-for="(error, index) in validate.reviewed_by_department_signature.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
-                          {{ error.$message }}
-                        </div>
-                      </template>
+                    
                       
                       </div>
                   </div>
@@ -1779,7 +1782,11 @@ management_deficiency_title -->
                             </div>
                           </div>
                         </FormLabel>
-                        <FormInput id="crud-form-11" v-model.trim="validate.reviewed_by_unit_name.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.reviewed_by_unit_name.$error,}" placeholder="Input Reviewed By Unit Name"/>    
+                        <select id="crud-form-6" v-model="selectedEmp2"   class="border py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 fdark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 text-gray-500 ">
+                                      <option value="" disabled>Select HR, HSE & Admin</option>
+                                      <option v-for="(data, index) in state.viewEmp" :key="index" :value="data.name">{{ data.name }}</option>
+                              </select>
+                        <!-- <FormInput id="crud-form-11" v-model.trim="validate.reviewed_by_unit_name.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.reviewed_by_unit_name.$error,}" placeholder="Input Reviewed By Unit Name"/>     -->
                     </div>
                     <template v-if="validate.reviewed_by_unit_name.$error">
                       <div v-for="(error, index) in validate.reviewed_by_unit_name.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
@@ -1802,11 +1809,7 @@ management_deficiency_title -->
                       <input id="reviewedByUnitSignaturFileChange" type="file" class="" multiple @change="reviewedByUnitSignaturFileChange"/>
   
                     </div>
-                    <template v-if="validate.reviewed_by_unit_signature.$error">
-                      <div v-for="(error, index) in validate.reviewed_by_unit_signature.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
-                        {{ error.$message }}
-                      </div>
-                    </template>
+                   
                       
                       </div>
                   </div>
@@ -1833,7 +1836,11 @@ management_deficiency_title -->
                             </div>
                           </div>
                         </FormLabel>
-                        <FormInput id="crud-form-11" v-model.trim="validate.approved_by_name.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.approved_by_name.$error,}" placeholder="Input Approved By Name"/>    
+                        <select id="crud-form-6" v-model="selectedEmp3"   class="border py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 fdark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 text-gray-500 ">
+                                      <option value="" disabled>select unit in charge’s</option>
+                                      <option v-for="(data, index) in state.viewEmp" :key="index" :value="data.name">{{ data.name }}</option>
+                              </select>
+                        <!-- <FormInput id="crud-form-11" v-model.trim="validate.approved_by_name.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.approved_by_name.$error,}" placeholder="Input Approved By Name"/>     -->
                     </div>
                     <template v-if="validate.approved_by_name.$error">
                     <div v-for="(error, index) in validate.approved_by_name.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
@@ -1856,11 +1863,7 @@ management_deficiency_title -->
                       <input id="approvedBySignaturFileChange" type="file" class="" multiple @change="approvedBySignaturFileChange"/>
   
                     </div>
-                    <template v-if="validate.approved_by_signature.$error">
-                    <div v-for="(error, index) in validate.approved_by_signature.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
-                      {{ error.$message }}
-                    </div>
-                  </template>
+                   
                       
                       </div>
                   </div>

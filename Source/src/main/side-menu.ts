@@ -88,13 +88,10 @@ const menu: Array<Menu | "divider"> = [
             pageName: "safety-observation-form",
             title: "Create",
           },
-          {
-            icon: "Zap",
-            pageName: "safety-observation-input",
-            title: "Add Input",
-          },
+          
         ],
       },
+      
       {
         icon: "Activity",
         pageName: "accident",
@@ -116,56 +113,14 @@ const menu: Array<Menu | "divider"> = [
             pageName: "accident-investigation-list",
             title: "Investigation List",
           },
-          {
-            icon: "Zap",
-            pageName: "accident-input",
-            title: "Accident Input",
-          },
+          
           
         ],
       },
      
     ],
   },
-  // {
-  //   icon: "AlertTriangle",
-  //   pageName: "Accident Investigation",
-  //   title: "Accident Inv..",
-  //   subMenu: [
-  //     {
-  //       icon: "Activity",
-  //       pageName: "accident-investigation-list",
-  //       title: "Investigation List",
-  //     },
-  //     {
-  //       icon: "Activity",
-  //       pageName: "accident-investigation-form",
-  //       title: "Add Investigation",
-  //     },
-  //   ],
-  // },
-  // {
-  //   icon: "Aperture",
-  //   pageName: "Safety Observations",
-  //   title: "Safety Obs...",
-  //   subMenu: [
-  //     {
-  //       icon: "Activity",
-  //       pageName: "safety-observation-data-list",
-  //       title: "Safety Observationt List",
-  //     },
-  //     {
-  //       icon: "Activity",
-  //       pageName: "safety-observation-form",
-  //       title: "Add Safety Observationt",
-  //     },
-  //     {
-  //       icon: "Activity",
-  //       pageName: "safety-observation-input",
-  //       title: "Add Safety Observationt Input",
-  //     },
-  //   ],
-  // },
+  
   {
     icon: "Award",
     pageName: "Training",
@@ -191,9 +146,20 @@ const menu: Array<Menu | "divider"> = [
         pageName: "training-form",
         title: "Add Training Topics",
       },
+      {
+        icon: "Activity",
+        pageName: "training-attendences-data-list",
+        title: "Training Attendences List",
+      },
+      {
+        icon: "Activity",
+        pageName: "training-attendences-form",
+        title: "Attendences Training",
+      },
       
     ],
   },
+  
   {
     icon: "Pause",
     pageName: "Hira",
@@ -203,14 +169,7 @@ const menu: Array<Menu | "divider"> = [
         icon: "Activity",
         pageName: "hira-data-list",
         title: "Hira List",
-      },
-      {
-        icon: "Activity",
-        pageName: "hira-data-input",
-        title: "Add Hira Input",
-      },
-      
-      
+      },  
     ],
   },
   {
@@ -270,21 +229,28 @@ const menu: Array<Menu | "divider"> = [
   },
   {
     icon: "AtSign",
-    pageName: "Training Attendences",
-    title: "Training Att...",
+    pageName: "Accel Safety Input",
+    title: "Accel Safety Input",
     subMenu: [
       {
-        icon: "Activity",
-        pageName: "training-attendences-data-list",
-        title: "Training Attendences List",
+        icon: "Zap",
+        pageName: "safety-observation-input",
+        title: "Add Near Miss Input",
+      },
+      {
+        icon: "Zap",
+        pageName: "accident-input",
+        title: "Add Accident Input",
       },
       {
         icon: "Activity",
-        pageName: "training-attendences-form",
-        title: "Attendences Training",
+        pageName: "hira-data-input",
+        title: "Add Hira Input",
       },
+      
     ],
   },
+  
   // {
   //   icon: "ShoppingBag",
   //   pageName: "ecommerce",

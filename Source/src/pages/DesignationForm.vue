@@ -14,7 +14,13 @@ import {
 import useVuelidate from '@vuelidate/core';
 import { required, minLength, email, integer, maxLength } from '@vuelidate/validators';
 import Toastify from 'toastify-js';
+import { getToken } from './../auth/setToken'
 
+
+const state = reactive({
+  token: getToken(),
+
+});
 const formData = reactive({
         name:'',
 });
@@ -40,6 +46,8 @@ const submitForm = async () => {
                 const response = await axios.post(url, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
+                    'Authorization': state.token,
+
                 },
                 });
                 console.log('Form submitted successfully:', response.data);

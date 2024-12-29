@@ -47,15 +47,12 @@ const editorConfig = {
 
 
 const formData = reactive({
-  month: '',
   date: '',
   name: '',
   designation: '',
   supervisor: '',
   department: '',
   type_of_accident: '',
-  description: '',
-  zone_location: '',
   precise_location: '',
   injury_type: '',
   affected_body_parts: '',
@@ -65,28 +62,26 @@ const formData = reactive({
   days_lost: 0,
   type_of_victim_employee: '',
   responsible_name: '',
-  deadline: '',
   site_name:'',
-  time_date:'',
-  incident_category:'',
   immidiate_cause:'',
   incident_location:'',
-  incident_descriptions:'',
   investigation_lead:'',
   attachment:[] as File[],
   is_required: 0,
 
 });
-const selectedMonth = ref("");
 const selectedAccidentType = ref("");
 const selectedInjuryType = ref("");
 const selectedVictimEmployee = ref("");
+const selectedEmp1 = ref("");
+const selectedEmp2 = ref("");
 
 const state = reactive({
   viewMonth: [] as Array<any>,
   viewType: [] as Array<any>,
   viewInjuryType: [] as Array<any>,
   token: getToken(),
+  viewEmp: [] as Array<any>,
 
 });
 
@@ -97,11 +92,8 @@ interface BackendErrorResponse {
     };
 }
 const rules = {
-        month: {required},
         date: {required,},
         type_of_accident: { required, minLength: minLength(3),},
-        description: { required, minLength: minLength(3),},
-        zone_location: { required, minLength: minLength(3),},
         precise_location: { required, minLength: minLength(3),},
         injury_type: { required, minLength: minLength(3),},
         affected_body_parts: { required, minLength: minLength(3),},
@@ -111,13 +103,9 @@ const rules = {
         days_lost: { required},
         type_of_victim_employee: { required, minLength: minLength(3),},
         responsible_name: { required, minLength: minLength(3),},
-        deadline: { required},
         site_name: { required},
-        time_date: { required},
-        incident_category: { required},
         immidiate_cause: { required},
         incident_location: { required},
-        incident_descriptions: { required},
         investigation_lead: { required},
         is_required: { required},
 };
@@ -134,14 +122,12 @@ const backendErrors = reactive<{
 
 const submitForm = async () => {
   formData.date = date.value;
-  formData.deadline = deadlinedate.value;
-  formData.time_date = time_date.value;
-  formData.description = editorData.value;
-  formData.incident_category = selectedIncidentCategory.value;
-  formData.month = selectedMonth.value;
+  formData.immidiate_cause = editorData.value;
   formData.type_of_accident =selectedAccidentType.value
   formData.injury_type =selectedInjuryType.value
   formData.type_of_victim_employee =selectedVictimEmployee.value
+  formData.responsible_name =selectedEmp1.value
+  formData.investigation_lead =selectedEmp2.value
 
     validate.value.$touch();
     if (validate.value.$invalid) {
@@ -213,6 +199,20 @@ const fetchDropDownData = async () => {
     console.error('Error fetching data:', error);
   }
 };
+
+const fetchEmpData = async () => {
+  try {
+   let  url = config.baseURL+'/api/v1/employee';
+    const response = await axios.get(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
+    state.viewEmp = response.data.data;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+};
 // Ext Function 
 
 function FailedPopUp(){
@@ -248,6 +248,8 @@ function SuccessPopUp(){
 }
 onMounted(() => {
   fetchDropDownData();
+  fetchEmpData();
+
 });
 </script>
 
@@ -291,37 +293,7 @@ onMounted(() => {
       <!-- BEGIN: Uplaod Product -->
       
       <!-- BEGIN: Product Information -->
-      <div class="p-5 mt-5 intro-y box">
-        <div class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400" >
-          <div class="flex items-center pb-5 text-base font-medium border-b border-slate-200/60 dark:border-darkmode-400">
-            <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" />Site Name
-          </div>
-          <div class="mt-5">
-            <FormInline class="flex-col items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
-              <FormLabel class="xl:w-40 ">
-                <div class="text-left">
-                  <div class="flex items-center">
-                    <div class="font-medium">Name</div>
-                  </div>
-                  <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                    Name of the site or location where the accident occurred.
-                  </div>
-                </div>
-              </FormLabel>
-              <div class="flex-1 w-full mt-3 xl:mt-0">
-                <FormInput id="crud-form-16" v-model.trim="validate.site_name.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.site_name.$error,}" placeholder="Input Site Name"/>
-                <template v-if="validate.site_name.$error">
-                  <div v-for="(error, index) in validate.site_name.$errors" :key="index" class="mt-2 text-danger">
-                    {{ error.$message }}
-                  </div>
-                </template>
-                <FormHelp class="text-right"> Required, at least 3 characters</FormHelp>
-              </div>
-            </FormInline>
-            
-          </div>
-        </div>
-      </div>
+      
       <div class="p-5 mt-5 intro-y box">
         <div
           class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400"
@@ -331,6 +303,31 @@ onMounted(() => {
           </div>
           <div class="mt-5">
             <div class="flex flex-wrap">
+              <div class="md:w-1/2 w-full">
+                    <div class="px-4 py-2">
+                      <FormInline class="flex-col items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                        <FormLabel class="xl:w-40 ">
+                          <div class="text-left">
+                            <div class="flex items-center">
+                              <div class="font-medium">Plant Name</div>
+                            </div>
+                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                              Name of the site or location where the accident occurred.
+                            </div>
+                          </div>
+                        </FormLabel>
+                        <div class="flex-1 w-full mt-3 xl:mt-0">
+                          <FormInput id="crud-form-16" v-model.trim="validate.site_name.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.site_name.$error,}" placeholder="Input Site Name"/>
+                          <template v-if="validate.site_name.$error">
+                            <div v-for="(error, index) in validate.site_name.$errors" :key="index" class="mt-2 text-danger">
+                              {{ error.$message }}
+                            </div>
+                          </template>
+                          <FormHelp class="text-right"> Required, at least 3 characters</FormHelp>
+                        </div>
+                      </FormInline>
+                  </div>
+              </div>
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
                       <FormInline class="flex-col items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
@@ -409,34 +406,36 @@ onMounted(() => {
                     </FormInline>
                   </div>
               </div>
-                <div class="md:w-1/2 w-full">
+              <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
                       <FormInline class="flex-col items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 ">
                           <div class="text-left">
                             <div class="flex items-center">
-                              <div class="font-medium">Month</div>
+                              <div class="font-medium">Victim Employee</div>
                             </div>
                             <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Enter the month of the accident (e.g., January, February).
+                              The role or category of the employee involved (e.g., contractor, staff).
                             </div>
                           </div>
                         </FormLabel>
-                        <div class="flex-1 w-full mt-3 xl:mt-0"> 
-                          <select id="crud-form-6" v-model="selectedMonth"  class="border py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 fdark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80">
-                                      <option value="" disabled>select month</option>
-                                      <option v-for="(data, index) in state.viewMonth" :key="index" :value="data.name">{{ data.name }}</option>
+                        <div class="flex-1 w-full mt-3 xl:mt-0">
+                          <!-- <FormInput id="crud-form-14" v-model.trim="validate.type_of_victim_employee.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.type_of_victim_employee.$error,}" placeholder="Input Type Of Victim Employee"/> -->
+                          <select id="crud-form-6" v-model="selectedVictimEmployee"  class="border py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-1 focus:ring-primary focus:ring-opacity-100 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80">
+                              <option value="" disabled>Select Victim Employee Type</option>
+                              <option value="Management">Management</option>
+                              <option value="Non Management">Non Management</option>
                           </select>
-                        <template v-if="validate.month.$error">
-                          <div v-for="(error, index) in validate.month.$errors" :key="index" class="mt-2 text-danger">
-                            {{ error.$message }}
-                          </div>
-                        </template>
-                        <FormHelp class="text-right"> Required</FormHelp>
-                      </div>
-                    </FormInline>
-                  </div>
-              </div>
+                          <template v-if="validate.type_of_victim_employee.$error">
+                            <div v-for="(error, index) in validate.type_of_victim_employee.$errors" :key="index" class="mt-2 text-danger">
+                              {{ error.$message }}
+                            </div>
+                          </template>
+                          <FormHelp class="text-right"> Required, at least 3 characters </FormHelp>
+                        </div>
+                      </FormInline>
+                    </div>
+                </div>
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
                       <FormInline class="flex-col items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
@@ -464,6 +463,59 @@ onMounted(() => {
                             <FormHelp class="text-right"> Required, at least 3 characters </FormHelp>
                           </div>
                         </FormInline>
+                    </div>
+                </div>
+               
+                
+                <div class="md:w-1/2 w-full">
+                    <div class="px-4 py-2">
+                      <FormInline class="flex-col items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                        <FormLabel class="xl:w-40 ">
+                          <div class="text-left">
+                            <div class="flex items-center">
+                              <div class="font-medium">Precise Location</div>
+                            </div>
+                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                              The exact spot within the zone where the accident took place.
+                            </div>
+                          </div>
+                        </FormLabel>
+                        <div class="flex-1 w-full mt-3 xl:mt-0">
+                          <FormInput id="crud-form-9" v-model.trim="validate.precise_location.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.precise_location.$error,}" placeholder="Input Precise Location"/>
+                          <template v-if="validate.precise_location.$error">
+                            <div v-for="(error, index) in validate.precise_location.$errors" :key="index" class="mt-2 text-danger">
+                              {{ error.$message }}
+                            </div>
+                          </template>
+                          <FormHelp class="text-right"> Required, at least 3 characters </FormHelp>
+                        </div>
+                      </FormInline>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2 w-full">
+                    <div class="px-4 py-2">
+                      <FormInline class="flex-col items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                        <FormLabel class="xl:w-40 ">
+                          <div class="text-left">
+                            <div class="flex items-center">
+                              <div class="font-medium">Incident Location</div>
+                            </div>
+                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                              Describe the location where the incident took place.
+                            </div>
+                          </div>
+                        </FormLabel>
+                        <div class="flex-1 w-full mt-3 xl:mt-0">
+                          <FormInput id="crud-form-16" v-model.trim="validate.incident_location.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.incident_location.$error,}" placeholder="Input Incident Location"/>
+                          <template v-if="validate.incident_location.$error">
+                            <div v-for="(error, index) in validate.incident_location.$errors" :key="index" class="mt-2 text-danger">
+                              {{ error.$message }}
+                            </div>
+                          </template>
+                          <FormHelp class="text-right"> Required, at least 3 characters </FormHelp>
+                        </div>
+                      </FormInline>
                     </div>
                 </div>
                 <div class="md:w-1/2 w-full">
@@ -501,111 +553,6 @@ onMounted(() => {
                         <FormLabel class="xl:w-40 ">
                           <div class="text-left">
                             <div class="flex items-center">
-                              <div class="font-medium">Victim Employee</div>
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              The role or category of the employee involved (e.g., contractor, staff).
-                            </div>
-                          </div>
-                        </FormLabel>
-                        <div class="flex-1 w-full mt-3 xl:mt-0">
-                          <!-- <FormInput id="crud-form-14" v-model.trim="validate.type_of_victim_employee.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.type_of_victim_employee.$error,}" placeholder="Input Type Of Victim Employee"/> -->
-                          <select id="crud-form-6" v-model="selectedVictimEmployee"  class="border py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-1 focus:ring-primary focus:ring-opacity-100 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80">
-                              <option value="" disabled>Select Victim Employee Type</option>
-                              <option value="Management">Management</option>
-                              <option value="Non Management">Non Management</option>
-                          </select>
-                          <template v-if="validate.type_of_victim_employee.$error">
-                            <div v-for="(error, index) in validate.type_of_victim_employee.$errors" :key="index" class="mt-2 text-danger">
-                              {{ error.$message }}
-                            </div>
-                          </template>
-                          <FormHelp class="text-right"> Required, at least 3 characters </FormHelp>
-                        </div>
-                      </FormInline>
-                    </div>
-                </div>
-                <div class="md:w-1/2 w-full">
-                    <div class="px-4 py-2">
-                      <FormInline class="flex-col items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
-                        <FormLabel class="xl:w-40 ">
-                          <div class="text-left">
-                            <div class="flex items-center">
-                              <div class="font-medium">Precise Location</div>
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              The exact spot within the zone where the accident took place.
-                            </div>
-                          </div>
-                        </FormLabel>
-                        <div class="flex-1 w-full mt-3 xl:mt-0">
-                          <FormInput id="crud-form-9" v-model.trim="validate.precise_location.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.precise_location.$error,}" placeholder="Input Precise Location"/>
-                          <template v-if="validate.precise_location.$error">
-                            <div v-for="(error, index) in validate.precise_location.$errors" :key="index" class="mt-2 text-danger">
-                              {{ error.$message }}
-                            </div>
-                          </template>
-                          <FormHelp class="text-right"> Required, at least 3 characters </FormHelp>
-                        </div>
-                      </FormInline>
-                    </div>
-                </div>
-                <div class="md:w-1/2 w-full">
-                    <div class="px-4 py-2">
-                      <FormInline class="flex-col items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
-                        <FormLabel class="xl:w-40 ">
-                          <div class="text-left">
-                            <div class="flex items-center">
-                              <div class="font-medium">Zone Location</div>
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              The general area or zone where the accident happened.
-                            </div>
-                          </div>
-                        </FormLabel>
-                        <div class="flex-1 w-full mt-3 xl:mt-0">
-                          <FormInput id="crud-form-9" v-model.trim="validate.zone_location.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.zone_location.$error,}" placeholder="Input Precise Location"/>
-                          <template v-if="validate.zone_location.$error">
-                            <div v-for="(error, index) in validate.zone_location.$errors" :key="index" class="mt-2 text-danger">
-                              {{ error.$message }}
-                            </div>
-                          </template>
-                          <FormHelp class="text-right"> Required, at least 3 characters </FormHelp>
-                        </div>
-                      </FormInline>
-                    </div>
-                </div>
-                <div class="md:w-1/2 w-full">
-                    <div class="px-4 py-2">
-                      <FormInline class="flex-col items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
-                        <FormLabel class="xl:w-40 ">
-                          <div class="text-left">
-                            <div class="flex items-center">
-                              <div class="font-medium">Incident Location</div>
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Describe the location where the incident took place.
-                            </div>
-                          </div>
-                        </FormLabel>
-                        <div class="flex-1 w-full mt-3 xl:mt-0">
-                          <FormInput id="crud-form-16" v-model.trim="validate.incident_location.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.incident_location.$error,}" placeholder="Input Incident Location"/>
-                          <template v-if="validate.incident_location.$error">
-                            <div v-for="(error, index) in validate.incident_location.$errors" :key="index" class="mt-2 text-danger">
-                              {{ error.$message }}
-                            </div>
-                          </template>
-                          <FormHelp class="text-right"> Required, at least 3 characters </FormHelp>
-                        </div>
-                      </FormInline>
-                    </div>
-                </div>
-                <div class="md:w-1/2 w-full">
-                    <div class="px-4 py-2">
-                      <FormInline class="flex-col items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
-                        <FormLabel class="xl:w-40 ">
-                          <div class="text-left">
-                            <div class="flex items-center">
                               <div class="font-medium">Affected Body Parts </div>
                             </div>
                             <div class="mt-3 text-xs leading-relaxed text-slate-500">
@@ -625,31 +572,7 @@ onMounted(() => {
                       </FormInline>
                     </div>
                 </div>
-                <div class="md:w-1/2 w-full">
-                    <div class="px-4 py-2">
-                      <FormInline class="flex-col items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
-                        <FormLabel class="xl:w-40 ">
-                          <div class="text-left">
-                            <div class="flex items-center">
-                              <div class="font-medium">Immidiate Cause</div>
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              The direct cause that led to the accident.
-                            </div>
-                          </div>
-                        </FormLabel>
-                        <div class="flex-1 w-full mt-3 xl:mt-0">
-                          <FormInput id="crud-form-16" v-model.trim="validate.immidiate_cause.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.immidiate_cause.$error,}" placeholder="Input Immidiate Cause"/>
-                          <template v-if="validate.immidiate_cause.$error">
-                            <div v-for="(error, index) in validate.immidiate_cause.$errors" :key="index" class="mt-2 text-danger">
-                              {{ error.$message }}
-                            </div>
-                          </template>
-                          <FormHelp class="text-right"> Required, at least 3 characters </FormHelp>
-                        </div>
-                      </FormInline>
-                    </div>
-                </div>
+                
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
                       <FormInline class="flex-col items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
@@ -691,6 +614,31 @@ onMounted(() => {
                                 </div>
                               </div>
                           <FormHelp class="text-right"> Optional</FormHelp>
+                        </div>
+                      </FormInline>
+                    </div>
+                </div>
+                <div class="md:w-1/2 w-full">
+                    <div class="px-4 py-2">
+                      <FormInline class="flex-col items-start  pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                        <FormLabel class="xl:w-40 ">
+                          <div class="text-left">
+                            <div class="flex ">
+                              <div class="font-medium">Immidiate Cause</div>
+                            </div>
+                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                              The direct cause that led to the accident.
+                            </div>
+                          </div>
+                        </FormLabel>
+                        <div class="flex-1 w-full md:w-2/3  mt-3 xl:mt-0">
+                          <ClassicEditor v-model="editorData" :class="{ 'border-danger': validate.immidiate_cause.$error,}" :config="editorConfig" />
+                          <template v-if="validate.immidiate_cause.$error">
+                            <div v-for="(error, index) in validate.immidiate_cause.$errors" :key="index" class="mt-2 text-danger">
+                              {{ error.$message }}
+                            </div>
+                          </template>
+                          <FormHelp class="text-right"> Required, at least 3 characters</FormHelp>
                         </div>
                       </FormInline>
                     </div>
@@ -797,7 +745,11 @@ onMounted(() => {
                           </div>
                         </FormLabel>
                         <div class="flex-1 w-full mt-3 xl:mt-0">
-                          <FormInput id="crud-form-15" v-model.trim="validate.responsible_name.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.responsible_name.$error,}" placeholder="Input Responsible Name"/>
+                          <!-- <FormInput id="crud-form-15" v-model.trim="validate.responsible_name.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.responsible_name.$error,}" placeholder="Input Responsible Name"/> -->
+                          <select id="crud-form-6" v-model="selectedEmp1"   class="border py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 fdark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 text-gray-500 ">
+                                      <option value="" disabled>select responsible name</option>
+                                      <option v-for="(data, index) in state.viewEmp" :key="index" :value="data.name">{{ data.name }}</option>
+                              </select>
                           <template v-if="validate.responsible_name.$error">
                             <div v-for="(error, index) in validate.responsible_name.$errors" :key="index" class="mt-2 text-danger">
                               {{ error.$message }}
@@ -808,189 +760,7 @@ onMounted(() => {
                       </FormInline>
                     </div>
                 </div>
-                <div class="md:w-1/2 w-full">
-                    <div class="px-4 py-2">
-                      <FormInline class="flex-col items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
-                        <FormLabel class="xl:w-40 ">
-                          <div class="text-left">
-                            <div class="flex items-center">
-                              <div class="font-medium">Deadline</div>
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              The deadline for resolving the issues related to the accident.
-                            </div>
-                          </div>
-                        </FormLabel>
-                        <div class="flex-1 w-full mt-3 xl:mt-0">
-                          <Preview class="intro-y box" v-slot="{ toggle }">
-                            <Preview.Panel>
-                                <div class="relative w-full mx-auto">
-                                  <div
-                                    class="absolute flex items-center justify-center w-10 h-full border rounded-l bg-slate-100 text-slate-500 dark:bg-darkmode-700 dark:border-darkmode-800 dark:text-slate-400">
-                                    <Lucide icon="Calendar" class="w-4 h-4" />
-                                  </div>
-                                  <Litepicker
-                                    v-model="deadlinedate"
-                                    :options="{
-                                      autoApply: false,
-                                      showWeekNumbers: true,
-                                      dropdowns: {
-                                        minYear: 1990,
-                                        maxYear: null,
-                                        months: true,
-                                        years: true,
-                                      },
-                                    }"
-                                    class="pl-12"/>
-                                </div>
-                              </Preview.Panel>
-                              <Preview.Panel type="source">
-                                <Preview.Highlight>
-                                  {{`
-                                  <div class="relative w-56 mx-auto">
-                                    <div
-                                      class="absolute flex items-center justify-center w-10 h-full border rounded-l bg-slate-100 text-slate-500 dark:bg-darkmode-700 dark:border-darkmode-800 dark:text-slate-400"
-                                    >
-                                      <Lucide icon="Calendar" class="w-4 h-4" />
-                                    </div>
-                                    <Litepicker
-                                      v-model="date"
-                                      :options="{
-                                        autoApply: false,
-                                        showWeekNumbers: true,
-                                        dropdowns: {
-                                          minYear: 1990,
-                                          maxYear: null,
-                                          months: true,
-                                          years: true,
-                                        },
-                                      }"
-                                      class="pl-12"
-                                    />
-                                  </div>
-                                  `}}
-                                </Preview.Highlight>
-                              </Preview.Panel>
-                          
-                          </Preview>
-                          <template v-if="validate.deadline.$error">
-                            <div v-for="(error, index) in validate.deadline.$errors" :key="index" class="mt-2 text-danger">
-                              {{ error.$message }}
-                            </div>
-                          </template>
-                          <FormHelp class="text-right"> Required</FormHelp>
-                        </div>
-                      </FormInline>
-                    </div>
-                </div>
-                <div class="md:w-1/2 w-full">
-                    <div class="px-4 py-2">
-                      <FormInline class="flex-col items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
-                        <FormLabel class="xl:w-40 ">
-                          <div class="text-left">
-                            <div class="flex items-center">
-                              <div class="font-medium">Date Time</div>
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              The exact date and time when the accident occurred.
-                            </div>
-                          </div>
-                        </FormLabel>
-                        <div class="flex-1 w-full mt-3 xl:mt-0">
-                          <Preview class="intro-y box" v-slot="{ toggle }">
-                            <Preview.Panel>
-                                <div class="relative w-full mx-auto">
-                                  <div
-                                    class="absolute flex items-center justify-center w-10 h-full border rounded-l bg-slate-100 text-slate-500 dark:bg-darkmode-700 dark:border-darkmode-800 dark:text-slate-400">
-                                    <Lucide icon="Calendar" class="w-4 h-4" />
-                                  </div>
-                                  <Litepicker
-                                    v-model="time_date"
-                                    :options="{
-                                      autoApply: false,
-                                      showWeekNumbers: true,
-                                      dropdowns: {
-                                        minYear: 1990,
-                                        maxYear: null,
-                                        months: true,
-                                        years: true,
-                                      },
-                                    }"
-                                    class="pl-12"/>
-                                </div>
-                              </Preview.Panel>
-                              <Preview.Panel type="source">
-                                <Preview.Highlight>
-                                  {{`
-                                  <div class="relative w-56 mx-auto">
-                                    <div
-                                      class="absolute flex items-center justify-center w-10 h-full border rounded-l bg-slate-100 text-slate-500 dark:bg-darkmode-700 dark:border-darkmode-800 dark:text-slate-400"
-                                    >
-                                      <Lucide icon="Calendar" class="w-4 h-4" />
-                                    </div>
-                                    <Litepicker
-                                      v-model="date"
-                                      :options="{
-                                        autoApply: false,
-                                        showWeekNumbers: true,
-                                        dropdowns: {
-                                          minYear: 1990,
-                                          maxYear: null,
-                                          months: true,
-                                          years: true,
-                                        },
-                                      }"
-                                      class="pl-12"
-                                    />
-                                  </div>
-                                  `}}
-                                </Preview.Highlight>
-                              </Preview.Panel>
-                          
-                          </Preview>
-                          <template v-if="validate.time_date.$error">
-                            <div v-for="(error, index) in validate.time_date.$errors" :key="index" class="mt-2 text-danger">
-                              {{ error.$message }}
-                            </div>
-                          </template>
-                          <FormHelp class="text-right"> Required</FormHelp>
-                        </div>
-                      </FormInline>
-
-                    </div>
-                </div>
-                <div class="md:w-1/2 w-full">
-                    <div class="px-4 py-2">
-                      <FormInline class="flex-col items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
-                          <FormLabel class="xl:w-40 ">
-                            <div class="text-left">
-                              <div class="flex items-center">
-                                <div class="font-medium">Incident Category</div>
-                              </div>
-                              <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                                Category or classification of the incident (e.g., Fatality, Lts).
-                              </div>
-                            </div>
-                          </FormLabel>
-                          <div class="flex-1 w-full mt-3 xl:mt-0">
-                            <select id="crud-form-6" v-model="selectedIncidentCategory" class="w-full border border-gray-300 rounded-lg text-sm  dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80">
-                              <option value="" disabled>Select Incident Category</option>
-                              <option  value="Fatality">Fatality</option>
-                              <option  value="Lts">Lts</option>
-                              <option  value="Medica Trisect">Medica Trisect</option>
-                              <option  value="Resistance Workdays">Resistance Workdays</option>
-                              <option  value="First Aid">First Aid</option>
-                            </select>
-                            <template v-if="validate.incident_category.$error">
-                              <div v-for="(error, index) in validate.incident_category.$errors" :key="index" class="mt-2 text-danger">
-                                {{ error.$message }}
-                              </div>
-                            </template>
-                            <FormHelp class="text-right"> Required, at least 3 characters</FormHelp>
-                          </div>
-                        </FormInline>
-                    </div>
-                </div>
+                
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
                       <FormInline class="flex-col items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
@@ -1005,7 +775,11 @@ onMounted(() => {
                             </div>
                           </FormLabel>
                           <div class="flex-1 w-full mt-3 xl:mt-0">
-                            <FormInput id="crud-form-16" v-model.trim="validate.investigation_lead.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.investigation_lead.$error,}" placeholder="Input Investigation Lead"/>
+                            <!-- <FormInput id="crud-form-16" v-model.trim="validate.investigation_lead.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.investigation_lead.$error,}" placeholder="Input Investigation Lead"/> -->
+                            <select id="crud-form-6" v-model="selectedEmp2"   class="border py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 fdark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 text-gray-500 ">
+                                      <option value="" disabled>select investigation lead</option>
+                                      <option v-for="(data, index) in state.viewEmp" :key="index" :value="data.name">{{ data.name }}</option>
+                              </select>
                             <template v-if="validate.investigation_lead.$error">
                               <div v-for="(error, index) in validate.investigation_lead.$errors" :key="index" class="mt-2 text-danger">
                                 {{ error.$message }}
@@ -1039,77 +813,31 @@ onMounted(() => {
                     <!-- sohan  -->
                 </div>
                 <div class="md:w-1/2 w-full">
+                    <!-- sohan  -->
                     <div class="px-4 py-2">
                       <FormInline class="flex-col items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 ">
                           <div class="text-left">
                             <div class="flex items-center">
-                              <div class="font-medium">Incident Descriptions</div>
+                              <div class="font-medium">Is Investigation Needed?</div>
                             </div>
                             <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              A comprehensive description of the incident.
+                              Specify if an investigation is required and provide details if applicable.
                             </div>
                           </div>
                         </FormLabel>
-                        <div class="flex-1 w-full mt-3 xl:mt-0">
-                          <FormInput id="crud-form-16" v-model.trim="validate.incident_descriptions.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.incident_descriptions.$error,}" placeholder="Input Incident Descriptions"/>
-                          <template v-if="validate.incident_descriptions.$error">
-                            <div v-for="(error, index) in validate.incident_descriptions.$errors" :key="index" class="mt-2 text-danger">
-                              {{ error.$message }}
-                            </div>
-                          </template>
-                          <FormHelp class="text-right"> Required, at least 3 characters</FormHelp>
+                        <div class="w-full mt-3 xl:mt-0 text-left ">
+                          <FormSwitch.Input class="my-2" id="crud-form-17" v-model.trim="validate.is_required.$model" type="checkbox" />
+                          <FormHelp class="text-left"> Required</FormHelp>
                         </div>
                       </FormInline>
-
                     </div>
+                    <!-- sohan  -->
                 </div>
                 
             </div>
-            
-            
-            <FormInline class="flex-col items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
-                        <FormLabel class="xl:w-40 ">
-                          <div class="text-left">
-                            <div class="flex items-center">
-                              <div class="font-medium">Descriptions</div>
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              A brief summary of the accident details.
-                            </div>
-                          </div>
-                        </FormLabel>
-                        <div class="flex-1 w-full mt-3 xl:mt-0">
-                          <ClassicEditor v-model="editorData" :class="{ 'border-danger': validate.description.$error,}" :config="editorConfig" />
-                          <template v-if="validate.description.$error">
-                            <div v-for="(error, index) in validate.description.$errors" :key="index" class="mt-2 text-danger">
-                              {{ error.$message }}
-                            </div>
-                          </template>
-                          <FormHelp class="text-right"> Required, at least 3 characters</FormHelp>
-                        </div>
-            </FormInline>
 
             
-
-            <div class=" py-2">
-                  <FormInline class="flex-col items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
-                  <FormLabel class="xl:w-40 ">
-                    <div class="text-left">
-                      <div class="flex items-center">
-                        <div class="font-medium">Is Investigation Needed?</div>
-                      </div>
-                      <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                        Specify if an investigation is required and provide details if applicable.
-                      </div>
-                    </div>
-                  </FormLabel>
-                  <div class="w-full mt-3 xl:mt-0 text-left ">
-                    <FormSwitch.Input class="my-2" id="crud-form-17" v-model.trim="validate.is_required.$model" type="checkbox" />
-                    <FormHelp class="text-left"> Required</FormHelp>
-                  </div>
-                </FormInline>
-            </div>
             
             
           </div>

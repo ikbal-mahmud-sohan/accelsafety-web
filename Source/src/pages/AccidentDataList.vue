@@ -108,11 +108,8 @@ onMounted(() => {
         <Table.Thead>
           <Table.Tr>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase"> ID </Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase"> MONTH </Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase"> date </Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">type of accident</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">description</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">zone location</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">precise location</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">injury type</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">affected body parts</Table.Th>
@@ -122,13 +119,9 @@ onMounted(() => {
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">days lost</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">type of victim employee</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">responsible name</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">deadline</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">site name</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">time date</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">incident category</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">plant name</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">immidiate cause</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">incident location</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">incident descriptions</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">investigation lead</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">attachment</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">verified image</Table.Th>
@@ -142,9 +135,6 @@ onMounted(() => {
             <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
               {{ report.id }}
             </Table.Td>
-            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.month }}
-            </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600 whitespace-nowrap">
               {{ report.date }}
             </Table.Td>
@@ -152,15 +142,8 @@ onMounted(() => {
             <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
               {{ report.type_of_accident }}
             </Table.Td>
-            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              <div class="relative group">
-                <div class="lg:truncate w-32" v-html="report.description"></div>
-                <div class="top-0 left-0 absolute w-72 bg-white shadow-xl rounded-md z-50 px-4 py-4 hidden group-hover:block" v-html="report.description"></div>
-              </div>
-            </Table.Td>
-            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.zone_location }}
-            </Table.Td>
+           
+            
             <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
               {{ report.precise_location }}
             </Table.Td>
@@ -207,27 +190,18 @@ onMounted(() => {
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
               {{ report.responsible_name }}
             </Table.Td>
-            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600 whitespace-nowrap">
-              {{ report.deadline }}
-            </Table.Td>
+            
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
               {{ report.site_name }}
             </Table.Td>
-            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600 whitespace-nowrap">
-              {{ report.time_date }}
-            </Table.Td>
-            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.incident_category }}
-            </Table.Td>
+            
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
               {{ report.immidiate_cause }}
             </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
               {{ report.incident_location }}
             </Table.Td>
-            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.incident_descriptions }}
-            </Table.Td>
+            
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
               {{ report.investigation_lead }}
             </Table.Td>
