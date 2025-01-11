@@ -107,9 +107,7 @@ const submitForm = async () => {
                 },
                 });
                 console.log('Form submitted successfully:', response.data);
-                if (response.data !== undefined) {
-                    router.push({ name: 'training-attendences-data-list' });
-                }
+                router.push({ name: 'training-attendences-data-list' });
         
             } catch (error) {
                 console.error('Error submitting form:', error);

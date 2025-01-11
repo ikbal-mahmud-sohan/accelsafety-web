@@ -23,20 +23,20 @@ const state = reactive({
 // Fetch data from the API and update the state
 const fetchData = async () => {
   try {
-   let  url = config.baseURL+'/api/v1/trainingAttendence';
+   let  url = config.baseURL+'/api/v1/question-answer';
     const response = await axios.get(url, {
                 headers: {
                     'Authorization': state.token,
                 },
                 });
-    state.viewData = response.data.data;
+    state.viewData = response.data;
   } catch (error) {
     console.error('Error fetching data:', error);
   }
 };
 const deleteData = async (sID:string) => {
   try {
-    let url = config.baseURL+"/api/v1/trainingAttendence/"+sID;
+    let url = config.baseURL+"/api/v1/question-answer/"+sID;
     const response = await axios.delete(url, {
                 headers: {
                     
@@ -44,7 +44,7 @@ const deleteData = async (sID:string) => {
 
                 },
                 });
-    state.viewData = response.data.data;
+    state.viewData = response.data;
   } catch (error) {
     console.error('Error fetching data:', error);
   }
@@ -57,12 +57,12 @@ onMounted(() => {
 </script>
 
 <template>
-  <h2 class="mt-10 text-lg font-medium intro-y">Training Attendence List</h2>
+  <h2 class="mt-10 text-lg font-medium intro-y">Question Answer List</h2>
   <div class="grid grid-cols-12 gap-6 mt-5">
     <div class="flex flex-wrap items-center col-span-12 mt-2 intro-y sm:flex-nowrap">
-      <router-link :to="{ name: 'training-attendences-form' }">
+      <router-link :to="{ name: 'question-and-answer' }">
         <Button variant="primary" class="mr-2 shadow-md">
-          Add New Training Attendence
+          Add New Question Answer
         </Button>
       </router-link>
       <Menu>
@@ -101,76 +101,41 @@ onMounted(() => {
       </div>
     </div>
     <!-- BEGIN: Data List -->
+
     <div class="col-span-12 overflow-auto intro-y ">
       <Table class="border-spacing-y-[10px] border-separate -mt-2">
         <Table.Thead>
           <Table.Tr>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">serial_number</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">training_topic</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">iso_standard</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">venue</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">facilitator</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">training_date</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">training_duration</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">name</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">title</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">function</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">business</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">signature</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">id</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">questions</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">answer</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">fake_answer_1</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">fake_answer_2</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">fake_answer_3</Table.Th>
             <Table.Th class="text-center border-b-0 whitespace-nowrap uppercase">ACTIONS</Table.Th>
           </Table.Tr>
         </Table.Thead>
         <Table.Tbody>
           <Table.Tr v-for="(data, index) in state.viewData" :key="index" class="intro-x">
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ data.serial_number }}
+              {{ data.id }}
             </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ data.training_topic_id }}
+              {{ data.questions }}
             </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ data.iso_standard }}
+              {{ data.answer }}
+            </Table.Td>
+            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ data.fake_answer_1 }}
             </Table.Td>
             <Table.Td class="box text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ data.venue }}
+              {{ data.fake_answer_2 }}
             </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ data.facilitator }}
-            </Table.Td>
-            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ data.training_date }}
+              {{ data.fake_answer_3 }}
             </Table.Td>
             
-            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ data.training_duration }}
-            </Table.Td>
-            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ data.name }}
-            </Table.Td>
-            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ data.title }}
-            </Table.Td>
-            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ data.function }}
-            </Table.Td>
-            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ data.business }}
-            </Table.Td>
-            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              <div class="flex justify-center">
-                <div class=" w-40 h-20 image-fit zoom-in">
-                    <Tippy
-                      as="img"
-                      alt="safety"
-                      class="rounded-md shadow-[0px_0px_0px_2px_#fff,_1px_1px_5px_rgba(0,0,0,0.32)] dark:shadow-[0px_0px_0px_2px_#3f4865,_1px_1px_5px_rgba(0,0,0,0.32)]"
-                      :src="`${config.baseURL}${data.signature}`"
-                      :content="`safety`"
-                    />
-                  </div>
-              </div>
-            </Table.Td>
-           
-           
             <Table.Td
               :class="[
                 'box w-56 rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600',

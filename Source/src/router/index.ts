@@ -229,6 +229,26 @@ const router = createRouter({
           name: "training-attendences-update-form",
           component: () => import("../pages/TrainingAttendencesUpdateForm.vue"),
         },
+        {
+          path: "question-and-answer",
+          name: "question-and-answer",
+          component: () => import("../pages/QuestionAnswer.vue"),
+        },
+        {
+          path: "question-and-answer-list",
+          name: "question-and-answer-list",
+          component: () => import("../pages/QuestionAnswerList.vue"),
+        },
+        {
+          path: "user-submit-answer",
+          name: "user-submit-answer",
+          component: () => import("../pages/UserSubmitAnswer.vue"),
+        },
+        {
+          path: "user-results",
+          name: "user-results",
+          component: () => import("../pages/UserSubmitAnswerList.vue"),
+        },
         // EmployeeInfo
         {
           path: "employee-info",
