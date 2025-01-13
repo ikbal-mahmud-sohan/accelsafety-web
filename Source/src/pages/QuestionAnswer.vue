@@ -15,6 +15,7 @@ import Preview from "@/components/Base/Preview";
 import { Menu, Popover } from "@/components/Base/Headless";
 import Alert from "@/components/Base/Alert";
 import { getToken } from './../auth/setToken'
+import Table from '@/components/Base/Table';
 
 
 
@@ -24,6 +25,8 @@ const state = reactive({
   trainingTopicData: [] as Array<any>,
   isTraining: true,
   isQuestionAns: false,
+  viewData: [] as Array<any>,
+  getTrainingData: '',
   token: getToken(),
 });
 
@@ -118,7 +121,7 @@ const submitForm = async () => {
                 });
       if (response.data != undefined) {
         SuccessPopUp();
-        router.push({ name: 'question-and-answer-list' });
+        fetchData();
       }
     } catch (err) {
       FailedPopUp();
@@ -140,6 +143,8 @@ function selectTraining(){
   formData.training_topic_id = String(selectedtrainingTopic.value);;
   state.isTraining = false
   state.isQuestionAns = true
+  fetchData();
+  fetchTraininng();
 }
 
 const fetchTrainingTopicData = async () => {
@@ -157,6 +162,33 @@ const fetchTrainingTopicData = async () => {
     console.error('Error fetching data:', error);
   }
 };
+const fetchData = async () => {
+  try {
+   let  url = `${config.baseURL}/api/v1/question-answer-list-trn-id/${formData.training_topic_id}`;
+    const response = await axios.get(url, {
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
+    state.viewData = response.data;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+};
+const fetchTraininng = async () => {
+  try {
+   let  url = `${config.baseURL}/api/v1/trainingTopics/${formData.training_topic_id}`;
+    const response = await axios.get(url, {
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
+    state.getTrainingData = response.data.data.name;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+};
+
 onMounted(() => {
   fetchTrainingTopicData();
 });
@@ -179,14 +211,7 @@ onMounted(() => {
           <Lucide icon="Info" class="w-4 h-4 mr-2" />
         </span>
         <span>
-          Assign specific training topics to employees by matching their IDs with the relevant training sessions.
-          <a
-            href="https://themeforest.net/item/midone-jquery-tailwindcss-html-admin-template/26366820"
-            class="ml-1 underline"
-            target="blank"
-          >
-            Learn More
-          </a>
+          Please create some thoughtful and well-structured questions for the exam.
         </span>
         <Alert.DismissButton
           class="text-white"
@@ -235,20 +260,63 @@ onMounted(() => {
       </div>
       
       <div class="flex flex-col justify-end gap-2 mt-5 md:flex-row">
-        <Button
-          type="button"class="w-full py-3 border-slate-300 dark:border-darkmode-400 text-slate-500 md:w-52">
-          Cancel
-        </Button>
+        <router-link :to="{ name: 'dashboard-overview-1' }">
+                  <Button type="button" class="w-full py-3 border-slate-300 dark:border-darkmode-400 text-slate-500 md:w-52">
+                    Cancel
+                  </Button>
+                </router-link>
         <Button variant="primary" type="button" class="w-full py-3 md:w-52" @click="selectTraining">
-          Save
+          Next
         </Button>
       </div>
     </div>
     <div v-if="state.isQuestionAns" class="col-span-11 intro-y 2xl:col-span-9">
       <div class="p-5 mt-5 intro-y box">
-        <div class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400" >
+        <div v-if="Array.isArray(state.viewData) && state.viewData.length !== 0" class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400 my-4" >
           <div class="flex items-center pb-5 text-base font-medium border-b border-slate-200/60 dark:border-darkmode-400">
-            <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" />Question and Answer
+            <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" />Question List
+          </div>
+          <div class="mt-5">
+            <Table class="border-spacing-y-[10px] border-separate -mt-2">
+        <Table.Thead>
+          <Table.Tr>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap">No.</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap">Questions</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap">Answer</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap">Fake Answer 1</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap">Fake Answer 2</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap">Fake Answer 3</Table.Th>
+          </Table.Tr>
+        </Table.Thead>
+        <Table.Tbody>
+          <Table.Tr v-for="(data, index) in state.viewData" :key="index" class="intro-x">
+            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ index + 1 }}
+            </Table.Td>
+            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ data.questions }}
+            </Table.Td>
+            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ data.answer }}
+            </Table.Td>
+            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ data.fake_answer_1 }}
+            </Table.Td>
+            <Table.Td class="box text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ data.fake_answer_2 }}
+            </Table.Td>
+            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ data.fake_answer_3 }}
+            </Table.Td>
+          </Table.Tr>
+        </Table.Tbody>
+      </Table>     
+          </div>
+        </div>
+        <div class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400" >
+          <div class="flex items-center pb-5 text-sm font-medium border-b border-slate-200/60 dark:border-darkmode-400 uppercase">
+            <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" />Make a smart question for
+            <span class="ml-1 text-gray-400 font-semibold">{{ state.getTrainingData }}</span>
           </div>
           <div class="mt-5">
             <div class="flex flex-wrap">
@@ -406,12 +474,14 @@ onMounted(() => {
       </div>
      
       <div class="flex flex-col justify-end gap-2 mt-5 md:flex-row">
-        <Button
-          type="button"class="w-full py-3 border-slate-300 dark:border-darkmode-400 text-slate-500 md:w-52">
-          Cancel
-        </Button>
+        <router-link :to="{ name: 'dashboard-overview-1' }">
+                  <Button type="button" class="w-full py-3 border-slate-300 dark:border-darkmode-400 text-slate-500 md:w-52">
+                    Exit
+                  </Button>
+                </router-link>
+        
         <Button variant="primary" type="button" class="w-full py-3 md:w-52" @click="submitForm">
-          Save
+          Add Question
         </Button>
       </div>
       
@@ -436,11 +506,6 @@ onMounted(() => {
           >
             <a href="">Check Input Requirements</a>
           </li>
-          <li
-            class="pl-5 mb-4 border-l-2 border-transparent dark:border-transparent"
-          >
-            <a href="">Upload Relevant Files</a>
-          </li>
           
         </ul>
         <div
@@ -455,10 +520,10 @@ onMounted(() => {
             class="mt-2 text-xs leading-relaxed text-slate-600 dark:text-slate-500"
           >
             <div>
-              When filling out the Questions and answer report, be specific and clear with details, using the correct date format and precise descriptions..
+              To create effective questions, focus on a single concept and ensure clarity to avoid confusion.
             </div>
             <div class="mt-2">
-              Ensure all required fields are accurately completed and boolean options are correctly marked. Upload relevant files and adhere to format and size requirements for attachments.
+              Use concise language that encourages critical thinking and engagement.
             </div>
           </div>
         </div>
