@@ -32,6 +32,7 @@ const state = reactive({
   isTraining: true,
   isQuestionAns: false,
   isScore: false,
+  getTrainingData: '',
   token: getToken(),
 });
 
@@ -152,6 +153,7 @@ function selectTraining(){
   state.isTraining = false
   state.isQuestionAns = true
   fetchAnswerQuestion();
+  fetchTraininng();
 }
 
 const fetchEmployeeData = async () => {
@@ -205,6 +207,19 @@ const fetchAnswerQuestion = async () => {
     console.error("Error fetching questions:", error);
   }
 };
+const fetchTraininng = async () => {
+  try {
+   let  url = `${config.baseURL}/api/v1/trainingTopics/${formData.training_topic_id}`;
+    const response = await axios.get(url, {
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
+    state.getTrainingData = response.data.data.name;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+};
 onMounted(() => {
   fetchEmployeeData();
   fetchTrainingTopicData();
@@ -228,14 +243,8 @@ onMounted(() => {
           <Lucide icon="Info" class="w-4 h-4 mr-2" />
         </span>
         <span>
-          Assign specific training topics to employees by matching their IDs with the relevant training sessions.
-          <a
-            href="https://themeforest.net/item/midone-jquery-tailwindcss-html-admin-template/26366820"
-            class="ml-1 underline"
-            target="blank"
-          >
-            Learn More
-          </a>
+          Stay calm, read each question carefully, and manage your time wisely during the exam.
+         
         </span>
         <Alert.DismissButton
           class="text-white"
@@ -292,44 +301,27 @@ onMounted(() => {
     <div v-if="state.isQuestionAns" class="col-span-11 intro-y 2xl:col-span-9">
       <div class="p-5 mt-5 intro-y box">
         <div class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400" >
-          <div class="flex items-center pb-5 text-base font-medium border-b border-slate-200/60 dark:border-darkmode-400">
-            <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" />Question and Answer
+          <div class="flex items-center pb-5 text-sm font-medium border-b border-slate-200/60 dark:border-darkmode-400 uppercase">
+            <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" />Choose the correct answer for
+            <span class="mx-1 text-gray-400 font-semibold">{{ state.getTrainingData }}</span>
+            exam.
           </div>
           <div class="mt-5">
             <div class="flex flex-wrap">
-                <div class="md:w-1/2 w-full">
-                    <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap">
-                          <FormLabel class="xl:w-40 ">
-                            <div class="text-left">
-                              <div class="flex items-center">
-                                <div class="font-medium">Training Topic</div>
-                              </div>
-                              <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                                Enter the question for the exam
-                              </div>
-                            </div>
-                          </FormLabel>
-                          <div class="flex-1 w-full mt-3 xl:mt-0 cursor-not-allowed">
-                            <FormInput id="crud-form-12" disabled="true" v-model.trim="validate.training_topic_id.$model" class="w-full cursor-not-allowed" type="text" name="name" :class="{ 'border-danger': validate.training_topic_id.$error,}"/>
-                            <p class="text-right mt-2 text-gray-500"> Required, at least 3 characters </p>
-                          </div>
-                        </FormInline>
-                    </div>
-                </div>
+                
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
                       <FormInline class="flex flex-wrap">
                         <FormLabel class="xl:w-64 xl:!mr-10">
                           <div class="text-left">
                             <div class="flex items-center">
-                              <div class="font-medium">Employee</div>
+                              <div class="font-medium">Examinee Name</div>
                               <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
                                 Required
                               </div>
                             </div>
                             <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Category or classification of the incident (e.g., Fatality, Lts).
+                              Enter the full name of the examinee
                             </div>
                           </div>
                         </FormLabel>
@@ -381,20 +373,6 @@ onMounted(() => {
                 </div>  
                 
                 
-
-                  <!-- <div v-for="(question, index) in state.answerQuestionData" :key="index" class="mb-4">
-                    <p class="font-bold">{{ question.questions }}</p>
-                    <div v-for="(choice, choiceIndex) in question.choices" :key="choiceIndex">
-                      <input
-                        type="radio"
-                        :id="`question-${index}-choice-${choiceIndex}`"
-                        :value="choice"
-                        v-model="state.selectedAnswers[question.questions]"
-                      />
-                      <label :for="`question-${index}-choice-${choiceIndex}`">{{ choice }}</label>
-                    </div>
-                  </div> -->
-                
             </div> 
             
           </div>
@@ -402,12 +380,8 @@ onMounted(() => {
       </div>
      
       <div class="flex flex-col justify-end gap-2 mt-5 md:flex-row">
-        <Button
-          type="button"class="w-full py-3 border-slate-300 dark:border-darkmode-400 text-slate-500 md:w-52">
-          Cancel
-        </Button>
         <Button variant="primary" type="button" class="w-full py-3 md:w-52" @click="submitForm">
-          Save
+          Submit
         </Button>
       </div>
       
@@ -435,7 +409,12 @@ onMounted(() => {
           <li
             class="pl-5 mb-4 font-medium border-l-2 border-primary dark:border-primary text-primary"
           >
-            <a href="">Add Questions and Answer</a>
+            <a href="">Examinations</a>
+          </li>
+          <li
+            class="pl-5 mb-4 border-l-2 border-transparent dark:border-transparent"
+          >
+            <a href="" class="text-red-500 font-semibold">5 marks per question.</a>
           </li>
           <li
             class="pl-5 mb-4 border-l-2 border-transparent dark:border-transparent"
@@ -447,11 +426,7 @@ onMounted(() => {
           >
             <a href="">Check Input Requirements</a>
           </li>
-          <li
-            class="pl-5 mb-4 border-l-2 border-transparent dark:border-transparent"
-          >
-            <a href="">Upload Relevant Files</a>
-          </li>
+          
           
         </ul>
         <div
@@ -466,11 +441,12 @@ onMounted(() => {
             class="mt-2 text-xs leading-relaxed text-slate-600 dark:text-slate-500"
           >
             <div>
-              When filling out the Questions and answer report, be specific and clear with details, using the correct date format and precise descriptions..
+              Don’t spend too much time on any one question; move on and return if needed.
             </div>
             <div class="mt-2">
-              Ensure all required fields are accurately completed and boolean options are correctly marked. Upload relevant files and adhere to format and size requirements for attachments.
+              Stay focused and avoid distractions to maintain exam flow.
             </div>
+            
           </div>
         </div>
       </div>
