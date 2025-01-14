@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import Lucide from "@/components/Base/Lucide";
-import logoUrl from "@/assets/images/logo.svg";
+import logoUrl from "@/assets/images/accsaeftylogo.jpeg";
 import Breadcrumb from "@/components/Base/Breadcrumb";
 import { FormInput } from "@/components/Base/Form";
 import { Menu, Popover } from "@/components/Base/Headless";
@@ -44,7 +44,7 @@ const hideSearchDropdown = () => {
       >
         <img
           alt="Enigma Tailwind HTML Admin Template"
-          class="w-6"
+          class=" w-16"
           :src="logoUrl"
         />
         <span
@@ -54,7 +54,7 @@ const hideSearchDropdown = () => {
             props.layout == 'simple-menu' && 'hidden',
           ]"
         >
-          Enigma
+        <!-- Accel Safety -->
         </span>
       </RouterLink>
       <!-- END: Logo -->

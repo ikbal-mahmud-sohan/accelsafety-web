@@ -42,6 +42,9 @@ const formDataActivity = reactive({
 const formDataLocation = reactive({
   name: '',
 });
+const formDataHiraTypeofActivity = reactive({
+  name: '',
+});
 const formDataOccupations = reactive({
   name: '',
 });
@@ -68,6 +71,7 @@ const state = reactive({
   hiraActivity: [] as Array<any>,
   hiraLocation: [] as Array<any>,
   hiraOccupations: [] as Array<any>,
+  hiraTypeofActivity: [] as Array<any>,
   hiraEvent: [] as Array<any>,
   hiraCause: [] as Array<any>,
   hiraImpact: [] as Array<any>,
@@ -98,6 +102,7 @@ const validate6 = useVuelidate(rules, toRefs(formDataImpact));
 const validate7 = useVuelidate(rules, toRefs(formDataEngineering));
 const validate8 = useVuelidate(rules, toRefs(formDataAdministrative));
 const validate9 = useVuelidate(rules, toRefs(formDataPPE));
+const validate10 = useVuelidate(rules, toRefs(formDataHiraTypeofActivity));
 const backendErrors = reactive<{
     message: string;
     errors: { [key: string]: string[] };
@@ -186,6 +191,7 @@ const backendErrors = reactive<{
   successEl.classList.remove("hidden");
 }
 };
+
   const submitLocationForm = async () => {
       validate2.value.$touch();
       if (validate2.value.$invalid) {
@@ -225,6 +231,47 @@ const backendErrors = reactive<{
   successEl.classList.remove("hidden");
 }
 };
+  const submitTypeofActivityForm = async () => {
+      validate10.value.$touch();
+      if (validate10.value.$invalid) {
+      new HiraService().FailedTypeOfActivityPopUp();
+  } else {
+
+  try {
+      let  url = config.baseURL+'/api/v1/hira-type-of-Activity';
+      const response = await axios.post(url, formDataHiraTypeofActivity,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
+      if(response.data != undefined){
+         new HiraService().SuccessTypeOfActivityePopUp();
+          state.hiraTypeofActivity = response.data.data;
+          formDataHiraTypeofActivity.name = " "
+      }
+  } catch (err) {
+      new HiraService().FailedTypeOfActivityPopUp();
+      const error = err as AxiosError<BackendErrorResponse>;
+    if (error.response) {
+        const backendError = error.response.data;
+        console.error('Error submitting form:', backendError.message);
+        backendErrors.message = backendError.message;
+        backendErrors.errors = backendError.errors || {};
+    } else if (error.request) {
+        console.error('No response received:', error.request);
+    } else {
+        console.error('Error:', error.message);
+    }
+  }
+
+  const successEl = document
+  .querySelectorAll("#success-notification-content")[0]
+  .cloneNode(true) as HTMLElement;
+  successEl.classList.remove("hidden");
+}
+};
+
+
   const submitOccupationsForm = async () => {
       validate3.value.$touch();
       if (validate3.value.$invalid) {
@@ -525,6 +572,19 @@ const fetchActivityData = async () => {
     console.error('Error fetching data:', error);
   }
 };
+const fetchTypeofActivityData = async () => {
+  try {
+   let  url = config.baseURL+'/api/v1/hira-type-of-Activity';
+    const response = await axios.get(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
+    state.hiraTypeofActivity = response.data.data;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+};
 const fetchAccidentInjuryTypeData = async () => {
   try {
    let  url = config.baseURL+'/api/v1/hira-location';
@@ -668,6 +728,19 @@ const deleteInjuryAcTypeData = async (sID:string) => {
     console.error('Error fetching data:', error);
   }
 };
+const deletehiratypeofActivityData = async (sID:string) => {
+  try {
+    let url = config.baseURL+"/api/v1/hira-type-of-Activity/"+sID;
+    const response = await axios.delete(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
+    state.hiraTypeofActivity = response.data.data;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+};
 const deleteOccupationsData = async (sID:string) => {
   try {
     let url = config.baseURL+"/api/v1/hira-occupations/"+sID;
@@ -773,6 +846,7 @@ onMounted(() => {
   fetchEngineeringData();
   fetchAdministrativeData();
   fetchPPEData();
+  fetchTypeofActivityData();
 });
 </script>
 
@@ -943,6 +1017,50 @@ onMounted(() => {
               <span class=" inline-block px-4 py-3 bg-gray-100 rounded-sm min-w-52 md:min-w-36 text-center"> 
               {{data.name}}
               <a class="ml-2"  href="javascript:;" @click="deleteInjuryAcTypeData(data.id)">×</a>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="p-5 mt-5 intro-y box">
+        <div class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400" >
+          <div class="flex items-center pb-5 text-base font-medium border-b border-slate-200/60 dark:border-darkmode-400">
+            <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" /> Hira Type of Activity
+          </div>
+          <div class="mt-5">
+            <FormInline class="flex-col items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+              <FormLabel class="xl:w-64 xl:!mr-10">
+                <div class="text-left">
+                  <div class="flex items-center">
+                    <div class="font-medium">Name</div>
+                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                      Required
+                    </div>
+                  </div>
+                  <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                    Enter the name of the hira Type of Activity (e.g., Store).
+                  </div>
+                </div>
+              </FormLabel>
+              <div class="flex-1 w-full mt-3 xl:mt-0">
+                <FormInput id="crud-form-1" v-model.trim="validate10.name.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate10.name.$error,}" placeholder="Ex: Dining room" @keydown.enter="submitTypeofActivityForm"/>
+                <template v-if="validate10.name.$error">
+                  <div v-for="(error, index) in validate10.name.$errors" :key="index" class="mt-2 text-danger">
+                    {{ error.$message }}
+                  </div>
+                </template>
+                <FormHelp class="text-right"> Required, at least 3 characters </FormHelp>
+              </div>
+            </FormInline>
+            
+          </div>
+        </div>
+        <div class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400 flex flex-wrap h-96 overflow-y-auto" >
+          <ul v-for="(data, index) in state.hiraTypeofActivity" :key="index" class="">
+            <li class="p-2">
+              <span class=" inline-block px-4 py-3 bg-gray-100 rounded-sm min-w-52 md:min-w-36 text-center"> 
+              {{data.name}}
+              <a class="ml-2"  href="javascript:;" @click="deletehiratypeofActivityData(data.id)">×</a>
               </span>
             </li>
           </ul>
@@ -1351,6 +1469,21 @@ onMounted(() => {
         <Lucide icon="XCircle" class="text-danger" />
         <div class="ml-4 mr-4">
           <div class="font-medium">Accident Injury Type Create failed!</div>
+          <div class="mt-1 text-slate-500">Please check the fileld form.</div>
+        </div>
+      </Notification>
+   <Notification id="success-type-of-activity-notification-content" class="flex hidden">
+        <Lucide icon="CheckCircle" class="text-success" />
+        <div class="ml-4 mr-4">
+          <div class="font-medium">Type of Activity Create success!</div>
+        </div>
+      </Notification>
+      <!-- END: Success Notification Content -->
+      <!-- BEGIN: Failed Notification Content -->
+      <Notification id="failed-type-of-activity-notification-content" class="flex items-center hidden">
+        <Lucide icon="XCircle" class="text-danger" />
+        <div class="ml-4 mr-4">
+          <div class="font-medium">Type of Activity Create failed!</div>
           <div class="mt-1 text-slate-500">Please check the fileld form.</div>
         </div>
       </Notification>

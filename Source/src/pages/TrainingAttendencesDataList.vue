@@ -112,11 +112,9 @@ onMounted(() => {
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">facilitator</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">training_date</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">training_duration</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">name</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">title</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">function</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">business</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">signature</Table.Th>
             <Table.Th class="text-center border-b-0 whitespace-nowrap uppercase">ACTIONS</Table.Th>
           </Table.Tr>
         </Table.Thead>
@@ -145,9 +143,6 @@ onMounted(() => {
               {{ data.training_duration }}
             </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ data.name }}
-            </Table.Td>
-            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
               {{ data.title }}
             </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
@@ -156,19 +151,7 @@ onMounted(() => {
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
               {{ data.business }}
             </Table.Td>
-            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              <div class="flex justify-center">
-                <div class=" w-40 h-20 image-fit zoom-in">
-                    <Tippy
-                      as="img"
-                      alt="safety"
-                      class="rounded-md shadow-[0px_0px_0px_2px_#fff,_1px_1px_5px_rgba(0,0,0,0.32)] dark:shadow-[0px_0px_0px_2px_#3f4865,_1px_1px_5px_rgba(0,0,0,0.32)]"
-                      :src="`${config.baseURL}${data.signature}`"
-                      :content="`safety`"
-                    />
-                  </div>
-              </div>
-            </Table.Td>
+            
            
            
             <Table.Td

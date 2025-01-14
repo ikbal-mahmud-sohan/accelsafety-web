@@ -109,6 +109,37 @@ export default class HiraService {
             stopOnFocus: true,
             }).showToast();
     }
+     SuccessTypeOfActivityePopUp(){
+     
+        const successEl = document
+            .querySelectorAll("#success-type-of-activity-notification-content")[0]
+            .cloneNode(true) as HTMLElement;
+            successEl.classList.remove("hidden");
+            Toastify({
+            node: successEl,
+            duration: 3000,
+            newWindow: true,
+            close: true,
+            gravity: "top",
+            position: "right",
+            stopOnFocus: true,
+            }).showToast();
+    }
+     FailedTypeOfActivityPopUp(){
+        const failedEl = document
+            .querySelectorAll("#failed-type-of-activity-notification-content")[0]
+            .cloneNode(true) as HTMLElement;
+            failedEl.classList.remove("hidden");
+            Toastify({
+            node: failedEl,
+            duration: 3000,
+            newWindow: true,
+            close: true,
+            gravity: "top",
+            position: "right",
+            stopOnFocus: true,
+            }).showToast();
+    }
      SuccessOccupationsPopUp(){
      
         const successEl = document
