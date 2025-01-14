@@ -158,6 +158,11 @@ const menu: Array<Menu | "divider"> = [
       },
       {
         icon: "Activity",
+        pageName: "training-attendences-multiple-form",
+        title: "Attendences Training Multiple",
+      },
+      {
+        icon: "Activity",
         pageName: "question-and-answer",
         title: "Question and Answer",
       },

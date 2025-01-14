@@ -225,6 +225,11 @@ const router = createRouter({
           component: () => import("../pages/TrainingAttendencesForm.vue"),
         },
         {
+          path: "training-attendences-multiple",
+          name: "training-attendences-multiple-form",
+          component: () => import("../pages/TrainingAttendencesMultiple.vue"),
+        },
+        {
           path: "training-attendences/:id/update",
           name: "training-attendences-update-form",
           component: () => import("../pages/TrainingAttendencesUpdateForm.vue"),

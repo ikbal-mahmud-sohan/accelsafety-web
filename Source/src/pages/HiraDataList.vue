@@ -2152,111 +2152,111 @@ onMounted(() => {
         </Table.Thead>
         <Table.Tbody>
           <Table.Tr v-for="(data, index) in state.viewData" :key="index" class="intro-x bg-white">
-            <Table.Td class="w-56 border-r border-b-0 min-h-20 text-center">
+            <Table.Td class="w-56  min-h-20 text-center">
               {{ data.id }}
             </Table.Td>
-            <Table.Td class="w-56 border-r border-b-0 min-h-20 text-center ">
+            <Table.Td class="w-56  min-h-20 text-center ">
               {{ data.process }}
             </Table.Td>
-            <Table.Td class="w-56 border-r border-b-0 min-h-20 text-center ">
+            <Table.Td class="w-56  min-h-20 text-center ">
               {{ data.activity }}
             </Table.Td>
-            <Table.Td class="w-56 border-r border-b-0 min-h-20 text-center">
+            <Table.Td class="w-56  min-h-20 text-center">
               {{ data.location }}
             </Table.Td>
-            <Table.Td class="w-56 border-r border-b-0 min-h-20 w-full text-center">
+            <Table.Td class="w-56  min-h-20 w-full text-center">
               <span v-for="(da, index) in data.type_of_activity" class="bg-gray-200 inline-block px-3 py-1 rounded-sm">{{da}}</span>
             </Table.Td>
-            <Table.Td class="w-56 border-r border-b-0 min-h-20 text-center ">
+            <Table.Td class="w-56  min-h-20 text-center ">
               {{ data.occupations }}
             </Table.Td>
             <div class="uppercase min-h-20 py-3">
               <div class="flex items-center  w-full h-full min-h-20">
-                <Table.Td class="w-56 border-r border-b-0 min-h-20   flex items-center justify-center">
+                <Table.Td class="w-56  min-h-20   flex items-center justify-center">
                   {{ data.event }}
                 </Table.Td>
-                <Table.Td class="w-56 border-r border-b-0 min-h-20   flex items-center justify-center">
+                <Table.Td class="w-56  min-h-20   flex items-center justify-center">
                   {{ data.cause }}
                 </Table.Td>
-                <Table.Td class="w-56 border-r border-b-0 min-h-20   flex items-center justify-center">
+                <Table.Td class="w-56  min-h-20   flex items-center justify-center">
                   {{ data.impact }}
                 </Table.Td>
               </div>
             </div>
-            <Table.Td class="w-56 border-r border-b-0 min-h-20 text-center">
+            <Table.Td class="w-56  min-h-20 text-center">
               {{ data.hazard_type }}
             </Table.Td>
-            <Table.Td class="w-56 border-r border-b-0 min-h-20 text-center">
+            <Table.Td class="w-56  min-h-20 text-center">
               {{ data.likelihood }}
             </Table.Td>
             <div class="uppercase min-h-20 py-3">
               <div class="flex items-center  w-full h-full min-h-20">
-                <Table.Td class="w-56 border-r border-b-0 min-h-20  flex items-center justify-center ">
+                <Table.Td class="w-56  min-h-20  flex items-center justify-center ">
                   {{ data.impact_rating_factors_regulatory }}
                 </Table.Td>
-                <Table.Td class="w-56 border-r border-b-0 min-h-20  flex items-center justify-center ">
+                <Table.Td class="w-56  min-h-20  flex items-center justify-center ">
                   {{ data.impact_rating_factors_safety }}
                 </Table.Td>
               </div>
             </div>
-            <Table.Td class="w-56 border-r border-b-0 min-h-20 text-center">
+            <Table.Td class="w-56  min-h-20 text-center">
               {{ data.impact_score }}
             </Table.Td>
-            <Table.Td class="w-56 border-r border-b-0 min-h-20 text-center">
+            <Table.Td class="w-56  min-h-20 text-center">
               {{ data.overall_risk_score }}
             </Table.Td>
             <div class="uppercase min-h-20 py-3">
               <div class="flex items-center  w-full h-full min-h-20">
-                <Table.Td class="w-56 border-r border-b-0 min-h-20  flex items-center justify-center">
+                <Table.Td class="w-56  min-h-20  flex items-center justify-center">
                   <span v-for="(da, index) in data.operational_control_elimination" class="bg-gray-200 inline-block px-3 py-1 rounded-md">{{da}}</span>
                   
                 </Table.Td>
-                <Table.Td class="w-56 border-r border-b-0 min-h-20  flex items-center justify-center">
+                <Table.Td class="w-56  min-h-20  flex items-center justify-center">
                   <span v-for="(da, index) in data.operational_control_substitution" class="bg-gray-200 inline-block px-3 py-1 rounded-md">{{da}}</span>
                   
                 </Table.Td>
-                <Table.Td class="w-56 border-r border-b-0 min-h-20  flex items-center justify-center">
+                <Table.Td class="w-56  min-h-20  flex items-center justify-center">
                   <span v-for="(da, index) in data.operational_control_engineering" class="bg-gray-200 inline-block px-3 py-1 rounded-md">{{da}}</span>
                  
                 </Table.Td>
-                <Table.Td class="w-56 border-r border-b-0 min-h-20  flex items-center justify-center">
+                <Table.Td class="w-56  min-h-20  flex items-center justify-center">
                   <span v-for="(da, index) in data.operational_control_administrative" class="bg-gray-200 inline-block px-3 py-1 rounded-md">{{da}}</span>
 
                 </Table.Td>
-                <Table.Td class="w-56 border-r border-b-0 min-h-20  flex items-center justify-center">
+                <Table.Td class="w-56  min-h-20  flex items-center justify-center">
                   <span v-for="(da, index) in data.ppe" class="bg-gray-200 inline-block px-3 py-1 rounded-md">{{da}}</span>
                 </Table.Td>
               </div>
             </div>
-            <Table.Td class="w-56 border-r border-b-0 min-h-20 text-center">
+            <Table.Td class="w-56  min-h-20 text-center">
               {{ data.mitigation }}
             </Table.Td>
-            <Table.Td class="w-56 border-r border-b-0 min-h-20 text-center">
+            <Table.Td class="w-56  min-h-20 text-center">
               {{ data.type_of_mitigation }}
             </Table.Td>
             <div class="uppercase min-h-20 py-3">
               <div class="flex items-center  w-full h-full min-h-2">
-                <Table.Td class="w-56 border-r border-b-0 min-h-20  flex items-center justify-center">
+                <Table.Td class="w-56  min-h-20  flex items-center justify-center">
                   {{ data.risk_evaluation_control_type }}
                 </Table.Td>
-                <Table.Td class="w-56 border-r border-b-0 min-h-20  flex items-center justify-center">
+                <Table.Td class="w-56  min-h-20  flex items-center justify-center">
                   {{ data.risk_evaluation_effectiveness }}
                 </Table.Td>
-                <Table.Td class="w-56 border-r border-b-0 min-h-20  flex items-center justify-center">
+                <Table.Td class="w-56  min-h-20  flex items-center justify-center">
                   {{ data.risk_evaluation_likelihood }}
                 </Table.Td>
-                <Table.Td class="w-56 border-r border-b-0 min-h-20  flex items-center justify-center">
+                <Table.Td class="w-56  min-h-20  flex items-center justify-center">
                   {{ data.risk_evaluation_impact_score }}
                 </Table.Td>
-                <Table.Td class="w-56 border-r border-b-0 min-h-20  flex items-center justify-center">
+                <Table.Td class="w-56  min-h-20  flex items-center justify-center">
                   {{ data.risk_evaluation_overall_risk_score }}
                 </Table.Td>
               </div>
             </div>
-            <Table.Td class="w-56 border-r border-b-0 min-h-20 text-center">
+            <Table.Td class="w-56  min-h-20 text-center">
               {{ data.risk_evaluation_level_of_significance }}
             </Table.Td>
-            <Table.Td class="w-56 border-r border-b-0  min-h-20 text-center">
+            <Table.Td class="w-56   min-h-20 text-center">
               {{ data.status }}
             </Table.Td>
             <Table.Td

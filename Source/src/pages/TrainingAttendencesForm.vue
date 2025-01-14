@@ -60,7 +60,6 @@ const rules = {
         title: {required,minLength: minLength(3),},
         function: {required,minLength: minLength(3),},
         business: {required,minLength: minLength(3),},
-        signature: {required},
 };
 
 const validate = useVuelidate(rules, toRefs(formData));
@@ -325,11 +324,7 @@ onMounted(() => {
                 <FormLabel htmlFor="crud-form-13">Signature</FormLabel>
                 <FormInput id="crud-form-13" type="file" class="w-full" placeholder="Input Signature"
                     multiple @change="handleFileChange" />
-                <template v-if="validate.signature.$error">
-                  <div v-for="(error, index) in validate.signature.$errors" :key="index" class="mt-2 text-danger">
-                    {{ error.$message }}
-                  </div>
-                </template>
+                
             </div>
         </div>
         
