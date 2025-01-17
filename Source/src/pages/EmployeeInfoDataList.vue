@@ -11,6 +11,7 @@ import { Dialog, Menu } from '@/components/Base/Headless';
 import Table from '@/components/Base/Table';
 import config from "@/config";
 import { getToken } from './../auth/setToken'
+import * as XLSX from 'xlsx';
 
 
 // Define your state using the reactive function
@@ -36,6 +37,28 @@ const fetchData = async () => {
     console.error('Error fetching data:', error);
   }
 };
+const downloadExcel = async () => {
+  try {
+    let url = config.baseURL + '/api/v1/employee-info/export-excel';
+    const response = await axios.get(url, {
+      headers: {
+        'Authorization': state.token,
+      },
+      responseType: 'blob', // Important to get the file as a Blob
+    });
+
+    // Create a URL for the blob and trigger the download
+    const blob = new Blob([response.data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'employee_infos.xlsx'; // Set the filename
+    link.click(); // Trigger the download
+
+    // Optionally, you can show a success message or perform other actions here
+  } catch (error) {
+    console.error('Error downloading Excel file:', error);
+  }
+};
 
 const deleteData = async (sID:string) => {
   try {
@@ -50,6 +73,38 @@ const deleteData = async (sID:string) => {
     console.error('Error fetching data:', error);
   }
 };
+
+const file = ref<File | null>(null);
+  const handleFileChange = (event: Event) => {
+      const target = event.target as HTMLInputElement;
+      if (target.files && target.files[0]) {
+        file.value = target.files[0];
+      }
+    };
+    const uploadFile = async () => {
+      if (!file.value) {
+        alert('Please select a file first!');
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append('file', file.value);
+
+      try {
+        const url = config.baseURL + '/api/v1/employee-info/import-excel';
+      const response = await axios.post(url, formData,{
+                headers: {
+                    'Authorization': state.token,
+                    'Content-Type': 'multipart/form-data',
+
+                },
+                });
+        fetchData()
+      } catch (error) {
+        console.error('Error uploading file:', error);
+        alert('Error uploading file. Please try again.');
+      }
+    };
 
 // Call fetchData when the component is mounted
 onMounted(() => {
@@ -69,6 +124,10 @@ onMounted(() => {
           Add New Employee
         </Button>
       </router-link>
+      <Button variant="primary" class="mr-2 shadow-md" @click="downloadExcel()">
+        Download Excel
+        </Button>
+        
       <Menu>
         <Menu.Button :as="Button" class="px-2 !box">
           <span class="flex items-center justify-center w-5 h-5">
@@ -91,17 +150,13 @@ onMounted(() => {
         Showing 1 to 10 of 150 entries
       </div>
       <div class="w-full mt-3 sm:w-auto sm:mt-0 sm:ml-auto md:ml-0">
-        <div class="relative w-56 text-slate-500">
-          <FormInput
-            type="text"
-            class="w-56 pr-10 !box"
-            placeholder="Search..."
-          />
-          <Lucide
-            icon="Search"
-            class="absolute inset-y-0 right-0 w-4 h-4 my-auto mr-3"
-          />
-        </div>
+        <div class="flex items-center">
+        <!-- <input type="file" @change="handleFileChange" accept=".xlsx, .xls" /> -->
+        <input type="file"  @change="handleFileChange" accept=".xlsx, .xls"  class="ml-4 p-1 w-full text-slate-500 text-sm rounded-full leading-6 file:bg-theme-1 file:text-white file:font-semibold file:border-none file:px-4 file:py-2 file:mr-6 file:rounded-full hover:file:bg-opacity-70 border border-gray-300 py-1">
+        <Button variant="primary" class="mr-2 shadow-md text-nowrap ml-2" @click="uploadFile()">
+          Upload Excel
+        </Button>
+      </div>
       </div>
     </div>
     <!-- BEGIN: Data List -->
