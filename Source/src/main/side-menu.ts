@@ -193,6 +193,49 @@ const menu: Array<Menu | "divider"> = [
     ],
   },
   {
+    icon: "WindIcon",
+    pageName: "environment",
+    title: "Environment",
+    subMenu: [
+      {
+        icon: "ZapIcon",
+        pageName: "Energy Records",
+        title: "Energy Records",
+        subMenu: [
+          {
+            icon: "Activity",
+            pageName: "energy-records-create",
+            title: "Create",
+          },  
+          {
+            icon: "Activity",
+            pageName: "energy-records-list",
+            title: "List",
+          },  
+        ],
+      },
+      {
+        icon: "RssIcon",
+        pageName: "Water Consumption",
+        title: "Water",
+        subMenu: [
+          {
+            icon: "Activity",
+            pageName: "water-consumption-create",
+            title: "Create",
+          },  
+          {
+            icon: "Activity",
+            pageName: "water-consumption-list",
+            title: "List",
+          },  
+        ],
+      },
+    
+     
+    ],
+  },
+  {
     icon: "Target",
     pageName: "Hse",
     title: "Hse",

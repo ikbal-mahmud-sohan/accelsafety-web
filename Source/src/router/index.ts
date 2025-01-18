@@ -172,6 +172,27 @@ const router = createRouter({
           name: "safety-observation-form",
           component: () => import("../pages/SafetyObservationForm.vue"),
         },
+        // Energy
+        {
+          path: "energy-records-create",
+          name: "energy-records-create",
+          component: () => import("../pages/EnergyRecordsForm.vue"),
+        },
+        {
+          path: "energy-records-list",
+          name: "energy-records-list",
+          component: () => import("../pages/EnergyRecordsList.vue"),
+        },
+        {
+          path: "water-consumption-create",
+          name: "water-consumption-create",
+          component: () => import("../pages/WaterConsumptionForm.vue"),
+        },
+        {
+          path: "water-consumption-list",
+          name: "water-consumption-list",
+          component: () => import("../pages/WaterConsumptionList.vue"),
+        },
         {
           path: "safety-observation-input",
           name: "safety-observation-input",
