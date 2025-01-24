@@ -21,7 +21,7 @@ const state = reactive({
 
 const fetchData = async () => {
   try {
-   let  url = config.baseURL+'/api/v1/water-consumption';
+   let  url = config.baseURL+'/api/v1/non-hazardous-waste-inventory';
     const response = await axios.get(url,{
                 headers: {
                     'Authorization': state.token,
@@ -40,12 +40,12 @@ onMounted(() => {
 </script>
 
 <template>
-  <h2 class="mt-10 text-lg font-medium intro-y">Water Consumption List</h2>
+  <h2 class="mt-10 text-lg font-medium intro-y">Wastege Inventory List</h2>
   <div class="grid grid-cols-12 gap-6 mt-5">
     <div class="flex flex-wrap items-center col-span-12 mt-2 intro-y sm:flex-nowrap">
-      <router-link :to="{ name: 'water-consumption-create' }">
+      <router-link :to="{ name: 'waste-consumption-create' }">
         <Button variant="primary" class="mr-2 shadow-md">
-          Add New Water Consumption
+          Add New Wastege Inventory
         </Button>
       </router-link>
       <Menu>
@@ -83,22 +83,18 @@ onMounted(() => {
         </div>
       </div>
     </div>
+    
     <!-- BEGIN: Data List -->
     <div class="col-span-12 overflow-auto intro-y " >
       <Table class="border-spacing-y-[10px] border-separate -mt-2">
         <Table.Thead>
           <Table.Tr>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Month</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Responsible Person Name</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Ground Water</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Rain Water</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Process Water Consumption</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Domestic Water (m3)</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Total Water Consumption</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">ETP Inlet Water </Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">ETP Outlet Water</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Deviation of ETP Discharge</Table.Th>
-            
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Employee Name</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Waste Name</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Waste Type</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Item Name</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Total Amount of Waste</Table.Th>
           </Table.Tr>
         </Table.Thead>
         <Table.Tbody v-if="state.energyrecords.length !== 0">
@@ -108,31 +104,19 @@ onMounted(() => {
               {{ report.Month }}
             </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.employee_name }}
+              {{ report.Items.employee_name}}
             </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.Dying_Re_Use_Water }}
+              {{ report.Items.Waste_Name}}
             </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.Rain_Water }}
+              {{ report.Items.Waste_Type}}
             </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.Process_Water }}
+              {{ report.Items.Item_Name}}
             </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.Domestic_Water }}
-            </Table.Td>
-            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.Total_Process_and_Domestic_Water }}
-            </Table.Td>
-            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.ETP_Inlet_Water }}
-            </Table.Td>
-            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.ETP_Outlet_Water }}
-            </Table.Td>
-            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.Deviation_of_ETP_Discharge }}
+              {{ report.Items.Total_Amount_of_Waste}} {{ report.Items.unit }}
             </Table.Td>
             
           </Table.Tr>

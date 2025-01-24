@@ -28,11 +28,11 @@ const formData = reactive({
     month: '',
     employee_name: '',
     designation: '',
+    waste_name: '',
+    waste_type: '',
     item_name: '',
-    item_code: '',
-    type: '',
-    energy_used: '',
-    input_numeric: 0,
+    unit: '',
+    amount_of_waste: 0,
     attachement:[] as File[],
 
 });
@@ -49,25 +49,38 @@ const rules = {
         month: {required,},
         employee_name: {required,},
         designation: {required,},
+        waste_name: {required,},
+        waste_type: {required,},
         item_name: {required,},
-        item_code: {required,},
-        type: {required,},
-        energy_used: {required,},
-        input_numeric: {required,integer},
+        unit: {required,},
+        amount_of_waste: {required,integer},
 };
 
 const validate = useVuelidate(rules, toRefs(formData));
 const selectedMonth = ref("");
 const selectedType = ref("");
+const selectedItemNname = ref("");
 const selectedEmp = ref("");
 const duedate = ref("");
+const options = ref<string[]>([]);
+
+const optionMapping: Record<string, string[]> = {
+  biodegradable: ["Cutting Jhute", "Sewing Jhut", "Cut Piece", "Short Piece"],
+  "non-biodegradable": ["Dust", "Chemical Contaminated", "Chemical Drum", "Burn Oil"],
+};
+
+watch(selectedType, (newValue) => {
+  options.value = optionMapping[newValue] || [];
+  selectedItemNname.value = ""; // Reset selected item when waste type changes
+});
 
 
 const submitForm = async () => {
   formData.month = selectedMonth.value;
-  formData.type = selectedType.value;
+  formData.waste_type = selectedType.value;
   formData.date = duedate.value;
   formData.employee_name = selectedEmp.value;
+  formData.item_name = selectedItemNname.value;
   
     validate.value.$touch();
     console.log(validate.value)
@@ -85,17 +98,16 @@ const submitForm = async () => {
             });
 
             try {
-                let  url = config.baseURL+'/api/v1/energy-records';
+                let  url = config.baseURL+'/api/v1/non-hazardous-waste-inventory';
                 const response = await axios.post(url, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     'Authorization': state.token,
                 },
                 });
-                console.log("xyz", response.data)
                 if (response.data != undefined){
                     SuccessPopUp();
-                router.push({ name: 'energy-records-list' });
+                router.push({ name: 'waste-consumption-list' });
 
                 }
         
@@ -107,15 +119,13 @@ const submitForm = async () => {
     }
 };
 
-watch(selectedType, (newValue) => {
-  if (newValue === 'CO2') {
-    formData.energy_used = 'Litter';
-  } else if (newValue === 'CH4') {
-    formData.energy_used = 'Litter';
-  } else if (newValue === 'N20' || newValue === 'CO3') {
-    formData.energy_used = 'Litter';
+watch(selectedItemNname, (newValue) => {
+  if (newValue === 'Cutting Jhute' || newValue === 'Sewing Jhut' || newValue === 'Cut Piece' || newValue === 'Short Piece') {
+    formData.unit = 'kg';
+  } else if (newValue === 'Dust' || newValue === 'Chemical Contaminated' || newValue === 'Chemical Drum' || newValue === 'Burn Oil') {
+    formData.unit = 'kg';
   } else {
-    formData.energy_used = ''; // Clear or set default
+    formData.unit = ''; // Clear or set default
   }
 });
 
@@ -171,6 +181,7 @@ const fetchEmpData = async () => {
     console.error('Error fetching data:', error);
   }
 };
+
 onMounted(() => {
   fetchEmpData();
 
@@ -180,7 +191,7 @@ onMounted(() => {
 
 <template>
   <div class="flex items-center mt-8 intro-y">
-    <h2 class="mr-auto text-lg font-medium">Add Energy Records </h2>
+    <h2 class="mr-auto text-lg font-medium">Add Wastege Inventory Report </h2>
   </div>
   <div class="grid grid-cols-11 pb-20 mt-5 gap-x-6">
     <!-- BEGIN: Notification -->
@@ -195,7 +206,7 @@ onMounted(() => {
           <Lucide icon="Info" class="w-4 h-4 mr-2" />
         </span>
         <span>
-          Create a form for managing Energy Records, including fields for energy consumption data, date, and associated metrics.
+          Create a form for managing Wastege Inventory Report, including fields for energy consumption data, date, and associated metrics.
         </span>
         <Alert.DismissButton
           class="text-white"
@@ -425,14 +436,15 @@ onMounted(() => {
                         </div>
                       </FormInline>
                     </div>
-                </div>
+                </div>         
+
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
                       <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
                             <div class="flex items-center">
-                              <div class="font-medium text-nowrap">Item Name</div>
+                              <div class="font-medium text-nowrap">Waste Name</div>
                               
                             </div>
                             <div class="mt-3 text-xs leading-relaxed text-slate-500">
@@ -441,10 +453,10 @@ onMounted(() => {
                           </div>
                         </FormLabel>
                         <div class="flex-1 w-full mt-3 xl:mt-0">
-                          <FormInput id="crud-form-12" v-model.trim="validate.item_name.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.item_name.$error,}" placeholder="Input Item Name"/>  
+                          <FormInput id="crud-form-12" v-model.trim="validate.waste_name.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.waste_name.$error,}" placeholder="Input Waste Name"/>  
                           <div class="flex justify-between">
-                            <template v-if="validate.item_name.$error">
-                            <div v-for="(error, index) in validate.item_name.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
+                            <template v-if="validate.waste_name.$error">
+                            <div v-for="(error, index) in validate.waste_name.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
                               {{ error.$message }}
                             </div>
                           </template>
@@ -460,36 +472,7 @@ onMounted(() => {
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
                             <div class="flex items-center">
-                              <div class="font-medium text-nowrap">Item Code</div>
-                              
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Specify the unit of measurement for the energy consumption.
-                            </div>
-                          </div>
-                        </FormLabel>
-                        <div class="flex-1 w-full mt-3 xl:mt-0">
-                          <FormInput id="crud-form-12" v-model.trim="validate.item_code.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.item_code.$error,}" placeholder="Input Item Code"/>  
-                          <div class="flex justify-between">
-                            <template v-if="validate.item_code.$error">
-                            <div v-for="(error, index) in validate.item_code.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
-                              {{ error.$message }}
-                            </div>
-                          </template>
-                            <p class="text-right mt-2 w-full"> Required</p>
-                          </div>
-                        </div>
-                      </FormInline>
-                    </div>
-                </div>
-                
-                <div class="md:w-1/2 w-full">
-                    <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
-                        <FormLabel class="xl:w-40 xl:!mr-10">
-                          <div class="text-left">
-                            <div class="flex items-center">
-                              <div class="font-medium text-nowrap">Fuel Type</div>
+                              <div class="font-medium text-nowrap">Waste Type</div>
                               
                             </div>
                             <div class="mt-3 text-xs leading-relaxed text-slate-500">
@@ -501,16 +484,14 @@ onMounted(() => {
                           <!-- <FormInput id="crud-form-5" v-model.trim="validate.category.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.category.$error,}" placeholder="Input Category"/> -->
 
                           <select id="crud-form-6" v-model="selectedType"  class="border py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 fdark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 text-gray-500">
-                            <option value="" disabled>select fuel type</option>
-                            <option value="CO2">CO2</option>
-                            <option value="CH4">CH4</option>
-                            <option value="N20">N20</option>
-                            <option value="CO3">CO3</option>
+                            <option value="" disabled>select waste type</option>
+                            <option value="biodegradable">biodegradable</option>
+                            <option value="non-biodegradable">Non-Biodegradable</option>
                           </select>
                           
                           <div class="flex justify-between">
-                            <template v-if="validate.type.$error">
-                            <div v-for="(error, index) in validate.type.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
+                            <template v-if="validate.waste_type.$error">
+                            <div v-for="(error, index) in validate.waste_type.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
                               {{ error.$message }}
                             </div>
                           </template>
@@ -521,14 +502,50 @@ onMounted(() => {
                       
                     </div>
                 </div>
-
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
                       <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
                             <div class="flex items-center">
-                              <div class="font-medium text-nowrap">Energy Used</div>
+                              <div class="font-medium text-nowrap">Item Name</div>
+                              
+                            </div>
+                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                              Select the type of fuel or energy source used.
+                            </div>
+                          </div>
+                        </FormLabel>
+                        <div class="flex-1 w-full mt-3 xl:mt-0">
+                          <!-- <FormInput id="crud-form-5" v-model.trim="validate.category.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.category.$error,}" placeholder="Input Category"/> -->
+
+                          <select id="crud-form-6" v-model="selectedItemNname"  class="border py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 fdark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 text-gray-500">
+                            <option value="" disabled>Item Name</option>
+                            <option v-for="option in options" :key="option" :value="option">
+                              {{ option }}
+                            </option>
+                          </select>
+                          
+                          <div class="flex justify-between">
+                            <template v-if="validate.item_name.$error">
+                            <div v-for="(error, index) in validate.item_name.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
+                              {{ error.$message }}
+                            </div>
+                          </template>
+                            <p class="text-right mt-2 w-full"> Required</p>
+                          </div>
+                        </div>
+                      </FormInline>
+                      
+                    </div>
+                </div>
+                <div class="md:w-1/2 w-full">
+                    <div class="px-4 py-2">
+                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                        <FormLabel class="xl:w-40 xl:!mr-10">
+                          <div class="text-left">
+                            <div class="flex items-center">
+                              <div class="font-medium text-nowrap">Unit</div>
                               
                             </div>
                             <div class="mt-3 text-xs leading-relaxed text-slate-500">
@@ -537,10 +554,10 @@ onMounted(() => {
                           </div>
                         </FormLabel>
                         <div class="flex-1 w-full mt-3 xl:mt-0">
-                          <FormInput id="crud-form-12" v-model.trim="validate.energy_used.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.energy_used.$error,}" placeholder="Input Energy Used"/>  
+                          <FormInput id="crud-form-12" v-model.trim="validate.unit.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.unit.$error,}" placeholder="Input Energy Used"/>  
                           <div class="flex justify-between">
-                            <template v-if="validate.energy_used.$error">
-                            <div v-for="(error, index) in validate.energy_used.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
+                            <template v-if="validate.unit.$error">
+                            <div v-for="(error, index) in validate.unit.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
                               {{ error.$message }}
                             </div>
                           </template>
@@ -556,7 +573,7 @@ onMounted(() => {
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
                             <div class="flex items-center">
-                              <div class="font-medium text-nowrap">Amount of Fuel</div>
+                              <div class="font-medium text-nowrap">Amount of Waste</div>
                               
                             </div>
                             <div class="mt-3 text-xs leading-relaxed text-slate-500">
@@ -565,10 +582,10 @@ onMounted(() => {
                           </div>
                         </FormLabel>
                         <div class="flex-1 w-full mt-3 xl:mt-0">
-                          <FormInput id="crud-form-12" v-model.trim="validate.input_numeric.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.input_numeric.$error,}" placeholder="Input Input Numeric"/>  
+                          <FormInput id="crud-form-12" v-model.trim="validate.amount_of_waste.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.amount_of_waste.$error,}" placeholder="Input Amount of Waste"/>  
                           <div class="flex justify-between">
-                            <template v-if="validate.input_numeric.$error">
-                            <div v-for="(error, index) in validate.input_numeric.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
+                            <template v-if="validate.amount_of_waste.$error">
+                            <div v-for="(error, index) in validate.amount_of_waste.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
                               {{ error.$message }}
                             </div>
                           </template>
@@ -639,7 +656,7 @@ onMounted(() => {
           <li
             class="pl-5 mb-4 font-medium border-l-2 border-primary dark:border-primary text-primary"
           >
-            <a href="">Energy Records</a>
+            <a href="">Wastege Inventory Report</a>
           </li>
           <li
             class="pl-5 mb-4 border-l-2 border-transparent dark:border-transparent"
@@ -682,7 +699,7 @@ onMounted(() => {
    <Notification id="success-notification-content" class="flex hidden">
         <Lucide icon="CheckCircle" class="text-success" />
         <div class="ml-4 mr-4">
-          <div class="font-medium text-nowrap">Energy Records Create success!</div>
+          <div class="font-medium text-nowrap">Wastege Inventory Report Create success!</div>
         </div>
       </Notification>
       <!-- END: Success Notification Content -->
@@ -690,7 +707,7 @@ onMounted(() => {
       <Notification id="failed-notification-content" class="flex items-center hidden">
         <Lucide icon="XCircle" class="text-danger" />
         <div class="ml-4 mr-4">
-          <div class="font-medium text-nowrap">Energy Records Create failed!</div>
+          <div class="font-medium text-nowrap">Wastege Inventory Report Create failed!</div>
           <div class="mt-1 text-slate-500">Please check the fileld form.</div>
         </div>
       </Notification>

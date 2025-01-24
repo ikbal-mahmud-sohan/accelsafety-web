@@ -10,38 +10,60 @@ import Tippy from '@/components/Base/Tippy';
 import { Dialog, Menu } from '@/components/Base/Headless';
 import Table from '@/components/Base/Table';
 import config from "@/config";
-import { getToken } from './../auth/setToken'
+import { getToken } from './../auth/setToken';
 
-
+// Reactive state
 const state = reactive({
   energyrecords: [] as Array<any>,
+  dynamicHeaders: [] as Array<string>, // Headers that include all dynamic fields
   token: getToken(),
-
 });
 
+// Fetch data and setup headers
 const fetchData = async () => {
   try {
-   let  url = config.baseURL+'/api/v1/energy-records';
-    const response = await axios.get(url,{
-                headers: {
-                    'Authorization': state.token,
-                },
-                });
+    const url = config.baseURL + '/api/v1/energy-records';
+    const response = await axios.get(url, {
+      headers: {
+        'Authorization': state.token,
+      },
+    });
+
     state.energyrecords = response.data;
-    console.log("response",response)
+
+    // Extract unique dynamic keys from the first record
+    if (state.energyrecords.length > 0) {
+      const firstRecord = state.energyrecords[0];
+      state.dynamicHeaders = Object.keys(firstRecord).filter(
+        (key) =>
+          ![
+            'Month', // Existing static field
+            'UnitName', 
+            'EmployeeName', 
+            'Designation', 
+            'ItemName', 
+            'ItemCode', 
+            'Type',
+          ].includes(key)
+      );
+    }
   } catch (error) {
     console.error('Error fetching data:', error);
   }
 };
 
+// Fetch data on mount
 onMounted(() => {
   fetchData();
 });
 </script>
 
+
+
 <template>
   <h2 class="mt-10 text-lg font-medium intro-y">Energy Records List</h2>
   <div class="grid grid-cols-12 gap-6 mt-5">
+    <!-- Action Buttons -->
     <div class="flex flex-wrap items-center col-span-12 mt-2 intro-y sm:flex-nowrap">
       <router-link :to="{ name: 'energy-records-create' }">
         <Button variant="primary" class="mr-2 shadow-md">
@@ -83,47 +105,62 @@ onMounted(() => {
         </div>
       </div>
     </div>
-    <!-- BEGIN: Data List -->
-    <div class="col-span-12 overflow-auto intro-y " >
+
+    <!-- Data Table -->
+    <div class="col-span-12 overflow-auto intro-y">
       <Table class="border-spacing-y-[10px] border-separate -mt-2">
+        <!-- Headers -->
         <Table.Thead>
           <Table.Tr>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Month</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Total Electricity consumed (KWH)</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Total Gas Consumption (m3)</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Total Production </Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Gas Consumption</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Unit Name</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Employee Name</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Item Name</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Item Code</Table.Th>
+            <Table.Th v-for="header in state.dynamicHeaders" :key="header" class="text-left border-b-0 whitespace-nowrap uppercase">
+              {{ header }}
+            </Table.Th>
           </Table.Tr>
         </Table.Thead>
+
+        <!-- Body -->
         <Table.Tbody v-if="state.energyrecords.length !== 0">
-          <Table.Tr  v-for="(report, index) in state.energyrecords" :key="index" class="intro-x">
-            
+          <Table.Tr v-for="(record, index) in state.energyrecords" :key="index" class="intro-x">
+            <!-- Static Fields -->
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.Month }}
+              {{ record.Month }}
             </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.CNG }}
+              {{ record.UnitName }}
             </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.Diesel }}
+              {{ record.EmployeeName }}
             </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.ERC }}
+              {{ record.ItemName	 }}
             </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.LPG }}
+              {{ record.ItemCode }}
+            </Table.Td>
+            <!-- Dynamic Fields -->
+            <Table.Td
+              v-for="header in state.dynamicHeaders"
+              :key="header"
+              class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600"
+            >
+              {{ record[header] || 0 }} {{ record.EnergyUsed }}
             </Table.Td>
           </Table.Tr>
         </Table.Tbody>
-        <Table.Tbody v-else class=" ">
+        <Table.Tbody v-else>
           <div class="w-40 px-4 py-4 text-red-600">
             No data
           </div>
         </Table.Tbody>
       </Table>
     </div>
-    <!-- END: Data List -->
-    <!-- BEGIN: Pagination -->
+
+    <!-- Pagination -->
     <div class="flex flex-wrap items-center col-span-12 intro-y sm:flex-row sm:flex-nowrap">
       <Pagination class="w-full sm:w-auto sm:mr-auto">
         <Pagination.Link>
@@ -151,7 +188,7 @@ onMounted(() => {
         <option>50</option>
       </FormSelect>
     </div>
-    <!-- END: Pagination -->
   </div>
 </template>
+
 

@@ -7,6 +7,8 @@ import { useRouter } from 'vue-router';
 import Notification from "@/components/Base/Notification";
 import Lucide from "@/components/Base/Lucide";
 import config from "@/config";
+import Preview from "@/components/Base/Preview";
+import Litepicker from "@/components/Base/Litepicker";
 import { getToken } from './../auth/setToken'
 
 import {
@@ -22,7 +24,11 @@ import _ from "lodash";
 
 
 const formData = reactive({
+    unit_name: '', // Corresponds to 'month'
     month: '', // Corresponds to 'month'
+    date: '', // Corresponds to 'month'
+    employee_name: '', // Corresponds to 'month'
+    designation: '', // Corresponds to 'month'
     process_water: '', // Corresponds to 'process_water'
     domestic_water: '', // Corresponds to 'domestic_water'
     etp_inlet_water: '', // Corresponds to 'etp_inlet_water'
@@ -33,19 +39,28 @@ const formData = reactive({
 });
 const state = reactive({
   token: getToken(),
+  viewEmp: [] as Array<any>,
+
 
 });
 const router = useRouter();
+const selectedType = ref("");
+const selectedEmp = ref("");
+const duedate = ref("");
 
 const rules = {
+        unit_name: {required,},
         month: {required,},
-        process_water: {required,},
-        domestic_water: {required,},
-        etp_inlet_water: {required,},
-        etp_outlet_water: {required,},
-        deviation_of_etp_discharge: {required,},
-        dying_re_use_water: {required,},
-        rain_water: {required,},
+        date: {required,},
+        employee_name: {required,},
+        designation: {required,},
+        process_water: {required, integer},
+        domestic_water: {required, integer},
+        etp_inlet_water: {required, integer},
+        etp_outlet_water: {required, integer},
+        deviation_of_etp_discharge: {required,integer},
+        dying_re_use_water: {required,integer},
+        rain_water: {required,integer},
 };
 
 const validate = useVuelidate(rules, toRefs(formData));
@@ -54,6 +69,8 @@ const selectedMonth = ref("");
 
 const submitForm = async () => {
   formData.month = selectedMonth.value;
+  formData.date = duedate.value;
+  formData.employee_name = selectedEmp.value;
   
     validate.value.$touch();
     console.log(validate.value)
@@ -118,8 +135,21 @@ function SuccessPopUp(){
         stopOnFocus: true,
         }).showToast();
 }
+const fetchEmpData = async () => {
+  try {
+   let  url = config.baseURL+'/api/v1/employee';
+    const response = await axios.get(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
+    state.viewEmp = response.data.data;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+};
 onMounted(() => {
-  
+  fetchEmpData();
 });
 
 </script>
@@ -162,6 +192,34 @@ onMounted(() => {
         <div class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400"> 
  
             <div class="flex flex-wrap">
+              <div class="md:w-1/2 w-full">
+                    <div class="px-4 py-2">
+                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                        <FormLabel class="xl:w-40 xl:!mr-10">
+                          <div class="text-left">
+                            <div class="flex items-center">
+                              <div class="font-medium text-nowrap">Unit Name</div>
+                              
+                            </div>
+                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                              Specify the unit of measurement for the energy consumption.
+                            </div>
+                          </div>
+                        </FormLabel>
+                        <div class="flex-1 w-full mt-3 xl:mt-0">
+                          <FormInput id="crud-form-12" v-model.trim="validate.unit_name.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.unit_name.$error,}" placeholder="Input Unit Name"/>  
+                          <div class="flex justify-between">
+                            <template v-if="validate.unit_name.$error">
+                            <div v-for="(error, index) in validate.unit_name.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
+                              {{ error.$message }}
+                            </div>
+                          </template>
+                            <p class="text-right mt-2 w-full"> Required</p>
+                          </div>
+                        </div>
+                      </FormInline>
+                    </div>
+                </div>
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
                       <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
@@ -207,14 +265,91 @@ onMounted(() => {
                       
                     </div>
                 </div>
- 
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
                       <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
                             <div class="flex items-center">
-                              <div class="font-medium text-nowrap">process_water</div>
+                              <div class="font-medium">Date</div>
+                              
+                            </div>
+                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                              The deadline for completing the corrective actions.
+                            </div>
+                          </div>
+                        </FormLabel>
+                        <div class="flex-1 w-full mt-3 xl:mt-0">
+                          <Preview class="intro-y box" v-slot="{ toggle }">
+                            <Preview.Panel>
+                                <div class="relative w-full mx-auto">
+                                  <div
+                                    class="absolute flex items-center justify-center w-10 h-full border rounded-l bg-slate-100 text-slate-500 dark:bg-darkmode-700 dark:border-darkmode-800 dark:text-slate-400">
+                                    <Lucide icon="Calendar" class="w-4 h-4" />
+                                  </div>
+                                  <Litepicker
+                                    v-model="duedate"
+                                    :options="{
+                                      autoApply: false,
+                                      showWeekNumbers: true,
+                                      dropdowns: {
+                                        minYear: 1990,
+                                        maxYear: null,
+                                        months: true,
+                                        years: true,
+                                      },
+                                    }"
+                                    class="pl-12"/>
+                                </div>
+                              </Preview.Panel>
+                              <Preview.Panel type="source">
+                                <Preview.Highlight>
+                                  {{`
+                                  <div class="relative w-56 mx-auto">
+                                    <div
+                                      class="absolute flex items-center justify-center w-10 h-full border rounded-l bg-slate-100 text-slate-500 dark:bg-darkmode-700 dark:border-darkmode-800 dark:text-slate-400"
+                                    >
+                                      <Lucide icon="Calendar" class="w-4 h-4" />
+                                    </div>
+                                    <Litepicker
+                                      v-model="date"
+                                      :options="{
+                                        autoApply: false,
+                                        showWeekNumbers: true,
+                                        dropdowns: {
+                                          minYear: 1990,
+                                          maxYear: null,
+                                          months: true,
+                                          years: true,
+                                        },
+                                      }"
+                                      class="pl-12"
+                                    />
+                                  </div>
+                                  `}}
+                                </Preview.Highlight>
+                              </Preview.Panel>
+                          
+                          </Preview>
+                          <div class="flex justify-between">
+                            <template v-if="validate.date.$error">
+                            <div v-for="(error, index) in validate.date.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
+                              {{ error.$message }}
+                            </div>
+                          </template>
+                            <p class="text-right mt-2 w-full"> Required</p>
+                          </div>
+                        </div>
+                      </FormInline>
+                    </div>
+                </div>
+                <div class="md:w-1/2 w-full">
+                    <div class="px-4 py-2">
+                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                        <FormLabel class="xl:w-40 xl:!mr-10">
+                          <div class="text-left">
+                            <div class="flex items-center">
+                              <div class="font-medium text-nowrap">Employee Name</div>
                               
                             </div>
                             <div class="mt-3 text-xs leading-relaxed text-slate-500">
@@ -223,27 +358,112 @@ onMounted(() => {
                           </div>
                         </FormLabel>
                         <div class="flex-1 w-full mt-3 xl:mt-0">
-                          <FormInput id="crud-form-12" v-model.trim="validate.process_water.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.process_water.$error,}" placeholder="Input process_water"/>  
+                            <select id="crud-form-6" v-model="selectedEmp"   class="border py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 fdark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 text-gray-500 ">
+                                      <option value="" disabled>select responsible name</option>
+                                      <option v-for="(data, index) in state.viewEmp" :key="index" :value="data.name">{{ data.name }}</option>
+                            </select>
                           <div class="flex justify-between">
-                            <template v-if="validate.process_water.$error">
-                            <div v-for="(error, index) in validate.process_water.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
+                            <template v-if="validate.employee_name.$error">
+                            <div v-for="(error, index) in validate.employee_name.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
                               {{ error.$message }}
                             </div>
                           </template>
-                            <p class="text-right mt-2 w-full"> Required, at least 3 characters</p>
+                            <p class="text-right mt-2 w-full"> Required</p>
                           </div>
                         </div>
                       </FormInline>
                     </div>
                 </div>
-   
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
                       <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
                             <div class="flex items-center">
-                              <div class="font-medium text-nowrap">Domestic Water</div>
+                              <div class="font-medium text-nowrap">Designation</div>
+                              
+                            </div>
+                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                              Specify the unit of measurement for the energy consumption.
+                            </div>
+                          </div>
+                        </FormLabel>
+                        <div class="flex-1 w-full mt-3 xl:mt-0">
+                          <FormInput id="crud-form-12" v-model.trim="validate.designation.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.designation.$error,}" placeholder="Input Designation"/>  
+                          <div class="flex justify-between">
+                            <template v-if="validate.designation.$error">
+                            <div v-for="(error, index) in validate.designation.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
+                              {{ error.$message }}
+                            </div>
+                          </template>
+                            <p class="text-right mt-2 w-full"> Required</p>
+                          </div>
+                        </div>
+                      </FormInline>
+                    </div>
+                </div>
+                <div class="md:w-1/2 w-full">
+                    <div class="px-4 py-2">
+                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                        <FormLabel class="xl:w-40 xl:!mr-10">
+                          <div class="text-left">
+                            <div class="flex items-center">
+                              <div class="font-medium text-nowrap">Ground Water</div>
+                              
+                            </div>
+                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                              Specify the ground water of measurement for the energy consumption.
+                            </div>
+                          </div>
+                        </FormLabel>
+                        <div class="flex-1 w-full mt-3 xl:mt-0">
+                          <FormInput id="crud-form-12" v-model.trim="validate.dying_re_use_water.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.dying_re_use_water.$error,}" placeholder="Input Ground Water"/>  
+                          <div class="flex justify-between">
+                            <template v-if="validate.dying_re_use_water.$error">
+                            <div v-for="(error, index) in validate.dying_re_use_water.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
+                              {{ error.$message }}
+                            </div>
+                          </template>
+                            <p class="text-right mt-2 w-full"> Required</p>
+                          </div>
+                        </div>
+                      </FormInline>
+                    </div>
+                </div>
+                <div class="md:w-1/2 w-full">
+                    <div class="px-4 py-2">
+                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                        <FormLabel class="xl:w-40 xl:!mr-10">
+                          <div class="text-left">
+                            <div class="flex items-center">
+                              <div class="font-medium text-nowrap">Rain Water</div>
+                            </div>
+                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                              Specify the rainwaterr of measurement for the energy consumption.
+                            </div>
+                          </div>
+                        </FormLabel>
+                        <div class="flex-1 w-full mt-3 xl:mt-0">
+                          <FormInput id="crud-form-12" v-model.trim="validate.rain_water.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.rain_water.$error,}" placeholder="Input rain waterr"/>  
+                          <div class="flex justify-between">
+                            <template v-if="validate.rain_water.$error">
+                            <div v-for="(error, index) in validate.rain_water.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
+                              {{ error.$message }}
+                            </div>
+                          </template>
+                            <p class="text-right mt-2 w-full"> Required</p>
+                          </div>
+                        </div>
+                      </FormInline>
+                    </div>
+                </div>
+                <div class="md:w-1/2 w-full">
+                    <div class="px-4 py-2">
+                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                        <FormLabel class="xl:w-40 xl:!mr-10">
+                          <div class="text-left">
+                            <div class="flex items-center">
+                              <div class="font-medium text-nowrap">Domestic Water Consumption</div>
                               
                             </div>
                             <div class="mt-3 text-xs leading-relaxed text-slate-500">
@@ -259,23 +479,54 @@ onMounted(() => {
                               {{ error.$message }}
                             </div>
                           </template>
-                            <p class="text-right mt-2 w-full"> Required, at least 3 characters</p>
+                            <p class="text-right mt-2 w-full"> Required</p>
                           </div>
                         </div>
                       </FormInline>
                     </div>
                 </div>
+ 
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
                       <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
                             <div class="flex items-center">
-                              <div class="font-medium text-nowrap">Etp Inlet Water</div>
+                              <div class="font-medium text-nowrap">Process Water Consumption</div>
                               
                             </div>
                             <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Specify the Etp Inlet Water of measurement for the energy consumption.
+                              Enter the name of the company associated with the energy record.
+                            </div>
+                          </div>
+                        </FormLabel>
+                        <div class="flex-1 w-full mt-3 xl:mt-0">
+                          <FormInput id="crud-form-12" v-model.trim="validate.process_water.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.process_water.$error,}" placeholder="Input Process Water Consumption"/>  
+                          <div class="flex justify-between">
+                            <template v-if="validate.process_water.$error">
+                            <div v-for="(error, index) in validate.process_water.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
+                              {{ error.$message }}
+                            </div>
+                          </template>
+                            <p class="text-right mt-2 w-full"> Required</p>
+                          </div>
+                        </div>
+                      </FormInline>
+                    </div>
+                </div>
+   
+               
+                <div class="md:w-1/2 w-full">
+                    <div class="px-4 py-2">
+                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                        <FormLabel class="xl:w-40 xl:!mr-10">
+                          <div class="text-left">
+                            <div class="flex items-center">
+                              <div class="font-medium text-nowrap">ETP Inlet Water</div>
+                              
+                            </div>
+                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                              Specify the ETP Inlet Water of measurement for the energy consumption.
                             </div>
                           </div>
                         </FormLabel>
@@ -287,7 +538,7 @@ onMounted(() => {
                               {{ error.$message }}
                             </div>
                           </template>
-                            <p class="text-right mt-2 w-full"> Required, at least 3 characters</p>
+                            <p class="text-right mt-2 w-full"> Required</p>
                           </div>
                         </div>
                       </FormInline>
@@ -299,11 +550,11 @@ onMounted(() => {
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
                             <div class="flex items-center">
-                              <div class="font-medium text-nowrap">etp Outlet Water</div>
+                              <div class="font-medium text-nowrap">ETP Outlet Water</div>
                               
                             </div>
                             <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Specify the etp Outlet Water of measurement for the energy consumption.
+                              Specify the ETP Outlet Water of measurement for the energy consumption.
                             </div>
                           </div>
                         </FormLabel>
@@ -315,7 +566,7 @@ onMounted(() => {
                               {{ error.$message }}
                             </div>
                           </template>
-                            <p class="text-right mt-2 w-full"> Required, at least 3 characters</p>
+                            <p class="text-right mt-2 w-full"> Required</p>
                           </div>
                         </div>
                       </FormInline>
@@ -343,67 +594,13 @@ onMounted(() => {
                               {{ error.$message }}
                             </div>
                           </template>
-                            <p class="text-right mt-2 w-full"> Required, at least 3 characters</p>
+                            <p class="text-right mt-2 w-full"> Required</p>
                           </div>
                         </div>
                       </FormInline>
                     </div>
                 </div>
-                <div class="md:w-1/2 w-full">
-                    <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
-                        <FormLabel class="xl:w-40 xl:!mr-10">
-                          <div class="text-left">
-                            <div class="flex items-center">
-                              <div class="font-medium text-nowrap">dying re use water</div>
-                              
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Specify the dying re use water of measurement for the energy consumption.
-                            </div>
-                          </div>
-                        </FormLabel>
-                        <div class="flex-1 w-full mt-3 xl:mt-0">
-                          <FormInput id="crud-form-12" v-model.trim="validate.dying_re_use_water.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.dying_re_use_water.$error,}" placeholder="Input dying re use water"/>  
-                          <div class="flex justify-between">
-                            <template v-if="validate.dying_re_use_water.$error">
-                            <div v-for="(error, index) in validate.dying_re_use_water.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
-                              {{ error.$message }}
-                            </div>
-                          </template>
-                            <p class="text-right mt-2 w-full"> Required, at least 3 characters</p>
-                          </div>
-                        </div>
-                      </FormInline>
-                    </div>
-                </div>
-                <div class="md:w-1/2 w-full">
-                    <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
-                        <FormLabel class="xl:w-40 xl:!mr-10">
-                          <div class="text-left">
-                            <div class="flex items-center">
-                              <div class="font-medium text-nowrap">rain waterr</div>
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Specify the rainwaterr of measurement for the energy consumption.
-                            </div>
-                          </div>
-                        </FormLabel>
-                        <div class="flex-1 w-full mt-3 xl:mt-0">
-                          <FormInput id="crud-form-12" v-model.trim="validate.rain_water.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.rain_water.$error,}" placeholder="Input rain waterr"/>  
-                          <div class="flex justify-between">
-                            <template v-if="validate.rain_water.$error">
-                            <div v-for="(error, index) in validate.rain_water.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
-                              {{ error.$message }}
-                            </div>
-                          </template>
-                            <p class="text-right mt-2 w-full"> Required, at least 3 characters</p>
-                          </div>
-                        </div>
-                      </FormInline>
-                    </div>
-                </div>
+                
                 
               
                 

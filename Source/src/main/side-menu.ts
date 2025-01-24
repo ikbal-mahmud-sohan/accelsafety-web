@@ -190,8 +190,14 @@ const menu: Array<Menu | "divider"> = [
         pageName: "hira-data-list",
         title: "Hira List",
       },  
+      {
+        icon: "Activity",
+        pageName: "hira-lites-list",
+        title: "Risk Assessment",
+      },  
     ],
   },
+  
   {
     icon: "WindIcon",
     pageName: "environment",
@@ -227,6 +233,23 @@ const menu: Array<Menu | "divider"> = [
           {
             icon: "Activity",
             pageName: "water-consumption-list",
+            title: "List",
+          },  
+        ],
+      },
+      {
+        icon: "PackageIcon",
+        pageName: "Waste Consumption",
+        title: "Waste",
+        subMenu: [
+          {
+            icon: "Activity",
+            pageName: "waste-consumption-create",
+            title: "Create",
+          },  
+          {
+            icon: "Activity",
+            pageName: "waste-consumption-list",
             title: "List",
           },  
         ],
