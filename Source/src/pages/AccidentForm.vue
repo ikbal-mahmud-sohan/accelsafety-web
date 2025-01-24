@@ -749,7 +749,7 @@ onMounted(() => {
                           <select id="crud-form-6" v-model="selectedEmp1"   class="border py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 fdark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 text-gray-500 ">
                                       <option value="" disabled>select responsible name</option>
                                       <option v-for="(data, index) in state.viewEmp" :key="index" :value="data.name">{{ data.name }}</option>
-                              </select>
+                            </select>
                           <template v-if="validate.responsible_name.$error">
                             <div v-for="(error, index) in validate.responsible_name.$errors" :key="index" class="mt-2 text-danger">
                               {{ error.$message }}

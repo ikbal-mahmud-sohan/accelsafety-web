@@ -184,6 +184,16 @@ const router = createRouter({
           component: () => import("../pages/EnergyRecordsList.vue"),
         },
         {
+          path: "waste-consumption-create",
+          name: "waste-consumption-create",
+          component: () => import("../pages/WasteConsumptionForm.vue"),
+        },
+        {
+          path: "waste-consumption-list",
+          name: "waste-consumption-list",
+          component: () => import("../pages/WasteConsumptionList.vue"),
+        },
+        {
           path: "water-consumption-create",
           name: "water-consumption-create",
           component: () => import("../pages/WaterConsumptionForm.vue"),
@@ -333,6 +343,11 @@ const router = createRouter({
           path: "hira-input",
           name: "hira-data-input",
           component: () => import("../pages/HiraInput.vue"),
+        },
+        {
+          path: "hira-lites-list",
+          name: "hira-lites-list",
+          component: () => import("../pages/HiraLitesList.vue"),
         },
         // Hira
         {
