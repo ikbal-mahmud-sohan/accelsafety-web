@@ -63,12 +63,12 @@ const formData = reactive({
 });
 
 const rules = {
-        site_location:{required,},
-        activity_or_task:{required,},
-        risk_assessment_conducted_by:{required,},
-        date_conducted:{required,},
-        process_owner_or_department:{required,},
-        next_review_date:{required,},
+        // site_location:{required,},
+        // activity_or_task:{required,},
+        // risk_assessment_conducted_by:{required,},
+        // date_conducted:{required,},
+        // process_owner_or_department:{required,},
+        // next_review_date:{required,},
         activity:{required,},
         hazard:{required,},
         existing_control_measures:{required,},
@@ -109,6 +109,18 @@ const submitForm = async () => {
                     'Authorization': state.token,
                 },
                 });
+                selectedActivity.value = response.data.activity;
+                formData.hazard = response.data.hazard;
+                formData.existing_control_measures = response.data.existing_control_measures;
+                selectedRiskRatingLikelihood.value = response.data.risk_rating_likelihood;
+                selectedRiskRatingSeverity.value = response.data.risk_rating_severity;
+                selectedRiskRatingOverall.value = response.data.risk_rating_overall;
+                formData.additional_control_measures = response.data.additional_control_measures;
+                selectedRevisedRiskRatingLikelihood.value = response.data.revised_risk_rating_likelihood;
+                selectedRevisedRiskRatingSeverity.value = response.data.revised_risk_rating_severity;
+                selectedRevisedRiskRatingOverall.value = response.data.revised_risk_rating_overall;
+                formData.person_responsible = response.data.person_responsible;
+                formData.completion_date = response.data.completion_date;
                 fetchData();
         
             } catch (error) {
@@ -212,88 +224,103 @@ function SuccessPopUp(){
                 <p class=" text-base font-semibold uppercase text-center text-white">RISK ASSESSMENT FORM</p>
             </div>
             <div class="flex flex-wrap">
-                <div class="w-full md:w-1/5 px-4 py-2 border-gray-300 border-l border-b flex items-center">
-                  Station / Site Location: 
-                  (Code and Address)
-                </div>
-                <div class="w-full md:w-2/5 px-4 py-2 border-gray-300 border-l border-b flex items-center">
-                    <div class="flex-1 w-full mt-3 xl:mt-0">
-                            <FormInput id="crud-form-9" v-model.trim="validate.site_location.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.site_location.$error,}" placeholder="Input Site Location"/>
-                            <template v-if="validate.site_location.$error">
-                              <div v-for="(error, index) in validate.site_location.$errors" :key="index" class="mt-2 text-danger">
-                                {{ error.$message }}
+                <div class="md:w-1/2 w-full">
+                    <div class="px-4 py-2">
+                      <FormInline class="flex flex-wrap items-center md:flex-nowrap  pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                        <FormLabel class="xl:w-48 xl:!mr-10">
+                          <div class="text-left">
+                            <div class="flex items-center">
+                              <div class="font-medium text-sm text-nowrap">Site Location: (Code and Address)</div>
+                            </div>
+                          </div>
+                        </FormLabel>
+                        <div class="flex-1 w-full mt-3 xl:mt-0">
+                              <div class="flex flex-col items-center justify-center w-full space-y-4">
+                                <div class="flex-1 w-full mt-3 xl:mt-0">
+                                        <FormInput id="crud-form-9" v-model="formData.site_location" class="w-full" type="text" name="name" placeholder="Input Site Location"/>   
+                                </div>
                               </div>
-                            </template>
-                            <p class="text-right"> Required, at least 3 characters </p>
+                        </div>
+                      </FormInline>
                     </div>
                 </div>
-                <div class="w-full md:w-1/5 px-4 py-2 border-gray-300 border-l">
-                  
-                </div>
-                <div class="w-full md:w-1/5 px-4 py-2 border-gray-300 border-l border-r">
-                  
-                </div>
-            </div>
-            <div class="flex flex-wrap">
-                <div class="w-full md:w-1/5 px-4 py-2 border-gray-300 border-l border-b flex items-center">
-                  Activity or Task:
-                </div>
-                <div class="w-full md:w-2/5 px-4 py-2 border-gray-300 border-l border-b flex items-center">
-                  <div class="flex-1 w-full mt-3 xl:mt-0">
-                            <FormInput id="crud-form-9" v-model.trim="validate.activity_or_task.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.activity_or_task.$error,}" placeholder="Input Activity or Task"/>
-                            <template v-if="validate.activity_or_task.$error">
-                              <div v-for="(error, index) in validate.activity_or_task.$errors" :key="index" class="mt-2 text-danger">
-                                {{ error.$message }}
+                <div class="md:w-1/2 w-full">
+                    <div class="px-4 py-2">
+                      <FormInline class="flex flex-wrap items-center md:flex-nowrap  pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                        <FormLabel class="xl:w-48 xl:!mr-10">
+                          <div class="text-left">
+                            <div class="flex items-center">
+                              <div class="font-medium text-sm text-nowrap"> Activity or Task</div>
+                            </div>
+                          </div>
+                        </FormLabel>
+                        <div class="flex-1 w-full mt-3 xl:mt-0">
+                              <div class="flex flex-col items-center justify-center w-full space-y-4">
+                                <div class="flex-1 w-full mt-3 xl:mt-0">
+                                  <FormInput id="crud-form-9" v-model="formData.activity_or_task" class="w-full" type="text" name="name" placeholder="Input Activity or Task"/> 
+                                </div>
                               </div>
-                            </template>
-                            <p class="text-right"> Required, at least 3 characters </p>
+                        </div>
+                      </FormInline>
                     </div>
                 </div>
-                
-                <div class="w-full md:w-1/5 px-4 py-2 border-gray-300 border-l flex items-center">
-                  Process Owner / Department:
-                </div>
-                <div class="w-full md:w-1/5 px-4 py-2 border-gray-300 border-l border-r flex items-center">
-                  <div class="flex-1 w-full mt-3 xl:mt-0">
-                            <FormInput id="crud-form-9" v-model.trim="validate.process_owner_or_department.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.process_owner_or_department.$error,}" placeholder="Input process Owner r Department"/>
-                            <template v-if="validate.process_owner_or_department.$error">
-                              <div v-for="(error, index) in validate.process_owner_or_department.$errors" :key="index" class="mt-2 text-danger">
-                                {{ error.$message }}
+                <div class="md:w-1/2 w-full">
+                    <div class="px-4 py-2">
+                      <FormInline class="flex flex-wrap items-center md:flex-nowrap  pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                        <FormLabel class="xl:w-48 xl:!mr-10">
+                          <div class="text-left">
+                            <div class="flex items-center">
+                              <div class="font-medium text-sm text-nowrap"> Risk Assessment Conducted by</div>
+                            </div>
+                          </div>
+                        </FormLabel>
+                        <div class="flex-1 w-full mt-3 xl:mt-0">
+                              <div class="flex flex-col items-center justify-center w-full space-y-4">
+                                <div class="flex-1 w-full mt-3 xl:mt-0">
+                                  <FormInput id="crud-form-9" v-model="formData.risk_assessment_conducted_by" class="w-full" type="text" name="name" placeholder="Input process Owner r Department"/>
+                                </div>
                               </div>
-                            </template>
-                            <p class="text-right"> Required, at least 3 characters </p>
+                        </div>
+                      </FormInline>
                     </div>
                 </div>
-            </div>
-            <div class="flex flex-wrap">
-                <div class="w-full md:w-1/5 px-4 py-2 border-gray-300 border-l border-b flex items-center">
-                  Risk Assessment Conducted by:
-                  Name(s) / Designation / Signature
-                </div>
-                <div class="w-full md:w-2/5 px-4 py-2 border-gray-300 border-l border-b flex items-center">
-                   <div class="flex-1 w-full mt-3 xl:mt-0">
-                            <FormInput id="crud-form-9" v-model.trim="validate.risk_assessment_conducted_by.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.risk_assessment_conducted_by.$error,}" placeholder="Input process Owner r Department"/>
-                            <template v-if="validate.risk_assessment_conducted_by.$error">
-                              <div v-for="(error, index) in validate.risk_assessment_conducted_by.$errors" :key="index" class="mt-2 text-danger">
-                                {{ error.$message }}
+                <div class="md:w-1/2 w-full">
+                    <div class="px-4 py-2">
+                      <FormInline class="flex flex-wrap items-center md:flex-nowrap  pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                        <FormLabel class="xl:w-48 xl:!mr-10">
+                          <div class="text-left">
+                            <div class="flex items-center">
+                              <div class="font-medium text-sm text-nowrap"> 
+                                  Process Owner / Department
                               </div>
-                            </template>
-                            <p class="text-right"> Required, at least 3 characters </p>
+                            </div>
+                          </div>
+                        </FormLabel>
+                        <div class="flex-1 w-full mt-3 xl:mt-0">
+                              <div class="flex flex-col items-center justify-center w-full space-y-4">
+                                <div class="flex-1 w-full mt-3 xl:mt-0">
+                                  <FormInput id="crud-form-9" v-model="formData.process_owner_or_department" class="w-full" type="text" name="name" placeholder="Input process Owner r Department"/>
+                                </div>
+                              </div>
+                        </div>
+                      </FormInline>
                     </div>
                 </div>
-                <div class="w-full md:w-1/5 px-4 py-2 border-gray-300 border-l">
-                  
-                </div>
-                <div class="w-full md:w-1/5 px-4 py-2 border-gray-300 border-l border-r">
-                  
-                </div>
-            </div>
-            <div class="flex flex-wrap">
-                <div class="w-full md:w-1/5 px-4 py-2 border-gray-300 border-l border-b flex items-center">
-                  Date Conducted:
-                </div>
-                <div class="w-full md:w-2/5 px-4 py-2 border-gray-300 border-l border-b flex items-center">
-                  <div class="flex-1 w-full mt-3 xl:mt-0">
+                <div class="md:w-1/2 w-full">
+                    <div class="px-4 py-2">
+                      <FormInline class="flex flex-wrap items-center md:flex-nowrap  pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                        <FormLabel class="xl:w-48 xl:!mr-10">
+                          <div class="text-left">
+                            <div class="flex items-center">
+                              <div class="font-medium text-sm text-nowrap"> 
+                                Date Conducted
+                              </div>
+                            </div>
+                          </div>
+                        </FormLabel>
+                        <div class="flex-1 w-full mt-3 xl:mt-0">
+                              <div class="flex flex-col items-center justify-center w-full space-y-4">
+                                <div class="flex-1 w-full mt-3 xl:mt-0">
                           <Preview class="intro-y box" v-slot="{ toggle }">
                             <Preview.Panel>
                                 <div class="relative w-full mx-auto">
@@ -345,21 +372,27 @@ function SuccessPopUp(){
                               </Preview.Panel>
                           
                           </Preview>
-                          <div class="flex justify-between">
-                            <template v-if="validate.date_conducted.$error">
-                            <div v-for="(error, index) in validate.date_conducted.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
-                              {{ error.$message }}
-                            </div>
-                          </template>
-                            <p class="text-right mt-2 w-full"> Required</p>
-                          </div>
                         </div>
+                              </div>
+                        </div>
+                      </FormInline>
+                    </div>
                 </div>
-                <div class="w-full md:w-1/5 px-4 py-2 border-gray-300 border-l border-b border-t flex items-center">
-                  Next Review Date:
-                </div>
-                <div class="w-full md:w-1/5 px-4 py-2 border-gray-300 border flex items-center">
-                  <div class="flex-1 w-full mt-3 xl:mt-0">
+                <div class="md:w-1/2 w-full">
+                    <div class="px-4 py-2">
+                      <FormInline class="flex flex-wrap items-center md:flex-nowrap  pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                        <FormLabel class="xl:w-48 xl:!mr-10">
+                          <div class="text-left">
+                            <div class="flex items-center">
+                              <div class="font-medium text-sm text-nowrap"> 
+                                Next Review Date
+                              </div>
+                            </div>
+                          </div>
+                        </FormLabel>
+                        <div class="flex-1 w-full mt-3 xl:mt-0">
+                              <div class="flex flex-col items-center justify-center w-full space-y-4">
+                                <div class="flex-1 w-full mt-3 xl:mt-0">
                           <Preview class="intro-y box" v-slot="{ toggle }">
                             <Preview.Panel>
                                 <div class="relative w-full mx-auto">
@@ -411,16 +444,11 @@ function SuccessPopUp(){
                               </Preview.Panel>
                           
                           </Preview>
-                          
-                          <div class="flex justify-between">
-                            <template v-if="validate.next_review_date.$error">
-                            <div v-for="(error, index) in validate.next_review_date.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
-                              {{ error.$message }}
-                            </div>
-                          </template>
-                            <p class="text-right mt-2 w-full"> Required</p>
-                          </div>
                         </div>
+                              </div>
+                        </div>
+                      </FormInline>
+                    </div>
                 </div>
             </div>
         </div>
