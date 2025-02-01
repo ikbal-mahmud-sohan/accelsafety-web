@@ -27,8 +27,8 @@ const fetchData = async () => {
                     'Authorization': state.token,
                 },
                 });
-    state.energyrecords = response.data;
-    console.log("response",response)
+    state.energyrecords = response.data.data;
+    console.log("response",response.data.data)
   } catch (error) {
     console.error('Error fetching data:', error);
   }
@@ -90,11 +90,14 @@ onMounted(() => {
         <Table.Thead>
           <Table.Tr>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Month</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Employee Name</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Waste</Table.Th>
+            <!-- <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Employee Name</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Waste Name</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Waste Type</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Item Name</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Total Amount of Waste</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Item Name</Table.Th> -->
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Total Waste</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Total Biodegradable Waste</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Total no Biodegradable Waste</Table.Th>
           </Table.Tr>
         </Table.Thead>
         <Table.Tbody v-if="state.energyrecords.length !== 0">
@@ -104,19 +107,17 @@ onMounted(() => {
               {{ report.Month }}
             </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.Items.employee_name}}
+              {{ report.waste}}
             </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.Items.Waste_Name}}
+              {{ report.total_waste}}
+            </Table.Td>
+            
+            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.total_biodegradable_waste}}
             </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.Items.Waste_Type}}
-            </Table.Td>
-            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.Items.Item_Name}}
-            </Table.Td>
-            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.Items.Total_Amount_of_Waste}} {{ report.Items.unit }}
+              {{ report.total_no_biodegradable_waste}}
             </Table.Td>
             
           </Table.Tr>

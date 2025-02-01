@@ -40,20 +40,14 @@ const nextImportantNotes = () => {
             <a href="" class="ml-auto truncate text-primary"> Show More </a>
           </div>
           <div class="mt-5 intro-y">
-            <div
-              :class="[
-                'relative mt-5 intro-y',
-                'before:box before:absolute before:inset-x-3 before:mt-3 before:h-full before:bg-slate-50 before:content-[\'\']',
-              ]"
-            >
+            <div :class="[
+              'relative mt-5 intro-y',
+              'before:box before:absolute before:inset-x-3 before:mt-3 before:h-full before:bg-slate-50 before:content-[\'\']',
+            ]">
               <div class="grid grid-cols-12 box">
-                <div
-                  class="flex flex-col justify-center col-span-12 px-8 py-12 lg:col-span-4"
-                >
+                <div class="flex flex-col justify-center col-span-12 px-8 py-12 lg:col-span-4">
                   <Lucide icon="PieChart" class="w-10 h-10 text-pending" />
-                  <div
-                    class="flex items-center justify-start mt-12 text-slate-600 dark:text-slate-300"
-                  >
+                  <div class="flex items-center justify-start mt-12 text-slate-600 dark:text-slate-300">
                     My Total Assets
                     <Tippy content="Total value of your sales: $158.409.416">
                       <Lucide icon="AlertCircle" class="w-4 h-4 ml-1.5" />
@@ -61,9 +55,7 @@ const nextImportantNotes = () => {
                   </div>
                   <div class="flex items-center justify-start mt-4">
                     <div class="relative text-2xl font-medium pl-3 ml-0.5">
-                      <span
-                        class="absolute text-xl font-medium top-0 left-0 -ml-0.5"
-                      >
+                      <span class="absolute text-xl font-medium top-0 left-0 -ml-0.5">
                         $
                       </span>
                       1,413,102.02
@@ -75,27 +67,20 @@ const nextImportantNotes = () => {
                   <div class="mt-4 text-xs text-slate-500">
                     Last updated 1 hour ago
                   </div>
-                  <Button
-                    variant="outline-secondary"
-                    class="relative justify-start mt-12 rounded-full"
-                  >
+                  <Button variant="outline-secondary" class="relative justify-start mt-12 rounded-full">
                     Download Reports
                     <span
-                      class="w-8 h-8 absolute flex justify-center items-center bg-primary text-white rounded-full right-0 top-0 bottom-0 my-auto ml-auto mr-0.5"
-                    >
+                      class="w-8 h-8 absolute flex justify-center items-center bg-primary text-white rounded-full right-0 top-0 bottom-0 my-auto ml-auto mr-0.5">
                       <Lucide icon="ArrowRight" class="w-4 h-4" />
                     </span>
                   </Button>
                 </div>
                 <div
-                  class="col-span-12 p-8 border-t border-dashed lg:col-span-8 lg:border-t-0 lg:border-l border-slate-200 dark:border-darkmode-300"
-                >
+                  class="col-span-12 p-8 border-t border-dashed lg:col-span-8 lg:border-t-0 lg:border-l border-slate-200 dark:border-darkmode-300">
                   <Tab.Group>
-                    <Tab.List
-                      variant="pills"
+                    <Tab.List variant="pills"
                       class="p-1 mx-auto mb-8 border border-dashed rounded-md w-60 border-slate-300 dark:border-darkmode-300"
-                      role="tablist"
-                    >
+                      role="tablist">
                       <Tab>
                         <Tab.Button as="button" class="w-full py-1.5 px-2">
                           Weekly
@@ -113,15 +98,10 @@ const nextImportantNotes = () => {
                           <div class="text-slate-500">Unpaid Loan</div>
                           <div class="mt-1.5 flex items-center">
                             <div class="text-base">4.501</div>
-                            <Tippy
-                              class="flex ml-2 text-xs font-medium cursor-pointer text-danger"
-                              content="2% Lower than last month"
-                            >
+                            <Tippy class="flex ml-2 text-xs font-medium cursor-pointer text-danger"
+                              content="2% Lower than last month">
                               2%
-                              <Lucide
-                                icon="ChevronDown"
-                                class="w-4 h-4 ml-0.5"
-                              />
+                              <Lucide icon="ChevronDown" class="w-4 h-4 ml-0.5" />
                             </Tippy>
                           </div>
                         </div>
@@ -147,10 +127,8 @@ const nextImportantNotes = () => {
                           <div class="text-slate-500">Success Payment</div>
                           <div class="mt-1.5 flex items-center">
                             <div class="text-base">2.500</div>
-                            <Tippy
-                              class="flex ml-2 text-xs font-medium cursor-pointer text-success"
-                              content="52% Higher than last month"
-                            >
+                            <Tippy class="flex ml-2 text-xs font-medium cursor-pointer text-success"
+                              content="52% Higher than last month">
                               52%
                               <Lucide icon="ChevronUp" class="w-4 h-4 ml-0.5" />
                             </Tippy>
@@ -178,10 +156,8 @@ const nextImportantNotes = () => {
                           <div class="text-slate-500">Net Margin</div>
                           <div class="mt-1.5 flex items-center">
                             <div class="text-base">$72.000</div>
-                            <Tippy
-                              class="flex ml-2 text-xs font-medium cursor-pointer text-success"
-                              content="49% Higher than last month"
-                            >
+                            <Tippy class="flex ml-2 text-xs font-medium cursor-pointer text-success"
+                              content="49% Higher than last month">
                               49%
                               <Lucide icon="ChevronUp" class="w-4 h-4 ml-0.5" />
                             </Tippy>
@@ -198,18 +174,15 @@ const nextImportantNotes = () => {
         <!-- END: General Report -->
         <!-- BEGIN: Sales Report -->
         <div
-          class="col-span-12 row-start-4 mt-6 md:col-span-6 lg:col-span-4 xl:col-span-3 lg:row-start-3 xl:row-start-auto xl:mt-8"
-        >
+          class="col-span-12 row-start-4 mt-6 md:col-span-6 lg:col-span-4 xl:col-span-3 lg:row-start-3 xl:row-start-auto xl:mt-8">
           <div class="flex items-center h-10 intro-y">
             <h2 class="mr-5 text-lg font-medium truncate">Sales Report</h2>
             <a href="" class="ml-auto truncate text-primary"> Show More </a>
           </div>
-          <div
-            :class="[
-              'relative mt-5 intro-y',
-              'before:box before:absolute before:inset-x-3 before:mt-3 before:h-full before:bg-slate-50 before:content-[\'\'] before:hidden xl:before:block',
-            ]"
-          >
+          <div :class="[
+            'relative mt-5 intro-y',
+            'before:box before:absolute before:inset-x-3 before:mt-3 before:h-full before:bg-slate-50 before:content-[\'\'] before:hidden xl:before:block',
+          ]">
             <div class="p-5 box">
               <div class="mt-3">
                 <ReportDonutChart :height="196" />
@@ -240,15 +213,8 @@ const nextImportantNotes = () => {
           <div class="items-center block h-10 intro-y sm:flex">
             <h2 class="mr-5 text-lg font-medium truncate">Official Store</h2>
             <div class="relative mt-3 sm:ml-auto sm:mt-0 text-slate-500">
-              <Lucide
-                icon="MapPin"
-                class="absolute inset-y-0 left-0 z-10 w-4 h-4 my-auto ml-3"
-              />
-              <FormInput
-                type="text"
-                class="pl-10 sm:w-56 !box"
-                placeholder="Filter by city"
-              />
+              <Lucide icon="MapPin" class="absolute inset-y-0 left-0 z-10 w-4 h-4 my-auto ml-3" />
+              <FormInput type="text" class="pl-10 sm:w-56 !box" placeholder="Filter by city" />
             </div>
           </div>
           <div class="p-5 mt-12 intro-y box sm:mt-5">
@@ -268,19 +234,10 @@ const nextImportantNotes = () => {
             </h2>
           </div>
           <div class="mt-5">
-            <div
-              v-for="(faker, fakerKey) in _.take(fakerData, 4)"
-              :key="fakerKey"
-              class="intro-y"
-            >
+            <div v-for="(faker, fakerKey) in _.take(fakerData, 4)" :key="fakerKey" class="intro-y">
               <div class="flex items-center px-4 py-4 mb-3 box zoom-in">
-                <div
-                  class="flex-none w-10 h-10 overflow-hidden rounded-md image-fit"
-                >
-                  <img
-                    alt="Midone Tailwind HTML Admin Template"
-                    :src="faker.photos[0]"
-                  />
+                <div class="flex-none w-10 h-10 overflow-hidden rounded-md image-fit">
+                  <img alt="Midone Tailwind HTML Admin Template" :src="faker.photos[0]" />
                 </div>
                 <div class="ml-4 mr-auto">
                   <div class="font-medium">{{ faker.users[0].name }}</div>
@@ -288,17 +245,13 @@ const nextImportantNotes = () => {
                     {{ faker.dates[0] }}
                   </div>
                 </div>
-                <div
-                  class="px-2 py-1 text-xs font-medium text-white rounded-full cursor-pointer bg-success"
-                >
+                <div class="px-2 py-1 text-xs font-medium text-white rounded-full cursor-pointer bg-success">
                   137 Sales
                 </div>
               </div>
             </div>
-            <a
-              href=""
-              class="block w-full py-4 text-center border border-dotted rounded-md intro-y border-slate-400 dark:border-darkmode-300 text-slate-500"
-            >
+            <a href=""
+              class="block w-full py-4 text-center border border-dotted rounded-md intro-y border-slate-400 dark:border-darkmode-300 text-slate-500">
               View More
             </a>
           </div>
@@ -317,19 +270,15 @@ const nextImportantNotes = () => {
             </FormSelect>
           </div>
           <div class="p-5 mt-12 intro-y box sm:mt-5">
-            <div
-              class="flex pb-3 mb-3 border-b border-dashed text-slate-500 border-slate-200 dark:border-darkmode-300"
-            >
+            <div class="flex pb-3 mb-3 border-b border-dashed text-slate-500 border-slate-200 dark:border-darkmode-300">
               <div>Parameters</div>
               <div class="ml-auto">Report Values</div>
             </div>
             <div class="flex items-center mb-5">
               <div class="flex items-center">
                 <div>Site Visits</div>
-                <Tippy
-                  class="flex ml-2 text-xs font-medium cursor-pointer text-danger"
-                  content="49% Higher than last month"
-                >
+                <Tippy class="flex ml-2 text-xs font-medium cursor-pointer text-danger"
+                  content="49% Higher than last month">
                   -2%
                   <Lucide icon="ChevronDown" class="w-4 h-4 ml-0.5" />
                 </Tippy>
@@ -345,11 +294,10 @@ const nextImportantNotes = () => {
             <div class="flex items-center mb-5">
               <div class="flex items-center">
                 <div>Page Views</div>
-                <Tippy
-                  class="flex ml-2 text-xs font-medium cursor-pointer text-success"
-                  content="49% Higher than last month"
-                >
-                  5% <Lucide icon="ChevronUp" class="w-4 h-4 ml-0.5" />
+                <Tippy class="flex ml-2 text-xs font-medium cursor-pointer text-success"
+                  content="49% Higher than last month">
+                  5%
+                  <Lucide icon="ChevronUp" class="w-4 h-4 ml-0.5" />
                 </Tippy>
               </div>
               <div class="ml-auto">500</div>
@@ -363,10 +311,8 @@ const nextImportantNotes = () => {
             <div class="flex items-center mb-5">
               <div class="flex items-center">
                 <div>% New Visits</div>
-                <Tippy
-                  class="flex ml-2 text-xs font-medium cursor-pointer text-danger"
-                  content="49% Higher than last month"
-                >
+                <Tippy class="flex ml-2 text-xs font-medium cursor-pointer text-danger"
+                  content="49% Higher than last month">
                   -9%
                   <Lucide icon="ChevronDown" class="w-4 h-4 ml-0.5" />
                 </Tippy>
@@ -379,14 +325,11 @@ const nextImportantNotes = () => {
               </div>
               <div class="ml-auto">1.5M</div>
             </div>
-            <Button
-              variant="outline-secondary"
-              class="relative justify-start w-full mb-2 border-dashed border-slate-300 dark:border-darkmode-300"
-            >
+            <Button variant="outline-secondary"
+              class="relative justify-start w-full mb-2 border-dashed border-slate-300 dark:border-darkmode-300">
               <span class="mr-5 truncate">View Full Report</span>
               <span
-                class="w-8 h-8 absolute flex justify-center items-center right-0 top-0 bottom-0 my-auto ml-auto mr-0.5"
-              >
+                class="w-8 h-8 absolute flex justify-center items-center right-0 top-0 bottom-0 my-auto ml-auto mr-0.5">
                 <Lucide icon="ArrowRight" class="w-4 h-4" />
               </span>
             </Button>
@@ -406,9 +349,7 @@ const nextImportantNotes = () => {
             </FormSelect>
           </div>
           <div class="p-5 mt-12 intro-y box sm:mt-5">
-            <div
-              class="flex pb-3 mb-3 border-b border-dashed text-slate-500 border-slate-200 dark:border-darkmode-300"
-            >
+            <div class="flex pb-3 mb-3 border-b border-dashed text-slate-500 border-slate-200 dark:border-darkmode-300">
               <div>Page Names</div>
               <div class="ml-auto">Page Views</div>
             </div>
@@ -436,14 +377,11 @@ const nextImportantNotes = () => {
               <div>/icewall…review/1674</div>
               <div class="ml-auto">21</div>
             </div>
-            <Button
-              variant="outline-secondary"
-              class="relative justify-start w-full mb-2 border-dashed border-slate-300 dark:border-darkmode-300"
-            >
+            <Button variant="outline-secondary"
+              class="relative justify-start w-full mb-2 border-dashed border-slate-300 dark:border-darkmode-300">
               <span class="mr-5 truncate">View Full Report</span>
               <span
-                class="w-8 h-8 absolute flex justify-center items-center right-0 top-0 bottom-0 my-auto ml-auto mr-0.5"
-              >
+                class="w-8 h-8 absolute flex justify-center items-center right-0 top-0 bottom-0 my-auto ml-auto mr-0.5">
                 <Lucide icon="ArrowRight" class="w-4 h-4" />
               </span>
             </Button>
@@ -463,9 +401,7 @@ const nextImportantNotes = () => {
             </FormSelect>
           </div>
           <div class="p-5 mt-12 intro-y box sm:mt-5">
-            <div
-              class="flex pb-3 mb-3 border-b border-dashed text-slate-500 border-slate-200 dark:border-darkmode-300"
-            >
+            <div class="flex pb-3 mb-3 border-b border-dashed text-slate-500 border-slate-200 dark:border-darkmode-300">
               <div>Keywords</div>
               <div class="ml-auto">Searched</div>
             </div>
@@ -493,14 +429,11 @@ const nextImportantNotes = () => {
               <div>Install Vite Vue</div>
               <div class="ml-auto">42</div>
             </div>
-            <Button
-              variant="outline-secondary"
-              class="relative justify-start w-full mb-2 border-dashed border-slate-300 dark:border-darkmode-300"
-            >
+            <Button variant="outline-secondary"
+              class="relative justify-start w-full mb-2 border-dashed border-slate-300 dark:border-darkmode-300">
               <span class="mr-5 truncate">View Full Report</span>
               <span
-                class="w-8 h-8 absolute flex justify-center items-center right-0 top-0 bottom-0 my-auto ml-auto mr-0.5"
-              >
+                class="w-8 h-8 absolute flex justify-center items-center right-0 top-0 bottom-0 my-auto ml-auto mr-0.5">
                 <Lucide icon="ArrowRight" class="w-4 h-4" />
               </span>
             </Button>
@@ -514,15 +447,11 @@ const nextImportantNotes = () => {
               Weekly Top Products
             </h2>
             <div class="flex items-center mt-3 sm:ml-auto sm:mt-0">
-              <Button
-                class="flex items-center !box text-slate-600 dark:text-slate-300"
-              >
+              <Button class="flex items-center !box text-slate-600 dark:text-slate-300">
                 <Lucide icon="FileText" class="hidden w-4 h-4 mr-2 sm:block" />
                 Export to Excel
               </Button>
-              <Button
-                class="flex items-center ml-3 !box text-slate-600 dark:text-slate-300"
-              >
+              <Button class="flex items-center ml-3 !box text-slate-600 dark:text-slate-300">
                 <Lucide icon="FileText" class="hidden w-4 h-4 mr-2 sm:block" />
                 Export to PDF
               </Button>
@@ -550,81 +479,55 @@ const nextImportantNotes = () => {
                 </Table.Tr>
               </Table.Thead>
               <Table.Tbody>
-                <Table.Tr
-                  v-for="(faker, fakerKey) in _.take(fakerData, 4)"
-                  :key="fakerKey"
-                  class="intro-x"
-                >
+                <Table.Tr v-for="(faker, fakerKey) in _.take(fakerData, 4)" :key="fakerKey" class="intro-x">
                   <Table.Td
-                    class="box w-40 rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600"
-                  >
+                    class="box w-40 rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
                     <div class="flex">
                       <div class="w-10 h-10 image-fit zoom-in">
-                        <Tippy
-                          as="img"
-                          alt="Midone Tailwind HTML Admin Template"
+                        <Tippy as="img" alt="Midone Tailwind HTML Admin Template"
                           class="rounded-full shadow-[0px_0px_0px_2px_#fff,_1px_1px_5px_rgba(0,0,0,0.32)] dark:shadow-[0px_0px_0px_2px_#3f4865,_1px_1px_5px_rgba(0,0,0,0.32)]"
-                          :src="faker.images[0]"
-                          :content="`Uploaded at ${faker.dates[0]}`"
-                        />
+                          :src="faker.images[0]" :content="`Uploaded at ${faker.dates[0]}`" />
                       </div>
                       <div class="w-10 h-10 -ml-5 image-fit zoom-in">
-                        <Tippy
-                          as="img"
-                          alt="Midone Tailwind HTML Admin Template"
+                        <Tippy as="img" alt="Midone Tailwind HTML Admin Template"
                           class="rounded-full shadow-[0px_0px_0px_2px_#fff,_1px_1px_5px_rgba(0,0,0,0.32)] dark:shadow-[0px_0px_0px_2px_#3f4865,_1px_1px_5px_rgba(0,0,0,0.32)]"
-                          :src="faker.images[1]"
-                          :content="`Uploaded at ${faker.dates[1]}`"
-                        />
+                          :src="faker.images[1]" :content="`Uploaded at ${faker.dates[1]}`" />
                       </div>
                       <div class="w-10 h-10 -ml-5 image-fit zoom-in">
-                        <Tippy
-                          as="img"
-                          alt="Midone Tailwind HTML Admin Template"
+                        <Tippy as="img" alt="Midone Tailwind HTML Admin Template"
                           class="rounded-full shadow-[0px_0px_0px_2px_#fff,_1px_1px_5px_rgba(0,0,0,0.32)] dark:shadow-[0px_0px_0px_2px_#3f4865,_1px_1px_5px_rgba(0,0,0,0.32)]"
-                          :src="faker.images[2]"
-                          :content="`Uploaded at ${faker.dates[2]}`"
-                        />
+                          :src="faker.images[2]" :content="`Uploaded at ${faker.dates[2]}`" />
                       </div>
                     </div>
                   </Table.Td>
                   <Table.Td
-                    class="box rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600"
-                  >
+                    class="box rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
                     <a href="" class="font-medium whitespace-nowrap">
                       {{ faker.products[0].name }}
                     </a>
-                    <div
-                      class="text-slate-500 text-xs whitespace-nowrap mt-0.5"
-                    >
+                    <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">
                       {{ faker.products[0].category }}
                     </div>
                   </Table.Td>
                   <Table.Td
-                    class="box rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600"
-                  >
+                    class="box rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
                     {{ faker.stocks[0] }}
                   </Table.Td>
                   <Table.Td
-                    class="box w-40 rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600"
-                  >
-                    <div
-                      :class="[
-                        'flex items-center justify-center',
-                        { 'text-success': faker.trueFalse[0] },
-                        { 'text-danger': !faker.trueFalse[0] },
-                      ]"
-                    >
+                    class="box w-40 rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+                    <div :class="[
+                      'flex items-center justify-center',
+                      { 'text-success': faker.trueFalse[0] },
+                      { 'text-danger': !faker.trueFalse[0] },
+                    ]">
                       <Lucide icon="CheckSquare" class="w-4 h-4 mr-2" />
                       {{ faker.trueFalse[0] ? "Active" : "Inactive" }}
                     </div>
                   </Table.Td>
-                  <Table.Td
-                    :class="[
-                      'box w-56 rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600',
-                      'before:absolute before:inset-y-0 before:left-0 before:my-auto before:block before:h-8 before:w-px before:bg-slate-200 before:dark:bg-darkmode-400',
-                    ]"
-                  >
+                  <Table.Td :class="[
+                    'box w-56 rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600',
+                    'before:absolute before:inset-y-0 before:left-0 before:my-auto before:block before:h-8 before:w-px before:bg-slate-200 before:dark:bg-darkmode-400',
+                  ]">
                     <div class="flex items-center justify-center">
                       <a class="flex items-center mr-3" href="">
                         <Lucide icon="CheckSquare" class="w-4 h-4 mr-1" />
@@ -640,9 +543,7 @@ const nextImportantNotes = () => {
               </Table.Tbody>
             </Table>
           </div>
-          <div
-            class="flex flex-wrap items-center mt-3 intro-y sm:flex-row sm:flex-nowrap"
-          >
+          <div class="flex flex-wrap items-center mt-3 intro-y sm:flex-row sm:flex-nowrap">
             <Pagination class="w-full sm:w-auto sm:mr-auto">
               <Pagination.Link>
                 <Lucide icon="ChevronsLeft" class="w-4 h-4" />
@@ -682,20 +583,12 @@ const nextImportantNotes = () => {
               <h2 class="mr-auto text-lg font-medium truncate">
                 Important Notes
               </h2>
-              <Button
-                data-carousel="important-notes"
-                data-target="prev"
-                class="px-2 mr-2 border-slate-300 text-slate-600 dark:text-slate-300"
-                @click="prevImportantNotes"
-              >
+              <Button data-carousel="important-notes" data-target="prev"
+                class="px-2 mr-2 border-slate-300 text-slate-600 dark:text-slate-300" @click="prevImportantNotes">
                 <Lucide icon="ChevronLeft" class="w-4 h-4" />
               </Button>
-              <Button
-                data-carousel="important-notes"
-                data-target="next"
-                class="px-2 mr-2 border-slate-300 text-slate-600 dark:text-slate-300"
-                @click="nextImportantNotes"
-              >
+              <Button data-carousel="important-notes" data-target="next"
+                class="px-2 mr-2 border-slate-300 text-slate-600 dark:text-slate-300" @click="nextImportantNotes">
                 <Lucide icon="ChevronRight" class="w-4 h-4" />
               </Button>
             </div>
@@ -713,18 +606,10 @@ const nextImportantNotes = () => {
                       standard dummy text ever since the 1500s.
                     </div>
                     <div class="flex mt-5 font-medium">
-                      <Button
-                        variant="secondary"
-                        type="button"
-                        class="px-2 py-1"
-                      >
+                      <Button variant="secondary" type="button" class="px-2 py-1">
                         View Notes
                       </Button>
-                      <Button
-                        variant="outline-secondary"
-                        type="button"
-                        class="px-2 py-1 ml-auto"
-                      >
+                      <Button variant="outline-secondary" type="button" class="px-2 py-1 ml-auto">
                         Dismiss
                       </Button>
                     </div>
@@ -740,18 +625,10 @@ const nextImportantNotes = () => {
                       standard dummy text ever since the 1500s.
                     </div>
                     <div class="flex mt-5 font-medium">
-                      <Button
-                        variant="secondary"
-                        type="button"
-                        class="px-2 py-1"
-                      >
+                      <Button variant="secondary" type="button" class="px-2 py-1">
                         View Notes
                       </Button>
-                      <Button
-                        variant="outline-secondary"
-                        type="button"
-                        class="px-2 py-1 ml-auto"
-                      >
+                      <Button variant="outline-secondary" type="button" class="px-2 py-1 ml-auto">
                         Dismiss
                       </Button>
                     </div>
@@ -767,18 +644,10 @@ const nextImportantNotes = () => {
                       standard dummy text ever since the 1500s.
                     </div>
                     <div class="flex mt-5 font-medium">
-                      <Button
-                        variant="secondary"
-                        type="button"
-                        class="px-2 py-1"
-                      >
+                      <Button variant="secondary" type="button" class="px-2 py-1">
                         View Notes
                       </Button>
-                      <Button
-                        variant="outline-secondary"
-                        type="button"
-                        class="px-2 py-1 ml-auto"
-                      >
+                      <Button variant="outline-secondary" type="button" class="px-2 py-1 ml-auto">
                         Dismiss
                       </Button>
                     </div>
@@ -789,9 +658,7 @@ const nextImportantNotes = () => {
           </div>
           <!-- END: Important Notes -->
           <!-- BEGIN: Recent Activities -->
-          <div
-            class="col-span-12 mt-3 md:col-span-6 xl:col-span-4 2xl:col-span-12"
-          >
+          <div class="col-span-12 mt-3 md:col-span-6 xl:col-span-4 2xl:col-span-12">
             <div class="flex items-center h-10 intro-x">
               <h2 class="mr-5 text-lg font-medium truncate">
                 Recent Activities
@@ -799,19 +666,12 @@ const nextImportantNotes = () => {
               <a href="" class="ml-auto truncate text-primary"> Show More </a>
             </div>
             <div
-              class="mt-5 relative before:block before:absolute before:w-px before:h-[85%] before:bg-slate-200 before:dark:bg-darkmode-400 before:ml-5 before:mt-5"
-            >
+              class="mt-5 relative before:block before:absolute before:w-px before:h-[85%] before:bg-slate-200 before:dark:bg-darkmode-400 before:ml-5 before:mt-5">
               <div class="relative flex items-center mb-3 intro-x">
                 <div
-                  class="before:block before:absolute before:w-20 before:h-px before:bg-slate-200 before:dark:bg-darkmode-400 before:mt-5 before:ml-5"
-                >
-                  <div
-                    class="flex-none w-10 h-10 overflow-hidden rounded-full image-fit"
-                  >
-                    <img
-                      alt="Midone Tailwind HTML Admin Template"
-                      :src="fakerData[9].photos[0]"
-                    />
+                  class="before:block before:absolute before:w-20 before:h-px before:bg-slate-200 before:dark:bg-darkmode-400 before:mt-5 before:ml-5">
+                  <div class="flex-none w-10 h-10 overflow-hidden rounded-full image-fit">
+                    <img alt="Midone Tailwind HTML Admin Template" :src="fakerData[9].photos[0]" />
                   </div>
                 </div>
                 <div class="flex-1 px-5 py-3 ml-4 box zoom-in">
@@ -826,15 +686,9 @@ const nextImportantNotes = () => {
               </div>
               <div class="relative flex items-center mb-3 intro-x">
                 <div
-                  class="before:block before:absolute before:w-20 before:h-px before:bg-slate-200 before:dark:bg-darkmode-400 before:mt-5 before:ml-5"
-                >
-                  <div
-                    class="flex-none w-10 h-10 overflow-hidden rounded-full image-fit"
-                  >
-                    <img
-                      alt="Midone Tailwind HTML Admin Template"
-                      :src="fakerData[8].photos[0]"
-                    />
+                  class="before:block before:absolute before:w-20 before:h-px before:bg-slate-200 before:dark:bg-darkmode-400 before:mt-5 before:ml-5">
+                  <div class="flex-none w-10 h-10 overflow-hidden rounded-full image-fit">
+                    <img alt="Midone Tailwind HTML Admin Template" :src="fakerData[8].photos[0]" />
                   </div>
                 </div>
                 <div class="flex-1 px-5 py-3 ml-4 box zoom-in">
@@ -847,38 +701,17 @@ const nextImportantNotes = () => {
                   <div class="text-slate-500">
                     <div class="mt-1">Added 3 new photos</div>
                     <div class="flex mt-2">
-                      <Tippy
-                        as="div"
-                        class="w-8 h-8 mr-1 image-fit zoom-in"
-                        :content="fakerData[0].products[0].name"
-                      >
-                        <img
-                          alt="Midone Tailwind HTML Admin Template"
-                          class="border border-white rounded-md"
-                          :src="fakerData[8].images[0]"
-                        />
+                      <Tippy as="div" class="w-8 h-8 mr-1 image-fit zoom-in" :content="fakerData[0].products[0].name">
+                        <img alt="Midone Tailwind HTML Admin Template" class="border border-white rounded-md"
+                          :src="fakerData[8].images[0]" />
                       </Tippy>
-                      <Tippy
-                        as="div"
-                        class="w-8 h-8 mr-1 image-fit zoom-in"
-                        :content="fakerData[1].products[0].name"
-                      >
-                        <img
-                          alt="Midone Tailwind HTML Admin Template"
-                          class="border border-white rounded-md"
-                          :src="fakerData[8].images[1]"
-                        />
+                      <Tippy as="div" class="w-8 h-8 mr-1 image-fit zoom-in" :content="fakerData[1].products[0].name">
+                        <img alt="Midone Tailwind HTML Admin Template" class="border border-white rounded-md"
+                          :src="fakerData[8].images[1]" />
                       </Tippy>
-                      <Tippy
-                        as="div"
-                        class="w-8 h-8 mr-1 image-fit zoom-in"
-                        :content="fakerData[2].products[0].name"
-                      >
-                        <img
-                          alt="Midone Tailwind HTML Admin Template"
-                          class="border border-white rounded-md"
-                          :src="fakerData[8].images[2]"
-                        />
+                      <Tippy as="div" class="w-8 h-8 mr-1 image-fit zoom-in" :content="fakerData[2].products[0].name">
+                        <img alt="Midone Tailwind HTML Admin Template" class="border border-white rounded-md"
+                          :src="fakerData[8].images[2]" />
                       </Tippy>
                     </div>
                   </div>
@@ -889,15 +722,9 @@ const nextImportantNotes = () => {
               </div>
               <div class="relative flex items-center mb-3 intro-x">
                 <div
-                  class="before:block before:absolute before:w-20 before:h-px before:bg-slate-200 before:dark:bg-darkmode-400 before:mt-5 before:ml-5"
-                >
-                  <div
-                    class="flex-none w-10 h-10 overflow-hidden rounded-full image-fit"
-                  >
-                    <img
-                      alt="Midone Tailwind HTML Admin Template"
-                      :src="fakerData[7].photos[0]"
-                    />
+                  class="before:block before:absolute before:w-20 before:h-px before:bg-slate-200 before:dark:bg-darkmode-400 before:mt-5 before:ml-5">
+                  <div class="flex-none w-10 h-10 overflow-hidden rounded-full image-fit">
+                    <img alt="Midone Tailwind HTML Admin Template" :src="fakerData[7].photos[0]" />
                   </div>
                 </div>
                 <div class="flex-1 px-5 py-3 ml-4 box zoom-in">
@@ -918,15 +745,9 @@ const nextImportantNotes = () => {
               </div>
               <div class="relative flex items-center mb-3 intro-x">
                 <div
-                  class="before:block before:absolute before:w-20 before:h-px before:bg-slate-200 before:dark:bg-darkmode-400 before:mt-5 before:ml-5"
-                >
-                  <div
-                    class="flex-none w-10 h-10 overflow-hidden rounded-full image-fit"
-                  >
-                    <img
-                      alt="Midone Tailwind HTML Admin Template"
-                      :src="fakerData[6].photos[0]"
-                    />
+                  class="before:block before:absolute before:w-20 before:h-px before:bg-slate-200 before:dark:bg-darkmode-400 before:mt-5 before:ml-5">
+                  <div class="flex-none w-10 h-10 overflow-hidden rounded-full image-fit">
+                    <img alt="Midone Tailwind HTML Admin Template" :src="fakerData[6].photos[0]" />
                   </div>
                 </div>
                 <div class="flex-1 px-5 py-3 ml-4 box zoom-in">
@@ -949,26 +770,15 @@ const nextImportantNotes = () => {
           </div>
           <!-- END: Recent Activities -->
           <!-- BEGIN: Transactions -->
-          <div
-            class="col-span-12 mt-3 md:col-span-6 xl:col-span-4 2xl:col-span-12"
-          >
+          <div class="col-span-12 mt-3 md:col-span-6 xl:col-span-4 2xl:col-span-12">
             <div class="flex items-center h-10 intro-x">
               <h2 class="mr-5 text-lg font-medium truncate">Transactions</h2>
             </div>
             <div class="mt-5">
-              <div
-                v-for="(faker, fakerKey) in _.take(fakerData, 5)"
-                :key="fakerKey"
-                class="intro-x"
-              >
+              <div v-for="(faker, fakerKey) in _.take(fakerData, 5)" :key="fakerKey" class="intro-x">
                 <div class="flex items-center px-5 py-3 mb-3 box zoom-in">
-                  <div
-                    class="flex-none w-10 h-10 overflow-hidden rounded-full image-fit"
-                  >
-                    <img
-                      alt="Midone Tailwind HTML Admin Template"
-                      :src="faker.photos[0]"
-                    />
+                  <div class="flex-none w-10 h-10 overflow-hidden rounded-full image-fit">
+                    <img alt="Midone Tailwind HTML Admin Template" :src="faker.photos[0]" />
                   </div>
                   <div class="ml-4 mr-auto">
                     <div class="font-medium">{{ faker.users[0].name }}</div>
@@ -976,20 +786,16 @@ const nextImportantNotes = () => {
                       {{ faker.dates[0] }}
                     </div>
                   </div>
-                  <div
-                    :class="{
-                      'text-success': faker.trueFalse[0],
-                      'text-danger': !faker.trueFalse[0],
-                    }"
-                  >
+                  <div :class="{
+                    'text-success': faker.trueFalse[0],
+                    'text-danger': !faker.trueFalse[0],
+                  }">
                     {{ faker.trueFalse[0] ? "+" : "-" }}${{ faker.totals[0] }}
                   </div>
                 </div>
               </div>
-              <a
-                href=""
-                class="block w-full py-3 text-center border border-dotted rounded-md intro-x border-slate-400 dark:border-darkmode-300 text-slate-500"
-              >
+              <a href=""
+                class="block w-full py-3 text-center border border-dotted rounded-md intro-x border-slate-400 dark:border-darkmode-300 text-slate-500">
                 View More
               </a>
             </div>
@@ -997,14 +803,10 @@ const nextImportantNotes = () => {
           <!-- END: Transactions -->
           <!-- BEGIN: Schedules -->
           <div
-            class="col-span-12 mt-3 md:col-span-6 xl:col-span-4 2xl:col-span-12 xl:col-start-1 xl:row-start-2 2xl:col-start-auto 2xl:row-start-auto"
-          >
+            class="col-span-12 mt-3 md:col-span-6 xl:col-span-4 2xl:col-span-12 xl:col-start-1 xl:row-start-2 2xl:col-start-auto 2xl:row-start-auto">
             <div class="flex items-center h-10 intro-x">
               <h2 class="mr-5 text-lg font-medium truncate">Schedules</h2>
-              <a
-                href=""
-                class="flex items-center ml-auto truncate text-primary"
-              >
+              <a href="" class="flex items-center ml-auto truncate text-primary">
                 <Lucide icon="Plus" class="w-4 h-4 mr-1" /> Add New Schedules
               </a>
             </div>
@@ -1014,10 +816,7 @@ const nextImportantNotes = () => {
                   <div class="flex">
                     <Lucide icon="ChevronLeft" class="w-5 h-5 text-slate-500" />
                     <div class="mx-auto text-base font-medium">April</div>
-                    <Lucide
-                      icon="ChevronRight"
-                      class="w-5 h-5 text-slate-500"
-                    />
+                    <Lucide icon="ChevronRight" class="w-5 h-5 text-slate-500" />
                   </div>
                   <div class="grid grid-cols-7 gap-4 mt-5 text-center">
                     <div class="font-medium">Su</div>
@@ -1035,9 +834,7 @@ const nextImportantNotes = () => {
                     <div class="py-0.5 rounded relative">3</div>
                     <div class="py-0.5 rounded relative">4</div>
                     <div class="py-0.5 rounded relative">5</div>
-                    <div
-                      class="py-0.5 bg-success/20 dark:bg-success/30 rounded relative"
-                    >
+                    <div class="py-0.5 bg-success/20 dark:bg-success/30 rounded relative">
                       6
                     </div>
                     <div class="py-0.5 rounded relative">7</div>
@@ -1058,17 +855,13 @@ const nextImportantNotes = () => {
                     <div class="py-0.5 rounded relative">20</div>
                     <div class="py-0.5 rounded relative">21</div>
                     <div class="py-0.5 rounded relative">22</div>
-                    <div
-                      class="py-0.5 bg-pending/20 dark:bg-pending/30 rounded relative"
-                    >
+                    <div class="py-0.5 bg-pending/20 dark:bg-pending/30 rounded relative">
                       23
                     </div>
                     <div class="py-0.5 rounded relative">24</div>
                     <div class="py-0.5 rounded relative">25</div>
                     <div class="py-0.5 rounded relative">26</div>
-                    <div
-                      class="py-0.5 bg-primary/10 dark:bg-primary/50 rounded relative"
-                    >
+                    <div class="py-0.5 bg-primary/10 dark:bg-primary/50 rounded relative">
                       27
                     </div>
                     <div class="py-0.5 rounded relative">28</div>

@@ -113,13 +113,16 @@ onMounted(() => {
         <Table.Thead>
           <Table.Tr>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Month</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Unit Name</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Employee Name</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Item Name</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Item Code</Table.Th>
-            <Table.Th v-for="header in state.dynamicHeaders" :key="header" class="text-left border-b-0 whitespace-nowrap uppercase">
-              {{ header }}
-            </Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Sector</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Fuel Type</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Fuel</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Amount of Fuel</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Units</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">CO2</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">CH4</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">N20</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">All GHG’s (tonnes co2e)</Table.Th>
+           
           </Table.Tr>
         </Table.Thead>
 
@@ -131,25 +134,33 @@ onMounted(() => {
               {{ record.Month }}
             </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ record.UnitName }}
+              Energy
             </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ record.EmployeeName }}
+              {{ record.Type }}
             </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ record.ItemName	 }}
+              {{ record.Fuel }}
             </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ record.ItemCode }}
+              {{ record.TotalFuelAmount	 }}
             </Table.Td>
-            <!-- Dynamic Fields -->
-            <Table.Td
-              v-for="header in state.dynamicHeaders"
-              :key="header"
-              class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600"
-            >
-              {{ record[header] || 0 }} {{ record.EnergyUsed }}
+            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ record.EnergyUsed }}
             </Table.Td>
+            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              -
+            </Table.Td>
+            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              -
+            </Table.Td>
+            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              -
+            </Table.Td>
+            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              -
+            </Table.Td>
+            
           </Table.Tr>
         </Table.Tbody>
         <Table.Tbody v-else>

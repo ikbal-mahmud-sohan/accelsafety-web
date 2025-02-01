@@ -32,6 +32,9 @@ const formData = reactive({
     waste_type: '',
     item_name: '',
     unit: '',
+    waste: '',
+    total_biodegradable_waste: '',
+    total_no_biodegradable_waste: '',
     amount_of_waste: 0,
     attachement:[] as File[],
 
@@ -53,13 +56,15 @@ const rules = {
         waste_type: {required,},
         item_name: {required,},
         unit: {required,},
+        waste: {required,},
         amount_of_waste: {required,integer},
 };
 
 const validate = useVuelidate(rules, toRefs(formData));
-const selectedMonth = ref("");
+const selectedFuel = ref("");
 const selectedType = ref("");
 const selectedItemNname = ref("");
+const selectedCotton = ref("");
 const selectedEmp = ref("");
 const duedate = ref("");
 const options = ref<string[]>([]);
@@ -69,17 +74,48 @@ const optionMapping: Record<string, string[]> = {
   "non-biodegradable": ["Dust", "Chemical Contaminated", "Chemical Drum", "Burn Oil"],
 };
 
-watch(selectedType, (newValue) => {
-  options.value = optionMapping[newValue] || [];
-  selectedItemNname.value = ""; // Reset selected item when waste type changes
+
+watch(selectedCotton, (newValue) => {
+  if (
+    newValue === 'Cutting Jhute' ||
+    newValue === 'Sewing Jhut' ||
+    newValue === 'Cut Piece' ||
+    newValue === 'Short Piece' ||
+    newValue === 'Dust' ||
+    newValue === 'Chemical Contaminated' ||
+    newValue === 'Chemical Drum' ||
+    newValue === 'Burn Oil'
+  ) {
+    formData.unit = 'Kg';
+  } else {
+    formData.unit = '';
+  }
 });
 
 
 const submitForm = async () => {
-  formData.month = selectedMonth.value;
+  const monthMap: { [key: string]: string } = {
+    Jan: "January",
+    Feb: "February",
+    Mar: "March",
+    Apr: "April",
+    May: "May",
+    Jun: "June",
+    Jul: "July",
+    Aug: "August",
+    Sep: "September",
+    Oct: "October",
+    Nov: "November",
+    Dec: "December",
+  };
   formData.waste_type = selectedType.value;
   formData.date = duedate.value;
   formData.item_name = selectedItemNname.value;
+  const duedateValue = duedate.value; 
+  const shortMonth = duedateValue.split(" ")[1]?.trim().replace(",", "");
+  const fullMonth = monthMap[shortMonth]; 
+  formData.month = fullMonth;
+  formData.waste = selectedCotton.value;
   
     validate.value.$touch();
     console.log(validate.value)
@@ -113,8 +149,7 @@ const submitForm = async () => {
             } catch (error) {
                 FailedPopUp();
                 console.error('Error submitting form:', error);
-            }
-        
+            } 
     }
 };
 
@@ -239,6 +274,9 @@ onMounted(() => {
       <!-- BEGIN: Product Information -->
       <div class="p-5 mt-5 intro-y box">
         <div class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400">
+          <div class="flex items-center pb-5 mb-5 text-base font-medium border-b border-slate-200/60 dark:border-darkmode-400">
+              <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" />Basic Info
+          </div>
             <div class="flex flex-wrap">
               <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
@@ -250,7 +288,7 @@ onMounted(() => {
                               
                             </div>
                             <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Specify the unit of measurement for the energy consumption.
+                              Unit Name is the location of waste handling.
                             </div>
                           </div>
                         </FormLabel>
@@ -274,56 +312,11 @@ onMounted(() => {
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
                             <div class="flex items-center">
-                              <div class="font-medium">Month</div>
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Select the month for the energy record.
-                            </div>
-                          </div>
-                        </FormLabel>
-                        <div class="flex-1 w-full mt-3 xl:mt-0">
-                          <!-- <FormInput id="crud-form-5" v-model.trim="validate.category.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.category.$error,}" placeholder="Input Category"/> -->
-
-                          <select id="crud-form-6" v-model="selectedMonth"  class="border py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 fdark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 text-gray-500">
-                                <option value="" disabled>Select Month</option>
-                                <option value="January">January</option>
-                                <option value="February">February</option>
-                                <option value="March">March</option>
-                                <option value="April">April</option>
-                                <option value="May">May</option>
-                                <option value="June">June</option>
-                                <option value="July">July</option>
-                                <option value="August">August</option>
-                                <option value="September">September</option>
-                                <option value="October">October</option>
-                                <option value="November">November</option>
-                                <option value="December">December</option>
-                          </select>
-                          
-                          <div class="flex justify-between">
-                            <template v-if="validate.month.$error">
-                            <div v-for="(error, index) in validate.month.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
-                              {{ error.$message }}
-                            </div>
-                          </template>
-                            <p class="text-right mt-2 w-full"> Required</p>
-                          </div>
-                        </div>
-                      </FormInline>
-                      
-                    </div>
-                </div>
-                <div class="md:w-1/2 w-full">
-                    <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
-                        <FormLabel class="xl:w-40 xl:!mr-10">
-                          <div class="text-left">
-                            <div class="flex items-center">
                               <div class="font-medium">Date</div>
                               
                             </div>
                             <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              The deadline for completing the corrective actions.
+                              Date is the record of waste inventory.
                             </div>
                           </div>
                         </FormLabel>
@@ -401,7 +394,7 @@ onMounted(() => {
                               
                             </div>
                             <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Enter the name of the company associated with the energy record.
+                              Employee Name is the responsible person for waste inventory
                             </div>
                           </div>
                         </FormLabel>
@@ -457,8 +450,10 @@ onMounted(() => {
       </div>
       <div class="p-5 mt-5 intro-y box">
         <div class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400">
+          <div class="flex items-center pb-5 mb-5 text-base font-medium border-b border-slate-200/60 dark:border-darkmode-400">
+              <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" />Supplied Data
+          </div>
             <div class="flex flex-wrap">
-              
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
                       <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
@@ -469,7 +464,7 @@ onMounted(() => {
                               
                             </div>
                             <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Specify the unit of measurement for the energy consumption.
+                              Waste Name is the type of waste recorded.
                             </div>
                           </div>
                         </FormLabel>
@@ -497,7 +492,7 @@ onMounted(() => {
                               
                             </div>
                             <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Select the type of fuel or energy source used.
+                              Waste Type is the category of waste.
                             </div>
                           </div>
                         </FormLabel>
@@ -533,7 +528,7 @@ onMounted(() => {
                               
                             </div>
                             <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Select the type of fuel or energy source used.
+                              tem Name is the specific waste-related item.
                             </div>
                           </div>
                         </FormLabel>
@@ -542,9 +537,15 @@ onMounted(() => {
 
                           <select id="crud-form-6" v-model="selectedItemNname"  class="border py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 fdark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 text-gray-500">
                             <option value="" disabled>Item Name</option>
-                            <option v-for="option in options" :key="option" :value="option">
-                              {{ option }}
-                            </option>
+                            <option value="Cotton Fabric Waste">Cotton Fabric Waste</option>
+                            <option value="Cotton Thread Waste">Cotton Thread Waste</option>
+                            <option value="Cotton Waste Scraps">Cotton Waste Scraps</option>
+                            <option value="Cotton Linters Waste">Cotton Linters Waste</option>
+                            <option value="Cotton Bale Waste">Cotton Bale Waste</option>
+                            <option value="Cotton Yarn Waste">Cotton Yarn Waste</option>
+                            <option value="Cotton Waste from Spinning">Cotton Waste from Spinning</option>
+                            <option value="Cotton Waste from Weaving">Cotton Waste from Weaving</option>
+                            <option value="Cotton Waste from Dyeing Process">Cotton Waste from Dyeing Process</option>
                           </select>
                           
                           <div class="flex justify-between">
@@ -566,11 +567,53 @@ onMounted(() => {
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
                             <div class="flex items-center">
+                              <div class="font-medium text-nowrap">Cotton</div>
+                              
+                            </div>
+                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                              Cotton is a type of waste material.
+                            </div>
+                          </div>
+                        </FormLabel>
+                        <div class="flex-1 w-full mt-3 xl:mt-0">
+                          <!-- <FormInput id="crud-form-5" v-model.trim="validate.category.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.category.$error,}" placeholder="Input Category"/> -->
+
+                          <select id="crud-form-6" v-model="selectedCotton"  class="border py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 fdark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 text-gray-500">
+                            <option value="" disabled>cotton</option>
+                            <option value="Cutting Jhute">Cutting Jhute</option>
+                            <option value="Sewing Jhut">Sewing Jhut</option>
+                            <option value="Cut Piece">Cut Piece</option>
+                            <option value="Short Piece">Short Piece</option>
+                            <option value="Chemical Contaminated">Chemical Contaminated</option>
+                            <option value="Chemical Drum">Chemical Drum</option>
+                            <option value="Burn Oil">Burn Oil</option>
+                            <option value="Dust">Dust</option>
+                          </select>
+                          
+                          <div class="flex justify-between">
+                            <template v-if="validate.waste.$error">
+                            <div v-for="(error, index) in validate.waste.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
+                              {{ error.$message }}
+                            </div>
+                          </template>
+                            <p class="text-right mt-2 w-full"> Required</p>
+                          </div>
+                        </div>
+                      </FormInline>
+                      
+                    </div>
+                </div>
+                <div class="md:w-1/2 w-full">
+                    <div class="px-4 py-2">
+                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                        <FormLabel class="xl:w-40 xl:!mr-10">
+                          <div class="text-left">
+                            <div class="flex items-center">
                               <div class="font-medium text-nowrap">Unit</div>
                               
                             </div>
                             <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Enter the amount of energy consumed based on the selected type
+                              Unit is the measurement standard for waste quantity.
                             </div>
                           </div>
                         </FormLabel>
@@ -598,7 +641,7 @@ onMounted(() => {
                               
                             </div>
                             <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              The underlying reason or cause of the accident.
+                              Amount of Waste is the quantity of waste generated.
                             </div>
                           </div>
                         </FormLabel>
@@ -623,8 +666,55 @@ onMounted(() => {
       <div class="p-5 mt-5 intro-y box">
         <div class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400">
             <div class="flex flex-wrap">
+              <div class="md:w-1/2 w-full">
+                    <div class="px-4 py-2">
+                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                        <FormLabel class="xl:w-40 xl:!mr-10">
+                          <div class="text-left">
+                            <div class="flex items-center">
+                              <div class="font-medium text-nowrap">Total Biodegradable Waste</div>
+                              
+                            </div>
+                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                              Total Biodegradable Waste is organic waste that decomposes.
+                            </div>
+                          </div>
+                        </FormLabel>
+                        <div class="flex-1 w-full mt-3 xl:mt-0">
+                          <FormInput id="crud-form-12" v-model="formData.total_biodegradable_waste" class="w-full" type="text" name="name":class="{ 'border-danger': validate.waste_name.$error,}" placeholder="Input Waste Name"/> 
+                        </div>
+                      </FormInline>
+                    </div>
+                </div>
+              <div class="md:w-1/2 w-full">
+                    <div class="px-4 py-2">
+                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                        <FormLabel class="xl:w-40 xl:!mr-10">
+                          <div class="text-left">
+                            <div class="flex items-center">
+                              <div class="font-medium text-nowrap">Total No Biodegradable Waste</div>
+                              
+                            </div>
+                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                              Total Non-Biodegradable Waste is waste that doesn't decompose.
+                            </div>
+                          </div>
+                        </FormLabel>
+                        <div class="flex-1 w-full mt-3 xl:mt-0">
+                          <FormInput id="crud-form-12" v-model="formData.total_no_biodegradable_waste" class="w-full" type="text" name="name":class="{ 'border-danger': validate.waste_name.$error,}" placeholder="Input Waste Name"/> 
+                        </div>
+                      </FormInline>
+                    </div>
+                </div>
+               
+            </div> 
+        </div>
+      </div>
+      <div class="p-5 mt-5 intro-y box">
+        <div class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400">
+            <div class="flex flex-wrap">
               
-                <div class="md:w-1/2 w-full">
+                <div class="w-full">
                     <div class="px-4 py-2">
                       <FormInline class="flex flex-wrap md:flex-nowrap  pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
@@ -633,7 +723,7 @@ onMounted(() => {
                               <div class="font-medium">Attachement</div>
                             </div>
                             <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Images showing the progression of the identified problem.
+                              Attachment is the file linked to the waste record.
                             </div>
                           </div>
                         </FormLabel>
@@ -660,10 +750,7 @@ onMounted(() => {
                       </FormInline>
                     </div>
                 </div>
-              
-                
-            </div>
-          
+            </div> 
         </div>
       </div>
       

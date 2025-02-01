@@ -9,23 +9,23 @@ const menu: Array<Menu | "divider"> = [
       {
         icon: "Activity",
         pageName: "dashboard-overview-1",
-        title: "Overview 1",
+        title: "Report",
       },
       {
         icon: "Activity",
         pageName: "dashboard-overview-2",
-        title: "Overview 2",
+        title: "Environment",
       },
-      {
-        icon: "Activity",
-        pageName: "dashboard-overview-3",
-        title: "Overview 3",
-      },
-      {
-        icon: "Activity",
-        pageName: "dashboard-overview-4",
-        title: "Overview 4",
-      },
+      // {
+      //   icon: "Activity",
+      //   pageName: "dashboard-overview-3",
+      //   title: "Overview 3",
+      // },
+      // {
+      //   icon: "Activity",
+      //   pageName: "dashboard-overview-4",
+      //   title: "Overview 4",
+      // },
     ],
   },
   

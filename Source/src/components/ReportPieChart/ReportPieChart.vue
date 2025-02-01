@@ -6,26 +6,33 @@ import { useDarkModeStore } from "@/stores/dark-mode";
 import Chart from "@/components/Base/Chart";
 import { getColor } from "@/utils/colors";
 
+// Define props
 const props = defineProps<{
   width?: number;
   height?: number;
+  chartData?: number[];
+  chartLabels?: string[];
 }>();
 
 const colorScheme = computed(() => useColorSchemeStore().colorScheme);
 const darkMode = computed(() => useDarkModeStore().darkMode);
 
-const chartData = [15, 10, 65];
+// Default chart data if not provided
+const defaultChartData = [15, 10, 65];
+const defaultChartLabels = ["Blue", "Yellow", "Dark" ];
+
 const chartColors = () => [
-  getColor("pending", 0.9),
-  getColor("warning", 0.9),
   getColor("primary", 0.9),
+  getColor("pending", 0.9),
+  getColor("danger", 0.9),
 ];
+// state.accOpen, state.accProgress, state.accClosed
 const data = computed<ChartData>(() => {
   return {
-    labels: ["Yellow", "Dark"],
+    labels: props.chartLabels ?? defaultChartLabels,
     datasets: [
       {
-        data: chartData,
+        data: props.chartData ?? defaultChartData,
         backgroundColor: colorScheme.value ? chartColors() : "",
         hoverBackgroundColor: colorScheme.value ? chartColors() : "",
         borderWidth: 5,
