@@ -24,18 +24,35 @@ import _ from "lodash";
 
 
 const formData = reactive({
-    unit_name: '', // Corresponds to 'month'
-    month: '', // Corresponds to 'month'
-    date: '', // Corresponds to 'month'
-    employee_name: '', // Corresponds to 'month'
-    designation: '', // Corresponds to 'month'
-    process_water: '', // Corresponds to 'process_water'
-    domestic_water: '', // Corresponds to 'domestic_water'
-    etp_inlet_water: '', // Corresponds to 'etp_inlet_water'
-    etp_outlet_water: '', // Corresponds to 'etp_outlet_water'
-    deviation_of_etp_discharge: '', // Corresponds to 'deviation_of_etp_discharge'
-    dying_re_use_water: '', // Corresponds to 'dying_re_use_water'
-    rain_water: '', // Corresponds to 'rain_water'
+    unit_name: '',
+    month: '',
+    date: '',
+    employee_name: '',
+    designation: '',
+    ground_water: '',
+    ground_water_unit: '',
+    gw_last_flow_meter: '',
+    gw_current_flow_meter: '',
+    rain_water: '',
+    rain_water_unit: '',
+    rw_last_flow_meter: '',
+    rw_current_flow_meter: '',
+    domestic_water: '',
+    domestic_water_unit: '',
+    dw_last_flow_meter: '',
+    dw_current_flow_meter: '',
+    process_water: '',
+    process_water_unit: '',
+    pw_last_flow_meter: '',
+    pw_current_flow_meter: '',
+    etp_inlet_water: '',
+    etp_inlet_water_unit: '',
+    eiw_last_flow_meter: '',
+    eiw_current_flow_meter: '',
+    etp_outlet_water: '',
+    etp_outlet_water_unit: '',
+    eow_last_flow_meter: '',
+    eow_current_flow_meter: '',
 });
 const state = reactive({
   token: getToken(),
@@ -54,22 +71,58 @@ const rules = {
         date: {required,},
         employee_name: {required,},
         designation: {required,},
-        process_water: {required, integer},
+        ground_water: {required, integer},
+        rain_water: {required, integer},
         domestic_water: {required, integer},
-        etp_inlet_water: {required, integer},
-        etp_outlet_water: {required, integer},
-        deviation_of_etp_discharge: {required,integer},
-        dying_re_use_water: {required,integer},
-        rain_water: {required,integer},
+        process_water: {required, integer},
+        etp_inlet_water: {required,integer},
+        etp_outlet_water: {required,integer},
+        gw_last_flow_meter: {integer},
+        gw_current_flow_meter: {integer},
+        rw_last_flow_meter: {integer},
+        rw_current_flow_meter: {integer},
+        dw_last_flow_meter: {integer},
+        dw_current_flow_meter: {integer},
+        pw_last_flow_meter: {integer},
+        pw_current_flow_meter: {integer},
+        eiw_last_flow_meter: {integer},
+        eiw_current_flow_meter: {integer},
+        eow_last_flow_meter: {integer},
+        eow_current_flow_meter: {integer},
 };
+
+
 
 const validate = useVuelidate(rules, toRefs(formData));
 const selectedMonth = ref("");
 
 
 const submitForm = async () => {
-  formData.month = selectedMonth.value;
+  const monthMap: { [key: string]: string } = {
+    Jan: "January",
+    Feb: "February",
+    Mar: "March",
+    Apr: "April",
+    May: "May",
+    Jun: "June",
+    Jul: "July",
+    Aug: "August",
+    Sep: "September",
+    Oct: "October",
+    Nov: "November",
+    Dec: "December",
+  };
   formData.date = duedate.value;
+  const duedateValue = duedate.value; 
+  const shortMonth = duedateValue.split(" ")[1]?.trim().replace(",", "");
+  const fullMonth = monthMap[shortMonth]; 
+  formData.month = fullMonth;
+  formData.ground_water_unit = "m3";
+  formData.rain_water_unit = "m3";
+  formData.domestic_water_unit = "m3";
+  formData.process_water_unit = "m3";
+  formData.etp_inlet_water_unit = "m3";
+  formData.etp_outlet_water_unit = "m3";
   
     validate.value.$touch();
     console.log(validate.value)
@@ -203,7 +256,10 @@ onMounted(() => {
       
       <!-- BEGIN: Product Information -->
       <div class="p-5 mt-5 intro-y box">
-        <div class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400"> 
+        <div class="p-5  border rounded-md border-slate-200/60 dark:border-darkmode-400"> 
+          <div class="flex items-center pb-5 mb-5 text-base font-medium border-b border-slate-200/60 dark:border-darkmode-400">
+              <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" />Basic Info
+          </div>
             <div class="flex flex-wrap">
               <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
@@ -215,7 +271,7 @@ onMounted(() => {
                               
                             </div>
                             <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Specify the unit of measurement for the energy consumption.
+                              Unit Name is the location where water is consumed
                             </div>
                           </div>
                         </FormLabel>
@@ -233,51 +289,7 @@ onMounted(() => {
                       </FormInline>
                     </div>
                 </div>
-                <div class="md:w-1/2 w-full">
-                    <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
-                        <FormLabel class="xl:w-40 xl:!mr-10">
-                          <div class="text-left">
-                            <div class="flex items-center">
-                              <div class="font-medium">Month</div>
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Select the month for the energy record.
-                            </div>
-                          </div>
-                        </FormLabel>
-                        <div class="flex-1 w-full mt-3 xl:mt-0">
-                          <!-- <FormInput id="crud-form-5" v-model.trim="validate.category.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.category.$error,}" placeholder="Input Category"/> -->
-
-                          <select id="crud-form-6" v-model="selectedMonth"  class="border py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 fdark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 text-gray-500">
-                                <option value="" disabled>Select Month</option>
-                                <option value="January">January</option>
-                                <option value="February">February</option>
-                                <option value="March">March</option>
-                                <option value="April">April</option>
-                                <option value="May">May</option>
-                                <option value="June">June</option>
-                                <option value="July">July</option>
-                                <option value="August">August</option>
-                                <option value="September">September</option>
-                                <option value="October">October</option>
-                                <option value="November">November</option>
-                                <option value="December">December</option>
-                          </select>
-                          
-                          <div class="flex justify-between">
-                            <template v-if="validate.month.$error">
-                            <div v-for="(error, index) in validate.month.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
-                              {{ error.$message }}
-                            </div>
-                          </template>
-                            <p class="text-right mt-2 w-full"> Required</p>
-                          </div>
-                        </div>
-                      </FormInline>
-                      
-                    </div>
-                </div>
+               
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
                       <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
@@ -288,7 +300,7 @@ onMounted(() => {
                               
                             </div>
                             <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              The deadline for completing the corrective actions.
+                              Date is the day of water consumption record
                             </div>
                           </div>
                         </FormLabel>
@@ -366,7 +378,7 @@ onMounted(() => {
                               
                             </div>
                             <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Enter the name of the company associated with the energy record.
+                              Employee Name is the person responsible for water consumption tracking.
                             </div>
                           </div>
                         </FormLabel>
@@ -397,7 +409,7 @@ onMounted(() => {
                               
                             </div>
                             <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Specify the unit of measurement for the energy consumption.
+                              Designation is the job title of the employee responsible for water consumption
                             </div>
                           </div>
                         </FormLabel>
@@ -419,8 +431,12 @@ onMounted(() => {
           
         </div>
       </div>
+      
       <div class="p-5 mt-5 intro-y box">
-        <div class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400"> 
+        <div class="flex items-center pb-5 mb-5 text-base font-medium border-b border-slate-200/60 dark:border-darkmode-400">
+              <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" />Inlet
+          </div>
+        <div class="p-5 mb-4  border rounded-md border-slate-200/60 dark:border-darkmode-400"> 
             <div class="flex flex-wrap">
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
@@ -429,18 +445,17 @@ onMounted(() => {
                           <div class="text-left">
                             <div class="flex items-center">
                               <div class="font-medium text-nowrap">Ground Water</div>
-                              
                             </div>
                             <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Specify the ground water of measurement for the energy consumption.
+                              Ground Water is the water sourced from underground reservoirs
                             </div>
                           </div>
                         </FormLabel>
                         <div class="flex-1 w-full mt-3 xl:mt-0">
-                          <FormInput id="crud-form-12" v-model.trim="validate.dying_re_use_water.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.dying_re_use_water.$error,}" placeholder="Input Ground Water"/>  
+                          <FormInput id="crud-form-12" v-model.trim="validate.ground_water.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.ground_water.$error,}" placeholder="Input rain waterr"/>  
                           <div class="flex justify-between">
-                            <template v-if="validate.dying_re_use_water.$error">
-                            <div v-for="(error, index) in validate.dying_re_use_water.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
+                            <template v-if="validate.ground_water.$error">
+                            <div v-for="(error, index) in validate.ground_water.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
                               {{ error.$message }}
                             </div>
                           </template>
@@ -449,7 +464,82 @@ onMounted(() => {
                         </div>
                       </FormInline>
                     </div>
-                </div>
+                </div>     
+                <div class="md:w-1/2 w-full">
+                    <div class="px-4 py-2">
+                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                        <FormLabel class="xl:w-40 xl:!mr-10">
+                          <div class="text-left">
+                            <div class="flex items-center">
+                              <div class="font-medium text-nowrap">Ground Water Unit</div>
+                            </div>
+                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                              Ground Water Unit is the measurement unit for groundwater consumption
+                            </div>
+                          </div>
+                        </FormLabel>
+                        <div class="flex-1 w-full mt-3 xl:mt-0">
+                          <FormInput id="crud-form-12" value="m3" readonly class="w-full" type="text" name="name" placeholder="Input Ground Water Unit"/>
+                        </div>
+                      </FormInline>
+                    </div>
+                </div>     
+                <div class="md:w-1/2 w-full">
+                    <div class="px-4 py-2">
+                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                        <FormLabel class="xl:w-40 xl:!mr-10">
+                          <div class="text-left">
+                            <div class="flex items-center">
+                              <div class="font-medium text-nowrap">Last Flow Meter Reading</div>
+                            </div>
+                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                              Last Flow Meter Reading is the most recent measurement of water flow
+                            </div>
+                          </div>
+                        </FormLabel>
+                        <div class="flex-1 w-full mt-3 xl:mt-0">
+                          <FormInput id="crud-form-12" v-model.trim="validate.gw_last_flow_meter.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.gw_last_flow_meter.$error,}" placeholder="Input Last Flow Meter Reading"/>  
+                          <div class="flex justify-between">
+                            <template v-if="validate.gw_last_flow_meter.$error">
+                            <div v-for="(error, index) in validate.gw_last_flow_meter.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
+                              {{ error.$message }}
+                            </div>
+                          </template>
+                          </div>
+                        </div>
+                      </FormInline>
+                    </div>
+                </div>    
+                <div class="md:w-1/2 w-full">
+                    <div class="px-4 py-2">
+                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                        <FormLabel class="xl:w-40 xl:!mr-10">
+                          <div class="text-left">
+                            <div class="flex items-center">
+                              <div class="font-medium text-nowrap">Current Flow Meter Reading</div>
+                            </div>
+                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                              Current Flow Meter Reading is the latest measurement of water flow at the moment.
+                            </div>
+                          </div>
+                        </FormLabel>
+                        <div class="flex-1 w-full mt-3 xl:mt-0">
+                          <FormInput id="crud-form-12" v-model.trim="validate.gw_current_flow_meter.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.gw_current_flow_meter.$error,}" placeholder="Input Ground Water Unit"/>  
+                          <div class="flex justify-between">
+                            <template v-if="validate.gw_current_flow_meter.$error">
+                            <div v-for="(error, index) in validate.gw_current_flow_meter.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
+                              {{ error.$message }}
+                            </div>
+                          </template>
+                          </div>
+                        </div>
+                      </FormInline>
+                    </div>
+                </div>    
+            </div>
+        </div>
+        <div class="p-5 mt-4 border rounded-md border-slate-200/60 dark:border-darkmode-400"> 
+            <div class="flex flex-wrap">
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
                       <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
@@ -459,7 +549,7 @@ onMounted(() => {
                               <div class="font-medium text-nowrap">Rain Water</div>
                             </div>
                             <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Specify the rainwaterr of measurement for the energy consumption.
+                              Rain Water is water collected from precipitation for use in operations
                             </div>
                           </div>
                         </FormLabel>
@@ -476,8 +566,91 @@ onMounted(() => {
                         </div>
                       </FormInline>
                     </div>
-                </div>
+                </div>     
                 <div class="md:w-1/2 w-full">
+                    <div class="px-4 py-2">
+                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                        <FormLabel class="xl:w-40 xl:!mr-10">
+                          <div class="text-left">
+                            <div class="flex items-center">
+                              <div class="font-medium text-nowrap">Rain Water Unit</div>
+                            </div>
+                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                              Rain Water Unit is the measurement unit for rainwater collected or used
+                            </div>
+                          </div>
+                        </FormLabel>
+                        <div class="flex-1 w-full mt-3 xl:mt-0">
+                          <FormInput id="crud-form-12" value="m3" readonly class="w-full" type="text" name="name" placeholder="Input Rain Water Unit"/>
+                        </div>
+                      </FormInline>
+                    </div>
+                </div>     
+                <div class="md:w-1/2 w-full">
+                    <div class="px-4 py-2">
+                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                        <FormLabel class="xl:w-40 xl:!mr-10">
+                          <div class="text-left">
+                            <div class="flex items-center">
+                              <div class="font-medium text-nowrap">Last Flow Meter Reading</div>
+                            </div>
+                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                              Last Flow Meter Reading is the previous recorded value of water flow.
+                            </div>
+                          </div>
+                        </FormLabel>
+                        <!-- <div class="flex-1 w-full mt-3 xl:mt-0">
+                          <FormInput id="crud-form-12" v-model="formData.rw_last_flow_meter" class="w-full" type="text" name="name" placeholder="Input Last Flow Meter Reading"/>
+                        </div> -->
+                        <div class="flex-1 w-full mt-3 xl:mt-0">
+                          <FormInput id="crud-form-12" v-model.trim="validate.rw_last_flow_meter.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.rw_last_flow_meter.$error,}" placeholder="Input Last Flow Meter Reading"/>  
+                          <div class="flex justify-between">
+                            <template v-if="validate.rw_last_flow_meter.$error">
+                            <div v-for="(error, index) in validate.rw_last_flow_meter.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
+                              {{ error.$message }}
+                            </div>
+                          </template>
+                          </div>
+                        </div>
+                      </FormInline>
+                    </div>
+                </div>    
+                <div class="md:w-1/2 w-full">
+                    <div class="px-4 py-2">
+                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                        <FormLabel class="xl:w-40 xl:!mr-10">
+                          <div class="text-left">
+                            <div class="flex items-center">
+                              <div class="font-medium text-nowrap">Current Flow Meter Reading</div>
+                            </div>
+                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                              Current Flow Meter Reading is the most recent value of water flow recorded
+                            </div>
+                          </div>
+                        </FormLabel>
+                        <div class="flex-1 w-full mt-3 xl:mt-0">
+                          <FormInput id="crud-form-12" v-model.trim="validate.rw_current_flow_meter.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.rw_current_flow_meter.$error,}" placeholder="Input Current Flow Meter Reading"/>  
+                          <div class="flex justify-between">
+                            <template v-if="validate.rw_current_flow_meter.$error">
+                            <div v-for="(error, index) in validate.rw_current_flow_meter.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
+                              {{ error.$message }}
+                            </div>
+                          </template>
+                          </div>
+                        </div>
+                      </FormInline>
+                    </div>
+                </div>    
+            </div>
+        </div>
+      </div>
+      <div class="p-5 mt-5 intro-y box">
+        <div class="flex items-center pb-5 mb-5 text-base font-medium border-b border-slate-200/60 dark:border-darkmode-400">
+              <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" />Process
+          </div>
+        <div class="p-5 mb-4 border rounded-md border-slate-200/60 dark:border-darkmode-400"> 
+            <div class="flex flex-wrap">
+              <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
                       <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
@@ -487,7 +660,7 @@ onMounted(() => {
                               
                             </div>
                             <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Specify the domestic_water of measurement for the energy consumption.
+                              The total amount of water used for domestic purposes.
                             </div>
                           </div>
                         </FormLabel>
@@ -504,9 +677,83 @@ onMounted(() => {
                         </div>
                       </FormInline>
                     </div>
-                </div>
- 
+                </div>   
                 <div class="md:w-1/2 w-full">
+                    <div class="px-4 py-2">
+                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                        <FormLabel class="xl:w-40 xl:!mr-10">
+                          <div class="text-left">
+                            <div class="flex items-center">
+                              <div class="font-medium text-nowrap">Domestic Water Unit</div>
+                            </div>
+                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                              The measurement unit for domestic water consumption.
+                            </div>
+                          </div>
+                        </FormLabel>
+                        <div class="flex-1 w-full mt-3 xl:mt-0">
+                          <FormInput id="crud-form-12" value="m3" readonly class="w-full" type="text" name="name" placeholder="Input Domestic Water Unit"/>
+                        </div>
+                      </FormInline>
+                    </div>
+                </div>     
+                <div class="md:w-1/2 w-full">
+                    <div class="px-4 py-2">
+                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                        <FormLabel class="xl:w-40 xl:!mr-10">
+                          <div class="text-left">
+                            <div class="flex items-center">
+                              <div class="font-medium text-nowrap">Last Flow Meter Reading</div>
+                            </div>
+                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                              The previous recorded value of the water flow.
+                            </div>
+                          </div>
+                        </FormLabel>
+                        <div class="flex-1 w-full mt-3 xl:mt-0">
+                          <FormInput id="crud-form-12" v-model.trim="validate.dw_last_flow_meter.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.dw_last_flow_meter.$error,}" placeholder="Input Last Flow Meter Reading"/>  
+                          <div class="flex justify-between">
+                            <template v-if="validate.dw_last_flow_meter.$error">
+                            <div v-for="(error, index) in validate.dw_last_flow_meter.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
+                              {{ error.$message }}
+                            </div>
+                          </template>
+                          </div>
+                        </div>
+                      </FormInline>
+                    </div>
+                </div>    
+                <div class="md:w-1/2 w-full">
+                    <div class="px-4 py-2">
+                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                        <FormLabel class="xl:w-40 xl:!mr-10">
+                          <div class="text-left">
+                            <div class="flex items-center">
+                              <div class="font-medium text-nowrap">Current Flow Meter Reading</div>
+                            </div>
+                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                              The most recent recorded value of water flow.
+                            </div>
+                          </div>
+                        </FormLabel>
+                        <div class="flex-1 w-full mt-3 xl:mt-0">
+                          <FormInput id="crud-form-12" v-model.trim="validate.dw_current_flow_meter.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.dw_current_flow_meter.$error,}" placeholder="Input Current Flow Meter Reading"/>  
+                          <div class="flex justify-between">
+                            <template v-if="validate.dw_current_flow_meter.$error">
+                            <div v-for="(error, index) in validate.dw_current_flow_meter.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
+                              {{ error.$message }}
+                            </div>
+                          </template>
+                          </div>
+                        </div>
+                      </FormInline>
+                    </div>
+                </div>    
+            </div>
+        </div>
+        <div class="p-5 mt-4 border rounded-md border-slate-200/60 dark:border-darkmode-400"> 
+            <div class="flex flex-wrap">
+              <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
                       <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
@@ -516,7 +763,7 @@ onMounted(() => {
                               
                             </div>
                             <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Enter the name of the company associated with the energy record.
+                              The total amount of water used in the industrial or operational processes
                             </div>
                           </div>
                         </FormLabel>
@@ -533,9 +780,94 @@ onMounted(() => {
                         </div>
                       </FormInline>
                     </div>
-                </div>
-   
-               
+                </div>  
+                
+                <div class="md:w-1/2 w-full">
+                    <div class="px-4 py-2">
+                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                        <FormLabel class="xl:w-40 xl:!mr-10">
+                          <div class="text-left">
+                            <div class="flex items-center">
+                              <div class="font-medium text-nowrap">Process Water Unit</div>
+                            </div>
+                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                              The measurement unit for process water consumption.
+                            </div>
+                          </div>
+                        </FormLabel>
+                        <div class="flex-1 w-full mt-3 xl:mt-0">
+                          <FormInput id="crud-form-12" value="m3" readonly class="w-full" type="text" name="name" placeholder="Input Process Water Unit"/>
+                        </div>
+                      </FormInline>
+                    </div>
+                </div>     
+                <div class="md:w-1/2 w-full">
+                    <div class="px-4 py-2">
+                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                        <FormLabel class="xl:w-40 xl:!mr-10">
+                          <div class="text-left">
+                            <div class="flex items-center">
+                              <div class="font-medium text-nowrap">Last Flow Meter Reading</div>
+                            </div>
+                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                              The previous recorded value of water flow for the process.
+                            </div>
+                          </div>
+                        </FormLabel>
+                        <!-- <div class="flex-1 w-full mt-3 xl:mt-0">
+                          <FormInput id="crud-form-12" v-model="formData.pw_last_flow_meter" class="w-full" type="text" name="name" placeholder="Input Last Flow Meter Reading"/>
+                        </div> -->
+                        <div class="flex-1 w-full mt-3 xl:mt-0">
+                          <FormInput id="crud-form-12" v-model.trim="validate.pw_last_flow_meter.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.pw_last_flow_meter.$error,}" placeholder="Input Last Flow Meter Reading"/>  
+                          <div class="flex justify-between">
+                            <template v-if="validate.pw_last_flow_meter.$error">
+                            <div v-for="(error, index) in validate.pw_last_flow_meter.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
+                              {{ error.$message }}
+                            </div>
+                          </template>
+                          </div>
+                        </div>
+                      </FormInline>
+                    </div>
+                </div>    
+                <div class="md:w-1/2 w-full">
+                    <div class="px-4 py-2">
+                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                        <FormLabel class="xl:w-40 xl:!mr-10">
+                          <div class="text-left">
+                            <div class="flex items-center">
+                              <div class="font-medium text-nowrap">Current Flow Meter Reading</div>
+                            </div>
+                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                              The most recent recorded value of water flow for the process.
+                            </div>
+                          </div>
+                        </FormLabel>
+                        <!-- <div class="flex-1 w-full mt-3 xl:mt-0">
+                          <FormInput id="crud-form-12" v-model="formData.pw_current_flow_meter" class="w-full" type="text" name="name" placeholder="Input Current Flow Meter Reading"/>
+                        </div> -->
+                        <div class="flex-1 w-full mt-3 xl:mt-0">
+                          <FormInput id="crud-form-12" v-model.trim="validate.pw_current_flow_meter.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.pw_current_flow_meter.$error,}" placeholder="Input Current Flow Meter Reading"/>  
+                          <div class="flex justify-between">
+                            <template v-if="validate.pw_current_flow_meter.$error">
+                            <div v-for="(error, index) in validate.pw_current_flow_meter.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
+                              {{ error.$message }}
+                            </div>
+                          </template>
+                          </div>
+                        </div>
+                      </FormInline>
+                    </div>
+                </div>    
+            </div>
+        </div>
+      </div>
+      <div class="p-5 mt-5 intro-y box">
+        <div class="flex items-center pb-5 mb-5 text-base font-medium border-b border-slate-200/60 dark:border-darkmode-400">
+              <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" />Output
+          </div>
+        <div class="p-5 mb-4 border rounded-md border-slate-200/60 dark:border-darkmode-400"> 
+            <div class="flex flex-wrap">
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
                       <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
@@ -546,7 +878,7 @@ onMounted(() => {
                               
                             </div>
                             <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Specify the ETP Inlet Water of measurement for the energy consumption.
+                              ETP Inlet Water is the water entering the Effluent Treatment Plant (ETP) for treatment.
                             </div>
                           </div>
                         </FormLabel>
@@ -563,8 +895,91 @@ onMounted(() => {
                         </div>
                       </FormInline>
                     </div>
-                </div>
+                </div> 
+                
                 <div class="md:w-1/2 w-full">
+                    <div class="px-4 py-2">
+                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                        <FormLabel class="xl:w-40 xl:!mr-10">
+                          <div class="text-left">
+                            <div class="flex items-center">
+                              <div class="font-medium text-nowrap">Etp Inlet Water Unit</div>
+                            </div>
+                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                              ETP Inlet Water Unit is the measurement unit for water entering the Effluent Treatment Plant
+                            </div>
+                          </div>
+                        </FormLabel>
+                        <div class="flex-1 w-full mt-3 xl:mt-0">
+                          <FormInput id="crud-form-12" value="m3" readonly class="w-full" type="text" name="name" placeholder="Input Etp Inlet Water Unit"/>
+                        </div>
+                      </FormInline>
+                    </div>
+                </div>     
+                <div class="md:w-1/2 w-full">
+                    <div class="px-4 py-2">
+                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                        <FormLabel class="xl:w-40 xl:!mr-10">
+                          <div class="text-left">
+                            <div class="flex items-center">
+                              <div class="font-medium text-nowrap">Last Flow Meter Reading</div>
+                            </div>
+                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                              Last Flow Meter Reading is the previous recorded value of water flow at the ETP inlet
+                            </div>
+                          </div>
+                        </FormLabel>
+                        <!-- <div class="flex-1 w-full mt-3 xl:mt-0">
+                          <FormInput id="crud-form-12" v-model="formData.eiw_last_flow_meter" class="w-full" type="text" name="name" placeholder="Input Last Flow Meter Reading"/>
+                        </div> -->
+                        <div class="flex-1 w-full mt-3 xl:mt-0">
+                          <FormInput id="crud-form-12" v-model.trim="validate.eiw_last_flow_meter.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.eiw_last_flow_meter.$error,}" placeholder="Input Last Flow Meter Reading"/>  
+                          <div class="flex justify-between">
+                            <template v-if="validate.eiw_last_flow_meter.$error">
+                            <div v-for="(error, index) in validate.eiw_last_flow_meter.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
+                              {{ error.$message }}
+                            </div>
+                          </template>
+                          </div>
+                        </div>
+                        
+                      </FormInline>
+                    </div>
+                </div>    
+                <div class="md:w-1/2 w-full">
+                    <div class="px-4 py-2">
+                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                        <FormLabel class="xl:w-40 xl:!mr-10">
+                          <div class="text-left">
+                            <div class="flex items-center">
+                              <div class="font-medium text-nowrap">Current Flow Meter Reading</div>
+                            </div>
+                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                              Current Flow Meter Reading is the latest water flow value at the ETP inlet.
+                            </div>
+                          </div>
+                        </FormLabel>
+                        <!-- <div class="flex-1 w-full mt-3 xl:mt-0">
+                          <FormInput id="crud-form-12" v-model="formData.eiw_current_flow_meter" class="w-full" type="text" name="name" placeholder="Input Current Flow Meter Reading"/>
+                        </div> -->
+                        <div class="flex-1 w-full mt-3 xl:mt-0">
+                          <FormInput id="crud-form-12" v-model.trim="validate.eiw_current_flow_meter.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.eiw_current_flow_meter.$error,}" placeholder="Input Current Flow Meter Reading"/>  
+                          <div class="flex justify-between">
+                            <template v-if="validate.eiw_current_flow_meter.$error">
+                            <div v-for="(error, index) in validate.eiw_current_flow_meter.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
+                              {{ error.$message }}
+                            </div>
+                          </template>
+                          </div>
+                        </div>
+                      </FormInline>
+                    </div>
+                </div>    
+            </div>
+        </div>
+        <div class="p-5 mt-4  border rounded-md border-slate-200/60 dark:border-darkmode-400"> 
+            <div class="flex flex-wrap">
+              <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
                       <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
@@ -574,7 +989,7 @@ onMounted(() => {
                               
                             </div>
                             <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Specify the ETP Outlet Water of measurement for the energy consumption.
+                              ETP Outlet Water is treated water discharged from the plant.
                             </div>
                           </div>
                         </FormLabel>
@@ -591,41 +1006,86 @@ onMounted(() => {
                         </div>
                       </FormInline>
                     </div>
-                </div>
+                </div> 
+                
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
                       <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
                             <div class="flex items-center">
-                              <div class="font-medium text-nowrap">Deviation of ETP Discharge</div>
-                              
+                              <div class="font-medium text-nowrap">Etp Outlet Water Unit</div>
                             </div>
                             <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Specify the deviation of etp discharge of measurement for the energy consumption.
+                              ETP Outlet Water Unit is the measurement unit for treated water.
                             </div>
                           </div>
                         </FormLabel>
                         <div class="flex-1 w-full mt-3 xl:mt-0">
-                          <FormInput id="crud-form-12" v-model.trim="validate.deviation_of_etp_discharge.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.deviation_of_etp_discharge.$error,}" placeholder="Input deviation of etp discharge"/>  
+                          <FormInput id="crud-form-12" value="m3" readonly class="w-full" type="text" name="name" placeholder="Input Etp Outlet Water Unit"/>
+                        </div>
+                      </FormInline>
+                    </div>
+                </div>     
+                <div class="md:w-1/2 w-full">
+                    <div class="px-4 py-2">
+                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                        <FormLabel class="xl:w-40 xl:!mr-10">
+                          <div class="text-left">
+                            <div class="flex items-center">
+                              <div class="font-medium text-nowrap">Last Flow Meter Reading</div>
+                            </div>
+                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                              Last Flow Meter Reading is the previous water flow value
+                            </div>
+                          </div>
+                        </FormLabel>
+                        <!-- <div class="flex-1 w-full mt-3 xl:mt-0">
+                          <FormInput id="crud-form-12" v-model="formData.eow_last_flow_meter" class="w-full" type="text" name="name" placeholder="Input Last Flow Meter Reading"/>
+                        </div> -->
+                        <div class="flex-1 w-full mt-3 xl:mt-0">
+                          <FormInput id="crud-form-12" v-model.trim="validate.eow_last_flow_meter.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.eow_last_flow_meter.$error,}" placeholder="Input Last Flow Meter Reading"/>  
                           <div class="flex justify-between">
-                            <template v-if="validate.deviation_of_etp_discharge.$error">
-                            <div v-for="(error, index) in validate.deviation_of_etp_discharge.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
+                            <template v-if="validate.eow_last_flow_meter.$error">
+                            <div v-for="(error, index) in validate.eow_last_flow_meter.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
                               {{ error.$message }}
                             </div>
                           </template>
-                            <p class="text-right mt-2 w-full"> Required</p>
                           </div>
                         </div>
                       </FormInline>
                     </div>
-                </div>
-                
-                
-              
-                
+                </div>    
+                <div class="md:w-1/2 w-full">
+                    <div class="px-4 py-2">
+                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                        <FormLabel class="xl:w-40 xl:!mr-10">
+                          <div class="text-left">
+                            <div class="flex items-center">
+                              <div class="font-medium text-nowrap">Current Flow Meter Reading</div>
+                            </div>
+                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                              Current Flow Meter Reading is the latest water flow value
+                            </div>
+                          </div>
+                        </FormLabel>
+                        <!-- <div class="flex-1 w-full mt-3 xl:mt-0">
+                          <FormInput id="crud-form-12" v-model="formData.eow_current_flow_meter" class="w-full" type="text" name="name" placeholder="Input Current Flow Meter Reading"/>
+                        </div> -->
+                        <div class="flex-1 w-full mt-3 xl:mt-0">
+                          <FormInput id="crud-form-12" v-model.trim="validate.eow_current_flow_meter.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.eow_current_flow_meter.$error,}" placeholder="Input Current Flow Meter Reading"/>  
+                          <div class="flex justify-between">
+                            <template v-if="validate.eow_current_flow_meter.$error">
+                            <div v-for="(error, index) in validate.eow_current_flow_meter.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
+                              {{ error.$message }}
+                            </div>
+                          </template>
+                          </div>
+                        </div>
+                      </FormInline>
+                    </div>
+                </div>    
             </div>
-          
         </div>
       </div>
       

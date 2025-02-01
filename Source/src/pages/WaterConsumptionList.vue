@@ -84,20 +84,59 @@ onMounted(() => {
       </div>
     </div>
     <!-- BEGIN: Data List -->
+    <!-- month
+ground_water_unit
+ground_water
+gw_last_flow_meter
+gw_current_flow_meter
+rain_water_unit
+rain_water
+rw_last_flow_meter
+rw_current_flow_meter
+domestic_water_unit
+domestic_water
+dw_last_flow_meter
+dw_current_flow_meter
+process_water_unit
+process_water
+pw_last_flow_meter
+pw_current_flow_meter
+etp_inlet_water_unit
+etp_inlet_water
+eiw_last_flow_meter
+eiw_current_flow_meter
+etp_outlet_water_unit
+etp_outlet_water
+eow_last_flow_meter
+eow_current_flow_meter -->
     <div class="col-span-12 overflow-auto intro-y " >
       <Table class="border-spacing-y-[10px] border-separate -mt-2">
         <Table.Thead>
           <Table.Tr>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Month</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Responsible Person Name</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Ground Water</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Rain Water</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Process Water Consumption</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Ground Water (m3)</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Ground Water Last Flow Meter</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Ground Water Current Flow Meter</Table.Th>
+
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Rain Water (m3)</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Rain Water Last Flow Meter</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Rain Water Current Flow Meter</Table.Th>
+
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Domestic Water (m3)</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Total Water Consumption</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">ETP Inlet Water </Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">ETP Outlet Water</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Deviation of ETP Discharge</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Domestic Water Last Flow Meter</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Domestic Water Current Flow Meter</Table.Th>
+
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Process Water Consumption (m3)</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Process Water Last Flow Meter</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Process Water Current Flow Meter</Table.Th>
+            
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">ETP Inlet Water Consumption (m3)</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">ETP Inlet Water Last Flow Meter</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">ETP Inlet Water Current Flow Meter</Table.Th>
+            
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">ETP Outlet Water Consumption (m3)</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">ETP Outlet Water Last Flow Meter</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">ETP Outlet Water Current Flow Meter</Table.Th>
             
           </Table.Tr>
         </Table.Thead>
@@ -105,36 +144,63 @@ onMounted(() => {
           <Table.Tr  v-for="(report, index) in state.energyrecords" :key="index" class="intro-x">
             
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.Month }}
+              {{ report.month }}
             </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.employee_name }}
+              {{ report.ground_water }}
             </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.Dying_Re_Use_Water }}
+              {{ report.gw_last_flow_meter }}
             </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.Rain_Water }}
+              {{ report.gw_current_flow_meter }}
             </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.Process_Water }}
+              {{ report.rain_water }}
             </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.Domestic_Water }}
+              {{ report.rw_last_flow_meter }}
             </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.Total_Process_and_Domestic_Water }}
+              {{ report.rw_current_flow_meter }}
             </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.ETP_Inlet_Water }}
+              {{ report.domestic_water }}
             </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.ETP_Outlet_Water }}
+              {{ report.dw_last_flow_meter }}
             </Table.Td>
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.Deviation_of_ETP_Discharge }}
+              {{ report.dw_current_flow_meter }}
             </Table.Td>
-            
+            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.process_water }}
+            </Table.Td>
+            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.pw_last_flow_meter }}
+            </Table.Td>
+            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.pw_current_flow_meter }}
+            </Table.Td>
+            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.etp_inlet_water }}
+            </Table.Td>
+            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.eiw_last_flow_meter }}
+            </Table.Td>
+            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.eiw_current_flow_meter }}
+            </Table.Td>
+            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.etp_outlet_water }}
+            </Table.Td>
+            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.eow_last_flow_meter }}
+            </Table.Td>
+            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.eow_current_flow_meter }}
+            </Table.Td>
+           
           </Table.Tr>
         </Table.Tbody>
         <Table.Tbody v-else class=" ">

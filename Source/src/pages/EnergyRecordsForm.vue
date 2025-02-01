@@ -31,7 +31,9 @@ const formData = reactive({
     item_name: '',
     item_code: '',
     type: '',
+    fuel: '',
     energy_used: '',
+    all_ghgs: '',
     input_numeric: 0,
     attachement:[] as File[],
 
@@ -52,24 +54,44 @@ const rules = {
         item_name: {required,},
         item_code: {required,},
         type: {required,},
+        fuel: {required,},
         energy_used: {required,},
         input_numeric: {required,integer},
 };
 
 const validate = useVuelidate(rules, toRefs(formData));
-const selectedMonth = ref("");
+const selectedFuel = ref("");
 const selectedType = ref("");
 const selectedEmp = ref("");
 const duedate = ref("");
 
 
+
 const submitForm = async () => {
-  formData.month = selectedMonth.value;
+  const monthMap: { [key: string]: string } = {
+  Jan: "January",
+  Feb: "February",
+  Mar: "March",
+  Apr: "April",
+  May: "May",
+  Jun: "June",
+  Jul: "July",
+  Aug: "August",
+  Sep: "September",
+  Oct: "October",
+  Nov: "November",
+  Dec: "December",
+};
   formData.type = selectedType.value;
+  formData.fuel = selectedFuel.value;
   formData.date = duedate.value;
+
+  const duedateValue = duedate.value; 
+  const shortMonth = duedateValue.split(" ")[1]?.trim().replace(",", "");
+  const fullMonth = monthMap[shortMonth]; 
+  formData.month = fullMonth;
   
     validate.value.$touch();
-    console.log(validate.value)
     if (validate.value.$invalid) {
       FailedPopUp();
     } else {
@@ -106,12 +128,23 @@ const submitForm = async () => {
     }
 };
 
-watch(selectedType, (newValue) => {
-  if (newValue === 'CO2') {
-    formData.energy_used = 'Litter';
-  } else if (newValue === 'CH4') {
-    formData.energy_used = 'Litter';
-  } else if (newValue === 'N20' || newValue === 'CO3') {
+watch(selectedFuel, (newValue) => {
+  if (
+    newValue === 'Anthracite' ||
+    newValue === 'Bitumen' ||
+    newValue === 'Coal tar' ||
+    newValue === 'Coking coal' ||
+    newValue === 'Lignite' ||
+    newValue === 'Aviation gasoline' ||
+    newValue === 'Crude oil' ||
+    newValue === 'Jet gasoline' ||
+    newValue === 'Blast furnace gas' ||
+    newValue === 'Coke oven gas' ||
+    newValue === 'Ethane' ||
+    newValue === 'Biodiesels' ||
+    newValue === 'Biogasoline' ||
+    newValue === 'Charcoal'
+  ) {
     formData.energy_used = 'Litter';
   } else {
     formData.energy_used = ''; // Clear or set default
@@ -228,6 +261,9 @@ onMounted(() => {
       <!-- BEGIN: Product Information -->
       <div class="p-5 mt-5 intro-y box">
         <div class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400"> 
+          <div class="flex items-center pb-5 mb-5 text-base font-medium border-b border-slate-200/60 dark:border-darkmode-400">
+              <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" />Basic Info
+          </div>
             <div class="flex flex-wrap">
               <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
@@ -239,7 +275,7 @@ onMounted(() => {
                               
                             </div>
                             <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Specify the unit of measurement for the energy consumption.
+                              Unit Name refers to the location of energy operations
                             </div>
                           </div>
                         </FormLabel>
@@ -263,56 +299,11 @@ onMounted(() => {
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
                             <div class="flex items-center">
-                              <div class="font-medium">Month</div>
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Select the month for the energy record.
-                            </div>
-                          </div>
-                        </FormLabel>
-                        <div class="flex-1 w-full mt-3 xl:mt-0">
-                          <!-- <FormInput id="crud-form-5" v-model.trim="validate.category.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.category.$error,}" placeholder="Input Category"/> -->
-
-                          <select id="crud-form-6" v-model="selectedMonth"  class="border py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 fdark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 text-gray-500">
-                                <option value="" disabled>Select Month</option>
-                                <option value="January">January</option>
-                                <option value="February">February</option>
-                                <option value="March">March</option>
-                                <option value="April">April</option>
-                                <option value="May">May</option>
-                                <option value="June">June</option>
-                                <option value="July">July</option>
-                                <option value="August">August</option>
-                                <option value="September">September</option>
-                                <option value="October">October</option>
-                                <option value="November">November</option>
-                                <option value="December">December</option>
-                          </select>
-                          
-                          <div class="flex justify-between">
-                            <template v-if="validate.month.$error">
-                            <div v-for="(error, index) in validate.month.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
-                              {{ error.$message }}
-                            </div>
-                          </template>
-                            <p class="text-right mt-2 w-full"> Required</p>
-                          </div>
-                        </div>
-                      </FormInline>
-                      
-                    </div>
-                </div>
-                <div class="md:w-1/2 w-full">
-                    <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
-                        <FormLabel class="xl:w-40 xl:!mr-10">
-                          <div class="text-left">
-                            <div class="flex items-center">
                               <div class="font-medium">Date</div>
                               
                             </div>
                             <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              The deadline for completing the corrective actions.
+                              Date is the day associated with an energy record or event.
                             </div>
                           </div>
                         </FormLabel>
@@ -390,7 +381,7 @@ onMounted(() => {
                               
                             </div>
                             <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Enter the name of the company associated with the energy record.
+                              Employee Name is the person responsible for the energy record or task.
                             </div>
                           </div>
                         </FormLabel>
@@ -421,7 +412,7 @@ onMounted(() => {
                               
                             </div>
                             <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Specify the unit of measurement for the energy consumption.
+                              Designation is the job title of the responsible employee
                             </div>
                           </div>
                         </FormLabel>
@@ -446,6 +437,9 @@ onMounted(() => {
       </div>
       <div class="p-5 mt-5 intro-y box">
         <div class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400"> 
+          <div class="flex items-center pb-5 mb-5 text-base font-medium border-b border-slate-200/60 dark:border-darkmode-400">
+              <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" />Supplied Data
+          </div>
             <div class="flex flex-wrap">
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
@@ -457,7 +451,7 @@ onMounted(() => {
                               
                             </div>
                             <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Specify the unit of measurement for the energy consumption.
+                              Item Name is the specific energy-related equipment or resource.
                             </div>
                           </div>
                         </FormLabel>
@@ -485,7 +479,7 @@ onMounted(() => {
                               
                             </div>
                             <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Specify the unit of measurement for the energy consumption.
+                              Item Code is the unique identifier for the energy-related item.
                             </div>
                           </div>
                         </FormLabel>
@@ -514,7 +508,7 @@ onMounted(() => {
                               
                             </div>
                             <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Select the type of fuel or energy source used.
+                              Fuel Type refers to the category of fuel used in energy operations.
                             </div>
                           </div>
                         </FormLabel>
@@ -523,15 +517,63 @@ onMounted(() => {
 
                           <select id="crud-form-6" v-model="selectedType"  class="border py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 fdark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 text-gray-500">
                             <option value="" disabled>select fuel type</option>
-                            <option value="CO2">CO2</option>
-                            <option value="CH4">CH4</option>
-                            <option value="N20">N20</option>
-                            <option value="CO3">CO3</option>
+                            <option value="Solid fossil">Solid fossil</option>
+                            <option value="Liquid fossil">Liquid fossil</option>
+                            <option value="Gaseous fossil">Gaseous fossil</option>
+                            <option value="Biomass">Biomass</option>
                           </select>
                           
                           <div class="flex justify-between">
                             <template v-if="validate.type.$error">
                             <div v-for="(error, index) in validate.type.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
+                              {{ error.$message }}
+                            </div>
+                          </template>
+                            <p class="text-right mt-2 w-full"> Required</p>
+                          </div>
+                        </div>
+                      </FormInline>
+                      
+                    </div>
+                </div>
+                <div class="md:w-1/2 w-full">
+                    <div class="px-4 py-2">
+                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                        <FormLabel class="xl:w-40 xl:!mr-10">
+                          <div class="text-left">
+                            <div class="flex items-center">
+                              <div class="font-medium text-nowrap">Fuel</div>
+                              
+                            </div>
+                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                              Fuel is the substance used to generate energy in operations
+                            </div>
+                          </div>
+                        </FormLabel>
+                        <div class="flex-1 w-full mt-3 xl:mt-0">
+                          <!-- <FormInput id="crud-form-5" v-model.trim="validate.category.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.category.$error,}" placeholder="Input Category"/> -->
+
+                          <select id="crud-form-6" v-model="selectedFuel"  class="border py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 fdark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 text-gray-500">
+                            <option value="" disabled>select the fuel</option>
+                            <option value="Anthracite">Anthracite</option>
+                            <option value="Bitumen">Bitumen</option>
+                            <option value="Coal tar">Coal tar</option>
+                            <option value="Coking coal">Coking coal</option>
+                            <option value="Lignite">Lignite</option>
+                            <option value="Aviation gasoline">Aviation gasoline</option>
+                            <option value="Crude oil">Crude oil</option>
+                            <option value="Jet gasoline">Jet gasoline</option>
+                            <option value="Blast furnace gas">Blast furnace gas</option>
+                            <option value="Coke oven gas">Coke oven gas</option>
+                            <option value="Ethane">Ethane</option>
+                            <option value="Biodiesels">Biodiesels</option>
+                            <option value="Biogasoline">Biogasoline</option>
+                            <option value="Charcoal">Charcoal</option>
+                          </select>
+                          
+                          <div class="flex justify-between">
+                            <template v-if="validate.fuel.$error">
+                            <div v-for="(error, index) in validate.fuel.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
                               {{ error.$message }}
                             </div>
                           </template>
@@ -549,39 +591,11 @@ onMounted(() => {
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
                             <div class="flex items-center">
-                              <div class="font-medium text-nowrap">Energy Used</div>
-                              
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Enter the amount of energy consumed based on the selected type
-                            </div>
-                          </div>
-                        </FormLabel>
-                        <div class="flex-1 w-full mt-3 xl:mt-0">
-                          <FormInput id="crud-form-12" v-model.trim="validate.energy_used.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.energy_used.$error,}" placeholder="Input Energy Used"/>  
-                          <div class="flex justify-between">
-                            <template v-if="validate.energy_used.$error">
-                            <div v-for="(error, index) in validate.energy_used.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
-                              {{ error.$message }}
-                            </div>
-                          </template>
-                            <p class="text-right mt-2 w-full"> Required</p>
-                          </div>
-                        </div>
-                      </FormInline>
-                    </div>
-                </div>
-                <div class="md:w-1/2 w-full">
-                    <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
-                        <FormLabel class="xl:w-40 xl:!mr-10">
-                          <div class="text-left">
-                            <div class="flex items-center">
                               <div class="font-medium text-nowrap">Amount of Fuel</div>
                               
                             </div>
                             <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              The underlying reason or cause of the accident.
+                              Amount of Fuel is the quantity of fuel used in energy operations.
                             </div>
                           </div>
                         </FormLabel>
@@ -599,6 +613,35 @@ onMounted(() => {
                       </FormInline>
                     </div>
                 </div>
+
+                <div class="md:w-1/2 w-full">
+                    <div class="px-4 py-2">
+                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                        <FormLabel class="xl:w-40 xl:!mr-10">
+                          <div class="text-left">
+                            <div class="flex items-center">
+                              <div class="font-medium text-nowrap">Units</div>
+                              
+                            </div>
+                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                              Units refer to the measurement standard for fuel or energy quantity.
+                            </div>
+                          </div>
+                        </FormLabel>
+                        <div class="flex-1 w-full mt-3 xl:mt-0">
+                          <FormInput id="crud-form-12" v-model.trim="validate.energy_used.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.energy_used.$error,}" placeholder="Input Energy Used"/>  
+                          <div class="flex justify-between">
+                            <template v-if="validate.energy_used.$error">
+                            <div v-for="(error, index) in validate.energy_used.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
+                              {{ error.$message }}
+                            </div>
+                          </template>
+                            <p class="text-right mt-2 w-full"> Required</p>
+                          </div>
+                        </div>
+                      </FormInline>
+                    </div>
+                </div>
                 
             </div>
           
@@ -606,7 +649,125 @@ onMounted(() => {
       </div>
       <div class="p-5 mt-5 intro-y box">
         <div class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400"> 
+          <div class="flex items-center pb-5 mb-5 text-base font-medium border-b border-slate-200/60 dark:border-darkmode-400">
+              <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" />GHG Emissions (Tonnes)
+          </div>
+          
             <div class="flex flex-wrap">
+              <div class="md:w-1/2 w-full">
+                    <div class="px-4 py-2">
+                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                        <FormLabel class="xl:w-40 xl:!mr-10">
+                          <div class="text-left">
+                            <div class="flex items-center">
+                              <div class="font-medium text-nowrap">CO2</div>
+                              
+                            </div>
+                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                             Total amount of CO2
+                            </div>
+                          </div>
+                        </FormLabel>
+                        <div class="flex-1 w-full mt-3 xl:mt-0">
+                          <FormInput id="crud-form-12"  class="w-full" type="text" name="name" placeholder="Input CO2"/>  
+                          
+                        </div>
+                      </FormInline>
+                    </div>
+                </div>
+              <div class="md:w-1/2 w-full">
+                    <div class="px-4 py-2">
+                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                        <FormLabel class="xl:w-40 xl:!mr-10">
+                          <div class="text-left">
+                            <div class="flex items-center">
+                              <div class="font-medium text-nowrap">CH4</div>
+                              
+                            </div>
+                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                             Total amount of CH4
+                            </div>
+                          </div>
+                        </FormLabel>
+                        <div class="flex-1 w-full mt-3 xl:mt-0">
+                          <FormInput id="crud-form-12"  class="w-full" type="text" name="name" placeholder="Input CH4"/>  
+                          
+                        </div>
+                      </FormInline>
+                    </div>
+                </div>
+              <div class="md:w-1/2 w-full">
+                    <div class="px-4 py-2">
+                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                        <FormLabel class="xl:w-40 xl:!mr-10">
+                          <div class="text-left">
+                            <div class="flex items-center">
+                              <div class="font-medium text-nowrap">N20</div>
+                              
+                            </div>
+                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                             Total amount of N20
+                            </div>
+                          </div>
+                        </FormLabel>
+                        <div class="flex-1 w-full mt-3 xl:mt-0">
+                          <FormInput id="crud-form-12"  class="w-full" type="text" name="name" placeholder="Input N20"/>  
+                          
+                        </div>
+                      </FormInline>
+                    </div>
+                </div>
+              <div class="md:w-1/2 w-full">
+                    <div class="px-4 py-2">
+                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                        <FormLabel class="xl:w-40 xl:!mr-10">
+                          <div class="text-left">
+                            <div class="flex items-center">
+                              <div class="font-medium text-nowrap">CO3</div>
+                              
+                            </div>
+                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                             Total amount of CO3
+                            </div>
+                          </div>
+                        </FormLabel>
+                        <div class="flex-1 w-full mt-3 xl:mt-0">
+                          <FormInput id="crud-form-12"  class="w-full" type="text" name="name" placeholder="Input CO3"/>  
+                          
+                        </div>
+                      </FormInline>
+                    </div>
+                </div>
+                
+            </div>
+          
+        </div>
+      </div>
+      <div class="p-5 mt-5 intro-y box">
+        <div class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400"> 
+          
+            <div class="flex flex-wrap">
+              <div class="md:w-1/2 w-full">
+                    <div class="px-4 py-2">
+                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                        <FormLabel class="xl:w-40 xl:!mr-10">
+                          <div class="text-left">
+                            <div class="flex items-center">
+                              <div class="font-medium text-nowrap">All GHG’s</div>
+                              
+                            </div>
+                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
+                              Total greenhouse gases emitted during energy operations.
+                            </div>
+                          </div>
+                        </FormLabel>
+                        <div class="flex-1 w-full mt-3 xl:mt-0">
+                          <FormInput id="crud-form-12" v-model="formData.all_ghgs" class="w-full" type="text" name="name" placeholder="Input Input Numeric"/>  
+                          
+                        </div>
+                      </FormInline>
+                    </div>
+                </div>
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
                       <FormInline class="flex flex-wrap md:flex-nowrap  pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">

@@ -15,15 +15,20 @@ const router = createRouter({
       component: Layout,
       children: [
         
+        // {
+        //   path: "/dashboard",
+        //   name: "dashboard-overview-1",
+        //   component: () => import("../pages/DashboardOverview1.vue"),
+        // },
         {
           path: "/dashboard",
           name: "dashboard-overview-1",
-          component: () => import("../pages/DashboardOverview1.vue"),
+          component: () => import("../pages/DashboardSafetyObservation.vue"),
         },
         {
           path: "dashboard-overview-2",
           name: "dashboard-overview-2",
-          component: () => import("../pages/DashboardOverview2.vue"),
+          component: () => import("../pages/DashboardEnergy.vue"),
         },
         {
           path: "dashboard-overview-3",
