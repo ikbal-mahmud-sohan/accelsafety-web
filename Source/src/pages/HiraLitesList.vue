@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, reactive, onMounted, toRefs } from 'vue';
+import { ref, reactive, onMounted, toRefs, computed, onUnmounted } from 'vue';
 import axios from 'axios';
 import _ from 'lodash';
 import Button from '@/components/Base/Button';
@@ -18,17 +18,24 @@ import Preview from "@/components/Base/Preview";
 import Litepicker from "@/components/Base/Litepicker";
 import Notification from "@/components/Base/Notification";
 import { getToken } from './../auth/setToken'
+import { Activity } from 'lucide-vue-next';
 
 
 // Define your state using the reactive function
 const state = reactive({
   viewData: [] as Array<any>,
+  drpdwndata: [] as Array<any>,
   departmentData: [] as Array<any>,
   token: getToken(),
   ActivityData: [] as Array<any>,
+  drpactivities: [] as Array<any>,
+  drphazards: [] as Array<any>,
+  drpexisting_control_measures: [] as Array<any>,
+  drppersons_responsible: [] as Array<any>,
+  drpadditionals_control_measures: [] as Array<any>,
 
 });
-const selectedActivity = ref("");
+// const selectedActivity = ref("");
 const selectedRiskRatingLikelihood = ref("");
 const selectedRiskRatingSeverity = ref("");
 const selectedRiskRatingOverall = ref("");
@@ -87,7 +94,7 @@ const validate = useVuelidate(rules, toRefs(formData));
 
 
 const submitForm = async () => {
-    formData.activity = selectedActivity.value;
+    // formData.activity = selectedActivity.value;
     formData.risk_rating_likelihood = selectedRiskRatingLikelihood.value;
     formData.risk_rating_severity = selectedRiskRatingSeverity.value;
     formData.risk_rating_overall = selectedRiskRatingOverall.value;
@@ -109,7 +116,7 @@ const submitForm = async () => {
                     'Authorization': state.token,
                 },
                 });
-                selectedActivity.value = response.data.activity;
+                formData.activity = response.data.activity;
                 formData.hazard = response.data.hazard;
                 formData.existing_control_measures = response.data.existing_control_measures;
                 selectedRiskRatingLikelihood.value = response.data.risk_rating_likelihood;
@@ -146,16 +153,34 @@ const fetchData = async () => {
     console.error('Error fetching data:', error);
   }
 };
+const fetchDrpDwnData = async () => {
+  try {
+   let  url = config.baseURL+'/api/v1/hira-lites-drop-down';
+    const response = await axios.get(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
+    state.drpdwndata = response.data;
+    state.drpactivities = response.data.activities;
+    state.drphazards = response.data.hazards;
+    state.drpexisting_control_measures = response.data.existing_control_measures;
+    state.drppersons_responsible = response.data.persons_responsible;
+    state.drpadditionals_control_measures = response.data.additionals_control_measures;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+};
 
 const deleteData = async (sID:string) => {
   try {
-    let url = config.baseURL+"/api/v1/department/"+sID;
+    let url = config.baseURL+"/api/v1/hira-lites/"+sID;
     const response = await axios.delete(url,{
                 headers: {
                     'Authorization': state.token,
                 },
                 });
-    state.viewData = response.data.data;
+    state.viewData = response.data;
   } catch (error) {
     console.error('Error fetching data:', error);
   }
@@ -169,7 +194,6 @@ const fetchActivity = async () => {
                 },
                 });
     state.ActivityData = response.data.data;
-    console.log("sss",response.data.data)
   } catch (error) {
     console.error('Error fetching data:', error);
   }
@@ -179,6 +203,7 @@ const fetchActivity = async () => {
 onMounted(() => {
   fetchData();
   fetchActivity();
+  fetchDrpDwnData();
 });
 
 function FailedPopUp(){
@@ -212,6 +237,172 @@ function SuccessPopUp(){
         stopOnFocus: true,
         }).showToast();
 }
+
+const bgColor = computed(() => {
+    switch (selectedRevisedRiskRatingOverall.value) {
+        case 'Critical':
+            return 'bg-red-500 text-white';
+        case 'High':
+            return 'bg-yellow-600 text-white';
+        case 'Moderate':
+            return 'bg-yellow-400 text-black';
+        case 'Low':
+            return 'bg-green-500 text-white';
+        default:
+            return 'bg-white text-gray-400';
+    }
+});
+const riskbgcolor = computed(() => {
+    switch (selectedRiskRatingOverall.value) {
+        case 'Critical':
+            return 'bg-red-500 text-white';
+        case 'High':
+            return 'bg-yellow-600 text-white';
+        case 'Moderate':
+            return 'bg-yellow-400 text-black';
+        case 'Low':
+            return 'bg-green-500 text-white';
+        default:
+            return 'bg-white text-gray-400';
+    }
+});
+
+const severityColor = computed(() => {
+    switch (selectedRiskRatingSeverity.value) {
+        case 'Severe':
+            return 'bg-red-500 text-white'; // Red for high severity
+        case 'Major':
+            return 'bg-yellow-600 text-white'; // Orange for major severity
+        case 'Moderate':
+            return 'bg-yellow-400 text-black'; // Yellow for moderate severity
+        case 'Minor':
+            return 'bg-yellow-200 text-black'; // Green for minor severity
+        case 'Minimal':
+            return 'bg-green-500 text-white'; // Blue for minimal severity
+        default:
+            return 'bg-white text-gray-400'; // Default color for unselected
+    }
+});
+const severityColor2 = computed(() => {
+    switch (selectedRevisedRiskRatingSeverity.value) {
+        case 'Severe':
+            return 'bg-red-500 text-white'; // Red for high severity
+        case 'Major':
+            return 'bg-yellow-600 text-white'; // Orange for major severity
+        case 'Moderate':
+            return 'bg-yellow-400 text-black'; // Yellow for moderate severity
+        case 'Minor':
+            return 'bg-yellow-200 text-black'; // Green for minor severity
+        case 'Minimal':
+            return 'bg-green-500 text-white'; // Blue for minimal severity
+        default:
+            return 'bg-white text-gray-400'; // Default color for unselected
+    }
+});
+
+const likelihoodColor = computed(() => {
+    switch (selectedRiskRatingLikelihood.value) {
+        case 'Almost Certain': return 'bg-red-500 text-white'; // High probability
+        case 'Likely': return 'bg-yellow-600 text-white'; // Likely to happen
+        case 'Possible': return 'bg-yellow-400 text-black'; // Possible occurrence
+        case 'Unlikely': return 'bg-yellow-200 text-black'; // Unlikely to happen
+        case 'Rare': return 'bg-green-500 text-white'; // Rare occurrence
+        default: return 'bg-white text-gray-400'; // Default color
+    }
+});
+const likelihoodColor2 = computed(() => {
+    switch (selectedRevisedRiskRatingLikelihood.value) {
+        case 'Almost Certain': return 'bg-red-500 text-white'; // High probability
+        case 'Likely': return 'bg-yellow-600 text-white'; // Likely to happen
+        case 'Possible': return 'bg-yellow-400 text-black'; // Possible occurrence
+        case 'Unlikely': return 'bg-yellow-200 text-black'; // Unlikely to happen
+        case 'Rare': return 'bg-green-500 text-white'; // Rare occurrence
+        default: return 'bg-white text-gray-400'; // Default color
+    }
+});
+const isDropdownVisible = ref(false);
+const ishazards = ref(false);
+const isexisting_control_measures = ref(false);
+const ispersons_responsible = ref(false);
+const isadditionals_control_measures = ref(false);
+
+const showDropdown = () => {
+  isDropdownVisible.value = true;
+};
+
+const showishazards = () => {
+  console.log("showishazards")
+  ishazards.value = true;
+};
+
+const showisexisting_control_measures = () => {
+  isexisting_control_measures.value = true;
+};
+
+const showispersons_responsible = () => {
+  ispersons_responsible.value = true;
+};
+
+const showadditionals_control_measures = () => {
+  isadditionals_control_measures.value = true;
+};
+
+
+const selectItem = (value: string) => {
+  formData.activity = value;
+  isDropdownVisible.value = false;
+};
+
+const selectishazards = (value: string) => {
+  formData.hazard = value;
+  ishazards.value = false;
+};
+
+const selectisexisting_control_measures = (value: string) => {
+  formData.existing_control_measures = value;
+  isexisting_control_measures.value = false;
+};
+
+const selectispersons_responsible = (value: string) => {
+  formData.person_responsible = value;
+  ispersons_responsible.value = false;
+};
+
+const selectadditionals_control_measures = (value: string) => {
+  formData.additional_control_measures = value;
+  isadditionals_control_measures.value = false;
+};
+
+const handleClickOutside = (event: Event) => {
+  const dropdown = document.getElementById("activityid");
+  const hazardid = document.getElementById("hazardid");
+  const isexistingmeasuresid = document.getElementById("isexistingmeasuresid");
+  const responsibleid = document.getElementById("responsibleid");
+  const additionalid = document.getElementById("additionalid");
+  if (dropdown && !dropdown.contains(event.target as Node)) {
+    isDropdownVisible.value = false;
+  }
+  if (hazardid && !hazardid.contains(event.target as Node)) {
+    ishazards.value = false;
+  }
+  if (isexistingmeasuresid && !isexistingmeasuresid.contains(event.target as Node)) {
+    isexisting_control_measures.value = false;
+  }
+  if (responsibleid && !responsibleid.contains(event.target as Node)) {
+    ispersons_responsible.value = false;
+  }
+  if (additionalid && !additionalid.contains(event.target as Node)) {
+    isadditionals_control_measures.value = false;
+  }
+
+};
+onMounted(() => {
+  document.addEventListener("click", handleClickOutside);
+});
+
+onUnmounted(() => {
+  document.removeEventListener("click", handleClickOutside);
+});
 </script>
 
 <template>
@@ -452,7 +643,8 @@ function SuccessPopUp(){
                 </div>
             </div>
         </div>
-        <div class="insert-list-head py-4">
+        <div class=" overflow-x-auto">
+          <div class="insert-list-head py-4 w-full">
             <div class="flex items-center text-xs uppercase font-semibold bg-theme-1 text-white border shadow-sm">
                <div class="head flex items-center justify-center w-1/11 h-24 p-2 border">S/No.</div>
                <div class="head flex items-center justify-center text-center w-1/11 h-24 p-2 border-r border-b border-t">ACTIVITY</div>
@@ -483,35 +675,56 @@ function SuccessPopUp(){
                </div>
                <div class="head flex items-center justify-center text-center w-1/11 h-24 p-2 border-r border-b border-t"> PERSON RESPONSIBLE</div>
                <div class="head flex items-center justify-center text-center w-1/11 h-24 p-2 border-r border-b border-t">COMPLETION DATE</div>
+               <div class="head flex items-center justify-center text-center w-1/11 h-24 p-2 border-r border-b border-t">Action</div>
             </div>
         </div>
-        <div class="insert-list-body">
+        <div class="insert-list-body w-full">
           <div  class="flex items-center text-xs my-4 shadow-sm bg-white rounded-sm">
                <div class="head flex items-center justify-center w-1/11 h-14 p-2 border border-gray-100">
                 <Button variant="primary" class="mr-2 shadow-md uppercase rounded-none" @click="submitForm()">
                     Add
                 </Button>
                </div>
-               <div class="head flex items-center justify-center text-center w-1/11 h-14 p-2 border-r border-b border-t border-gray-100">
-                <select id="crud-form-6" style="padding-right: 24px !important;" v-model="selectedActivity"   class="border text-gray-400 py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-xs border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-1 focus:ring-primary focus:ring-opacity-100 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 ">
-                    <option value="" disabled>Activity</option>
-                    <option v-for="(data, index) in state.ActivityData" :key="index" :value="data.name">{{ data.name }}</option>
-              </select>
-               </div>
-               <div class="head flex items-center justify-center text-center w-1/11 h-14 p-2 border-r border-b border-t border-gray-100">
-                  <div class="flex-1 w-full mt-3 xl:mt-0">
-                      <FormInput id="crud-form-1" v-model.trim="validate.hazard.$model" class="w-full py-3 text-xs" type="text" name="name":class="{ 'border-danger': validate.hazard.$error,}" placeholder="Hazard" />
+               <div class="head flex items-center justify-center text-center w-1/11 h-14 p-2 border-r border-b border-t border-gray-100 relative">
+                  <FormInput  id="crud-form-1"  @focus="showDropdown" @input="showDropdown" v-model.trim="validate.activity.$model" class="w-full py-3 text-xs" type="text" name="name":class="{ 'border-danger': validate.activity.$error,}" placeholder="activity" />
+                  <div id="activityid" v-if="isDropdownVisible" class="absolute top-14 left-0 w-full h-16 bg-white shadow-md rounded-md overflow-y-auto">
+                      <ul>
+                        <li v-for="(item, index) in state.drpactivities" :key="index" @click="selectItem(item)" class="px-2 py-1 cursor-pointer hover:bg-gray-100" >
+                          {{ item }}
+                        </li>
+                      </ul>
                   </div>
                </div>
-               <div class="head flex items-center justify-center text-center w-1/11 h-14 p-2 border-r border-b border-t border-gray-100">
+               
+               <div class="head flex items-center justify-center text-center w-1/11 h-14 p-2 border-r border-b border-t border-gray-100 relative">
+                  <div class="flex-1 w-full mt-3 xl:mt-0">
+                      <FormInput @focus="showishazards" @input="showishazards" id="crud-form-1" v-model.trim="validate.hazard.$model" class="w-full py-3 text-xs" type="text" name="name":class="{ 'border-danger': validate.hazard.$error,}" placeholder="Hazard" />
+                      <div id="hazardid" v-if="ishazards" class="absolute top-14 left-0 w-full h-16 bg-white shadow-md rounded-md overflow-y-auto">
+                          <ul>
+                            <li v-for="(item, index) in state.drphazards" :key="index" @click="selectishazards(item)" class="px-2 py-1 cursor-pointer hover:bg-gray-100" >
+                              {{ item }}
+                            </li>
+                          </ul>
+                      </div>
+                  </div>
+               </div>
+               
+               <div class="head flex items-center justify-center text-center w-1/11 h-14 p-2 border-r border-b border-t border-gray-100 relative">
                 <div class="flex-1 w-full mt-3 xl:mt-0">
-                      <FormInput id="crud-form-1" v-model.trim="validate.existing_control_measures.$model" class="w-full text-xs" type="text" name="name":class="{ 'border-danger': validate.existing_control_measures.$error,}" placeholder="Hazard" />
+                      <FormInput @focus="showisexisting_control_measures" @input="showisexisting_control_measures" id="crud-form-1" v-model.trim="validate.existing_control_measures.$model" class="w-full text-xs" type="text" name="name":class="{ 'border-danger': validate.existing_control_measures.$error,}" placeholder="Existing" />
+                      <div id="isexistingmeasuresid" v-if="isexisting_control_measures" class="absolute top-14 left-0 w-full h-16 bg-white shadow-md rounded-md overflow-y-auto">
+                          <ul>
+                            <li v-for="(item, index) in state.drpexisting_control_measures" :key="index" @click="selectisexisting_control_measures(item)" class="px-2 py-1 cursor-pointer hover:bg-gray-100" >
+                              {{ item }}
+                            </li>
+                          </ul>
+                      </div>
                   </div>
                </div>
                <div class="head text-center w-2/11 h-14">
                 <div class="flex w-full ">
                   <div class="h-14 w-1/3 p-1 flex items-center justify-center border-r border-b border-t border-gray-100">
-                    <select id="crud-form-6" style="padding-right: 24px !important;" v-model="selectedRiskRatingLikelihood"  class="border text-gray-400 py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-xs border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-1 focus:ring-primary focus:ring-opacity-100 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 ">
+                    <select id="crud-form-6" style="padding-right: 24px !important;" v-model="selectedRiskRatingLikelihood" :class="likelihoodColor"  class="border text-gray-400 py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-xs border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-1 focus:ring-primary focus:ring-opacity-100 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 ">
                           <option value="" disabled>select</option>
                           <option value="Almost Certain">Almost Certain</option>
                           <option value="Likely">Likely</option>
@@ -521,7 +734,7 @@ function SuccessPopUp(){
                     </select>
                   </div>
                   <div class="h-14 w-1/3 p-1 flex items-center justify-center border-r border-b border-t border-gray-100">
-                    <select id="crud-form-6" style="padding-right: 24px !important;" v-model="selectedRiskRatingSeverity"  class="border text-gray-400 py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-xs border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-1 focus:ring-primary focus:ring-opacity-100 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 ">
+                    <select id="crud-form-6" style="padding-right: 24px !important;" v-model="selectedRiskRatingSeverity" :class="severityColor"  class="border text-gray-400 py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-xs border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-1 focus:ring-primary focus:ring-opacity-100 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 ">
                           <option value="" disabled>select</option>
                           <option value="Severe">Severe</option>
                           <option value="Major">Major</option>
@@ -531,7 +744,7 @@ function SuccessPopUp(){
                     </select>
                   </div>
                   <div class="h-14 w-1/3 p-1 flex items-center justify-center border-r border-b border-t border-gray-100">
-                    <select id="crud-form-6" style="padding-right: 24px !important;" v-model="selectedRiskRatingOverall"  class="border text-gray-400 py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-xs border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-1 focus:ring-primary focus:ring-opacity-100 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 ">
+                    <select id="crud-form-6" style="padding-right: 24px !important;" v-model="selectedRiskRatingOverall" :class="riskbgcolor" class="border text-gray-400 py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-xs border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-1 focus:ring-primary focus:ring-opacity-100 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 ">
                           <option value="" disabled>select</option>
                           <option value="Critical">Critical</option>
                           <option value="High">High</option>
@@ -542,15 +755,23 @@ function SuccessPopUp(){
                 </div>
 
                </div>
-               <div class="head flex items-center justify-center text-center w-1/11 h-14 p-2 border-r border-b border-t border-gray-100">
+               
+               <div class="head flex items-center justify-center text-center w-1/11 h-14 p-2 border-r border-b border-t border-gray-100 relative">
                 <div class="flex-1 w-full mt-3 xl:mt-0">
-                      <FormInput id="crud-form-1" v-model.trim="validate.additional_control_measures.$model" class="w-full text-xs" type="text" name="name":class="{ 'border-danger': validate.additional_control_measures.$error,}" placeholder="Hazard" />
-                  </div>
+                      <FormInput @focus="showadditionals_control_measures" @input="showadditionals_control_measures" id="crud-form-1" v-model.trim="validate.additional_control_measures.$model" class="w-full text-xs" type="text" name="name":class="{ 'border-danger': validate.additional_control_measures.$error,}" placeholder="Additional" />
+                      <div id="additionalid" v-if="isadditionals_control_measures" class="absolute top-14 left-0 w-full h-16 bg-white shadow-md rounded-md overflow-y-auto">
+                          <ul>
+                            <li v-for="(item, index) in state.drpadditionals_control_measures" :key="index" @click="selectadditionals_control_measures(item)" class="px-2 py-1 cursor-pointer hover:bg-gray-100" >
+                              {{ item }}
+                            </li>
+                          </ul>
+                      </div>
+                    </div>
                </div>
                <div class="head text-center w-2/11 h-14">
                 <div class="flex w-full ">
                   <div class="h-14 w-1/3 p-1 flex items-center justify-center border-r border-b border-t border-gray-100">
-                    <select id="crud-form-6" style="padding-right: 24px !important;" v-model="selectedRevisedRiskRatingLikelihood"  class="border text-gray-400 py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-xs border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-1 focus:ring-primary focus:ring-opacity-100 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 ">
+                    <select id="crud-form-6" style="padding-right: 24px !important;" v-model="selectedRevisedRiskRatingLikelihood" :class="likelihoodColor2"  class="border text-gray-400 py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-xs border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-1 focus:ring-primary focus:ring-opacity-100 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 ">
                           <option value="" disabled>select</option>
                           <option value="Almost Certain">Almost Certain</option>  
                           <option value="Likely">Likely</option>  
@@ -560,7 +781,7 @@ function SuccessPopUp(){
                     </select>
                   </div>
                   <div class="h-14 w-1/3 p-1 flex items-center justify-center border-r border-b border-t border-gray-100">
-                    <select id="crud-form-6" style="padding-right: 24px !important;" v-model="selectedRevisedRiskRatingSeverity"  class="border text-gray-400 py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-xs border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-1 focus:ring-primary focus:ring-opacity-100 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 ">
+                    <select id="crud-form-6" style="padding-right: 24px !important;" v-model="selectedRevisedRiskRatingSeverity" :class="severityColor2"  class="border text-gray-400 py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-xs border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-1 focus:ring-primary focus:ring-opacity-100 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 ">
                           <option value="" disabled>select</option>
                           <option value="Severe">Severe</option>
                           <option value="Major">Major</option>
@@ -570,7 +791,7 @@ function SuccessPopUp(){
                     </select>
                   </div>
                   <div class="h-14 w-1/3 p-1 flex items-center justify-center border-r border-b border-t border-gray-100">
-                    <select id="crud-form-6" style="padding-right: 24px !important;" v-model="selectedRevisedRiskRatingOverall"  class="border text-gray-400 py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-xs border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-1 focus:ring-primary focus:ring-opacity-100 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 ">
+                    <select id="crud-form-6" style="padding-right: 24px !important;" v-model="selectedRevisedRiskRatingOverall" :class="bgColor"  class="border border-slate-200 text-gray-400 py-3 rounded-md w-full text-xs  ">
                           <option value="" disabled>select</option>
                           <option value="Critical">Critical</option>
                           <option value="High">High</option>
@@ -581,15 +802,27 @@ function SuccessPopUp(){
                 </div>
 
                </div>
-               <div class="head flex items-center justify-center text-center w-1/11 h-14 p-2 border-r border-b border-t border-gray-100"> 
+               <div class="head flex items-center justify-center text-center w-1/11 h-14 p-2 border-r border-b border-t border-gray-100 relative"> 
                   <div class="flex-1 w-full mt-3 xl:mt-0">
-                        <FormInput id="crud-form-1" v-model.trim="validate.person_responsible.$model" class="w-full text-xs" type="text" name="name":class="{ 'border-danger': validate.person_responsible.$error,}" placeholder="Hazard" />
-                    </div>
+                        <FormInput @focus="showispersons_responsible" @input="showispersons_responsible" id="crud-form-1" v-model.trim="validate.person_responsible.$model" class="w-full text-xs" type="text" name="name":class="{ 'border-danger': validate.person_responsible.$error,}" placeholder="Employee" />
+                        <div id="responsibleid" v-if="ispersons_responsible" class="absolute top-14 left-0 w-full h-16 bg-white shadow-md rounded-md overflow-y-auto">
+                          <ul>
+                            <li v-for="(item, index) in state.drppersons_responsible" :key="index" @click="selectispersons_responsible(item)" class="px-2 py-1 cursor-pointer hover:bg-gray-100" >
+                              {{ item }}
+                            </li>
+                          </ul>
+                      </div>
+                      </div>
                </div>
                <div class="head flex items-center justify-center text-center w-1/11 h-14 p-2 border-r border-b border-t border-gray-100">
                 <div class="flex-1 w-full mt-3 xl:mt-0">
                         <FormInput id="crud-form-1" v-model.trim="validate.completion_date.$model" class="w-full text-xs" type="date" name="name":class="{ 'border-danger': validate.person_responsible.$error,}" placeholder="Hazard" />
                     </div>
+               </div>
+               <div class="head flex items-center justify-center text-center w-1/11 h-14 p-2 border-r border-b border-t border-gray-100">
+                <div class="flex-1 w-full mt-3 xl:mt-0">
+                  Action
+                </div>
                </div>
             </div>
           <div v-for="(data, index) in state.viewData" :key="index" class="flex items-center text-xs my-4 shadow-sm bg-white rounded-sm">
@@ -616,8 +849,17 @@ function SuccessPopUp(){
                </div>
                <div class="head flex items-center justify-center text-center w-1/11 h-16 p-2 border-r border-b border-t border-gray-100"> {{data.person_responsible}}</div>
                <div class="head flex items-center justify-center text-center w-1/11 h-16 p-2 border-r border-b border-t border-gray-100">{{data.completion_date}}</div>
+               <div class="head flex items-center justify-center text-center w-1/11 h-16 p-2 border-r border-b border-t border-gray-100">
+                <a
+                  class="flex items-center text-danger"
+                  href="javascript:;"
+                  @click="deleteData(data.id)">
+                  <Lucide icon="Trash2" class="w-4 h-4 mr-1" /> Delete
+                </a>
+               </div>
             </div>
           
+        </div>
         </div>
       
 
