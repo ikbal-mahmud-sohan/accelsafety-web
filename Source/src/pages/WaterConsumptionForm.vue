@@ -267,13 +267,19 @@ onMounted(() => {
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
                             <div class="flex items-center">
-                              <div class="font-medium text-nowrap">Unit Name</div>
-                              
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Unit Name is the location where water is consumed
+                              <div class="font-medium text-sm text-nowrap flex">Unit Name
+                                <span class="relative group cursor-pointer ml-1">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                  </svg>
+                                    <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                      Unit Name is the location where water is consumed
+                                    </div>
+                                </span>
+                              </div>
                             </div>
                           </div>
+
                         </FormLabel>
                         <div class="flex-1 w-full mt-3 xl:mt-0">
                           <FormInput id="crud-form-12" v-model.trim="validate.unit_name.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.unit_name.$error,}" placeholder="Input Unit Name"/>  
@@ -283,7 +289,7 @@ onMounted(() => {
                               {{ error.$message }}
                             </div>
                           </template>
-                            <p class="text-right mt-2 w-full"> Required</p>
+                            
                           </div>
                         </div>
                       </FormInline>
@@ -296,11 +302,16 @@ onMounted(() => {
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
                             <div class="flex items-center">
-                              <div class="font-medium">Date</div>
-                              
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Date is the day of water consumption record
+                              <div class="font-medium text-sm text-nowrap flex">Date
+                                <span class="relative group cursor-pointer ml-1">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                  </svg>
+                                    <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                      Date is the day of water consumption record
+                                    </div>
+                                </span>
+                              </div>
                             </div>
                           </div>
                         </FormLabel>
@@ -309,7 +320,7 @@ onMounted(() => {
                             <Preview.Panel>
                                 <div class="relative w-full mx-auto">
                                   <div
-                                    class="absolute flex items-center justify-center w-10 h-full border rounded-l bg-slate-100 text-slate-500 dark:bg-darkmode-700 dark:border-darkmode-800 dark:text-slate-400">
+                                    class="absolute flex items-center justify-center w-10 h-full border rounded-l bg-slate-100 text-slate-500 dark:bg-darkmode-700 dark:border-darkmode-800 dark:text-slate-400 z-10">
                                     <Lucide icon="Calendar" class="w-4 h-4" />
                                   </div>
                                   <Litepicker
@@ -362,7 +373,7 @@ onMounted(() => {
                               {{ error.$message }}
                             </div>
                           </template>
-                            <p class="text-right mt-2 w-full"> Required</p>
+                            
                           </div>
                         </div>
                       </FormInline>
@@ -374,11 +385,16 @@ onMounted(() => {
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
                             <div class="flex items-center">
-                              <div class="font-medium text-nowrap">Employee Name</div>
-                              
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Employee Name is the person responsible for water consumption tracking.
+                              <div class="font-medium text-sm text-nowrap flex">Employee Name
+                                <span class="relative group cursor-pointer ml-1">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                  </svg>
+                                    <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md z-50">
+                                      Employee Name is the person responsible for water consumption tracking.
+                                    </div>
+                                </span>
+                              </div>
                             </div>
                           </div>
                         </FormLabel>
@@ -393,7 +409,7 @@ onMounted(() => {
                               {{ error.$message }}
                             </div>
                           </template>
-                            <p class="text-right mt-2 w-full"> Required</p>
+                            
                           </div>
                         </div>
                       </FormInline>
@@ -405,11 +421,16 @@ onMounted(() => {
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
                             <div class="flex items-center">
-                              <div class="font-medium text-nowrap">Designation</div>
-                              
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Designation is the job title of the employee responsible for water consumption
+                              <div class="font-medium text-sm text-nowrap flex">Designation
+                                <span class="relative group cursor-pointer ml-1">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                  </svg>
+                                    <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                      Designation is the job title of the employee responsible for water consumption
+                                    </div>
+                                </span>
+                              </div>
                             </div>
                           </div>
                         </FormLabel>
@@ -421,7 +442,7 @@ onMounted(() => {
                               {{ error.$message }}
                             </div>
                           </template>
-                            <p class="text-right mt-2 w-full"> Required</p>
+                            
                           </div>
                         </div>
                       </FormInline>
@@ -442,12 +463,19 @@ onMounted(() => {
                     <div class="px-4 py-2">
                       <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
+                         
                           <div class="text-left">
                             <div class="flex items-center">
-                              <div class="font-medium text-nowrap">Ground Water</div>
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Ground Water is the water sourced from underground reservoirs
+                              <div class="font-medium text-sm text-nowrap flex">Ground Water
+                                <span class="relative group cursor-pointer ml-1">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                  </svg>
+                                    <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                      Ground Water is the water sourced from underground reservoirs
+                                    </div>
+                                </span>
+                              </div>
                             </div>
                           </div>
                         </FormLabel>
@@ -459,7 +487,7 @@ onMounted(() => {
                               {{ error.$message }}
                             </div>
                           </template>
-                            <p class="text-right mt-2 w-full"> Required</p>
+                            
                           </div>
                         </div>
                       </FormInline>
@@ -471,10 +499,16 @@ onMounted(() => {
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
                             <div class="flex items-center">
-                              <div class="font-medium text-nowrap">Ground Water Unit</div>
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Ground Water Unit is the measurement unit for groundwater consumption
+                              <div class="font-medium text-sm text-nowrap flex">Ground Water Unit
+                                <span class="relative group cursor-pointer ml-1">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                  </svg>
+                                    <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                      Ground Water Unit is the measurement unit for groundwater consumption
+                                    </div>
+                                </span>
+                              </div>
                             </div>
                           </div>
                         </FormLabel>
@@ -490,10 +524,16 @@ onMounted(() => {
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
                             <div class="flex items-center">
-                              <div class="font-medium text-nowrap">Last Flow Meter Reading</div>
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Last Flow Meter Reading is the most recent measurement of water flow
+                              <div class="font-medium text-sm text-nowrap flex">Last Flow Meter
+                                <span class="relative group cursor-pointer ml-1">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                  </svg>
+                                    <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                      Last Flow Meter Reading is the most recent measurement of water flow
+                                    </div>
+                                </span>
+                              </div>
                             </div>
                           </div>
                         </FormLabel>
@@ -516,10 +556,16 @@ onMounted(() => {
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
                             <div class="flex items-center">
-                              <div class="font-medium text-nowrap">Current Flow Meter Reading</div>
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Current Flow Meter Reading is the latest measurement of water flow at the moment.
+                              <div class="font-medium text-sm text-nowrap flex">Current Flow Meter
+                                <span class="relative group cursor-pointer ml-1">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                  </svg>
+                                    <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                      Current Flow Meter Reading is the latest measurement of water flow at the moment.
+                                    </div>
+                                </span>
+                              </div>
                             </div>
                           </div>
                         </FormLabel>
@@ -546,10 +592,16 @@ onMounted(() => {
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
                             <div class="flex items-center">
-                              <div class="font-medium text-nowrap">Rain Water</div>
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Rain Water is water collected from precipitation for use in operations
+                              <div class="font-medium text-sm text-nowrap flex">Rain Water
+                                <span class="relative group cursor-pointer ml-1">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                  </svg>
+                                    <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                      Rain Water is water collected from precipitation for use in operations
+                                    </div>
+                                </span>
+                              </div>
                             </div>
                           </div>
                         </FormLabel>
@@ -561,7 +613,7 @@ onMounted(() => {
                               {{ error.$message }}
                             </div>
                           </template>
-                            <p class="text-right mt-2 w-full"> Required</p>
+                            
                           </div>
                         </div>
                       </FormInline>
@@ -573,10 +625,16 @@ onMounted(() => {
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
                             <div class="flex items-center">
-                              <div class="font-medium text-nowrap">Rain Water Unit</div>
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Rain Water Unit is the measurement unit for rainwater collected or used
+                              <div class="font-medium text-sm text-nowrap flex">Rain Water Unit
+                                <span class="relative group cursor-pointer ml-1">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                  </svg>
+                                    <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                      Rain Water Unit is the measurement unit for rainwater collected or used
+                                    </div>
+                                </span>
+                              </div>
                             </div>
                           </div>
                         </FormLabel>
@@ -592,10 +650,16 @@ onMounted(() => {
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
                             <div class="flex items-center">
-                              <div class="font-medium text-nowrap">Last Flow Meter Reading</div>
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Last Flow Meter Reading is the previous recorded value of water flow.
+                              <div class="font-medium text-sm text-nowrap flex">Last Flow Meter
+                                <span class="relative group cursor-pointer ml-1">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                  </svg>
+                                    <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                      Last Flow Meter Reading is the previous recorded value of water flow.
+                                    </div>
+                                </span>
+                              </div>
                             </div>
                           </div>
                         </FormLabel>
@@ -621,10 +685,16 @@ onMounted(() => {
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
                             <div class="flex items-center">
-                              <div class="font-medium text-nowrap">Current Flow Meter Reading</div>
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Current Flow Meter Reading is the most recent value of water flow recorded
+                              <div class="font-medium text-sm text-nowrap flex">Current Flow Meter
+                                <span class="relative group cursor-pointer ml-1">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                  </svg>
+                                    <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                      Current Flow Meter Reading is the most recent value of water flow recorded
+                                    </div>
+                                </span>
+                              </div>
                             </div>
                           </div>
                         </FormLabel>
@@ -656,11 +726,16 @@ onMounted(() => {
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
                             <div class="flex items-center">
-                              <div class="font-medium text-nowrap">Domestic Water Consumption</div>
-                              
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              The total amount of water used for domestic purposes.
+                              <div class="font-medium text-sm text-nowrap flex">Domestic Water Consumption
+                                <span class="relative group cursor-pointer ml-1">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                  </svg>
+                                    <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                      The total amount of water used for domestic purposes.
+                                    </div>
+                                </span>
+                              </div>
                             </div>
                           </div>
                         </FormLabel>
@@ -672,7 +747,7 @@ onMounted(() => {
                               {{ error.$message }}
                             </div>
                           </template>
-                            <p class="text-right mt-2 w-full"> Required</p>
+                            
                           </div>
                         </div>
                       </FormInline>
@@ -684,10 +759,16 @@ onMounted(() => {
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
                             <div class="flex items-center">
-                              <div class="font-medium text-nowrap">Domestic Water Unit</div>
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              The measurement unit for domestic water consumption.
+                              <div class="font-medium text-sm text-nowrap flex">Domestic Water Unit
+                                <span class="relative group cursor-pointer ml-1">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                  </svg>
+                                    <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                      The measurement unit for domestic water consumption.
+                                    </div>
+                                </span>
+                              </div>
                             </div>
                           </div>
                         </FormLabel>
@@ -703,10 +784,16 @@ onMounted(() => {
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
                             <div class="flex items-center">
-                              <div class="font-medium text-nowrap">Last Flow Meter Reading</div>
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              The previous recorded value of the water flow.
+                              <div class="font-medium text-sm text-nowrap flex">Last Flow Meter
+                                <span class="relative group cursor-pointer ml-1">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                  </svg>
+                                    <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                      The previous recorded value of the water flow.
+                                    </div>
+                                </span>
+                              </div>
                             </div>
                           </div>
                         </FormLabel>
@@ -729,10 +816,16 @@ onMounted(() => {
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
                             <div class="flex items-center">
-                              <div class="font-medium text-nowrap">Current Flow Meter Reading</div>
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              The most recent recorded value of water flow.
+                              <div class="font-medium text-sm text-nowrap flex">Current Flow Meter
+                                <span class="relative group cursor-pointer ml-1">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                  </svg>
+                                    <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                      The most recent recorded value of water flow.
+                                    </div>
+                                </span>
+                              </div>
                             </div>
                           </div>
                         </FormLabel>
@@ -759,11 +852,16 @@ onMounted(() => {
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
                             <div class="flex items-center">
-                              <div class="font-medium text-nowrap">Process Water Consumption</div>
-                              
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              The total amount of water used in the industrial or operational processes
+                              <div class="font-medium text-sm text-nowrap flex">Process Water Consumption
+                                <span class="relative group cursor-pointer ml-1">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                  </svg>
+                                    <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                      The total amount of water used in the industrial or operational processes
+                                    </div>
+                                </span>
+                              </div>
                             </div>
                           </div>
                         </FormLabel>
@@ -775,7 +873,7 @@ onMounted(() => {
                               {{ error.$message }}
                             </div>
                           </template>
-                            <p class="text-right mt-2 w-full"> Required</p>
+                            
                           </div>
                         </div>
                       </FormInline>
@@ -788,10 +886,16 @@ onMounted(() => {
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
                             <div class="flex items-center">
-                              <div class="font-medium text-nowrap">Process Water Unit</div>
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              The measurement unit for process water consumption.
+                              <div class="font-medium text-sm text-nowrap flex">Process Water Unit
+                                <span class="relative group cursor-pointer ml-1">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                  </svg>
+                                    <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                      The measurement unit for process water consumption.
+                                    </div>
+                                </span>
+                              </div>
                             </div>
                           </div>
                         </FormLabel>
@@ -807,10 +911,16 @@ onMounted(() => {
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
                             <div class="flex items-center">
-                              <div class="font-medium text-nowrap">Last Flow Meter Reading</div>
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              The previous recorded value of water flow for the process.
+                              <div class="font-medium text-sm text-nowrap flex">Last Flow Meter Reading
+                                <span class="relative group cursor-pointer ml-1">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                  </svg>
+                                    <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                      The previous recorded value of water flow for the process.
+                                    </div>
+                                </span>
+                              </div>
                             </div>
                           </div>
                         </FormLabel>
@@ -836,10 +946,16 @@ onMounted(() => {
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
                             <div class="flex items-center">
-                              <div class="font-medium text-nowrap">Current Flow Meter Reading</div>
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              The most recent recorded value of water flow for the process.
+                              <div class="font-medium text-sm text-nowrap flex">Current Flow Meter
+                                <span class="relative group cursor-pointer ml-1">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                  </svg>
+                                    <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                      The most recent recorded value of water flow for the process.
+                                    </div>
+                                </span>
+                              </div>
                             </div>
                           </div>
                         </FormLabel>
@@ -874,11 +990,16 @@ onMounted(() => {
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
                             <div class="flex items-center">
-                              <div class="font-medium text-nowrap">ETP Inlet Water</div>
-                              
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              ETP Inlet Water is the water entering the Effluent Treatment Plant (ETP) for treatment.
+                              <div class="font-medium text-sm text-nowrap flex">ETP Inlet Water
+                                <span class="relative group cursor-pointer ml-1">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                  </svg>
+                                    <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                      ETP Inlet Water is the water entering the Effluent Treatment Plant (ETP) for treatment.
+                                    </div>
+                                </span>
+                              </div>
                             </div>
                           </div>
                         </FormLabel>
@@ -890,7 +1011,7 @@ onMounted(() => {
                               {{ error.$message }}
                             </div>
                           </template>
-                            <p class="text-right mt-2 w-full"> Required</p>
+                            
                           </div>
                         </div>
                       </FormInline>
@@ -903,10 +1024,16 @@ onMounted(() => {
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
                             <div class="flex items-center">
-                              <div class="font-medium text-nowrap">Etp Inlet Water Unit</div>
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              ETP Inlet Water Unit is the measurement unit for water entering the Effluent Treatment Plant
+                              <div class="font-medium text-sm text-nowrap flex">Etp Inlet Water
+                                <span class="relative group cursor-pointer ml-1">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                  </svg>
+                                    <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                      ETP Inlet Water Unit is the measurement unit for water entering the Effluent Treatment Plant
+                                    </div>
+                                </span>
+                              </div>
                             </div>
                           </div>
                         </FormLabel>
@@ -920,12 +1047,19 @@ onMounted(() => {
                     <div class="px-4 py-2">
                       <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
+                          
                           <div class="text-left">
                             <div class="flex items-center">
-                              <div class="font-medium text-nowrap">Last Flow Meter Reading</div>
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Last Flow Meter Reading is the previous recorded value of water flow at the ETP inlet
+                              <div class="font-medium text-sm text-nowrap flex">Last Flow Meter
+                                <span class="relative group cursor-pointer ml-1">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                  </svg>
+                                    <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                      Last Flow Meter Reading is the previous recorded value of water flow at the ETP inlet
+                                    </div>
+                                </span>
+                              </div>
                             </div>
                           </div>
                         </FormLabel>
@@ -952,10 +1086,16 @@ onMounted(() => {
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
                             <div class="flex items-center">
-                              <div class="font-medium text-nowrap">Current Flow Meter Reading</div>
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Current Flow Meter Reading is the latest water flow value at the ETP inlet.
+                              <div class="font-medium text-sm text-nowrap flex">Current Flow Meter
+                                <span class="relative group cursor-pointer ml-1">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                  </svg>
+                                    <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                      Current Flow Meter Reading is the latest water flow value at the ETP inlet.
+                                    </div>
+                                </span>
+                              </div>
                             </div>
                           </div>
                         </FormLabel>
@@ -985,11 +1125,16 @@ onMounted(() => {
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
                             <div class="flex items-center">
-                              <div class="font-medium text-nowrap">ETP Outlet Water</div>
-                              
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              ETP Outlet Water is treated water discharged from the plant.
+                              <div class="font-medium text-sm text-nowrap flex">ETP Outlet Wate
+                                <span class="relative group cursor-pointer ml-1">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                  </svg>
+                                    <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                      ETP Outlet Water is treated water discharged from the plant.
+                                    </div>
+                                </span>
+                              </div>
                             </div>
                           </div>
                         </FormLabel>
@@ -1001,7 +1146,7 @@ onMounted(() => {
                               {{ error.$message }}
                             </div>
                           </template>
-                            <p class="text-right mt-2 w-full"> Required</p>
+                            
                           </div>
                         </div>
                       </FormInline>
@@ -1014,10 +1159,16 @@ onMounted(() => {
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
                             <div class="flex items-center">
-                              <div class="font-medium text-nowrap">Etp Outlet Water Unit</div>
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              ETP Outlet Water Unit is the measurement unit for treated water.
+                              <div class="font-medium text-sm text-nowrap flex">Etp Outlet Water
+                                <span class="relative group cursor-pointer ml-1">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                  </svg>
+                                    <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                      ETP Outlet Water Unit is the measurement unit for treated water.
+                                    </div>
+                                </span>
+                              </div>
                             </div>
                           </div>
                         </FormLabel>
@@ -1033,10 +1184,16 @@ onMounted(() => {
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
                             <div class="flex items-center">
-                              <div class="font-medium text-nowrap">Last Flow Meter Reading</div>
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Last Flow Meter Reading is the previous water flow value
+                              <div class="font-medium text-sm text-nowrap flex">Last Flow Meter
+                                <span class="relative group cursor-pointer ml-1">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                  </svg>
+                                    <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                      Last Flow Meter Reading is the previous water flow value
+                                    </div>
+                                </span>
+                              </div>
                             </div>
                           </div>
                         </FormLabel>
@@ -1062,10 +1219,16 @@ onMounted(() => {
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
                             <div class="flex items-center">
-                              <div class="font-medium text-nowrap">Current Flow Meter Reading</div>
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Current Flow Meter Reading is the latest water flow value
+                              <div class="font-medium text-sm text-nowrap flex">Current Flow Meter
+                                <span class="relative group cursor-pointer ml-1">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                  </svg>
+                                    <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                      Current Flow Meter Reading is the latest water flow value
+                                    </div>
+                                </span>
+                              </div>
                             </div>
                           </div>
                         </FormLabel>
