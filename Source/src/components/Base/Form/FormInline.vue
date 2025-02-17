@@ -14,7 +14,7 @@ export type ProvideFormInline = boolean;
 const attrs = useAttrs();
 const computedClass = computed(() =>
   twMerge([
-    "block sm:flex items-center",
+    "block sm:flex",
     typeof attrs.class === "string" && attrs.class,
   ])
 );
