@@ -15,7 +15,7 @@ import Preview from "@/components/Base/Preview";
 import { Menu, Popover } from "@/components/Base/Headless";
 import Alert from "@/components/Base/Alert";
 import { getToken } from './../auth/setToken'
-
+import TooltipIcon from "@/components/Custom/TooltipIcon.vue"; // Import the component
 
 
 // Define your state using the reactive function
@@ -289,17 +289,23 @@ onMounted(() => {
             <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" />Employee
           </div>
           <div class="mt-5">
-            <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+            <FormInline class="flex flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
               <FormLabel class="xl:w-64 xl:!mr-10">
                 <div class="text-left">
-                  <div class="flex items-center">
-                    <div class="font-medium">ID</div>
-                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                  <div class="flex items-center pr-4">
+                    <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">ID
+                      <span class="relative group cursor-pointer ml-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                        </svg>
+                        <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                          Unique employee identification number
+                        </div>
+                      </span>
+                    </div>
+                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md mt-6 xl:mt-3.5">
                       Required
                     </div>
-                  </div>
-                  <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                    Unique employee identification number.
                   </div>
                 </div>
               </FormLabel>
@@ -315,17 +321,23 @@ onMounted(() => {
                 </div>
               </div>
             </FormInline>
-            <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+            <FormInline class="flex flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
               <FormLabel class="xl:w-64 xl:!mr-10">
                 <div class="text-left">
-                  <div class="flex items-center">
-                    <div class="font-medium">Email</div>
-                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                  <div class="flex items-center pr-4">
+                    <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Email
+                      <span class="relative group cursor-pointer ml-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                        </svg>
+                        <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                          Email of the employee
+                        </div>
+                      </span>
+                    </div>
+                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md mt-6 xl:mt-3.5">
                       Required
                     </div>
-                  </div>
-                  <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                    Email of the employee.
                   </div>
                 </div>
               </FormLabel>
@@ -341,17 +353,23 @@ onMounted(() => {
                 </div>
               </div>
             </FormInline>
-            <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+            <FormInline class="flex flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
               <FormLabel class="xl:w-64 xl:!mr-10">
                 <div class="text-left">
-                  <div class="flex items-center">
-                    <div class="font-medium">Name</div>
-                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                  <div class="flex items-center pr-4">
+                    <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Name
+                      <span class="relative group cursor-pointer ml-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                        </svg>
+                        <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                          Full name of the employee
+                        </div>
+                      </span>
+                    </div>
+                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md mt-6 xl:mt-3.5">
                       Required
                     </div>
-                  </div>
-                  <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                    Full name of the employee.
                   </div>
                 </div>
               </FormLabel>
@@ -367,17 +385,23 @@ onMounted(() => {
                 </div>
               </div>
             </FormInline>
-            <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+            <FormInline class="flex flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
               <FormLabel class="xl:w-64 xl:!mr-10">
                 <div class="text-left">
-                  <div class="flex items-center">
-                    <div class="font-medium">First Name</div>
-                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                  <div class="flex items-center pr-4">
+                    <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">First Name
+                      <span class="relative group cursor-pointer ml-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                        </svg>
+                        <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                          Employee's first name
+                        </div>
+                      </span>
+                    </div>
+                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md mt-6 xl:mt-3.5">
                       Required
                     </div>
-                  </div>
-                  <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                    Employee's first name.
                   </div>
                 </div>
               </FormLabel>
@@ -393,17 +417,23 @@ onMounted(() => {
                 </div>
               </div>
             </FormInline>
-            <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+            <FormInline class="flex flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
               <FormLabel class="xl:w-64 xl:!mr-10">
                 <div class="text-left">
-                  <div class="flex items-center">
-                    <div class="font-medium">Last Name</div>
-                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                  <div class="flex items-center pr-4">
+                    <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Last Name
+                      <span class="relative group cursor-pointer ml-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                        </svg>
+                        <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                          Employee's Last Name
+                        </div>
+                      </span>
+                    </div>
+                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md mt-6 xl:mt-3.5">
                       Required
                     </div>
-                  </div>
-                  <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                    Employee's Last Name.
                   </div>
                 </div>
               </FormLabel>
@@ -429,17 +459,23 @@ onMounted(() => {
             <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" />Unit
           </div>
           <div class="mt-5">
-            <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+            <FormInline class="flex flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
               <FormLabel class="xl:w-64 xl:!mr-10">
                 <div class="text-left">
-                  <div class="flex items-center">
-                    <div class="font-medium">Name</div>
-                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                  <div class="flex items-center pr-4">
+                    <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Name
+                      <span class="relative group cursor-pointer ml-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                        </svg>
+                        <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                          Name of the unit or division the employee belongs to
+                        </div>
+                      </span>
+                    </div>
+                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md mt-6 xl:mt-3.5">
                       Required
                     </div>
-                  </div>
-                  <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                    Name of the unit or division the employee belongs to.
                   </div>
                 </div>
               </FormLabel>
@@ -464,17 +500,23 @@ onMounted(() => {
             <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" />Location
           </div>
           <div class="mt-5">
-            <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+            <FormInline class="flex flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
               <FormLabel class="xl:w-64 xl:!mr-10">
                 <div class="text-left">
-                  <div class="flex items-center">
-                    <div class="font-medium">Location</div>
-                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                  <div class="flex items-center pr-4">
+                    <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Location
+                      <span class="relative group cursor-pointer ml-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                        </svg>
+                        <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                          Location of the employee's workplace
+                        </div>
+                      </span>
+                    </div>
+                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md mt-6 xl:mt-3.5">
                       Required
                     </div>
-                  </div>
-                  <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                    Location of the employee's workplace.
                   </div>
                 </div>
               </FormLabel>
@@ -499,17 +541,23 @@ onMounted(() => {
             <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" />Designation
           </div>
           <div class="mt-5">
-            <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+            <FormInline class="flex flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
               <FormLabel class="xl:w-64 xl:!mr-10">
                 <div class="text-left">
-                  <div class="flex items-center">
-                    <div class="font-medium">Insert Designation</div>
-                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                  <div class="flex items-center pr-4">
+                    <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Insert Designation
+                      <span class="relative group cursor-pointer ml-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                        </svg>
+                        <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                          Job title or position of the employee
+                        </div>
+                      </span>
+                    </div>
+                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md mt-6 xl:mt-3.5">
                       Required
                     </div>
-                  </div>
-                  <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                    Job title or position of the employee.
                   </div>
                 </div>
               </FormLabel>
@@ -517,17 +565,23 @@ onMounted(() => {
                 <FormInput id="crud-form-3" v-model="formData.designationInput" class="w-full" type="text" name="location":class="{ 'border-danger': validate.designation.$error,}" placeholder="Input Location"/>
               </div>
             </FormInline>
-            <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+            <FormInline class="flex flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
               <FormLabel class="xl:w-64 xl:!mr-10">
                 <div class="text-left">
-                  <div class="flex items-center">
-                    <div class="font-medium">Select Designation</div>
-                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                  <div class="flex items-center pr-4">
+                    <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Select Designation
+                      <span class="relative group cursor-pointer ml-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                        </svg>
+                        <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                          Job title or position of the employee
+                        </div>
+                      </span>
+                    </div>
+                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md mt-6 xl:mt-3.5">
                       Required
                     </div>
-                  </div>
-                  <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                    Job title or position of the employee.
                   </div>
                 </div>
               </FormLabel>
@@ -555,17 +609,16 @@ onMounted(() => {
             <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" />Department
           </div>
           <div class="mt-5">
-            <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+            <FormInline class="flex flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
               <FormLabel class="xl:w-64 xl:!mr-10">
                 <div class="text-left">
-                  <div class="flex items-center">
-                    <div class="font-medium">Insert Department</div>
-                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                  <div class="flex items-center pr-4">
+                    <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Insert Department
+                      <TooltipIcon tooltipText="Department where the employee works" />
+                    </div>
+                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md mt-6 xl:mt-3.5">
                       Required
                     </div>
-                  </div>
-                  <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                    Department where the employee works.
                   </div>
                 </div>
               </FormLabel>
@@ -573,17 +626,16 @@ onMounted(() => {
                 <FormInput id="crud-form-3" v-model="formData.departmentInput" class="w-full" type="text" name="location":class="{ 'border-danger': validate.location.$error,}" placeholder="Input Location"/>
               </div>
             </FormInline>
-            <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+            <FormInline class="flex flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
               <FormLabel class="xl:w-64 xl:!mr-10">
                 <div class="text-left">
-                  <div class="flex items-center">
-                    <div class="font-medium">Select Department</div>
-                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                  <div class="flex items-center pr-4">
+                    <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Select Department
+                        <TooltipIcon tooltipText="Department where the employee works" />
+                    </div>
+                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md mt-6 xl:mt-3.5">
                       Required
                     </div>
-                  </div>
-                  <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                    Department where the employee works.
                   </div>
                 </div>
               </FormLabel>
@@ -611,17 +663,16 @@ onMounted(() => {
             <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" />Employee Type
           </div>
           <div class="mt-5">
-            <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+            <FormInline class="flex flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
               <FormLabel class="xl:w-64 xl:!mr-10">
                 <div class="text-left">
-                  <div class="flex items-center">
-                    <div class="font-medium">Select Employee Type</div>
-                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                  <div class="flex items-center pr-4">
+                    <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Select Employee Type
+                      <TooltipIcon tooltipText="Employee Type"/>
+                    </div>
+                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md mt-6 xl:mt-3.5">
                       Required
                     </div>
-                  </div>
-                  <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                    Employee Type
                   </div>
                 </div>
               </FormLabel>

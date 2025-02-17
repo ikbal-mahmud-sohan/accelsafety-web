@@ -336,6 +336,26 @@ const menu: Array<Menu | "divider"> = [
       
     ],
   },
+  {
+    icon: "FileTextIcon",
+    pageName: "accel-safety-words",
+    title: "Accel Safety Word",
+    subMenu: [
+      {
+        icon: "FileTextIcon",
+        pageName: "accel-safety-words-create",
+        title: "Create",
+      },
+      {
+        icon: "FileTextIcon",
+        pageName: "accel-safety-words",
+        title: "List",
+      },
+      
+      
+    ],
+  },
+  
   
   // {
   //   icon: "ShoppingBag",
