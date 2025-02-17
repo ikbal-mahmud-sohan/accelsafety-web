@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import _ from "lodash";
-import { ref, provide, reactive } from "vue";
+import { ref, provide, reactive, onMounted, watchEffect } from "vue";
 import fakerData from "@/utils/faker";
 import Button from "@/components/Base/Button";
 import Pagination from "@/components/Base/Pagination";
@@ -14,13 +14,10 @@ import Litepicker from "@/components/Base/Litepicker";
 import ReportDonutChart from "@/components/ReportDonutChart";
 import ReportLineChart from "@/components/ReportLineChart";
 import ReportPieChart from "@/components/ReportPieChart";
-import ReportDonutChart1 from "@/components/ReportDonutChart1";
-import SimpleLineChart1 from "@/components/SimpleLineChart1";
-import LeafletMap from "@/components/LeafletMap";
-import { Menu } from "@/components/Base/Headless";
-import Table from "@/components/Base/Table";
+
 import { getToken } from './../auth/setToken'
-import ReportBarChart1 from "@/components/ReportBarChart1";
+import axios from 'axios';
+import config from "@/config";
 
 
 const salesReportFilter = ref<string>("");
@@ -28,6 +25,10 @@ const importantNotesRef = ref<TinySliderElement>();
 
 const state = reactive({
   token: getToken(),  // Set initial token from localStorage if it exists
+  viewData: [] as Array<any>,
+  overall_total_water:0,
+  total_waste:0,
+  total_energy_usage:0,
 });
 
 provide("bind[importantNotesRef]", (el: TinySliderElement) => {
@@ -42,6 +43,70 @@ const nextImportantNotes = () => {
 };
 // const token = getToken();
 console.log('Global token:', state.token);
+
+
+const chartData = ref({
+  labels: [
+    "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+  ],
+  datasets: [
+    {
+      label: "Dataset 1",
+      data: Array(12).fill(0),  // Initialize with 0 for all months
+    },
+  ],
+});
+
+// Make monthlySafetyObservations reactive so it can be updated dynamically
+const monthlySafetyObservations = reactive<{ [key: string]: number }>({});
+
+const updateChartData = () => {
+  // Update the chart data with the backend values
+  chartData.value.datasets[0].data = chartData.value.labels.map((month) => {
+    return monthlySafetyObservations[month] || 0; // Use 0 if data for the month doesn't exist
+  });
+};
+
+
+
+// Fetch data from the API and update the state
+const fetchData = async () => {
+  try {
+    let url = config.baseURL + '/api/v1/environment-dashboard';
+    const response = await axios.get(url, {
+      headers: {
+        'Authorization': state.token,
+      },
+    });
+
+    state.viewData = response.data;
+    state.overall_total_water = response.data.total.overall_total_water;
+    state.total_waste = response.data.total_waste;
+    state.total_energy_usage = response.data.total_energy_usage;
+    
+    // Assuming response.data.monthlySafetyObservations is an object like { Feb: 1, Mar: 5 }
+    // const backendData = response.data.monthlySafetyObservations;
+
+    // // Update the reactive object with the backend data
+    // Object.keys(backendData).forEach(month => {
+    //   monthlySafetyObservations[month] = backendData[month];
+    // });
+
+    console.log("state.viewData", state.viewData);
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+};
+
+// Call fetchData when the component is mounted
+onMounted(() => {
+  fetchData();
+});
+// Automatically update chart data when monthlySafetyObservations changes
+watchEffect(() => {
+  updateChartData();
+});
+
 </script>
 
 <template>
@@ -74,8 +139,8 @@ console.log('Global token:', state.token);
                       </Tippy>
                     </div>
                   </div>
-                  <div class="mt-6 text-3xl font-medium leading-8">4.710</div>
-                  <div class="mt-1 text-base text-slate-500">Total Energy Record</div>
+                  <div class="mt-6 text-3xl font-medium leading-8"> {{ state.total_energy_usage }} </div>
+                  <div class="mt-1 text-base text-slate-500">All GHG (In Tons)</div>
                 </div>
               </div>
             </div>
@@ -96,7 +161,7 @@ console.log('Global token:', state.token);
                       </Tippy>
                     </div>
                   </div>
-                  <div class="mt-6 text-3xl font-medium leading-8">3.721</div>
+                  <div class="mt-6 text-3xl font-medium leading-8">{{ state.overall_total_water }}</div>
                   <div class="mt-1 text-base text-slate-500">Total Water Consumption</div>
                 </div>
               </div>
@@ -120,7 +185,7 @@ console.log('Global token:', state.token);
                   </div>
                   <div class="mt-6 text-3xl font-medium leading-8">2.149</div>
                   <div class="mt-1 text-base text-slate-500">
-                    Days Lost
+                    Total Water Recovered
                   </div>
                 </div>
               </div>
@@ -142,7 +207,7 @@ console.log('Global token:', state.token);
                       </Tippy>
                     </div>
                   </div>
-                  <div class="mt-6 text-3xl font-medium leading-8">152.040</div>
+                  <div class="mt-6 text-3xl font-medium leading-8">{{ state.total_waste }}</div>
                   <div class="mt-1 text-base text-slate-500">
                     Wastege Inventory
                   </div>
@@ -151,15 +216,11 @@ console.log('Global token:', state.token);
             </div>
           </div>
         </div>
-        <div class="col-span-12 mt-8 lg:col-span-4">
+        <!-- <div class="col-span-12 mt-8 lg:col-span-4">
           
                 <div class="flex w-full h-full items-end">
                   <div class="w-full flex justify-center text-center p-5 mt-12 intro-y box sm:mt-5">
                       <div class="">
-                        <!-- <div class="items-center justify-center block h-10 intro-y sm:flex">
-                            <p class="text-lg font-medium truncate text-center">Energy Consumption</p>
-                          </div> -->
-
                           <div class="flex justify-center">
                             <Lucide icon="PieChart" class="w-10 h-10 text-pending" />
                           </div>
@@ -186,9 +247,9 @@ console.log('Global token:', state.token);
                       </div>
                 </div>
                 </div>
-          </div>
+          </div> -->
 
-        <div class="col-span-12 mt-8 lg:col-span-4">
+        <div class="col-span-12 mt-8 lg:col-span-6">
           <div class="p-5 mt-12 intro-y box sm:mt-5">
             <div class="items-center block h-10 intro-y sm:flex">
               <h2 class="mr-5 text-lg font-medium truncate">Energy Consumption</h2>
@@ -198,12 +259,12 @@ console.log('Global token:', state.token);
               'before:content-[\'\'] before:block before:absolute before:w-16 before:left-0 before:top-0 before:bottom-0 before:ml-10 before:mb-7 before:bg-gradient-to-r before:from-white before:via-white/80 before:to-transparent before:dark:from-darkmode-600',
               'after:content-[\'\'] after:block after:absolute after:w-16 after:right-0 after:top-0 after:bottom-0 after:mb-7 after:bg-gradient-to-l after:from-white after:via-white/80 after:to-transparent after:dark:from-darkmode-600',
             ]">
-              <ReportLineChart :height="275" class="mt-6 -mb-6" />
+              <ReportLineChart :chartData="chartData" :height="275" class="mt-6 -mb-6" />
             </div>
           </div>
         </div>
         
-        <div class="col-span-12 mt-8 lg:col-span-4">
+        <div class="col-span-12 mt-8 lg:col-span-6">
           
           <div class="p-5 mt-12 intro-y box sm:mt-5">
             <div class="items-center block h-10 intro-y sm:flex">
@@ -215,7 +276,7 @@ console.log('Global token:', state.token);
               'before:content-[\'\'] before:block before:absolute before:w-16 before:left-0 before:top-0 before:bottom-0 before:ml-10 before:mb-7 before:bg-gradient-to-r before:from-white before:via-white/80 before:to-transparent before:dark:from-darkmode-600',
               'after:content-[\'\'] after:block after:absolute after:w-16 after:right-0 after:top-0 after:bottom-0 after:mb-7 after:bg-gradient-to-l after:from-white after:via-white/80 after:to-transparent after:dark:from-darkmode-600',
             ]">
-              <ReportLineChart :height="275" class="mt-6 -mb-6" />
+              <ReportLineChart :chartData="chartData" :height="275" class="mt-6 -mb-6" />
             </div>
           </div>
         </div>
@@ -230,7 +291,7 @@ console.log('Global token:', state.token);
               'before:content-[\'\'] before:block before:absolute before:w-16 before:left-0 before:top-0 before:bottom-0 before:ml-10 before:mb-7 before:bg-gradient-to-r before:from-white before:via-white/80 before:to-transparent before:dark:from-darkmode-600',
               'after:content-[\'\'] after:block after:absolute after:w-16 after:right-0 after:top-0 after:bottom-0 after:mb-7 after:bg-gradient-to-l after:from-white after:via-white/80 after:to-transparent after:dark:from-darkmode-600',
             ]">
-              <ReportLineChart :height="275" class="mt-6 -mb-6" />
+              <ReportLineChart :chartData="chartData" :height="275" class="mt-6 -mb-6" />
             </div>
           </div>
         </div>
@@ -245,7 +306,7 @@ console.log('Global token:', state.token);
               'before:content-[\'\'] before:block before:absolute before:w-16 before:left-0 before:top-0 before:bottom-0 before:ml-10 before:mb-7 before:bg-gradient-to-r before:from-white before:via-white/80 before:to-transparent before:dark:from-darkmode-600',
               'after:content-[\'\'] after:block after:absolute after:w-16 after:right-0 after:top-0 after:bottom-0 after:mb-7 after:bg-gradient-to-l after:from-white after:via-white/80 after:to-transparent after:dark:from-darkmode-600',
             ]">
-              <ReportLineChart :height="275" class="mt-6 -mb-6" />
+              <ReportLineChart :chartData="chartData" :height="275" class="mt-6 -mb-6" />
             </div>
           </div>
         </div>

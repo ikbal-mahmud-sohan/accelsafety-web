@@ -354,6 +354,21 @@ const router = createRouter({
           name: "hira-lites-list",
           component: () => import("../pages/HiraLitesList.vue"),
         },
+        {
+          path: "accel-safety-words",
+          name: "accel-safety-words",
+          component: () => import("../pages/AccelSafetyWordList.vue"),
+        },
+        {
+          path: "accel-safety-words-create",
+          name: "accel-safety-words-create",
+          component: () => import("../pages/AccelSafetyWordForm.vue"),
+        },
+        {
+          path: "accel-safety-words/:id",
+          name: "accel-safety-words-view",
+          component: () => import("../pages/AccelSafetyWordView.vue"),
+        },
         // Hira
         {
           path: "hse",

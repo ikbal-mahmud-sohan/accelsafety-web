@@ -43,3 +43,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.w-1px{
+    width: 1.5px;
+}
+.h-1px{
+    height: 1.5px;
+}
