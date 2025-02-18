@@ -301,7 +301,7 @@ onMounted(() => {
             <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" /> Employee list
           </div>
           <div class="mt-5">
-            <FormInline class="flex flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+            <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
               <FormLabel class="xl:w-64 xl:!mr-10">
                 <div class="text-left">
                   <div class="flex items-center pr-4">
@@ -326,7 +326,7 @@ onMounted(() => {
                 </select>
               </div>
             </FormInline>
-            <FormInline class="flex flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+            <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
               <FormLabel class="xl:w-64 xl:!mr-10">
                 <div class="text-left">
                   <div class="flex items-center pr-4">
@@ -426,7 +426,7 @@ onMounted(() => {
             <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" />   Training Topic
           </div>
           <div class="mt-5">
-            <FormInline class="flex flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+            <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
               <FormLabel class="xl:w-64 xl:!mr-10">
                 <div class="text-left">
                   <div class="flex items-center pr-4">
