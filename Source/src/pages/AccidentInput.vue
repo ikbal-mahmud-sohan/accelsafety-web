@@ -28,7 +28,8 @@ import Notification from "@/components/Base/Notification";
 import Preview from "@/components/Base/Preview";
 import Litepicker from "@/components/Base/Litepicker";
 import Alert from "@/components/Base/Alert";
-import { getToken } from './../auth/setToken'
+import { getToken } from './../auth/setToken';
+import TooltipIcon from "@/components/Custom/TooltipIcon.vue";
 
 const router = useRouter();
 const subcategory = ref(["0"]);
@@ -432,17 +433,16 @@ onMounted(() => {
             <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" /> Accident Month
           </div>
           <div class="mt-5">
-            <FormInline class="flex-col items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+            <FormInline class="flex-col pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
               <FormLabel class="xl:w-64 xl:!mr-10">
                 <div class="text-left">
-                  <div class="flex items-center">
-                    <div class="font-medium">Name</div>
-                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                  <div class="flex items-center pr-4">
+                    <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Name
+                      <TooltipIcon tooltipText="Enter the month of the accident (e.g., January, February)"/>
+                    </div>
+                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md mt-6 xl:mt-3.5">
                       Required
                     </div>
-                  </div>
-                  <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                    Enter the month of the accident (e.g., January, February).
                   </div>
                 </div>
               </FormLabel>
@@ -476,17 +476,16 @@ onMounted(() => {
             <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" /> Accident Type
           </div>
           <div class="mt-5">
-            <FormInline class="flex-col items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+            <FormInline class="flex-col pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
               <FormLabel class="xl:w-64 xl:!mr-10">
                 <div class="text-left">
-                  <div class="flex items-center">
-                    <div class="font-medium">Name</div>
-                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                  <div class="flex items-center pr-4">
+                    <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Name
+                      <TooltipIcon tooltipText="Enter the name of the accident type (e.g., First Aid)"/>
+                    </div>
+                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md mt-6 xl:mt-3.5">
                       Required
                     </div>
-                  </div>
-                  <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                    Enter the name of the accident type (e.g., First Aid).
                   </div>
                 </div>
               </FormLabel>
@@ -520,17 +519,16 @@ onMounted(() => {
             <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" /> Accident Injury Type
           </div>
           <div class="mt-5">
-            <FormInline class="flex-col items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+            <FormInline class="flex-col pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
               <FormLabel class="xl:w-64 xl:!mr-10">
                 <div class="text-left">
-                  <div class="flex items-center">
-                    <div class="font-medium">Name</div>
-                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                  <div class="flex items-center pr-4">
+                    <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Name
+                      <TooltipIcon tooltipText="Enter the name of the accident injury type (e.g., Muscle Pain)"/>
+                    </div>
+                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md mt-6 xl:mt-3.5">
                       Required
                     </div>
-                  </div>
-                  <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                    Enter the name of the accident injury type (e.g., Muscle Pain).
                   </div>
                 </div>
               </FormLabel>

@@ -305,7 +305,7 @@ onMounted(() => {
             <div class="flex flex-wrap">
               <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex-col pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 ">
                           <div class="text-left">
                             <div class="flex items-center">
@@ -336,7 +336,7 @@ onMounted(() => {
               </div>
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex-col pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 ">
                           <div class="text-left">
                             <div class="flex items-center">
@@ -420,7 +420,7 @@ onMounted(() => {
               </div>
               <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex-col pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 ">
                           <div class="text-left">
                             <div class="flex items-center">
@@ -456,7 +456,7 @@ onMounted(() => {
                 </div>
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex-col pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                           <FormLabel class="xl:w-40 ">
                             <div class="text-left">
                               <div class="flex items-center">
@@ -493,7 +493,7 @@ onMounted(() => {
                 
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex-col pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 ">
                           <div class="text-left">
                             <div class="flex items-center">
@@ -525,7 +525,7 @@ onMounted(() => {
                 
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex-col pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 ">
                           <div class="text-left">
                             <div class="flex items-center">
@@ -556,7 +556,7 @@ onMounted(() => {
                 </div>
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex-col pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                           <FormLabel class="xl:w-40 ">
                             <div class="text-left">
                               <div class="flex items-center">
@@ -591,7 +591,7 @@ onMounted(() => {
                 </div>
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex-col pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 ">
                           <div class="text-left">
                             <div class="flex items-center">
@@ -623,7 +623,7 @@ onMounted(() => {
                 
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex-col pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 ">
                           <div class="text-left">
                             <div class="flex items-center">
@@ -674,7 +674,7 @@ onMounted(() => {
                 </div>
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex-col pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 ">
                           <div class="text-left">
                             <div class="flex ">
@@ -718,7 +718,7 @@ onMounted(() => {
             <div class="flex flex-wrap">
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex-col pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                           <FormLabel class="xl:w-40 ">
                             <div class="text-left">
                               <div class="flex items-center">
@@ -749,7 +749,7 @@ onMounted(() => {
                 </div>
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex-col pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 ">
                           <div class="text-left">
                             <div class="flex items-center">
@@ -780,7 +780,7 @@ onMounted(() => {
                 </div>
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex-col pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 ">
                           <div class="text-left">
                             <div class="flex items-center">
@@ -811,7 +811,7 @@ onMounted(() => {
                 </div>
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex-col pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 ">
                           <div class="text-left">
                             <div class="flex items-center">
@@ -847,7 +847,7 @@ onMounted(() => {
                 
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex-col pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                           <FormLabel class="xl:w-40 ">
                             <div class="text-left">
                               <div class="flex items-center">
@@ -883,7 +883,7 @@ onMounted(() => {
                 <div class="md:w-1/2 w-full">
                     <!-- sohan  -->
                     <div class="px-4 py-2">
-                      <FormInline class="flex-col pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                           <FormLabel class="xl:w-40 ">
                             <div class="text-left">
                               <div class="flex items-center">
@@ -911,7 +911,7 @@ onMounted(() => {
                 <div class="md:w-1/2 w-full">
                     <!-- sohan  -->
                     <div class="px-4 py-2">
-                      <FormInline class="flex-col pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 ">
                           <div class="text-left">
                             <div class="flex items-center">

@@ -263,11 +263,11 @@ onMounted(() => {
             <div class="flex flex-wrap">
               <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
-                            <div class="flex items-center">
-                              <div class="font-medium text-sm text-nowrap flex">Unit Name
+                            <div class="flex items-center pr-4">
+                              <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Unit Name
                                 <span class="relative group cursor-pointer ml-1">
                                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
@@ -298,11 +298,11 @@ onMounted(() => {
                
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
-                            <div class="flex items-center">
-                              <div class="font-medium text-sm text-nowrap flex">Date
+                            <div class="flex items-center pr-4">
+                              <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Date
                                 <span class="relative group cursor-pointer ml-1">
                                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
@@ -381,11 +381,11 @@ onMounted(() => {
                 </div>
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
-                            <div class="flex items-center">
-                              <div class="font-medium text-sm text-nowrap flex">Employee Name
+                            <div class="flex items-center pr-4">
+                              <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Employee Name
                                 <span class="relative group cursor-pointer ml-1">
                                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
@@ -417,11 +417,11 @@ onMounted(() => {
                 </div>
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
-                            <div class="flex items-center">
-                              <div class="font-medium text-sm text-nowrap flex">Designation
+                            <div class="flex items-center pr-4">
+                              <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Designation
                                 <span class="relative group cursor-pointer ml-1">
                                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
@@ -461,12 +461,12 @@ onMounted(() => {
             <div class="flex flex-wrap">
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
                          
                           <div class="text-left">
-                            <div class="flex items-center">
-                              <div class="font-medium text-sm text-nowrap flex">Ground Water
+                            <div class="flex items-center pr-4">
+                              <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Ground Water
                                 <span class="relative group cursor-pointer ml-1">
                                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
@@ -495,11 +495,11 @@ onMounted(() => {
                 </div>     
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
-                            <div class="flex items-center">
-                              <div class="font-medium text-sm text-nowrap flex">Ground Water Unit
+                            <div class="flex items-center pr-4">
+                              <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Ground Water Unit
                                 <span class="relative group cursor-pointer ml-1">
                                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
@@ -520,11 +520,11 @@ onMounted(() => {
                 </div>     
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
-                            <div class="flex items-center">
-                              <div class="font-medium text-sm text-nowrap flex">Last Flow Meter
+                            <div class="flex items-center pr-4">
+                              <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Last Flow Meter
                                 <span class="relative group cursor-pointer ml-1">
                                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
@@ -552,11 +552,11 @@ onMounted(() => {
                 </div>    
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
-                            <div class="flex items-center">
-                              <div class="font-medium text-sm text-nowrap flex">Current Flow Meter
+                            <div class="flex items-center pr-4">
+                              <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Current Flow Meter
                                 <span class="relative group cursor-pointer ml-1">
                                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
@@ -588,11 +588,11 @@ onMounted(() => {
             <div class="flex flex-wrap">
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
-                            <div class="flex items-center">
-                              <div class="font-medium text-sm text-nowrap flex">Rain Water
+                            <div class="flex items-center pr-4">
+                              <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Rain Water
                                 <span class="relative group cursor-pointer ml-1">
                                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
@@ -621,11 +621,11 @@ onMounted(() => {
                 </div>     
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
-                            <div class="flex items-center">
-                              <div class="font-medium text-sm text-nowrap flex">Rain Water Unit
+                            <div class="flex items-center pr-4">
+                              <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Rain Water Unit
                                 <span class="relative group cursor-pointer ml-1">
                                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
@@ -646,11 +646,11 @@ onMounted(() => {
                 </div>     
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
-                            <div class="flex items-center">
-                              <div class="font-medium text-sm text-nowrap flex">Last Flow Meter
+                            <div class="flex items-center pr-4">
+                              <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Last Flow Meter
                                 <span class="relative group cursor-pointer ml-1">
                                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
@@ -681,11 +681,11 @@ onMounted(() => {
                 </div>    
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
-                            <div class="flex items-center">
-                              <div class="font-medium text-sm text-nowrap flex">Current Flow Meter
+                            <div class="flex items-center pr-4">
+                              <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Current Flow Meter
                                 <span class="relative group cursor-pointer ml-1">
                                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
@@ -722,11 +722,11 @@ onMounted(() => {
             <div class="flex flex-wrap">
               <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
-                            <div class="flex items-center">
-                              <div class="font-medium text-sm text-nowrap flex">Domestic Water Consumption
+                            <div class="flex items-center pr-4">
+                              <div class="font-medium text-sm text-nowrap xl:text-wrap flex mt-6 xl:mt-3.5">Domestic Water Consumption
                                 <span class="relative group cursor-pointer ml-1">
                                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
@@ -755,11 +755,11 @@ onMounted(() => {
                 </div>   
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
-                            <div class="flex items-center">
-                              <div class="font-medium text-sm text-nowrap flex">Domestic Water Unit
+                            <div class="flex items-center pr-4">
+                              <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Domestic Water Unit
                                 <span class="relative group cursor-pointer ml-1">
                                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
@@ -780,11 +780,11 @@ onMounted(() => {
                 </div>     
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
-                            <div class="flex items-center">
-                              <div class="font-medium text-sm text-nowrap flex">Last Flow Meter
+                            <div class="flex items-center pr-4">
+                              <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Last Flow Meter
                                 <span class="relative group cursor-pointer ml-1">
                                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
@@ -812,11 +812,11 @@ onMounted(() => {
                 </div>    
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
-                            <div class="flex items-center">
-                              <div class="font-medium text-sm text-nowrap flex">Current Flow Meter
+                            <div class="flex items-center pr-4">
+                              <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Current Flow Meter
                                 <span class="relative group cursor-pointer ml-1">
                                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
@@ -848,11 +848,11 @@ onMounted(() => {
             <div class="flex flex-wrap">
               <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
-                            <div class="flex items-center">
-                              <div class="font-medium text-sm text-nowrap flex">Process Water Consumption
+                            <div class="flex items-center pr-4">
+                              <div class="font-medium text-sm flex flex-wrap xl:flex-nowrap mt-6 xl:mt-3.5">Process Water Consumption
                                 <span class="relative group cursor-pointer ml-1">
                                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
@@ -882,11 +882,11 @@ onMounted(() => {
                 
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
-                            <div class="flex items-center">
-                              <div class="font-medium text-sm text-nowrap flex">Process Water Unit
+                            <div class="flex items-center pr-4">
+                              <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Process Water Unit
                                 <span class="relative group cursor-pointer ml-1">
                                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
@@ -907,11 +907,11 @@ onMounted(() => {
                 </div>     
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
-                            <div class="flex items-center">
-                              <div class="font-medium text-sm text-nowrap flex">Last Flow Meter Reading
+                            <div class="flex items-center pr-4">
+                              <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Last Flow Meter Reading
                                 <span class="relative group cursor-pointer ml-1">
                                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
@@ -942,11 +942,11 @@ onMounted(() => {
                 </div>    
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
-                            <div class="flex items-center">
-                              <div class="font-medium text-sm text-nowrap flex">Current Flow Meter
+                            <div class="flex items-center pr-4">
+                              <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Current Flow Meter
                                 <span class="relative group cursor-pointer ml-1">
                                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
@@ -986,11 +986,11 @@ onMounted(() => {
             <div class="flex flex-wrap">
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
-                            <div class="flex items-center">
-                              <div class="font-medium text-sm text-nowrap flex">ETP Inlet Water
+                            <div class="flex items-center pr-4">
+                              <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">ETP Inlet Water
                                 <span class="relative group cursor-pointer ml-1">
                                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
@@ -1020,11 +1020,11 @@ onMounted(() => {
                 
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
-                            <div class="flex items-center">
-                              <div class="font-medium text-sm text-nowrap flex">Etp Inlet Water
+                            <div class="flex items-center pr-4">
+                              <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Etp Inlet Water
                                 <span class="relative group cursor-pointer ml-1">
                                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
@@ -1045,12 +1045,12 @@ onMounted(() => {
                 </div>     
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           
                           <div class="text-left">
-                            <div class="flex items-center">
-                              <div class="font-medium text-sm text-nowrap flex">Last Flow Meter
+                            <div class="flex items-center pr-4">
+                              <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Last Flow Meter
                                 <span class="relative group cursor-pointer ml-1">
                                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
@@ -1082,11 +1082,11 @@ onMounted(() => {
                 </div>    
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
-                            <div class="flex items-center">
-                              <div class="font-medium text-sm text-nowrap flex">Current Flow Meter
+                            <div class="flex items-center pr-4">
+                              <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Current Flow Meter
                                 <span class="relative group cursor-pointer ml-1">
                                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
@@ -1121,11 +1121,11 @@ onMounted(() => {
             <div class="flex flex-wrap">
               <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
-                            <div class="flex items-center">
-                              <div class="font-medium text-sm text-nowrap flex">ETP Outlet Wate
+                            <div class="flex items-center pr-4">
+                              <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">ETP Outlet Wate
                                 <span class="relative group cursor-pointer ml-1">
                                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
@@ -1155,11 +1155,11 @@ onMounted(() => {
                 
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
-                            <div class="flex items-center">
-                              <div class="font-medium text-sm text-nowrap flex">Etp Outlet Water
+                            <div class="flex items-center pr-4">
+                              <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Etp Outlet Water
                                 <span class="relative group cursor-pointer ml-1">
                                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
@@ -1180,11 +1180,11 @@ onMounted(() => {
                 </div>     
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
-                            <div class="flex items-center">
-                              <div class="font-medium text-sm text-nowrap flex">Last Flow Meter
+                            <div class="flex items-center pr-4">
+                              <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Last Flow Meter
                                 <span class="relative group cursor-pointer ml-1">
                                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
@@ -1215,11 +1215,11 @@ onMounted(() => {
                 </div>    
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
-                            <div class="flex items-center">
-                              <div class="font-medium text-sm text-nowrap flex">Current Flow Meter
+                            <div class="flex items-center pr-4">
+                              <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Current Flow Meter
                                 <span class="relative group cursor-pointer ml-1">
                                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
