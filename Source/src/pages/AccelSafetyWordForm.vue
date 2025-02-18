@@ -7,7 +7,8 @@ import { useRouter } from 'vue-router';
 import Notification from "@/components/Base/Notification";
 import Lucide from "@/components/Base/Lucide";
 import config from "@/config";
-import { getToken } from './../auth/setToken'
+import { getToken } from './../auth/setToken';
+import TooltipIcon from "@/components/Custom/TooltipIcon.vue";
 
 import {
   FormInput,
@@ -239,14 +240,13 @@ function SuccessPopUp() {
           <div class="flex flex-wrap">
             <div class="md:w-1/2 w-full">
               <div class="px-4 py-2">
-                <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                   <FormLabel class="xl:w-40 xl:!mr-10">
                     <div class="text-left">
-                      <div class="flex items-center">
-                        <div class="font-medium text-nowrap">Number</div>
-                      </div>
-                      <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                        A unique identifier or reference number.
+                      <div class="flex items-center pr-4">
+                        <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Number
+                          <TooltipIcon tooltipText="A unique identifier or reference number"/>
+                        </div>
                       </div>
                     </div>
                   </FormLabel>
@@ -269,14 +269,13 @@ function SuccessPopUp() {
             </div>
             <div class="md:w-1/2 w-full">
               <div class="px-4 py-2">
-                <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                   <FormLabel class="xl:w-40 xl:!mr-10">
                     <div class="text-left">
-                      <div class="flex items-center">
-                        <div class="font-medium text-nowrap">Version</div>
-                      </div>
-                      <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                        Specifies the document's version or revision.
+                      <div class="flex items-center pr-4">
+                        <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Version
+                          <TooltipIcon tooltipText="Specifies the document's version or revision"/>
+                        </div>
                       </div>
                     </div>
                   </FormLabel>
@@ -289,14 +288,13 @@ function SuccessPopUp() {
             </div>
             <div class="md:w-1/2 w-full">
               <div class="px-4 py-2">
-                <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                   <FormLabel class="xl:w-40 xl:!mr-10">
                     <div class="text-left">
-                      <div class="flex items-center">
-                        <div class="font-medium text-nowrap">Title</div>
-                      </div>
-                      <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                        Represents the document's main heading or name.
+                      <div class="flex items-center pr-4">
+                        <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Title
+                          <TooltipIcon tooltipText="Represents the document's main heading or name"/>
+                        </div>
                       </div>
                     </div>
                   </FormLabel>
@@ -310,15 +308,13 @@ function SuccessPopUp() {
 
             <div class="md:w-1/2 w-full">
               <div class="px-4 py-2">
-                <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                   <FormLabel class="xl:w-40 xl:!mr-10">
                     <div class="text-left">
-                      <div class="flex items-center">
-                        <div class="font-medium text-nowrap">Records Date</div>
-
-                      </div>
-                      <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                        Indicates the date the record was created.
+                      <div class="flex items-center pr-4">
+                        <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Records Date
+                          <TooltipIcon tooltipText="Indicates the date the record was created"/>
+                        </div>
                       </div>
                     </div>
                   </FormLabel>

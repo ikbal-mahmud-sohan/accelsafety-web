@@ -14,7 +14,7 @@ import Notification from "@/components/Base/Notification";
 import Preview from "@/components/Base/Preview";
 import { Menu, Popover } from "@/components/Base/Headless";
 import Alert from "@/components/Base/Alert";
-import { getToken } from './../auth/setToken'
+import { getToken } from './../auth/setToken';
 import TooltipIcon from "@/components/Custom/TooltipIcon.vue"; // Import the component
 
 
@@ -289,7 +289,7 @@ onMounted(() => {
             <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" />Employee
           </div>
           <div class="mt-5">
-            <FormInline class="flex flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+            <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
               <FormLabel class="xl:w-64 xl:!mr-10">
                 <div class="text-left">
                   <div class="flex items-center pr-4">
@@ -321,7 +321,7 @@ onMounted(() => {
                 </div>
               </div>
             </FormInline>
-            <FormInline class="flex flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+            <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
               <FormLabel class="xl:w-64 xl:!mr-10">
                 <div class="text-left">
                   <div class="flex items-center pr-4">
@@ -353,7 +353,7 @@ onMounted(() => {
                 </div>
               </div>
             </FormInline>
-            <FormInline class="flex flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+            <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
               <FormLabel class="xl:w-64 xl:!mr-10">
                 <div class="text-left">
                   <div class="flex items-center pr-4">
@@ -385,7 +385,7 @@ onMounted(() => {
                 </div>
               </div>
             </FormInline>
-            <FormInline class="flex flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+            <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
               <FormLabel class="xl:w-64 xl:!mr-10">
                 <div class="text-left">
                   <div class="flex items-center pr-4">
@@ -417,7 +417,7 @@ onMounted(() => {
                 </div>
               </div>
             </FormInline>
-            <FormInline class="flex flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+            <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
               <FormLabel class="xl:w-64 xl:!mr-10">
                 <div class="text-left">
                   <div class="flex items-center pr-4">
@@ -459,7 +459,7 @@ onMounted(() => {
             <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" />Unit
           </div>
           <div class="mt-5">
-            <FormInline class="flex flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+            <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
               <FormLabel class="xl:w-64 xl:!mr-10">
                 <div class="text-left">
                   <div class="flex items-center pr-4">
@@ -500,7 +500,7 @@ onMounted(() => {
             <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" />Location
           </div>
           <div class="mt-5">
-            <FormInline class="flex flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+            <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
               <FormLabel class="xl:w-64 xl:!mr-10">
                 <div class="text-left">
                   <div class="flex items-center pr-4">
@@ -541,7 +541,7 @@ onMounted(() => {
             <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" />Designation
           </div>
           <div class="mt-5">
-            <FormInline class="flex flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+            <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
               <FormLabel class="xl:w-64 xl:!mr-10">
                 <div class="text-left">
                   <div class="flex items-center pr-4">
@@ -565,7 +565,7 @@ onMounted(() => {
                 <FormInput id="crud-form-3" v-model="formData.designationInput" class="w-full" type="text" name="location":class="{ 'border-danger': validate.designation.$error,}" placeholder="Input Location"/>
               </div>
             </FormInline>
-            <FormInline class="flex flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+            <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
               <FormLabel class="xl:w-64 xl:!mr-10">
                 <div class="text-left">
                   <div class="flex items-center pr-4">
@@ -609,7 +609,7 @@ onMounted(() => {
             <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" />Department
           </div>
           <div class="mt-5">
-            <FormInline class="flex flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+            <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
               <FormLabel class="xl:w-64 xl:!mr-10">
                 <div class="text-left">
                   <div class="flex items-center pr-4">
@@ -626,7 +626,7 @@ onMounted(() => {
                 <FormInput id="crud-form-3" v-model="formData.departmentInput" class="w-full" type="text" name="location":class="{ 'border-danger': validate.location.$error,}" placeholder="Input Location"/>
               </div>
             </FormInline>
-            <FormInline class="flex flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+            <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
               <FormLabel class="xl:w-64 xl:!mr-10">
                 <div class="text-left">
                   <div class="flex items-center pr-4">
@@ -663,7 +663,7 @@ onMounted(() => {
             <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" />Employee Type
           </div>
           <div class="mt-5">
-            <FormInline class="flex flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+            <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
               <FormLabel class="xl:w-64 xl:!mr-10">
                 <div class="text-left">
                   <div class="flex items-center pr-4">

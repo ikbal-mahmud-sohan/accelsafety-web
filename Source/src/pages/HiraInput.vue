@@ -22,7 +22,8 @@ import Toastify from 'toastify-js';
 import Notification from "@/components/Base/Notification";
 import Alert from "@/components/Base/Alert";
 import HiraService from "./services/hira/hira";
-import { getToken } from './../auth/setToken'
+import { getToken } from './../auth/setToken';
+import TooltipIcon from "@/components/Custom/TooltipIcon.vue";
 
 
 
@@ -896,17 +897,16 @@ onMounted(() => {
             <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" /> Hira Process
           </div>
           <div class="mt-5">
-            <FormInline class="flex-col items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+            <FormInline class="flex-col pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
               <FormLabel class="xl:w-64 xl:!mr-10">
                 <div class="text-left">
-                  <div class="flex items-center">
-                    <div class="font-medium">Name</div>
-                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                  <div class="flex items-center pr-4">
+                    <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Name
+                      <TooltipIcon tooltipText="Enter the name of the Hira Process (e.g., Plumbing Work, Gardening)"/>
+                    </div>
+                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md mt-6 xl:mt-3.5">
                       Required
                     </div>
-                  </div>
-                  <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                    Enter the name of the Hira Process (e.g.,     Plumbing Work , Gardening).
                   </div>
                 </div>
               </FormLabel>
@@ -940,17 +940,16 @@ onMounted(() => {
             <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" /> Hira Activity
           </div>
           <div class="mt-5">
-            <FormInline class="flex-col items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+            <FormInline class="flex-col pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
               <FormLabel class="xl:w-64 xl:!mr-10">
                 <div class="text-left">
                   <div class="flex items-center">
-                    <div class="font-medium">Name</div>
-                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                    <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Name
+                      <TooltipIcon tooltipText="Enter the name of the hira activity (e.g., Vehicle movement)"/>
+                    </div>
+                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md mt-6 xl:mt-3.5">
                       Required
                     </div>
-                  </div>
-                  <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                    Enter the name of the hira activity (e.g., Vehicle movement).
                   </div>
                 </div>
               </FormLabel>
@@ -984,17 +983,16 @@ onMounted(() => {
             <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" /> Hira Location
           </div>
           <div class="mt-5">
-            <FormInline class="flex-col items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+            <FormInline class="flex-col pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
               <FormLabel class="xl:w-64 xl:!mr-10">
                 <div class="text-left">
-                  <div class="flex items-center">
-                    <div class="font-medium">Name</div>
-                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                  <div class="flex items-center pr-4">
+                    <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Name
+                      <TooltipIcon tooltipText="Enter the name of the hira location (e.g., Store)"/>
+                    </div>
+                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md mt-6 xl:mt-3.5">
                       Required
                     </div>
-                  </div>
-                  <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                    Enter the name of the hira location (e.g., Store).
                   </div>
                 </div>
               </FormLabel>
@@ -1028,17 +1026,16 @@ onMounted(() => {
             <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" /> Hira Type of Activity
           </div>
           <div class="mt-5">
-            <FormInline class="flex-col items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+            <FormInline class="flex-col pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
               <FormLabel class="xl:w-64 xl:!mr-10">
                 <div class="text-left">
-                  <div class="flex items-center">
-                    <div class="font-medium">Name</div>
-                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                  <div class="flex items-center pr-4">
+                    <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Name
+                      <TooltipIcon tooltipText="Enter the name of the hira Type of Activity (e.g., Store)"/>
+                    </div>
+                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md mt-6 xl:mt-3.5">
                       Required
                     </div>
-                  </div>
-                  <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                    Enter the name of the hira Type of Activity (e.g., Store).
                   </div>
                 </div>
               </FormLabel>
@@ -1072,17 +1069,16 @@ onMounted(() => {
             <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" /> Hira Occupations
           </div>
           <div class="mt-5">
-            <FormInline class="flex-col items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+            <FormInline class="flex-col pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
               <FormLabel class="xl:w-64 xl:!mr-10">
                 <div class="text-left">
-                  <div class="flex items-center">
-                    <div class="font-medium">Name</div>
-                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                  <div class="flex items-center pr-4">
+                    <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Name
+                      <TooltipIcon tooltipText="Enter the name of the hira Occupations (e.g., Daily labor)"/>
+                    </div>
+                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md mt-6 xl:mt-3.5">
                       Required
                     </div>
-                  </div>
-                  <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                    Enter the name of the hira Occupations (e.g., Daily labor).
                   </div>
                 </div>
               </FormLabel>
@@ -1116,17 +1112,16 @@ onMounted(() => {
             <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" /> Hira Event
           </div>
           <div class="mt-5">
-            <FormInline class="flex-col items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+            <FormInline class="flex-col pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
               <FormLabel class="xl:w-64 xl:!mr-10">
                 <div class="text-left">
-                  <div class="flex items-center">
-                    <div class="font-medium">Name</div>
-                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                  <div class="flex items-center pr-4">
+                    <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Name
+                      <TooltipIcon tooltipText="Enter the name of the hira Event (e.g., slag splash)"/>
+                    </div>
+                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md mt-6 xl:mt-3.5">
                       Required
                     </div>
-                  </div>
-                  <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                    Enter the name of the hira Event (e.g., slag splash).
                   </div>
                 </div>
               </FormLabel>
@@ -1160,17 +1155,16 @@ onMounted(() => {
             <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" /> Hira Cause
           </div>
           <div class="mt-5">
-            <FormInline class="flex-col items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+            <FormInline class="flex-col pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
               <FormLabel class="xl:w-64 xl:!mr-10">
                 <div class="text-left">
-                  <div class="flex items-center">
-                    <div class="font-medium">Name</div>
-                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                  <div class="flex items-center pr-4">
+                    <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Name
+                      <TooltipIcon tooltipText="Enter the name of the hira Cause (e.g., Less awareness)"/>
+                    </div>
+                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md mt-6 xl:mt-3.5">
                       Required
                     </div>
-                  </div>
-                  <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                    Enter the name of the hira Cause (e.g., Less awareness).
                   </div>
                 </div>
               </FormLabel>
@@ -1204,17 +1198,16 @@ onMounted(() => {
             <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" /> Hira Impact
           </div>
           <div class="mt-5">
-            <FormInline class="flex-col items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+            <FormInline class="flex-col pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
               <FormLabel class="xl:w-64 xl:!mr-10">
                 <div class="text-left">
-                  <div class="flex items-center">
-                    <div class="font-medium">Name</div>
-                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                  <div class="flex items-center pr-4">
+                    <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Name
+                      <TooltipIcon tooltipText="Enter the name of the hira Impact (e.g., allergic problems)"/>
+                    </div>
+                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md mt-6 xl:mt-3.5">
                       Required
                     </div>
-                  </div>
-                  <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                    Enter the name of the hira Impact (e.g., allergic problems).
                   </div>
                 </div>
               </FormLabel>
@@ -1248,17 +1241,16 @@ onMounted(() => {
             <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" /> Hira Engineering
           </div>
           <div class="mt-5">
-            <FormInline class="flex-col items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+            <FormInline class="flex-col pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
               <FormLabel class="xl:w-64 xl:!mr-10">
                 <div class="text-left">
-                  <div class="flex items-center">
-                    <div class="font-medium">Name</div>
-                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                  <div class="flex items-center pr-4">
+                    <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Name
+                      <TooltipIcon tooltipText="Enter the name of the hira Engineering (e.g., allergic problems)"/>
+                    </div>
+                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md mt-6 xl:mt-3.5">
                       Required
                     </div>
-                  </div>
-                  <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                    Enter the name of the hira Engineering (e.g., allergic problems).
                   </div>
                 </div>
               </FormLabel>
@@ -1292,17 +1284,16 @@ onMounted(() => {
             <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" /> Hira Administrative
           </div>
           <div class="mt-5">
-            <FormInline class="flex-col items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+            <FormInline class="flex-col pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
               <FormLabel class="xl:w-64 xl:!mr-10">
                 <div class="text-left">
-                  <div class="flex items-center">
-                    <div class="font-medium">Name</div>
-                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                  <div class="flex items-center pr-4">
+                    <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Name
+                      <TooltipIcon tooltipText="Enter the name of the hira administrative (e.g., allergic problems)"/>
+                    </div>
+                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md mt-6 xl:mt-3.5">
                       Required
                     </div>
-                  </div>
-                  <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                    Enter the name of the hira administrative (e.g., allergic problems).
                   </div>
                 </div>
               </FormLabel>
@@ -1336,17 +1327,16 @@ onMounted(() => {
             <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" /> Hira PPE
           </div>
           <div class="mt-5">
-            <FormInline class="flex-col items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+            <FormInline class="flex-col pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
               <FormLabel class="xl:w-64 xl:!mr-10">
                 <div class="text-left">
-                  <div class="flex items-center">
-                    <div class="font-medium">Name</div>
-                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                  <div class="flex items-center pr-4">
+                    <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Name
+                      <TooltipIcon tooltipText="Enter the name of the hira PPE (e.g., allergic problems)"/>
+                    </div>
+                    <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md mt-6 xl:mt-3.5">
                       Required
                     </div>
-                  </div>
-                  <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                    Enter the name of the hira PPE (e.g., allergic problems).
                   </div>
                 </div>
               </FormLabel>
