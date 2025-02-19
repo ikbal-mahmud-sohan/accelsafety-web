@@ -280,15 +280,20 @@ onMounted(() => {
             <div class="flex flex-wrap">
               <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
-                            <div class="flex items-center">
-                              <div class="font-medium text-nowrap">Unit Name</div>
-                              
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Unit Name is the location of waste handling.
+                            <div class="flex items-center pr-4">
+                              <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Unit Name
+                                <span class="relative group cursor-pointer ml-1">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                  </svg>
+                                  <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                    Unit Name is the location of waste handling
+                                  </div>
+                                </span>
+                              </div>
                             </div>
                           </div>
                         </FormLabel>
@@ -308,15 +313,20 @@ onMounted(() => {
                 </div>
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
-                            <div class="flex items-center">
-                              <div class="font-medium">Date</div>
-                              
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Date is the record of waste inventory.
+                            <div class="flex items-center pr-4">
+                              <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Date
+                                <span class="relative group cursor-pointer ml-1">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                  </svg>
+                                  <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                    Date is the record of waste inventory
+                                  </div>
+                                </span>
+                              </div>
                             </div>
                           </div>
                         </FormLabel>
@@ -386,15 +396,20 @@ onMounted(() => {
                 </div>
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
-                            <div class="flex items-center">
-                              <div class="font-medium text-nowrap">Employee Name</div>
-                              
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Employee Name is the responsible person for waste inventory
+                            <div class="flex items-center pr-4">
+                              <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Employee Name
+                                <span class="relative group cursor-pointer ml-1">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                  </svg>
+                                  <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                    Employee Name is the responsible person for waste inventory
+                                  </div>
+                                </span>
+                              </div>
                             </div>
                           </div>
                         </FormLabel>
@@ -417,15 +432,20 @@ onMounted(() => {
                 </div>
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
-                            <div class="flex items-center">
-                              <div class="font-medium text-nowrap">Designation</div>
-                              
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Specify the unit of measurement for the energy consumption.
+                            <div class="flex items-center pr-4">
+                              <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Designation
+                                <span class="relative group cursor-pointer ml-1">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                  </svg>
+                                  <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                    Specify the unit of measurement for the energy consumption
+                                  </div>
+                                </span>
+                              </div>
                             </div>
                           </div>
                         </FormLabel>
@@ -456,15 +476,20 @@ onMounted(() => {
             <div class="flex flex-wrap">
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
-                            <div class="flex items-center">
-                              <div class="font-medium text-nowrap">Waste Name</div>
-                              
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Waste Name is the type of waste recorded.
+                            <div class="flex items-center pr-4">
+                              <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Waste Name
+                                <span class="relative group cursor-pointer ml-1">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                  </svg>
+                                  <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                    Waste Name is the type of waste recorded
+                                  </div>
+                                </span>
+                              </div>
                             </div>
                           </div>
                         </FormLabel>
@@ -484,15 +509,20 @@ onMounted(() => {
                 </div>
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
-                            <div class="flex items-center">
-                              <div class="font-medium text-nowrap">Waste Type</div>
-                              
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Waste Type is the category of waste.
+                            <div class="flex items-center pr-4">
+                              <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Waste Type
+                                <span class="relative group cursor-pointer ml-1">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                  </svg>
+                                  <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                    Waste Type is the category of waste
+                                  </div>
+                                </span>
+                              </div>
                             </div>
                           </div>
                         </FormLabel>
@@ -520,15 +550,20 @@ onMounted(() => {
                 </div>
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
-                            <div class="flex items-center">
-                              <div class="font-medium text-nowrap">Item Name</div>
-                              
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              tem Name is the specific waste-related item.
+                            <div class="flex items-center pr-4">
+                              <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Item Name
+                                <span class="relative group cursor-pointer ml-1">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                  </svg>
+                                  <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                    Item Name is the specific waste-related item
+                                  </div>
+                                </span>
+                              </div>
                             </div>
                           </div>
                         </FormLabel>
@@ -563,15 +598,20 @@ onMounted(() => {
                 </div>
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
-                            <div class="flex items-center">
-                              <div class="font-medium text-nowrap">Cotton</div>
-                              
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Cotton is a type of waste material.
+                            <div class="flex items-center pr-4">
+                              <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Cotton
+                                <span class="relative group cursor-pointer ml-1">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                  </svg>
+                                  <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                    Cotton is a type of waste material
+                                  </div>
+                                </span>
+                              </div>
                             </div>
                           </div>
                         </FormLabel>
@@ -605,15 +645,20 @@ onMounted(() => {
                 </div>
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
-                            <div class="flex items-center">
-                              <div class="font-medium text-nowrap">Unit</div>
-                              
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Unit is the measurement standard for waste quantity.
+                            <div class="flex items-center pr-4">
+                              <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Unit
+                                <span class="relative group cursor-pointer ml-1">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                  </svg>
+                                  <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                    Unit is the measurement standard for waste quantity
+                                  </div>
+                                </span>
+                              </div>
                             </div>
                           </div>
                         </FormLabel>
@@ -633,15 +678,20 @@ onMounted(() => {
                 </div>
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
-                            <div class="flex items-center">
-                              <div class="font-medium text-nowrap">Amount of Waste</div>
-                              
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Amount of Waste is the quantity of waste generated.
+                            <div class="flex items-center pr-4">
+                              <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Amount of Waste
+                                <span class="relative group cursor-pointer ml-1">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                  </svg>
+                                  <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                    Amount of Waste is the quantity of waste generated
+                                  </div>
+                                </span>
+                              </div>
                             </div>
                           </div>
                         </FormLabel>
@@ -668,15 +718,20 @@ onMounted(() => {
             <div class="flex flex-wrap">
               <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
-                            <div class="flex items-center">
-                              <div class="font-medium text-nowrap">Total Biodegradable Waste</div>
-                              
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Total Biodegradable Waste is organic waste that decomposes.
+                            <div class="flex items-center pr-4">
+                              <div class="font-medium text-sm flex mt-6 xl:mt-3.5">Total Biodegradable Waste
+                                <span class="relative group cursor-pointer ml-1">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                  </svg>
+                                  <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                    Total Biodegradable Waste is organic waste that decomposes
+                                  </div>
+                                </span>
+                              </div>
                             </div>
                           </div>
                         </FormLabel>
@@ -688,15 +743,20 @@ onMounted(() => {
                 </div>
               <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
-                            <div class="flex items-center">
-                              <div class="font-medium text-nowrap">Total No Biodegradable Waste</div>
-                              
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Total Non-Biodegradable Waste is waste that doesn't decompose.
+                            <div class="flex items-center pr-4">
+                              <div class="font-medium text-sm flex mt-6 xl:mt-3.5">Total No Biodegradable Waste
+                                <span class="relative group cursor-pointer ml-1">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                  </svg>
+                                  <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                    Total Non-Biodegradable Waste is waste that doesn't decompose
+                                  </div>
+                                </span>
+                              </div>
                             </div>
                           </div>
                         </FormLabel>
@@ -716,14 +776,20 @@ onMounted(() => {
               
                 <div class="w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap md:flex-nowrap  pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col flex-wrap md:flex-nowrap  pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
-                            <div class="flex items-center">
-                              <div class="font-medium">Attachement</div>
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Attachment is the file linked to the waste record.
+                            <div class="flex items-center pr-4">
+                              <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Attachement
+                                <span class="relative group cursor-pointer ml-1">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                  </svg>
+                                  <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                    Attachment is the file linked to the waste record
+                                  </div>
+                                </span>
+                              </div>
                             </div>
                           </div>
                         </FormLabel>

@@ -253,46 +253,57 @@ onMounted(() => {
             <div class="flex flex-wrap">
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
-                            <FormLabel class="xl:w-40 xl:!mr-10">
-                              <div class="text-left">
-                                <div class="flex items-center">
-                                  <div class="font-medium">Auditor Name</div>
-                                </div>
-                                <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                                  The name of the person conducting the audit.
+                      <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                          <FormLabel class="xl:w-40 xl:!mr-10">
+                            <div class="text-left">
+                              <div class="flex items-center">
+                                <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-4">Auditor Name
+                                  <span class="relative group cursor-pointer ml-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                      <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                    </svg>
+                                      <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                        The name of the person conducting the audit
+                                      </div>
+                                  </span>
                                 </div>
                               </div>
-                            </FormLabel>
-                            <div class="flex-1 w-full mt-3 xl:mt-0">
-                              <!-- <FormInput id="crud-form-1" v-model.trim="validate.auditor.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.auditor.$error,}" placeholder="Input Auditor"/> -->
-                              <select id="crud-form-6" v-model="selectedEmp1"   class="border py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 fdark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 text-gray-500 ">
-                                      <option value="" disabled>select auditor</option>
-                                      <option v-for="(data, index) in state.viewEmp" :key="index" :value="data.name">{{ data.name }}</option>
-                              </select>
-                              <div class="flex justify-between">
-                                <template v-if="validate.auditor.$error">
-                                <div v-for="(error, index) in validate.auditor.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
-                                  {{ error.$message }}
-                                </div>
-                              </template>
-                                <p class="text-right mt-2 w-full"> Required, at least 3 characters</p>
-                                </div>
                             </div>
-                          </FormInline>
+                          </FormLabel>
+                          <div class="flex-1 w-full mt-3 xl:mt-0">
+                            <!-- <FormInput id="crud-form-1" v-model.trim="validate.auditor.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.auditor.$error,}" placeholder="Input Auditor"/> -->
+                            <select id="crud-form-6" v-model="selectedEmp1"   class="border py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 fdark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 text-gray-500 ">
+                                    <option value="" disabled>select auditor</option>
+                                    <option v-for="(data, index) in state.viewEmp" :key="index" :value="data.name">{{ data.name }}</option>
+                            </select>
+                            <div class="flex justify-between">
+                              <template v-if="validate.auditor.$error">
+                              <div v-for="(error, index) in validate.auditor.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
+                                {{ error.$message }}
+                              </div>
+                            </template>
+                              <p class="text-right mt-2 w-full"> Required, at least 3 characters</p>
+                              </div>
+                          </div>
+                      </FormInline>
                     </div>
                 </div>
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                           <FormLabel class="xl:w-40 xl:!mr-10">
                             <div class="text-left">
                               <div class="flex items-center">
-                                <div class="font-medium">Plant Name</div>
-                                
-                              </div>
-                              <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                                The name of the plant or facility being audited.
+                                <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-4">Plant Name
+                                  <span class="relative group cursor-pointer ml-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                      <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                    </svg>
+                                      <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                        The name of the plant or facility being audited
+                                      </div>
+                                  </span>
+                                </div>
                               </div>
                             </div>
                           </FormLabel>
@@ -312,19 +323,25 @@ onMounted(() => {
                               <p class="text-right mt-2 w-full"> Required</p>
                             </div>
                           </div>
-                        </FormInline>
+                      </FormInline>
                     </div>
                 </div>
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                               <FormLabel class="xl:w-40 xl:!mr-10">
                                 <div class="text-left">
                                   <div class="flex items-center">
-                                    <div class="font-medium">Location</div>
-                                  </div>
-                                  <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                                    The specific location or site of the audit.
+                                    <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-4">Location
+                                      <span class="relative group cursor-pointer ml-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                          <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                        </svg>
+                                          <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                            The specific location or site of the audit
+                                          </div>
+                                      </span>
+                                    </div>
                                   </div>
                                 </div>
                               </FormLabel>
@@ -345,14 +362,20 @@ onMounted(() => {
                 </div>
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                           <FormLabel class="xl:w-40 xl:!mr-10">
                             <div class="text-left">
                               <div class="flex items-center">
-                                <div class="font-medium">Audit Date</div>
-                              </div>
-                              <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                                he date when the audit was conducted.
+                                <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-4">Audit Date
+                                  <span class="relative group cursor-pointer ml-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                          <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                        </svg>
+                                          <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                            The date when the audit was conducted
+                                          </div>
+                                      </span>
+                                </div>
                               </div>
                             </div>
                           </FormLabel>
@@ -422,17 +445,23 @@ onMounted(() => {
                 </div>
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
                             <div class="flex items-center">
-                              <div class="font-medium">Due Date</div>
-                              <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                              <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-4">Due Date
+                                <span class="relative group cursor-pointer ml-1">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                  </svg>
+                                    <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                      The deadline for completing the corrective actions
+                                    </div>
+                                </span>
+                              </div>
+                              <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md mt-6 xl:mt-4">
                                 Required
                               </div>
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              The deadline for completing the corrective actions.
                             </div>
                           </div>
                         </FormLabel>
@@ -502,14 +531,20 @@ onMounted(() => {
                 </div>
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
                             <div class="flex items-center">
-                              <div class="font-medium">Category</div>
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              The classification of the audit, e.g., safety, compliance, etc.
+                              <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-4">Category
+                                <span class="relative group cursor-pointer ml-1">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                  </svg>
+                                    <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                      The classification of the audit, e.g., safety, compliance, etc
+                                    </div>
+                                </span>
+                              </div>
                             </div>
                           </div>
                         </FormLabel>
@@ -538,14 +573,20 @@ onMounted(() => {
                 </div>
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
                             <div class="flex items-center">
-                              <div class="font-medium">Resp Department</div>
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              The underlying reason or cause of the accident.
+                              <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-4">Resp Department
+                                <span class="relative group cursor-pointer ml-1">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                  </svg>
+                                    <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                      The underlying reason or cause of the accident
+                                    </div>
+                                </span>
+                              </div>
                             </div>
                           </div>
                         </FormLabel>
@@ -570,14 +611,20 @@ onMounted(() => {
                 </div>
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                           <FormLabel class="xl:w-40 xl:!mr-10">
                             <div class="text-left">
                               <div class="flex items-center">
-                                <div class="font-medium">Owner Department</div>
-                              </div>
-                              <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                                The department owning or directly involved with the issue.
+                                <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-4">Owner Department
+                                  <span class="relative group cursor-pointer ml-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                      <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                    </svg>
+                                      <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                        The department owning or directly involved with the issue
+                                      </div>
+                                  </span>
+                                </div>
                               </div>
                             </div>
                           </FormLabel>
@@ -602,14 +649,20 @@ onMounted(() => {
                 </div>
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
                             <div class="flex items-center">
-                              <div class="font-medium">Improvement Actions</div>
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Actions planned or taken to improve or correct the issue.
+                              <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-4">Improvement Actions
+                                <span class="relative group cursor-pointer ml-1">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                  </svg>
+                                    <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                      Actions planned or taken to improve or correct the issue
+                                    </div>
+                                </span>
+                              </div>
                             </div>
                           </div>
                         </FormLabel>
@@ -629,14 +682,20 @@ onMounted(() => {
                 </div>
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                           <FormLabel class="xl:w-40 xl:!mr-10">
                             <div class="text-left">
                               <div class="flex items-center">
-                                <div class="font-medium">Priority Type</div>
-                              </div>
-                              <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                                The level of priority assigned to the issue (e.g., high, medium, low).
+                                <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-4">Priority Type
+                                  <span class="relative group cursor-pointer ml-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                      <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                    </svg>
+                                      <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                        The level of priority assigned to the issue (e.g., high, medium, low)
+                                      </div>
+                                  </span>
+                                </div>
                               </div>
                             </div>
                           </FormLabel>
@@ -662,17 +721,23 @@ onMounted(() => {
                 </div>
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
                             <div class="flex items-center">
-                              <div class="font-medium">Root Cause</div>
-                              <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                              <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-4">Root Cause
+                                <span class="relative group cursor-pointer ml-1">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                  </svg>
+                                    <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                      The underlying reason or cause of the accident
+                                    </div>
+                                </span>
+                              </div>
+                              <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md mt-6 xl:mt-4">
                                 Required
                               </div>
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              The underlying reason or cause of the accident.
                             </div>
                           </div>
                         </FormLabel>
@@ -692,14 +757,20 @@ onMounted(() => {
                 </div>
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
-                      <FormInline class="flex flex-wrap  pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                         <FormLabel class="xl:w-40 xl:!mr-10">
                           <div class="text-left">
                             <div class="flex items-center">
-                              <div class="font-medium">Problematic Progressive Images</div>
-                            </div>
-                            <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                              Images showing the progression of the identified problem.
+                              <div class="font-medium text-sm flex mt-6 xl:mt-4">Problematic Progressive Images
+                                <span class="relative group cursor-pointer ml-1">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                  </svg>
+                                    <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                      Images showing the progression of the identified problem
+                                    </div>
+                                </span>
+                              </div>
                             </div>
                           </div>
                         </FormLabel>
@@ -738,14 +809,20 @@ onMounted(() => {
           </div>
           <div class="mt-5">
             
-            <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+            <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
               <FormLabel class="xl:w-40 xl:!mr-10">
                 <div class="text-left">
                   <div class="flex items-center">
-                    <div class="font-medium">Problem Descriptions</div>
-                  </div>
-                  <div class="mt-3 text-xs leading-relaxed text-slate-500">
-                    A brief summary of the accident details.
+                    <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-4 pr-4">Problem Descriptions
+                      <span class="relative group cursor-pointer ml-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                        </svg>
+                        <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                          A brief summary of the accident details
+                        </div>
+                      </span>
+                    </div>
                   </div>
                 </div>
               </FormLabel>
