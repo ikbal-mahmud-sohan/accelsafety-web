@@ -355,6 +355,18 @@ const menu: Array<Menu | "divider"> = [
       
     ],
   },
+  {
+    icon: "FramerIcon",
+    pageName: "calculators",
+    title: "Calculators",
+    subMenu: [
+      {
+        icon: "Activity",
+        pageName: "calculators-list",
+        title: "Calculators List",
+      },
+    ],
+  },
   
   
   // {
