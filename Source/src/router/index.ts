@@ -1671,6 +1671,31 @@ const router = createRouter({
           name: "image-zoom",
           component: () => import("../pages/ImageZoom.vue"),
         },
+        {
+          path: "calculators",
+          name: "calculators-list",
+          component: () => import("../pages/CalculatorsList.vue"),
+        },
+        {
+          path: "calculator-on-indian-standards",
+          name: "calculator-on-indian-standards",
+          component: () => import("../pages/CalculatorsBasedOnIndianStandards.vue"),
+        },
+        {
+          path: "fire-extinguisher-placement-calculator",
+          name: "fire-extinguisher-placement-calculator",
+          component: () => import("../pages/CalculatorFireExtinguisherPlacement.vue"),
+        },
+        {
+          path: "swl_of_wire_rope_calculator",
+          name: "swl_of_wire_rope_calculator",
+          component: () => import("../pages/CalculatorSWLOfWireRope.vue"),
+        },
+        {
+          path: "stack_height_calculator",
+          name: "stack_height_calculator",
+          component: () => import("../pages/CalculatorStackHeight.vue"),
+        },
       ],
     },
     {
