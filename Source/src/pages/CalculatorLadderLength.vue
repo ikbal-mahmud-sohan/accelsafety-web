@@ -132,7 +132,7 @@ onMounted(() => {
 
 <template>
   <div class="flex items-center mt-8 intro-y">
-    <h2 class="mr-auto text-lg font-medium"> Calculate Fire Extinguisher Placement</h2>
+    <h2 class="mr-auto text-lg font-medium">Calculate Ladder Length</h2>
   </div>
   <div class="grid grid-cols-11 pb-20 mt-5 gap-x-6">
     <!-- BEGIN: Notification -->
@@ -147,7 +147,7 @@ onMounted(() => {
           <Lucide icon="Info" class="w-4 h-4 mr-2" />
         </span>
         <span>
-          Note: This calculator is for educational purposes only. Always follow manufacturer guidelines for accurate Fire Extinguisher Placement values.
+          Note: This calculator is for educational purposes only. Always follow manufacturer guidelines for accurate Ladder Length calculation.
           <a
             href="https://themeforest.net/item/midone-jquery-tailwindcss-html-admin-template/26366820"
             class="ml-1 underline"
@@ -175,79 +175,15 @@ onMounted(() => {
           class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400"
         >
           <div class="flex items-center pb-5 text-base font-medium border-b border-slate-200/60 dark:border-darkmode-400">
-            <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" /> FEP Calculator
+            <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" /> Ladder Length Calculator
           </div>
           <div class="mt-5">
             <FormInline class="flex flex-col flex-wrap mt-2 xl:flex-row first:mt-0 first:pt-0">
               <FormLabel class="xl:w-64 xl:!mr-10">
                 <div class="text-left">
                   <div class="flex items-center pr-4">
-                    <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Fire Extinguisher Type:
-                        <TooltipIcon tooltipText="Fire Extinguisher Type" />
-                    </div>
-                    <!-- <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md mt-6 xl:mt-3.5">
-                      Required
-                    </div> -->
-                  </div>
-                </div>
-              </FormLabel>
-              <!-- <div class="flex-1 w-full mt-3 xl:mt-0">
-                <select @change="departnemtChange()" v-model="selectedDepartment"  class="w-full border border-gray-300 rounded-lg py-3 text-sm">
-                  <option value="" disabled >Select Department</option>
-                  <option v-for="(data, index) in state.departmentData" :key="index" :value="data.name">{{ data.name }}</option>
-                  </select>
-                  <div class="flex justify-between">
-                    <template v-if="validate.department.$error">
-                      <div v-for="(error, index) in validate.department.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
-                        {{ error.$message }}
-                      </div>
-                    </template>
-                  <p class="text-right mt-2 w-full"> Required, at least 3 characters</p>
-                </div>
-              </div> -->
-              <div class="flex-1 w-full mt-3 xl:mt-0">
-                <select class="w-full border border-gray-300 rounded-lg py-3 text-sm">
-                  <option value="" >Select Fire Extinguisher Type</option>
-                  <option value="Class A" >Class A</option>
-                  <option value="Class B" >Class B</option>
-                  <option value="Class C" >Class C</option>
-                </select>
-                  <div class="flex justify-between">
-                    <p class="text-right mt-2 w-full"> Required</p>
-                </div>
-              </div>
-            </FormInline>
-            <FormInline class="flex flex-col flex-wrap mt-2 xl:flex-row first:mt-0 first:pt-0">
-              <FormLabel class="xl:w-64 xl:!mr-10">
-                <div class="text-left">
-                  <div class="flex items-center pr-4">
-                    <div class="font-medium text-sm text-wrap md:text-nowrap flex mt-6 xl:mt-3.5">Type of Hazard (Refer definition below):
-                        <TooltipIcon tooltipText="Type of Hazard" />
-                    </div>
-                    <!-- <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md mt-6 xl:mt-3.5">
-                      Required
-                    </div> -->
-                  </div>
-                </div>
-              </FormLabel>
-              <div class="flex-1 w-full mt-3 xl:mt-0">
-                <select class="w-full border border-gray-300 rounded-lg py-3 text-sm">
-                  <option value="" >Select Hazard Type</option>
-                  <option value="Light (Low)" >Light (Low)</option>
-                  <option value="Moderate" >Moderate</option>
-                  <option value="High" >High</option>
-                </select>
-                  <div class="flex justify-between">
-                    <p class="text-right mt-2 w-full"> Required</p>
-                </div>
-              </div>
-            </FormInline>
-            <FormInline class="flex flex-col flex-wrap mt-2 xl:flex-row first:mt-0 first:pt-0">
-              <FormLabel class="xl:w-64 xl:!mr-10">
-                <div class="text-left">
-                  <div class="flex items-center pr-4">
-                    <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Size of Room/Location (m²):
-                      <TooltipIcon tooltipText="Size of Room/Location (m²)"/>
+                    <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Vertical Height (VH) (m):
+                      <TooltipIcon tooltipText="Vertical Height (VH) (m)"/>
                     </div>
                     <!-- <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md mt-6 xl:mt-3.5">
                       Required
@@ -267,7 +203,7 @@ onMounted(() => {
                 </div>
               </div> -->
               <div class="flex-1 w-full mt-3 xl:mt-0">
-                <FormInput class="w-full" type="text" name="room_size" placeholder="Enter size of the room"/>
+                <FormInput class="w-full" type="number" name="" placeholder="Enter vertical height (max 6 m)"/>
                   <div class="flex justify-between">
                     <p class="text-right mt-2 w-full"> Required</p>
                 </div>
@@ -291,11 +227,7 @@ onMounted(() => {
       <div class="relative p-5 mt-10 border rounded-md bg-success/20 dark:bg-darkmode-600 border-success dark:border-0">
           <h2 class=" text-lg font-medium">Results: </h2>
           <div class="mt-2 text-xs leading-relaxed text-slate-600 dark:text-slate-500">
-            <div class="mt-1 text-sm"> Fire Extinguisher Type: Class A</div>
-            <div class="mt-1 text-sm"> Minimum Extinguisher Rating: 3A</div>
-            <div class="mt-1 text-sm"> Maximum Travel Distance to Extinguisher: 20 m</div>
-            <div class="mt-1 text-sm"> Maximum Area per Extinguisher: 150 m²</div>
-            <div class="mt-1 text-sm"><strong>Number of Extinguishers Required: 1</strong></div>
+            <div class="mt-1 text-sm"><strong>Required Ladder Length: 5.12 m.</strong></div>
           </div>
       </div>
       <!-- results:end -->
