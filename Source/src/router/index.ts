@@ -1696,41 +1696,6 @@ const router = createRouter({
           name: "stack_height_calculator",
           component: () => import("../pages/CalculatorStackHeight.vue"),
         },
-        {
-          path: "ip-ratings-checker-calculator",
-          name: "ip-ratings-checker-calculator",
-          component: () => import("../pages/CalculatorIPRatingChecker.vue"),
-        },
-        {
-          path: "excavation-slope-calculator",
-          name: "excavation-slope-calculator",
-          component: () => import("../pages/CalculatorExcavationSlope.vue"),
-        },
-        {
-          path: "fall-clearance-calculator",
-          name: "fall-clearance-calculator",
-          component: () => import("../pages/CalculatorFallClearance.vue"),
-        },
-        {
-          path: "ladder-length-calculator",
-          name: "ladder-length-calculator",
-          component: () => import("../pages/CalculatorLadderLength.vue"),
-        },
-        {
-          path: "fire-load-calculator",
-          name: "fire-load-calculator",
-          component: () => import("../pages/CalculatorFireLoad.vue"),
-        },
-        {
-          path: "bulldog-grips-calculator",
-          name: "bulldog-grips-calculator",
-          component: () => import("../pages/CalculatorBulldogGrips.vue"),
-        },
-        {
-          path: "lost-time-injury-frequency-rate",
-          name: "lost-time-injury-frequency-rate",
-          component: () => import("../pages/CalculatorLTIFrequencyRate.vue"),
-        },
       ],
     },
     {

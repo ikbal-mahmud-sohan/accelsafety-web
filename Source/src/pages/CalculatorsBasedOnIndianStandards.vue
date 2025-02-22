@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Lucide from "@/components/Base/Lucide";
 import Button from "@/components/Base/Button";
+import CalculatorCard from "@/components/Custom/CalculatorCard.vue";
 
 </script>
 
@@ -23,7 +24,7 @@ import Button from "@/components/Base/Button";
           <div class="flex justify-center items-center p-4">
           <router-link :to="{ name: 'fire-extinguisher-placement-calculator' }">
             <div class="inline-block">
-              <img class="w-24 h-24 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon_02/calculator.png" alt="calculator">
+              <img class="w-24 h-24 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon_02/fire_extinguisher.png" alt="Fire_Extenguisher">
             </div>
           </router-link>
         </div>
@@ -39,7 +40,7 @@ import Button from "@/components/Base/Button";
           <div class="flex justify-center items-center p-4">
           <router-link :to="{ name: 'swl_of_wire_rope_calculator' }">
             <div class="inline-block">
-              <img class="w-24 h-24 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon_02/calculator.png" alt="calculator">
+              <img class="w-24 h-24 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon_02/copper_wire.png" alt="Wire">
             </div>
           </router-link>
         </div>
@@ -55,124 +56,12 @@ import Button from "@/components/Base/Button";
           <div class="flex justify-center items-center p-4">
           <router-link :to="{ name: 'stack_height_calculator' }">
             <div class="inline-block">
-              <img class="w-24 h-24 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon_02/calculator.png" alt="calculator">
+              <img class="w-24 h-24 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon_02/height.png" alt="Height">
             </div>
           </router-link>
         </div>
         <div class="py-1">
           <p class="text-center">Stack Height Calculator</p>
-        </div>
-        </div>
-      </div>
-    </div>
-    <div class="w-full lg:w-1/3">
-      <div class="p-4">
-        <div class="border py-2">
-          <div class="flex justify-center items-center p-4">
-          <router-link :to="{ name: 'ip-ratings-checker-calculator' }">
-            <div class="inline-block">
-              <img class="w-24 h-24 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon_02/calculator.png" alt="calculator">
-            </div>
-          </router-link>
-        </div>
-        <div class="py-1">
-          <p class="text-center">IP Ratings Checker / Calculator</p>
-        </div>
-        </div>
-      </div>
-    </div>
-    <div class="w-full lg:w-1/3">
-      <div class="p-4">
-        <div class="border py-2">
-          <div class="flex justify-center items-center p-4">
-          <router-link :to="{ name: 'excavation-slope-calculator' }">
-            <div class="inline-block">
-              <img class="w-24 h-24 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon_02/calculator.png" alt="calculator">
-            </div>
-          </router-link>
-        </div>
-        <div class="py-1">
-          <p class="text-center">Excavation Slope Calculator</p>
-        </div>
-        </div>
-      </div>
-    </div>
-    <div class="w-full lg:w-1/3">
-      <div class="p-4">
-        <div class="border py-2">
-          <div class="flex justify-center items-center p-4">
-          <router-link :to="{ name: 'fall-clearance-calculator' }">
-            <div class="inline-block">
-              <img class="w-24 h-24 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon_02/calculator.png" alt="calculator">
-            </div>
-          </router-link>
-        </div>
-        <div class="py-1">
-          <p class="text-center">Fall Clearance Calculator</p>
-        </div>
-        </div>
-      </div>
-    </div>
-    <div class="w-full lg:w-1/3">
-      <div class="p-4">
-        <div class="border py-2">
-          <div class="flex justify-center items-center p-4">
-          <router-link :to="{ name: 'ladder-length-calculator' }">
-            <div class="inline-block">
-              <img class="w-24 h-24 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon_02/calculator.png" alt="calculator">
-            </div>
-          </router-link>
-        </div>
-        <div class="py-1">
-          <p class="text-center">Ladder Length Calculator</p>
-        </div>
-        </div>
-      </div>
-    </div>
-    <div class="w-full lg:w-1/3">
-      <div class="p-4">
-        <div class="border py-2">
-          <div class="flex justify-center items-center p-4">
-          <router-link :to="{ name: 'fire-load-calculator' }">
-            <div class="inline-block">
-              <img class="w-24 h-24 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon_02/calculator.png" alt="calculator">
-            </div>
-          </router-link>
-        </div>
-        <div class="py-1">
-          <p class="text-center">Fire Load Calculator</p>
-        </div>
-        </div>
-      </div>
-    </div>
-    <div class="w-full lg:w-1/3">
-      <div class="p-4">
-        <div class="border py-2">
-          <div class="flex justify-center items-center p-4">
-          <router-link :to="{ name: 'bulldog-grips-calculator' }">
-            <div class="inline-block">
-              <img class="w-24 h-24 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon_02/calculator.png" alt="calculator">
-            </div>
-          </router-link>
-        </div>
-        <div class="py-1">
-          <p class="text-center">Bulldog grips or Wire rope grips Calculator</p>
-        </div>
-        </div>
-      </div>
-    </div>
-    <div class="w-full lg:w-1/3">
-      <div class="p-4">
-        <div class="border py-2">
-          <div class="flex justify-center items-center p-4">
-          <router-link :to="{ name: 'lost-time-injury-frequency-rate' }">
-            <div class="inline-block">
-              <img class="w-24 h-24 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon_02/calculator.png" alt="calculator">
-            </div>
-          </router-link>
-        </div>
-        <div class="py-1">
-          <p class="text-center">LTI Frequency Rate Calculator</p>
         </div>
         </div>
       </div>

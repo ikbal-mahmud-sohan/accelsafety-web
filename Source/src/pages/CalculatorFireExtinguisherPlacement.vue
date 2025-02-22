@@ -178,7 +178,7 @@ onMounted(() => {
             <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" /> FEP Calculator
           </div>
           <div class="mt-5">
-            <FormInline class="flex flex-col flex-wrap mt-2 xl:flex-row first:mt-0 first:pt-0">
+            <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
               <FormLabel class="xl:w-64 xl:!mr-10">
                 <div class="text-left">
                   <div class="flex items-center pr-4">
@@ -213,11 +213,11 @@ onMounted(() => {
                   <option value="Class C" >Class C</option>
                 </select>
                   <div class="flex justify-between">
-                    <p class="text-right mt-2 w-full"> Required</p>
+                    <p class="text-right mt-2 w-full"> Required, at least 3 characters</p>
                 </div>
               </div>
             </FormInline>
-            <FormInline class="flex flex-col flex-wrap mt-2 xl:flex-row first:mt-0 first:pt-0">
+            <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
               <FormLabel class="xl:w-64 xl:!mr-10">
                 <div class="text-left">
                   <div class="flex items-center pr-4">
@@ -238,11 +238,11 @@ onMounted(() => {
                   <option value="High" >High</option>
                 </select>
                   <div class="flex justify-between">
-                    <p class="text-right mt-2 w-full"> Required</p>
+                    <p class="text-right mt-2 w-full"> Required, at least 3 characters</p>
                 </div>
               </div>
             </FormInline>
-            <FormInline class="flex flex-col flex-wrap mt-2 xl:flex-row first:mt-0 first:pt-0">
+            <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
               <FormLabel class="xl:w-64 xl:!mr-10">
                 <div class="text-left">
                   <div class="flex items-center pr-4">
@@ -269,7 +269,7 @@ onMounted(() => {
               <div class="flex-1 w-full mt-3 xl:mt-0">
                 <FormInput class="w-full" type="text" name="room_size" placeholder="Enter size of the room"/>
                   <div class="flex justify-between">
-                    <p class="text-right mt-2 w-full"> Required</p>
+                    <p class="text-right mt-2 w-full"> Required, at least 3 characters</p>
                 </div>
               </div>
             </FormInline>
@@ -289,13 +289,16 @@ onMounted(() => {
 
       <!-- results:start -->
       <div class="relative p-5 mt-10 border rounded-md bg-success/20 dark:bg-darkmode-600 border-success dark:border-0">
-          <h2 class=" text-lg font-medium">Results: </h2>
+          <Lucide
+            icon="SunIcon"
+            class="absolute top-0 right-0 w-12 h-12 mt-5 mr-3 text-success/80"
+          />
+          <h2 class="mt-5 text-lg font-medium">Results: </h2>
           <div class="mt-2 text-xs leading-relaxed text-slate-600 dark:text-slate-500">
-            <div class="mt-1 text-sm"> Fire Extinguisher Type: Class A</div>
-            <div class="mt-1 text-sm"> Minimum Extinguisher Rating: 3A</div>
-            <div class="mt-1 text-sm"> Maximum Travel Distance to Extinguisher: 20 m</div>
-            <div class="mt-1 text-sm"> Maximum Area per Extinguisher: 150 m²</div>
-            <div class="mt-1 text-sm"><strong>Number of Extinguishers Required: 1</strong></div>
+            <div>Lorem ipsum dolor sit.</div>
+            <div class="mt-1">Lorem ipsum dolor sit amet consectetur.</div>
+            <div class="mt-1">Lorem ipsum dolor sit.</div>
+            <div class="mt-1">Lorem ipsum dolor sit.</div>
           </div>
       </div>
       <!-- results:end -->
