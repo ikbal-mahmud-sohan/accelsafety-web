@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Lucide from "@/components/Base/Lucide";
 import Button from "@/components/Base/Button";
+import CalculatorCard from "@/components/Custom/CalculatorCard.vue";
 
 </script>
 
