@@ -175,10 +175,10 @@ onMounted(() => {
           class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400"
         >
           <div class="flex items-center pb-5 text-base font-medium border-b border-slate-200/60 dark:border-darkmode-400">
-            <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" /> FEP Calculator
+            <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" /> SWL Calculator
           </div>
           <div class="mt-5">
-            <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+            <FormInline class="flex flex-col flex-wrap mt-2 xl:flex-row first:mt-0 first:pt-0">
               <FormLabel class="xl:w-64 xl:!mr-10">
                 <div class="text-left">
                   <div class="flex items-center pr-4">
@@ -205,7 +205,7 @@ onMounted(() => {
               <div class="flex-1 w-full mt-3 xl:mt-0">
                 <FormInput class="w-full" type="number" name="swl_of_wire_rope_calculator" placeholder="Enter diameter in mm"/>
                   <div class="flex justify-between">
-                    <p class="text-right mt-2 w-full"> Required, at least 3 characters</p>
+                    <p class="text-right mt-2 w-full"> Required</p>
                 </div>
               </div>
             </FormInline>
@@ -225,16 +225,9 @@ onMounted(() => {
 
       <!-- results:start -->
       <div class="relative p-5 mt-10 border rounded-md bg-success/20 dark:bg-darkmode-600 border-success dark:border-0">
-          <Lucide
-            icon="SunIcon"
-            class="absolute top-0 right-0 w-12 h-12 mt-5 mr-3 text-success/80"
-          />
-          <h2 class="mt-5 text-lg font-medium">Results: </h2>
+        <h2 class=" text-lg font-medium">Results: </h2>
           <div class="mt-2 text-xs leading-relaxed text-slate-600 dark:text-slate-500">
-            <div>Lorem ipsum dolor sit.</div>
-            <div class="mt-1">Lorem ipsum dolor sit amet consectetur.</div>
-            <div class="mt-1">Lorem ipsum dolor sit.</div>
-            <div class="mt-1">Lorem ipsum dolor sit.</div>
+            <div class="mt-1 text-sm"><strong>Safe Working Load (SWL): 178.56 Ton</strong></div>
           </div>
       </div>
       <!-- results:end -->
