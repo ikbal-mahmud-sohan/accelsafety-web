@@ -28,7 +28,7 @@ import Button from "@/components/Base/Button";
         </router-link>
         </div>
         <div class="py-1">
-          <p class="text-center">31-Circular Saw List</p>
+          <p class="text-center">Circular Saw List</p>
         </div>
         </div>
       </div>
@@ -44,7 +44,7 @@ import Button from "@/components/Base/Button";
         </router-link>
         </div>
         <div class="py-1">
-          <p class="text-center">31-Circular Saw Create</p>
+          <p class="text-center">Circular Saw Create</p>
         </div>
         </div>
       </div>

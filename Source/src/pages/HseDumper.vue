@@ -28,7 +28,7 @@ import Button from "@/components/Base/Button";
         </router-link>
         </div>
         <div class="py-1">
-          <p class="text-center">3-Dumper Create</p>
+          <p class="text-center">Dumper Create</p>
         </div>
         </div>
       </div>
@@ -44,7 +44,7 @@ import Button from "@/components/Base/Button";
         </router-link>
         </div>
         <div class="py-1">
-          <p class="text-center">3-Dumper List</p>
+          <p class="text-center">Dumper List</p>
         </div>
         </div>
       </div>

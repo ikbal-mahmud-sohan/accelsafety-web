@@ -28,7 +28,7 @@ import Button from "@/components/Base/Button";
         </router-link>
         </div>
         <div class="py-1">
-        <p class="text-center">4-Earth Compactor Create</p>
+        <p class="text-center">Earth Compactor Create</p>
         </div>
         </div>
       </div>
@@ -44,7 +44,7 @@ import Button from "@/components/Base/Button";
         </router-link>
         </div>
         <div class="py-1">
-          <p class="text-center">4-Earth Compactor List</p>
+          <p class="text-center">Earth Compactor List</p>
         </div>
         </div>
       </div>

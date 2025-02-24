@@ -28,7 +28,7 @@ import Button from "@/components/Base/Button";
         </router-link>
         </div>
         <div class="py-1">
-          <p class="text-center">32-Batching Plant List</p>
+          <p class="text-center">Batching Plant List</p>
         </div>
         </div>
       </div>
@@ -44,7 +44,7 @@ import Button from "@/components/Base/Button";
         </router-link>
         </div>
         <div class="py-1">
-          <p class="text-center">32-Batching Plant Create</p>
+          <p class="text-center">Batching Plant Create</p>
         </div>
         </div>
       </div>

@@ -14,7 +14,7 @@ import Button from "@/components/Base/Button";
     
   </div>
   <div class="pb-8">
-    <h2 class="text-2xl font-medium intro-y text-center uppercase">2-Excavator</h2>
+    <h2 class="text-2xl font-medium intro-y text-center uppercase">Excavator</h2>
   </div>
   <div class="flex flex-wrap bg-theme-1 bg-opacity-20 px-4 py-4 rounded-md shadow-md">
     <div class="w-full lg:w-1/3">
@@ -28,7 +28,7 @@ import Button from "@/components/Base/Button";
         </router-link>
         </div>
         <div class="py-1">
-          <p class="text-center">2-Excavator Create</p>
+          <p class="text-center">Excavator Create</p>
         </div>
         </div>
       </div>
@@ -44,7 +44,7 @@ import Button from "@/components/Base/Button";
         </router-link>
         </div>
         <div class="py-1">
-          <p class="text-center">2-Excavator List</p>
+          <p class="text-center">Excavator List</p>
         </div>
         </div>
       </div>

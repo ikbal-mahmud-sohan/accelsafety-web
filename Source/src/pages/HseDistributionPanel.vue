@@ -28,7 +28,7 @@ import Button from "@/components/Base/Button";
         </router-link>
         </div>
         <div class="py-1">
-          <p class="text-center">18-Power/Sub Distribution Panel List</p>
+          <p class="text-center">Power/Sub Distribution Panel List</p>
         </div>
         </div>
       </div>
@@ -44,7 +44,7 @@ import Button from "@/components/Base/Button";
         </router-link>
         </div>
         <div class="py-1">
-          <p class="text-center">18-Power/Sub Distribution Panel Create</p>
+          <p class="text-center">Power/Sub Distribution Panel Create</p>
         </div>
         </div>
       </div>
