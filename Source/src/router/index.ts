@@ -1756,6 +1756,26 @@ const router = createRouter({
           name: "daily-drinking-water-intake-calculator",
           component: () => import("../pages/CalculatorDailyDrinkingWaterIntake.vue"),
         },
+        {
+          path: "calculator-on-osha-standards",
+          name: "calculator-on-osha-standards",
+          component: () => import("../pages/CalculatorsBasedOnOSHA.vue"),
+        },
+        {
+          path: "osha-total-recordable-incident-rate-trir-calculator",
+          name: "osha-total-recordable-incident-rate-trir-calculator",
+          component: () => import("../pages/CalculatorOSHATotalRecordableIncidentRate.vue"),
+        },
+        {
+          path: "osha-dart-rate-calculator",
+          name: "osha-dart-rate-calculator",
+          component: () => import("../pages/CalculatorOSHADartRate.vue"),
+        },
+        {
+          path: "nema-ratings-and-ip-equivalency-calculator",
+          name: "nema-ratings-and-ip-equivalency-calculator",
+          component: () => import("../pages/CalculatorNEMARatingsAndIPRatings.vue"),
+        },
       ],
     },
     {
