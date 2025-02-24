@@ -1,7 +1,7 @@
   <!-- src/components/Custom/CalculatorCard.vue -->
   <template>
     <div class="p-4">
-      <div class="border py-2">
+      <div class="border py-2 h-full">
         <div class="flex justify-center items-center p-4">
           <router-link :to="to">
             <div class="inline-block">
