@@ -28,7 +28,7 @@ import Button from "@/components/Base/Button";
         </router-link>
         </div>
         <div class="py-1">
-          <p class="text-center">30-Pedestal Grinder List</p>
+          <p class="text-center">Pedestal Grinder List</p>
         </div>
         </div>
       </div>
@@ -44,7 +44,7 @@ import Button from "@/components/Base/Button";
         </router-link>
         </div>
         <div class="py-1">
-          <p class="text-center">30-Pedestal Grinder Create</p>
+          <p class="text-center">Pedestal Grinder Create</p>
         </div>
         </div>
       </div>

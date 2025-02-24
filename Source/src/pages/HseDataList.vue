@@ -291,7 +291,7 @@ import Lucide from "@/components/Base/Lucide";
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">1-Backhoe Loader (JCB)</p>
+        <p class="text-center">Backhoe Loader (JCB)</p>
       </div>
     </div>
    
@@ -304,7 +304,7 @@ import Lucide from "@/components/Base/Lucide";
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">2-Excavator</p>
+        <p class="text-center">Excavator</p>
       </div>
     </div>
     
@@ -317,7 +317,7 @@ import Lucide from "@/components/Base/Lucide";
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">3-Dumper Create</p>
+        <p class="text-center">Dumper Create</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
@@ -329,7 +329,7 @@ import Lucide from "@/components/Base/Lucide";
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">4-Earth Compactor</p>
+        <p class="text-center">Earth Compactor</p>
       </div>
     </div>
    
@@ -342,7 +342,7 @@ import Lucide from "@/components/Base/Lucide";
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">5-Concrete Mixer</p>
+        <p class="text-center">Concrete Mixer</p>
       </div>
     </div>
     
@@ -355,7 +355,7 @@ import Lucide from "@/components/Base/Lucide";
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">6-Transit Mixer</p>
+        <p class="text-center">Transit Mixer</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
@@ -367,7 +367,7 @@ import Lucide from "@/components/Base/Lucide";
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">7-Concrete Pump</p>
+        <p class="text-center">Concrete Pump</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
@@ -379,7 +379,7 @@ import Lucide from "@/components/Base/Lucide";
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">8-Boom Placer</p>
+        <p class="text-center">Boom Placer</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
@@ -391,7 +391,7 @@ import Lucide from "@/components/Base/Lucide";
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">9-Electrical Vibrator</p>
+        <p class="text-center">Electrical Vibrator</p>
       </div>
     </div>
     
@@ -404,7 +404,7 @@ import Lucide from "@/components/Base/Lucide";
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">10-Bar Cutting Machine Create</p>
+        <p class="text-center">Bar Cutting Machine Create</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
@@ -416,7 +416,7 @@ import Lucide from "@/components/Base/Lucide";
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">10-Bar Cutting Machine List</p>
+        <p class="text-center">Bar Cutting Machine List</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
@@ -428,7 +428,7 @@ import Lucide from "@/components/Base/Lucide";
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">11-Bar Bending Machine</p>
+        <p class="text-center">Bar Bending Machine</p>
       </div>
     </div>
     
@@ -441,7 +441,7 @@ import Lucide from "@/components/Base/Lucide";
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">12-Breaker</p>
+        <p class="text-center">Breaker</p>
       </div>
     </div>
    
@@ -454,7 +454,7 @@ import Lucide from "@/components/Base/Lucide";
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">13-Drill Machine</p>
+        <p class="text-center">Drill Machine</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
@@ -466,7 +466,7 @@ import Lucide from "@/components/Base/Lucide";
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">14-Hydra</p>
+        <p class="text-center">Hydra</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
@@ -478,7 +478,7 @@ import Lucide from "@/components/Base/Lucide";
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">15-Mobile Crane</p>
+        <p class="text-center">Mobile Crane</p>
       </div>
     </div>
    
@@ -491,7 +491,7 @@ import Lucide from "@/components/Base/Lucide";
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">16-Tower Crane</p>
+        <p class="text-center">Tower Crane</p>
       </div>
     </div>
     
@@ -504,7 +504,7 @@ import Lucide from "@/components/Base/Lucide";
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">17-Diesel Generator</p>
+        <p class="text-center">Diesel Generator</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
@@ -516,7 +516,7 @@ import Lucide from "@/components/Base/Lucide";
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">18-Power/Sub Distribution Panel</p>
+        <p class="text-center">Power/Sub Distribution Panel</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
@@ -528,7 +528,7 @@ import Lucide from "@/components/Base/Lucide";
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">19-Gas Cutting Set</p>
+        <p class="text-center">Gas Cutting Set</p>
       </div>
     </div>
     
@@ -541,7 +541,7 @@ import Lucide from "@/components/Base/Lucide";
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">20-Portable Grinder</p>
+        <p class="text-center">Portable Grinder</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
@@ -553,7 +553,7 @@ import Lucide from "@/components/Base/Lucide";
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">21-Welding Machine</p>
+        <p class="text-center">Welding Machine</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
@@ -565,7 +565,7 @@ import Lucide from "@/components/Base/Lucide";
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">22-Electrical Pump/Motor</p>
+        <p class="text-center">Electrical Pump/Motor</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
@@ -577,7 +577,7 @@ import Lucide from "@/components/Base/Lucide";
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">23-Winch Machine</p>
+        <p class="text-center">Winch Machine</p>
       </div>
     </div>
     
@@ -590,7 +590,7 @@ import Lucide from "@/components/Base/Lucide";
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">24-Chain Pulley Block</p>
+        <p class="text-center">Chain Pulley Block</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
@@ -602,7 +602,7 @@ import Lucide from "@/components/Base/Lucide";
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">25-Lifting Tools Tackles</p>
+        <p class="text-center">Lifting Tools Tackles</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
@@ -614,7 +614,7 @@ import Lucide from "@/components/Base/Lucide";
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">26 Air Compressor</p>
+        <p class="text-center">Air Compressor</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
@@ -626,7 +626,7 @@ import Lucide from "@/components/Base/Lucide";
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">27-Grit / Sand Blasting Set</p>
+        <p class="text-center">Grit / Sand Blasting Set</p>
       </div>
     </div>
     
@@ -639,7 +639,7 @@ import Lucide from "@/components/Base/Lucide";
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">28-Fire Extinguisher</p>
+        <p class="text-center">Fire Extinguisher</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
@@ -651,7 +651,7 @@ import Lucide from "@/components/Base/Lucide";
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">29-Bench Cutting Machine</p>
+        <p class="text-center">Bench Cutting Machine</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
@@ -663,7 +663,7 @@ import Lucide from "@/components/Base/Lucide";
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">30-Pedestal Grinder</p>
+        <p class="text-center">Pedestal Grinder</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
@@ -675,7 +675,7 @@ import Lucide from "@/components/Base/Lucide";
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">31-Circular Saw</p>
+        <p class="text-center">Circular Saw</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
@@ -687,7 +687,7 @@ import Lucide from "@/components/Base/Lucide";
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">32-Batching Plant</p>
+        <p class="text-center">Batching Plant</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
@@ -699,7 +699,7 @@ import Lucide from "@/components/Base/Lucide";
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">33-Ambulance</p>
+        <p class="text-center">Ambulance</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
@@ -711,7 +711,7 @@ import Lucide from "@/components/Base/Lucide";
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">34-Skid Steer Loader</p>
+        <p class="text-center">Skid Steer Loader</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
@@ -723,7 +723,7 @@ import Lucide from "@/components/Base/Lucide";
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">35-Grader Create</p>
+        <p class="text-center">Grader Create</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
@@ -735,7 +735,7 @@ import Lucide from "@/components/Base/Lucide";
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">36-Gantry Crane Create</p>
+        <p class="text-center">Gantry Crane Create</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
@@ -747,7 +747,7 @@ import Lucide from "@/components/Base/Lucide";
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">36-Gantry Crane List</p>
+        <p class="text-center">Gantry Crane List</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
@@ -759,7 +759,7 @@ import Lucide from "@/components/Base/Lucide";
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">37-Eot Crane</p>
+        <p class="text-center">Eot Crane</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
@@ -771,7 +771,7 @@ import Lucide from "@/components/Base/Lucide";
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">39-Trailer</p>
+        <p class="text-center">Trailer</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
@@ -783,7 +783,7 @@ import Lucide from "@/components/Base/Lucide";
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">40-Four Wheeler</p>
+        <p class="text-center">Four Wheeler</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
@@ -795,7 +795,7 @@ import Lucide from "@/components/Base/Lucide";
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">41-Bus</p>
+        <p class="text-center">Bus</p>
       </div>
     </div>
     
@@ -808,7 +808,7 @@ import Lucide from "@/components/Base/Lucide";
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">42-Diesel Tanker</p>
+        <p class="text-center">Diesel Tanker</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
@@ -820,7 +820,7 @@ import Lucide from "@/components/Base/Lucide";
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">43-Water Tanker Create</p>
+        <p class="text-center">Water Tanker Create</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
@@ -832,7 +832,7 @@ import Lucide from "@/components/Base/Lucide";
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">43-Water Tanker List</p>
+        <p class="text-center">Water Tanker List</p>
       </div>
     </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
@@ -844,7 +844,7 @@ import Lucide from "@/components/Base/Lucide";
         </router-link>
       </div>
       <div class="py-1">
-        <p class="text-center">71-Bike</p>
+        <p class="text-center">Bike</p>
       </div>
     </div>
   

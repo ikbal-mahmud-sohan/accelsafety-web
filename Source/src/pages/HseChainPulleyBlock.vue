@@ -28,7 +28,7 @@ import Button from "@/components/Base/Button";
         </router-link>
         </div>
         <div class="py-1">
-          <p class="text-center">24-Chain Pulley Block List</p>
+          <p class="text-center">Chain Pulley Block List</p>
         </div>
         </div>
       </div>
@@ -44,7 +44,7 @@ import Button from "@/components/Base/Button";
         </router-link>
         </div>
         <div class="py-1">
-          <p class="text-center">24-Chain Pulley Block Create</p>
+          <p class="text-center">Chain Pulley Block Create</p>
         </div>
         </div>
       </div>

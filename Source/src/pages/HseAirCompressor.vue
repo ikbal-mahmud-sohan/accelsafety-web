@@ -28,7 +28,7 @@ import Button from "@/components/Base/Button";
         </router-link>
         </div>
         <div class="py-1">
-          <p class="text-center">26 Air Compressor List</p>
+          <p class="text-center">Air Compressor List</p>
         </div>
         </div>
       </div>
@@ -44,7 +44,7 @@ import Button from "@/components/Base/Button";
         </router-link>
         </div>
         <div class="py-1">
-          <p class="text-center">26 Air Compressor Create</p>
+          <p class="text-center">Air Compressor Create</p>
         </div>
         </div>
       </div>

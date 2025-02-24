@@ -28,7 +28,7 @@ import Button from "@/components/Base/Button";
         </router-link>
         </div>
         <div class="py-1">
-          <p class="text-center">12-Breaker List</p>
+          <p class="text-center">Breaker List</p>
         </div>
         </div>
       </div>
@@ -44,7 +44,7 @@ import Button from "@/components/Base/Button";
         </router-link>
         </div>
         <div class="py-1">
-          <p class="text-center">12-Breaker Create</p>
+          <p class="text-center">Breaker Create</p>
         </div>
         </div>
       </div>

@@ -28,7 +28,7 @@ import Button from "@/components/Base/Button";
         </router-link>
         </div>
         <div class="py-1">
-          <p class="text-center">71-Bike List</p>
+          <p class="text-center">Bike List</p>
         </div>
         </div>
       </div>
@@ -44,7 +44,7 @@ import Button from "@/components/Base/Button";
         </router-link>
         </div>
         <div class="py-1">
-          <p class="text-center">71-Bike Create</p>
+          <p class="text-center">Bike Create</p>
         </div>
         </div>
       </div>

@@ -28,7 +28,7 @@ import Button from "@/components/Base/Button";
         </router-link>
         </div>
         <div class="py-1">
-          <p class="text-center">8-Boom Placer List</p>
+          <p class="text-center">Boom Placer List</p>
         </div>
         </div>
       </div>
@@ -44,7 +44,7 @@ import Button from "@/components/Base/Button";
         </router-link>
         </div>
         <div class="py-1">
-          <p class="text-center">8-Boom Placer Create</p>
+          <p class="text-center">Boom Placer Create</p>
         </div>
         </div>
       </div>

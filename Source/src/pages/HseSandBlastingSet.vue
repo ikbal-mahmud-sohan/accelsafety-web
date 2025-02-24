@@ -28,7 +28,7 @@ import Button from "@/components/Base/Button";
         </router-link>
         </div>
         <div class="py-1">
-          <p class="text-center">27-Grit / Sand Blasting Set List</p>
+          <p class="text-center">Grit / Sand Blasting Set List</p>
         </div>
         </div>
       </div>
@@ -44,7 +44,7 @@ import Button from "@/components/Base/Button";
         </router-link>
         </div>
         <div class="py-1">
-          <p class="text-center">27-Grit / Sand Blasting Set Create</p>
+          <p class="text-center">Grit / Sand Blasting Set Create</p>
         </div>
         </div>
       </div>
