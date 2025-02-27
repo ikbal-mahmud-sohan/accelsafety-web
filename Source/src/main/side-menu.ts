@@ -192,8 +192,21 @@ const menu: Array<Menu | "divider"> = [
       },  
       {
         icon: "Activity",
-        pageName: "hira-lites-list",
+        // pageName: "hira-lites-list",
+        pageName: "",
         title: "Risk Assessment",
+        subMenu: [
+          {
+            icon: "Zap",
+            pageName: "hira-risk-assesment-list",
+            title: "List",
+          },
+          {
+            icon: "Zap",
+            pageName: "hira-risk-assesment-from",
+            title: "Create",
+          },
+        ],
       },  
     ],
   },
@@ -286,6 +299,14 @@ const menu: Array<Menu | "divider"> = [
       
   //   ],
   // },
+
+  // Unit input
+  {
+    icon: "HexagonIcon",
+    pageName: "unit-input",
+    title: "Unit Input",
+  },
+
   {
     icon: "Box",
     pageName: "Employee Information",
