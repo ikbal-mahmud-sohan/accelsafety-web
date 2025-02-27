@@ -42,9 +42,12 @@ const formData = reactive({
 const state = reactive({
   token: getToken(),
   viewEmp: [] as Array<any>,
+  viewUnitName: [] as Array<any>,
 
 });
 const router = useRouter();
+
+const selectedUnitName = ref("");
 
 const rules = {
         unit_name: {required,},
@@ -117,6 +120,7 @@ const submitForm = async () => {
   formData.month = fullMonth;
   formData.waste = selectedCotton.value;
   
+  formData.unit_name = selectedUnitName.value;
     validate.value.$touch();
     console.log(validate.value)
     if (validate.value.$invalid) {
@@ -162,6 +166,23 @@ watch(selectedItemNname, (newValue) => {
     formData.unit = ''; // Clear or set default
   }
 });
+
+//fetch unit dropdown
+const fetchDropDownData = async () => {
+    try {
+        let url = config.baseURL+'/api/v1/unit-name';
+        const response = await axios.get(url, {
+            headers: {
+                'Authorization': state.token,
+            },
+        });
+        // console.log("Shamim dropdown: ", response.data.data);
+        // state.viewUnitName = response.data.RespDepartment;
+        state.viewUnitName = response.data.data;
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+};
 
 // Ext Function 
 
@@ -232,6 +253,7 @@ const fetchSingleEmployee = async (ID:string) => {
 };
 
 onMounted(() => {
+  fetchDropDownData();
   fetchEmpData();
 
 });
@@ -279,38 +301,42 @@ onMounted(() => {
           </div>
             <div class="flex flex-wrap">
               <div class="md:w-1/2 w-full">
-                    <div class="px-4 py-2">
-                      <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
-                        <FormLabel class="xl:w-40 xl:!mr-10">
-                          <div class="text-left">
-                            <div class="flex items-center pr-4">
-                              <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Site Location
-                                <span class="relative group cursor-pointer ml-1">
-                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                  <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
-                                  </svg>
-                                  <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
-                                    Site Location is the location of waste handling
-                                  </div>
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-                        </FormLabel>
-                        <div class="flex-1 w-full mt-3 xl:mt-0">
-                          <FormInput id="crud-form-12" v-model.trim="validate.unit_name.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.unit_name.$error,}" placeholder="Input Site Location"/>  
-                          <div class="flex justify-between">
-                            <template v-if="validate.unit_name.$error">
-                            <div v-for="(error, index) in validate.unit_name.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
-                              {{ error.$message }}
-                            </div>
-                          </template>
-                            <p class="text-right mt-2 w-full"> Required</p>
+                <div class="px-4 py-2">
+                  <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                    <FormLabel class="xl:w-40 xl:!mr-10">
+                      <div class="text-left">
+                        <div class="flex items-center">
+                          <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-4">Unit Name
+                            <span class="relative group cursor-pointer ml-1">
+                              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                              </svg>
+                                <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                  Unit Name is the location of waste handling
+                                </div>
+                            </span>
                           </div>
                         </div>
-                      </FormInline>
+                      </div>
+                    </FormLabel>
+                    <div class="flex-1 w-full mt-3 xl:mt-0">
+                      <select id="crud-form-6" v-model="selectedUnitName"  class="border py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 fdark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 text-gray-500">
+                            <option value="" disabled>select unit name</option>
+                            <option v-for="(data, index) in state.viewUnitName" :key="index" :value="data.name">{{ data.name }}</option>
+                      </select>
+                    
+                      <div class="flex justify-between">
+                        <template v-if="validate.unit_name.$error">
+                        <div v-for="(error, index) in validate.unit_name.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
+                          {{ error.$message }}
+                        </div>
+                      </template>
+                        <p class="text-right mt-2 w-full"> Required</p>
+                      </div>
                     </div>
+                  </FormInline>
                 </div>
+              </div>
                 <div class="md:w-1/2 w-full">
                     <div class="px-4 py-2">
                       <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
@@ -826,7 +852,7 @@ onMounted(() => {
           Cancel
         </Button>
         <Button variant="primary" type="button" class="w-full py-3 md:w-52" @click="submitForm">
-          Save
+          Submit
         </Button>
       </div>
     </div>

@@ -223,6 +223,12 @@ const router = createRouter({
           name: "admin-safety-observatio-update-form",
           component: () => import("../pages/AdminSafetyObservatioUpdateForm.vue"),
         },
+        // unit
+        {
+          path: "unit-input",
+          name: "unit-input",
+          component: () => import("../pages/UnitInput.vue"),
+        },
         // Training
         {
           path: "trainings",
@@ -368,6 +374,16 @@ const router = createRouter({
           path: "accel-safety-words/:id",
           name: "accel-safety-words-view",
           component: () => import("../pages/AccelSafetyWordView.vue"),
+        },
+        {
+          path: "hira-risk-assesment-from",
+          name: "hira-risk-assesment-from",
+          component: () => import("../pages/HiraRiskAssessmentForm.vue"),
+        },
+        {
+          path: "hira-risk-assesment-list",
+          name: "hira-risk-assesment-list",
+          component: () => import("../pages/RiskAssessmentList.vue"),
         },
         // Hira
         {

@@ -20,7 +20,6 @@ import TooltipIcon from "@/components/Custom/TooltipIcon.vue"; // Import the com
 
 // Define your state using the reactive function
 const state = reactive({
-  respUnit: [] as Array<any>,
   departmentData: [] as Array<any>,
   designationData: [] as Array<any>,
   token: getToken(),
@@ -208,38 +207,6 @@ function designationChange(){
   formData.designationInput = ""
 }
 
-// Unit data fetching
-const fetchUnitName = async () => {
-  try {
-   let  url = config.baseURL+'/api/v1/unit-name';
-    const response = await axios.get(url,{
-                headers: {
-                    'Authorization': state.token,
-                },
-                });
-    state.respUnit = response.data.data;
-    console.log("xyz",state.respUnit)
-  } catch (error) {
-    console.error('Error fetching data:', error);
-  }
-};
-
-const deleteUnitName = async (sID:string) => {
-  console.log("sID",sID)
-
-  try {
-    let url = config.baseURL+"/api/v1/unit-name/"+sID;
-    const response = await axios.delete(url,{
-                headers: {
-                    'Authorization': state.token,
-                },
-                });
-    state.respUnit = response.data.data;
-  } catch (error) {
-    console.error('Error fetching data:', error);
-  }
-};
-
 // Fetch data from the API and update the state
 const fetchDepartmentData = async () => {
   try {
@@ -270,7 +237,6 @@ const fetchDesignationData = async () => {
   }
 };
 onMounted(() => {
-  fetchUnitName();
   fetchDepartmentData();
   fetchDesignationData();
 });
@@ -490,14 +456,14 @@ onMounted(() => {
       <div class="p-5 mt-5 intro-y box">
         <div class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400">
           <div class="flex items-center pb-5 text-base font-medium border-b border-slate-200/60 dark:border-darkmode-400">
-            <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" />Unit Name
+            <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" />Unit
           </div>
           <div class="mt-5">
             <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
               <FormLabel class="xl:w-64 xl:!mr-10">
                 <div class="text-left">
                   <div class="flex items-center pr-4">
-                    <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Unit Name
+                    <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-3.5">Name
                       <span class="relative group cursor-pointer ml-1">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
@@ -526,16 +492,6 @@ onMounted(() => {
               </div>
             </FormInline>
           </div>
-        </div>
-        <div class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400 flex flex-wrap" >
-          <ul v-for="(data, index) in state.respUnit" :key="index" class="">
-            <li class="p-2">
-              <span class=" inline-block px-4 py-3 bg-gray-100 rounded-sm min-w-52 md:min-w-36 text-center"> 
-              {{data.name}}
-              <a class="ml-2"  href="javascript:;" @click="deleteUnitName(data.id)">×</a>
-              </span>
-            </li>
-          </ul>
         </div>
       </div>
       <div class="p-5 mt-5 intro-y box">
