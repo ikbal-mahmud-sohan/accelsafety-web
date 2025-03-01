@@ -49,7 +49,7 @@ const router = useRouter();
 const selectedUnitName = ref("");
 
 const rules = {
-        unit_name: { required, minLength: minLength(3) },
+        unit_name: { required,},
         date: {required,},
         month: {required,},
         employee_name: {required,},

@@ -176,8 +176,6 @@ const fetchDropDownData = async () => {
                 'Authorization': state.token,
             },
         });
-        // console.log("Shamim dropdown: ", response.data.data);
-        // state.viewUnitName = response.data.RespDepartment;
         state.viewUnitName = response.data.data;
     } catch (error) {
         console.error('Error fetching data:', error);

@@ -62,7 +62,7 @@ onMounted(() => {
       <!-- <Button variant="primary" class="mr-2 shadow-md">
         Add New Accident
       </Button> -->
-      <router-link :to="{ name: 'hira-lites-list' }">
+      <router-link :to="{ name: 'hira-risk-assesment-from' }">
         <Button variant="primary" class="mr-2 shadow-md">
           Add
         </Button>
@@ -150,11 +150,11 @@ onMounted(() => {
               ]"
             >
               <div class="flex items-center justify-center">
-                <router-link :to="{name:'accident-investigation-form', params:{id:report.id} }" class="flex items-center mr-3">
+                <!-- <router-link :to="{name:'accident-investigation-form', params:{id:report.id} }" class="flex items-center mr-3">
                   <Lucide icon="CheckSquare" class="w-4 h-4 mr-1" />
                   Assigned
-                </router-link>
-                <router-link :to="{name:'accident-update-form', params:{id:report.id} }" class="flex items-center mr-3">
+                </router-link> -->
+                <router-link :to="{name:'hira-lites-list', params:{id:report.id} }" class="flex items-center mr-3">
                   <Lucide icon="CheckSquare" class="w-4 h-4 mr-1" />
                   Edit
                 </router-link>

@@ -85,7 +85,8 @@ const submitForm = async () => {
                     'Content-Type': 'multipart/form-data',
                     'Authorization': state.token,
                 },
-                });
+              });
+              router.push({ name: 'hira-risk-assesment-list' });
                 // selectedRiskRatingLikelihood.value = response.data.risk_rating_likelihood;
                 // selectedRiskRatingSeverity.value = response.data.risk_rating_severity;
                 // selectedRiskRatingOverall.value = response.data.risk_rating_overall;

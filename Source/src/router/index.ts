@@ -356,7 +356,7 @@ const router = createRouter({
           component: () => import("../pages/HiraInput.vue"),
         },
         {
-          path: "hira-lites-list",
+          path: "hira-lites-list/:id",
           name: "hira-lites-list",
           component: () => import("../pages/HiraLitesList.vue"),
         },
