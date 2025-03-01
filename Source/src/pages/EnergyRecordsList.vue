@@ -29,7 +29,7 @@ const fetchData = async () => {
       },
     });
 
-    state.energyrecords = response.data;
+    state.energyrecords = response.data.data;
 
     // Extract unique dynamic keys from the first record
     if (state.energyrecords.length > 0) {

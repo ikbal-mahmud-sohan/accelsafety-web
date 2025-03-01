@@ -133,6 +133,7 @@ const submitForm = async () => {
     } else {
 
             try {
+                // let  url = config.baseURL+'/api/v1/water-consumption';
                 let  url = config.baseURL+'/api/v1/water-consumption';
                 const response = await axios.post(url, formData, {
                 headers: {
@@ -140,7 +141,7 @@ const submitForm = async () => {
                     'Authorization': state.token,
                 },
                 });
-                console.log("xyz", response.data)
+                console.log("shamim object: ", response.data);
                 if (response.data != undefined){
                     SuccessPopUp();
                 router.push({ name: 'water-consumption-list' });
