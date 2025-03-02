@@ -122,7 +122,14 @@ const state = reactive({
 
 const editorConfig = {
   toolbar: {
-    items: ['heading','undo', 'redo', 'bold', 'italic', 'link', 'numberedList', 'bulletedList','fontsize'],
+    items: [
+      'heading', 'bold', 'italic', 'underline', 'strikethrough', 'subscript', 'superscript',
+      '|', 'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor',
+      '|', 'alignment', 'outdent', 'indent', 'numberedList', 'bulletedList',
+      '|', 'link', 'insertTable', 'blockQuote',
+      '|', 'undo', 'redo', 'findAndReplace', 'highlight', 'code', 'codeBlock',
+      '|', 'horizontalLine', 'specialCharacters', 'removeFormat'
+    ],
   },
 };
 
