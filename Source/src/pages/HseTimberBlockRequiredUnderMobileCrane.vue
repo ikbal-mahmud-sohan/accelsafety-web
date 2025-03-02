@@ -23,7 +23,14 @@ import { getToken } from './../auth/setToken'
 // Insert start
 const editorConfig = {
   toolbar: {
-    items: ['heading','undo', 'redo', 'bold', 'italic', 'link', 'numberedList', 'bulletedList','fontsize'],
+    items: [
+      'heading', 'bold', 'italic', 'underline', 'strikethrough', 'subscript', 'superscript',
+      '|', 'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor',
+      '|', 'alignment', 'outdent', 'indent', 'numberedList', 'bulletedList',
+      '|', 'link', 'insertTable', 'blockQuote',
+      '|', 'undo', 'redo', 'findAndReplace', 'highlight', 'code', 'codeBlock',
+      '|', 'horizontalLine', 'specialCharacters', 'removeFormat'
+    ],
   },
 };
 const editorData = ref("");
@@ -288,7 +295,7 @@ onMounted(() => {
           <div class="mt-5">
             
             <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
-              <FormLabel class="xl:w-64 xl:!mr-10">
+              <!-- <FormLabel class="xl:w-64 xl:!mr-10">
                 <div class="text-left">
                   <div class="flex items-center">
                     <div class="font-medium">Descriptions</div>
@@ -300,7 +307,7 @@ onMounted(() => {
                     A brief summary of the accident details.
                   </div>
                 </div>
-              </FormLabel>
+              </FormLabel> -->
               <div class="flex-1 w-full mt-3 xl:mt-0">
                 <ClassicEditor v-model="editorData" :class="{ 'border-danger': validate.descriptions.$error,}" :config="editorConfig" />
                 
@@ -353,7 +360,7 @@ onMounted(() => {
           <div class="mt-5">
             
             <FormInline class="flex flex-wrap items-center pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
-              <FormLabel class="xl:w-64 xl:!mr-10">
+              <!-- <FormLabel class="xl:w-64 xl:!mr-10">
                 <div class="text-left">
                   <div class="flex items-center">
                     <div class="font-medium">Descriptions</div>
@@ -365,7 +372,7 @@ onMounted(() => {
                     A brief summary of the accident details.
                   </div>
                 </div>
-              </FormLabel>
+              </FormLabel> -->
               <div class="flex-1 w-full mt-3 xl:mt-0">
                 <ClassicEditor v-model="updateeditorData" :class="{ 'border-danger': validate2.descriptions.$error,}" :config="editorConfig" />
                 
