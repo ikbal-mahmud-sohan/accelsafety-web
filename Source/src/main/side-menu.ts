@@ -301,11 +301,7 @@ const menu: Array<Menu | "divider"> = [
   // },
 
   // Unit input
-  {
-    icon: "HexagonIcon",
-    pageName: "unit-input",
-    title: "Unit Input",
-  },
+  
 
   {
     icon: "Box",
@@ -353,6 +349,11 @@ const menu: Array<Menu | "divider"> = [
         icon: "Activity",
         pageName: "hira-data-input",
         title: "Add Hira Input",
+      },
+      {
+        icon: "HexagonIcon",
+        pageName: "unit-input",
+        title: "Unit Input",
       },
       
     ],

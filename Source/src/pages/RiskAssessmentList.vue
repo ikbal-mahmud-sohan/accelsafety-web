@@ -154,9 +154,9 @@ onMounted(() => {
                   <Lucide icon="CheckSquare" class="w-4 h-4 mr-1" />
                   Assigned
                 </router-link> -->
-                <router-link :to="{name:'hira-lites-list', params:{id:report.id} }" class="flex items-center mr-3">
-                  <Lucide icon="CheckSquare" class="w-4 h-4 mr-1" />
-                  Edit
+                <router-link :to="{name:'hira-lites-list', params:{id:report.id} }" class="flex items-center mr-3 text-nowrap">
+                  <Lucide icon="CheckSquare" class="w-4 h-4 mr-1 " />
+                  Add Hira
                 </router-link>
                 <!-- <a
                   class="flex items-center text-danger"

@@ -282,7 +282,7 @@ onMounted(() => {
           <li
             class="pl-5 mb-4 font-medium border-l-2 border-primary dark:border-primary text-primary"
           >
-            <a href="">Input Accident</a>
+            <a href="">Input Unit</a>
           </li>
           <li
             class="pl-5 mb-4 border-l-2 border-transparent dark:border-transparent"
@@ -313,7 +313,7 @@ onMounted(() => {
             class="mt-2 text-xs leading-relaxed text-slate-600 dark:text-slate-500"
           >
             <div>
-              When filling out the accident report, be specific and clear with details, using the correct date format and precise descriptions..
+              When filling out the Unit report, be specific and clear with details, using the correct date format and precise descriptions..
             </div>
             <div class="mt-2">
               Ensure all required fields are accurately completed and boolean options are correctly marked. Upload relevant files and adhere to format and size requirements for attachments.
