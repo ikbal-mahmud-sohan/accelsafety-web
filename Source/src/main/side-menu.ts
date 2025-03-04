@@ -389,6 +389,25 @@ const menu: Array<Menu | "divider"> = [
       },
     ],
   },
+  {
+    icon: "LayersIcon",
+    pageName: "Higg FEM",
+    title: "Higg FEM",
+    subMenu: [
+      {
+        icon: "ClipboardIcon",
+        pageName: "site-info-permit",
+        title: "Site Info & Permit",
+      },
+      {
+        icon: "ClipboardIcon",
+        pageName: "ems",
+        title: "EMS",
+      },
+      
+      
+    ],
+  },
   
   
   // {
