@@ -1792,6 +1792,13 @@ const router = createRouter({
           name: "nema-ratings-and-ip-equivalency-calculator",
           component: () => import("../pages/CalculatorNEMARatingsAndIPRatings.vue"),
         },
+
+        // Higg FEM
+        {
+          path: "site-info-permit",
+          name: "site-info-permit",
+          component: () => import("../pages/HiggFEMSiteInfoPermit.vue"),
+        },
       ],
     },
     {
