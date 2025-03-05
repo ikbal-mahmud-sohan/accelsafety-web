@@ -221,7 +221,7 @@ import Lucide from "@/components/Base/Lucide";
         <p class="text-center">Lockout Tagout (LOTO)</p>
       </div>
     </div>
-    <div class="w-full lg:w-1/6 md:w-1/3">
+    <!-- <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-1">
         <router-link :to="{ name: 'hse-excavation-procedure' }">
           <div class="inline-block">
@@ -232,7 +232,7 @@ import Lucide from "@/components/Base/Lucide";
       <div class="py-1">
         <p class="text-center">Excavation Procedure</p>
       </div>
-    </div>
+    </div> -->
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-1">
         <router-link :to="{ name: 'hse-personal-protective-equipment' }">
@@ -282,7 +282,7 @@ import Lucide from "@/components/Base/Lucide";
       </div>
     </div>
    
-    <div class="w-full lg:w-1/6 md:w-1/3">
+    <!-- <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-1">
         <router-link :to="{ name: 'hse-jcb' }">
           <div class="inline-block">
@@ -293,9 +293,9 @@ import Lucide from "@/components/Base/Lucide";
       <div class="py-1">
         <p class="text-center">Backhoe Loader (JCB)</p>
       </div>
-    </div>
+    </div> -->
    
-    <div class="w-full lg:w-1/6 md:w-1/3">
+    <!-- <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-1">
         <router-link :to="{ name: 'hse-excavator' }">
           <div class="inline-block">
@@ -381,7 +381,7 @@ import Lucide from "@/components/Base/Lucide";
       <div class="py-1">
         <p class="text-center">Boom Placer</p>
       </div>
-    </div>
+    </div> -->
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-1">
         <router-link :to="{ name: 'hse-electrical-vibrator' }">
@@ -469,7 +469,7 @@ import Lucide from "@/components/Base/Lucide";
         <p class="text-center">Hydra</p>
       </div>
     </div>
-    <div class="w-full lg:w-1/6 md:w-1/3">
+    <!-- <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-1">
         <router-link :to="{ name: 'hse-mobile-crane' }">
           <div class="inline-block">
@@ -480,7 +480,7 @@ import Lucide from "@/components/Base/Lucide";
       <div class="py-1">
         <p class="text-center">Mobile Crane</p>
       </div>
-    </div>
+    </div> -->
    
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-1">
@@ -690,7 +690,7 @@ import Lucide from "@/components/Base/Lucide";
         <p class="text-center">Batching Plant</p>
       </div>
     </div>
-    <div class="w-full lg:w-1/6 md:w-1/3">
+    <!-- <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-1">
         <router-link :to="{ name: 'hse-ambulance' }">
           <div class="inline-block">
@@ -701,8 +701,8 @@ import Lucide from "@/components/Base/Lucide";
       <div class="py-1">
         <p class="text-center">Ambulance</p>
       </div>
-    </div>
-    <div class="w-full lg:w-1/6 md:w-1/3">
+    </div> -->
+    <!-- <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-1">
         <router-link :to="{ name: 'hse-skidSteer-loader' }">
           <div class="inline-block">
@@ -725,7 +725,7 @@ import Lucide from "@/components/Base/Lucide";
       <div class="py-1">
         <p class="text-center">Grader Create</p>
       </div>
-    </div>
+    </div> -->
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-1">
         <router-link :to="{ name: 'gantry-crane-checklists-create' }">
@@ -762,7 +762,7 @@ import Lucide from "@/components/Base/Lucide";
         <p class="text-center">Eot Crane</p>
       </div>
     </div>
-    <div class="w-full lg:w-1/6 md:w-1/3">
+    <!-- <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-1">
         <router-link :to="{ name: 'hse-trailer' }">
           <div class="inline-block">
@@ -846,7 +846,7 @@ import Lucide from "@/components/Base/Lucide";
       <div class="py-1">
         <p class="text-center">Bike</p>
       </div>
-    </div>
+    </div> -->
   
   </div>
 </template>

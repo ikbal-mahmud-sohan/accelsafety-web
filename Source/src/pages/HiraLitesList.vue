@@ -418,6 +418,239 @@ onUnmounted(() => {
     
     <!-- BEGIN: Data List -->
     <div class="col-span-12   overflow-y-auto ">
+        <div class="risk-form-head">
+          <div class="py-4 bg-theme-1">
+              <p class=" text-base font-semibold uppercase text-center text-white">RISK ASSESSMENT FORM</p>
+          </div>
+          <div class="flex flex-wrap">
+              <div class="md:w-1/2 w-full">
+                  <div class="px-4 py-2">
+                    <FormInline class="flex flex-wrap items-center md:flex-nowrap  pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormLabel class="xl:w-48 xl:!mr-10">
+                        <div class="text-left">
+                          <div class="flex items-center">
+                            <div class="font-medium text-sm text-nowrap">Site Location: (Code and Address)</div>
+                          </div>
+                        </div>
+                      </FormLabel>
+                      <div class="flex-1 w-full mt-3 xl:mt-0">
+                            <div class="flex flex-col items-center justify-center w-full space-y-4">
+                              <div class="flex-1 w-full mt-3 xl:mt-0">
+                                      <FormInput id="crud-form-9" v-model="formData.site_location" class="w-full" type="text" name="name" placeholder="Input Site Location" disabled/>   
+                              </div>
+                            </div>
+                      </div>
+                    </FormInline>
+                  </div>
+              </div>
+              <div class="md:w-1/2 w-full">
+                  <div class="px-4 py-2">
+                    <FormInline class="flex flex-wrap items-center md:flex-nowrap  pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormLabel class="xl:w-48 xl:!mr-10">
+                        <div class="text-left">
+                          <div class="flex items-center">
+                            <div class="font-medium text-sm text-nowrap"> Activity or Task</div>
+                          </div>
+                        </div>
+                      </FormLabel>
+                      <div class="flex-1 w-full mt-3 xl:mt-0">
+                            <div class="flex flex-col items-center justify-center w-full space-y-4">
+                              <div class="flex-1 w-full mt-3 xl:mt-0">
+                                <FormInput id="crud-form-9" v-model="formData.activity_or_task" class="w-full" type="text" name="name" placeholder="Input Activity or Task" disabled/> 
+                              </div>
+                            </div>
+                      </div>
+                    </FormInline>
+                  </div>
+              </div>
+              <div class="md:w-1/2 w-full">
+                  <div class="px-4 py-2">
+                    <FormInline class="flex flex-wrap items-center md:flex-nowrap  pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormLabel class="xl:w-48 xl:!mr-10">
+                        <div class="text-left">
+                          <div class="flex items-center">
+                            <div class="font-medium text-sm text-nowrap"> Risk Assessment Conducted by</div>
+                          </div>
+                        </div>
+                      </FormLabel>
+                      <div class="flex-1 w-full mt-3 xl:mt-0">
+                            <div class="flex flex-col items-center justify-center w-full space-y-4">
+                              <div class="flex-1 w-full mt-3 xl:mt-0">
+                                <FormInput id="crud-form-9" v-model="formData.risk_assessment_conducted_by" class="w-full" type="text" name="name" placeholder="Input process Owner r Department" disabled/>
+                              </div>
+                            </div>
+                      </div>
+                    </FormInline>
+                  </div>
+              </div>
+              <div class="md:w-1/2 w-full">
+                  <div class="px-4 py-2">
+                    <FormInline class="flex flex-wrap items-center md:flex-nowrap  pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormLabel class="xl:w-48 xl:!mr-10">
+                        <div class="text-left">
+                          <div class="flex items-center">
+                            <div class="font-medium text-sm text-nowrap"> 
+                                Process Owner / Department
+                            </div>
+                          </div>
+                        </div>
+                      </FormLabel>
+                      <div class="flex-1 w-full mt-3 xl:mt-0">
+                            <div class="flex flex-col items-center justify-center w-full space-y-4">
+                              <div class="flex-1 w-full mt-3 xl:mt-0">
+                                <FormInput id="crud-form-9" v-model="formData.process_owner_or_department" class="w-full" type="text" name="name" placeholder="Input process Owner r Department" disabled/>
+                              </div>
+                            </div>
+                      </div>
+                    </FormInline>
+                  </div>
+              </div>
+              <div class="md:w-1/2 w-full">
+                  <div class="px-4 py-2">
+                    <FormInline class="flex flex-wrap items-center md:flex-nowrap  pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormLabel class="xl:w-48 xl:!mr-10">
+                        <div class="text-left">
+                          <div class="flex items-center">
+                            <div class="font-medium text-sm text-nowrap"> 
+                              Date Conducted
+                            </div>
+                          </div>
+                        </div>
+                      </FormLabel>
+                      <div class="flex-1 w-full mt-3 xl:mt-0">
+                            <div class="flex flex-col items-center justify-center w-full space-y-4">
+                              <div class="flex-1 w-full mt-3 xl:mt-0">
+                        <Preview class="intro-y box" v-slot="{ toggle }">
+                          <Preview.Panel>
+                              <div class="relative w-full mx-auto">
+                                <div
+                                  class="absolute flex items-center justify-center w-10 h-full border rounded-l bg-slate-100 text-slate-500 dark:bg-darkmode-700 dark:border-darkmode-800 dark:text-slate-400">
+                                  <Lucide icon="Calendar" class="w-4 h-4" />
+                                </div>
+                                <Litepicker
+                                  v-model="dateconducted"
+                                  :options="{
+                                    autoApply: false,
+                                    showWeekNumbers: true,
+                                    dropdowns: {
+                                      minYear: 1990,
+                                      maxYear: null,
+                                      months: true,
+                                      years: true,
+                                    },
+                                  }"
+                                  class="pl-12" disabled/>
+                              </div>
+                            </Preview.Panel>
+                            <Preview.Panel type="source">
+                              <Preview.Highlight>
+                                {{`
+                                <div class="relative w-56 mx-auto">
+                                  <div
+                                    class="absolute flex items-center justify-center w-10 h-full border rounded-l bg-slate-100 text-slate-500 dark:bg-darkmode-700 dark:border-darkmode-800 dark:text-slate-400"
+                                  >
+                                    <Lucide icon="Calendar" class="w-4 h-4" />
+                                  </div>
+                                  <Litepicker
+                                    v-model="dateconducted"
+                                    :options="{
+                                      autoApply: false,
+                                      showWeekNumbers: true,
+                                      dropdowns: {
+                                        minYear: 1990,
+                                        maxYear: null,
+                                        months: true,
+                                        years: true,
+                                      },
+                                    }"
+                                    class="pl-12"
+                                  />
+                                </div>
+                                `}}
+                              </Preview.Highlight>
+                            </Preview.Panel>
+                        
+                        </Preview>
+                      </div>
+                            </div>
+                      </div>
+                    </FormInline>
+                  </div>
+              </div>
+              <div class="md:w-1/2 w-full">
+                  <div class="px-4 py-2">
+                    <FormInline class="flex flex-wrap items-center md:flex-nowrap  pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                      <FormLabel class="xl:w-48 xl:!mr-10">
+                        <div class="text-left">
+                          <div class="flex items-center">
+                            <div class="font-medium text-sm text-nowrap"> 
+                              Next Review Date
+                            </div>
+                          </div>
+                        </div>
+                      </FormLabel>
+                      <div class="flex-1 w-full mt-3 xl:mt-0">
+                            <div class="flex flex-col items-center justify-center w-full space-y-4">
+                              <div class="flex-1 w-full mt-3 xl:mt-0">
+                        <Preview class="intro-y box" v-slot="{ toggle }">
+                          <Preview.Panel>
+                              <div class="relative w-full mx-auto">
+                                <div
+                                  class="absolute flex items-center justify-center w-10 h-full border rounded-l bg-slate-100 text-slate-500 dark:bg-darkmode-700 dark:border-darkmode-800 dark:text-slate-400">
+                                  <Lucide icon="Calendar" class="w-4 h-4" />
+                                </div>
+                                <Litepicker
+                                  v-model="nextreviewdate"
+                                  :options="{
+                                    autoApply: false,
+                                    showWeekNumbers: true,
+                                    dropdowns: {
+                                      minYear: 1990,
+                                      maxYear: null,
+                                      months: true,
+                                      years: true,
+                                    },
+                                  }"
+                                  class="pl-12" disabled/>
+                              </div>
+                            </Preview.Panel>
+                            <Preview.Panel type="source">
+                              <Preview.Highlight>
+                                {{`
+                                <div class="relative w-56 mx-auto">
+                                  <div
+                                    class="absolute flex items-center justify-center w-10 h-full border rounded-l bg-slate-100 text-slate-500 dark:bg-darkmode-700 dark:border-darkmode-800 dark:text-slate-400"
+                                  >
+                                    <Lucide icon="Calendar" class="w-4 h-4" />
+                                  </div>
+                                  <Litepicker
+                                    v-model="next_review_date"
+                                    :options="{
+                                      autoApply: false,
+                                      showWeekNumbers: true,
+                                      dropdowns: {
+                                        minYear: 1990,
+                                        maxYear: null,
+                                        months: true,
+                                        years: true,
+                                      },
+                                    }"
+                                    class="pl-12"
+                                  />
+                                </div>
+                                `}}
+                              </Preview.Highlight>
+                            </Preview.Panel>
+                        
+                        </Preview>
+                      </div>
+                            </div>
+                      </div>
+                    </FormInline>
+                  </div>
+              </div>
+          </div>
+        </div>
         <div class=" overflow-x-auto">
           <div class="insert-list-head py-4 w-full">
             <div class="flex items-center text-xs uppercase font-semibold bg-theme-1 text-white border shadow-sm">
