@@ -203,7 +203,7 @@ onMounted(() => {
     
     <div class="absolute top-0 left-0 bg-white z-50 shadow-md rounded-md p-4 w-full">
       <div class="pt-4 px-4 flex justify-start items-center">
-        <router-link :to="{ name: 'hse-control-visitors' }">
+        <router-link :to="{ name: 'hse-vehicle-safety' }">
             <Button variant="primary" class="w-32 mb-2 mr-2">
               <Lucide icon="ChevronsLeftIcon" class="w-4 h-4 mr-2" /> Back
             </Button>

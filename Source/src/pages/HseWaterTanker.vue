@@ -6,7 +6,7 @@ import Button from "@/components/Base/Button";
 
 <template>
   <div class="pt-4 flex justify-end items-center">
-    <router-link :to="{ name: 'hse-data-list' }">
+    <router-link :to="{ name: 'hse-vehicle-safety' }">
         <Button variant="primary" class="w-32 mb-2 mr-2">
           <Lucide icon="ChevronsLeftIcon" class="w-4 h-4 mr-2" /> Back
         </Button>
@@ -21,14 +21,14 @@ import Button from "@/components/Base/Button";
       <div class="p-4">
         <div class="border py-2">
           <div class="flex justify-center items-center p-4">
-            <router-link :to="{ name: 'bike-checklists-create' }">
+            <router-link :to="{ name: 'water-tanker-checklists-create' }">
           <div class="inline-block">
-              <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/71Bike.png" alt="">
+              <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/43WaterTanker.png" alt="">
             </div>
         </router-link>
         </div>
         <div class="py-1">
-          <p class="text-center">43-Water Tanker List</p>
+          <p class="text-center">Water Tanker Create</p>
         </div>
         </div>
       </div>
@@ -44,7 +44,7 @@ import Button from "@/components/Base/Button";
         </router-link>
         </div>
         <div class="py-1">
-          <p class="text-center">43-Water Tanker Create</p>
+          <p class="text-center">Water Tanker List</p>
         </div>
         </div>
       </div>

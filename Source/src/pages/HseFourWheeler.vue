@@ -6,7 +6,7 @@ import Button from "@/components/Base/Button";
 
 <template>
   <div class="pt-4 flex justify-end items-center">
-    <router-link :to="{ name: 'hse-data-list' }">
+    <router-link :to="{ name: 'hse-vehicle-safety' }">
         <Button variant="primary" class="w-32 mb-2 mr-2">
           <Lucide icon="ChevronsLeftIcon" class="w-4 h-4 mr-2" /> Back
         </Button>
