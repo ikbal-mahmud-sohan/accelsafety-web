@@ -205,8 +205,46 @@ const fetchActivity = async () => {
   }
 };
 
+const formDataById = ref({
+  site_location: "",
+  activity_or_task: "",
+  risk_assessment_conducted_by: "",
+  process_owner_or_department: "",
+  date_conducted: "",
+  next_review_date: "",
+});
+
+// Fetching Risk Assesment Form Data with id
+const fetchDataById = async () => {
+  try {
+    const id = route.params.id;
+    const url = `${config.baseURL}/api/v1/hira-lites-assessment/${id}`;
+    const response = await axios.get(url, {
+      headers: {
+        Authorization: state.token,
+      },
+    });
+
+    // Update formData with the API response
+    const data = response.data;
+    console.log("Data: ", data);
+
+    formDataById.value = {
+      site_location: data.site_location,
+      activity_or_task: data.activity_or_task,
+      risk_assessment_conducted_by: data.risk_assessment_conducted_by,
+      process_owner_or_department: data.process_owner_or_department,
+      date_conducted: data.date_conducted,
+      next_review_date: data.next_review_date,
+    };
+  } catch (error) {
+    console.error('Error fetching data by ID:', error);
+  }
+};
+
 // Call fetchData when the component is mounted
 onMounted(() => {
+  fetchDataById();
   fetchData();
   fetchActivity();
   fetchDrpDwnData();
@@ -417,12 +455,12 @@ onUnmounted(() => {
   <div class="grid grid-cols-12 gap-6 mt-5">
     
     <!-- BEGIN: Data List -->
-    <div class="col-span-12   overflow-y-auto ">
+    <div class="col-span-12 overflow-y-auto ">
         <div class="risk-form-head">
           <div class="py-4 bg-theme-1">
               <p class=" text-base font-semibold uppercase text-center text-white">RISK ASSESSMENT FORM</p>
           </div>
-          <div class="flex flex-wrap">
+          <div class="flex flex-wrap pt-4">
               <div class="md:w-1/2 w-full">
                   <div class="px-4 py-2">
                     <FormInline class="flex flex-wrap items-center md:flex-nowrap  pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
@@ -436,7 +474,7 @@ onUnmounted(() => {
                       <div class="flex-1 w-full mt-3 xl:mt-0">
                             <div class="flex flex-col items-center justify-center w-full space-y-4">
                               <div class="flex-1 w-full mt-3 xl:mt-0">
-                                      <FormInput id="crud-form-9" v-model="formData.site_location" class="w-full" type="text" name="name" placeholder="Input Site Location" disabled/>   
+                                      <FormInput id="crud-form-9" v-model="formDataById.site_location" class="w-full" type="text" name="name" placeholder="Input Site Location" disabled/>   
                               </div>
                             </div>
                       </div>
@@ -456,7 +494,7 @@ onUnmounted(() => {
                       <div class="flex-1 w-full mt-3 xl:mt-0">
                             <div class="flex flex-col items-center justify-center w-full space-y-4">
                               <div class="flex-1 w-full mt-3 xl:mt-0">
-                                <FormInput id="crud-form-9" v-model="formData.activity_or_task" class="w-full" type="text" name="name" placeholder="Input Activity or Task" disabled/> 
+                                <FormInput id="crud-form-9" v-model="formDataById.activity_or_task" class="w-full" type="text" name="name" placeholder="Input Activity or Task" disabled/> 
                               </div>
                             </div>
                       </div>
@@ -476,7 +514,7 @@ onUnmounted(() => {
                       <div class="flex-1 w-full mt-3 xl:mt-0">
                             <div class="flex flex-col items-center justify-center w-full space-y-4">
                               <div class="flex-1 w-full mt-3 xl:mt-0">
-                                <FormInput id="crud-form-9" v-model="formData.risk_assessment_conducted_by" class="w-full" type="text" name="name" placeholder="Input process Owner r Department" disabled/>
+                                <FormInput id="crud-form-9" v-model="formDataById.risk_assessment_conducted_by" class="w-full" type="text" name="name" placeholder="Input process Owner r Department" disabled/>
                               </div>
                             </div>
                       </div>
@@ -498,7 +536,7 @@ onUnmounted(() => {
                       <div class="flex-1 w-full mt-3 xl:mt-0">
                             <div class="flex flex-col items-center justify-center w-full space-y-4">
                               <div class="flex-1 w-full mt-3 xl:mt-0">
-                                <FormInput id="crud-form-9" v-model="formData.process_owner_or_department" class="w-full" type="text" name="name" placeholder="Input process Owner r Department" disabled/>
+                                <FormInput id="crud-form-9" v-model="formDataById.process_owner_or_department" class="w-full" type="text" name="name" placeholder="Input process Owner r Department" disabled/>
                               </div>
                             </div>
                       </div>
@@ -528,7 +566,7 @@ onUnmounted(() => {
                                   <Lucide icon="Calendar" class="w-4 h-4" />
                                 </div>
                                 <Litepicker
-                                  v-model="dateconducted"
+                                  v-model="formDataById.date_conducted"
                                   :options="{
                                     autoApply: false,
                                     showWeekNumbers: true,
@@ -552,7 +590,7 @@ onUnmounted(() => {
                                     <Lucide icon="Calendar" class="w-4 h-4" />
                                   </div>
                                   <Litepicker
-                                    v-model="dateconducted"
+                                    v-model="formDataById.date_conducted"
                                     :options="{
                                       autoApply: false,
                                       showWeekNumbers: true,
@@ -600,7 +638,7 @@ onUnmounted(() => {
                                   <Lucide icon="Calendar" class="w-4 h-4" />
                                 </div>
                                 <Litepicker
-                                  v-model="nextreviewdate"
+                                  v-model="formDataById.next_review_date"
                                   :options="{
                                     autoApply: false,
                                     showWeekNumbers: true,
@@ -624,7 +662,7 @@ onUnmounted(() => {
                                     <Lucide icon="Calendar" class="w-4 h-4" />
                                   </div>
                                   <Litepicker
-                                    v-model="next_review_date"
+                                    v-model="formDataById.next_review_date"
                                     :options="{
                                       autoApply: false,
                                       showWeekNumbers: true,

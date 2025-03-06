@@ -1449,6 +1449,22 @@ const router = createRouter({
             name: "bike-checklists-create",
             component: () => import("../pages/HseBikeChecklistsCreate.vue"),
           },
+          {
+            path: "hse-power-vehicle-registration",
+            name: "hse-power-vehicle-registration",
+            component: () => import("../pages/HsePowerVehicleRegistration.vue"),
+          },
+          {
+            path: "hse-power-vehicle-registration-create",
+            name: "hse-power-vehicle-registration-create",
+            component: () => import("../pages/HsePowerVehicleRegistrationCreate.vue"),
+          },
+          {
+            path: "hse-power-vehicle-registration-list",
+            name: "hse-power-vehicle-registration-list",
+            component: () => import("../pages/HsePowerVehicleRegistrationList.vue"),
+          },
+
 
         // Isgec 
         {
