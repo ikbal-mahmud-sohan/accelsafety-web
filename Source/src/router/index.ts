@@ -408,6 +408,11 @@ const router = createRouter({
             component: () => import("../pages/HseVisitorLogData.vue"),
           },
           {
+            path: "visitor-entry",
+            name: "visitor-entry",
+            component: () => import("../pages/HseVisitorsEntry.vue"),
+          },
+          {
             path: "hse-vehicle-safety",
             name: "hse-vehicle-safety",
             component: () => import("../pages/HseVehicleSafety.vue"),
@@ -1463,6 +1468,21 @@ const router = createRouter({
             path: "hse-power-vehicle-registration-list",
             name: "hse-power-vehicle-registration-list",
             component: () => import("../pages/HsePowerVehicleRegistrationList.vue"),
+          },
+          {
+            path: "hse-visitors-entry-create",
+            name: "hse-visitors-entry-create",
+            component: () => import("../pages/HseVisitorsEntryCreate.vue"),
+          },
+          {
+            path: "hse-visitors-entry-edit/:id",
+            name: "hse-visitors-entry-edit",
+            component: () => import("../pages/HseVisitorsEntryCreate.vue"),
+          },
+          {
+            path: "hse-visitors-entry-list",
+            name: "hse-visitors-entry-list",
+            component: () => import("../pages/HseVisitorsEntryList.vue"),
           },
 
 

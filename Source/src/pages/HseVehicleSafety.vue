@@ -16,7 +16,7 @@ import Button from "@/components/Base/Button";
   <div class="pb-8">
     <h2 class="text-2xl font-medium intro-y text-center uppercase">Power Vehicle Safety</h2>
   </div>
-  <div class="flex flex-wrap bg-theme-1 bg-opacity-20 px-4 py-4 rounded-md shadow-md">
+  <!-- <div class="flex flex-wrap bg-theme-1 bg-opacity-20 px-4 py-4 rounded-md shadow-md">
     <div class="w-full lg:w-1/3">
       <div class="p-4">
         <div class="border py-2">
@@ -82,10 +82,58 @@ import Button from "@/components/Base/Button";
       </div>
     </div>
     
-  </div>
+  </div> -->
 
   <!-- All Vehicles -->
   <div class="flex flex-wrap bg-theme-1 bg-opacity-20 px-4 py-4 rounded-md shadow-md mt-10">
+    <div class="w-full lg:w-1/6 md:w-1/3">
+      <div class="flex justify-center items-center p-1">
+        <router-link :to="{ name: 'hse-vehicle-safety-doc' }">
+          <div class="inline-block">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Grader.png" alt="">
+            </div>
+        </router-link>
+      </div>
+      <div class="py-1">
+        <p class="text-center">Power Vehicle Safety</p>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/6 md:w-1/3">
+      <div class="flex justify-center items-center p-1">
+        <router-link :to="{ name: 'hse-vehicle-safety-checklist' }">
+          <div class="inline-block">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Grader.png" alt="">
+            </div>
+        </router-link>
+      </div>
+      <div class="py-1">
+        <p class="text-center">Vehicle Inspection Checklist</p>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/6 md:w-1/3">
+      <div class="flex justify-center items-center p-1">
+        <router-link :to="{ name: 'hse-vehicle-safety-list' }">
+          <div class="inline-block">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Grader.png" alt="">
+            </div>
+        </router-link>
+      </div>
+      <div class="py-1">
+        <p class="text-center">Vehicle Inspection Checklist List</p>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/6 md:w-1/3">
+      <div class="flex justify-center items-center p-1">
+        <router-link :to="{ name: 'hse-power-vehicle-registration' }">
+          <div class="inline-block">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Grader.png" alt="">
+            </div>
+        </router-link>
+      </div>
+      <div class="py-1">
+        <p class="text-center">Power Vehicle Registration</p>
+      </div>
+    </div>
     <div class="w-full lg:w-1/6 md:w-1/3">
       <div class="flex justify-center items-center p-1">
         <router-link :to="{ name: 'hse-excavation-procedure' }">
