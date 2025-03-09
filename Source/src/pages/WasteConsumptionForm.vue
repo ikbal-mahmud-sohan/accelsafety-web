@@ -320,7 +320,7 @@ onMounted(() => {
                     <div class="flex-1 w-full mt-3 xl:mt-0">
                       <select id="crud-form-6" v-model="selectedUnitName"  class="border py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 fdark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 text-gray-500">
                             <option value="" disabled>select unit name</option>
-                            <option v-for="(data, index) in state.viewUnitName" :key="index" :value="data.name">{{ data.name }}</option>
+                            <option v-for="(data, index) in state.viewUnitName" :key="index" :value="data.unit_name">{{ data.unit_name }}</option>
                       </select>
                     
                       <div class="flex justify-between">

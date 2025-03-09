@@ -48,7 +48,7 @@ const editorConfig = {
 
 
 const formUnitInput = reactive({
-  name: '',
+  unit_name: '',
 });
 
 const state = reactive({
@@ -64,7 +64,7 @@ interface BackendErrorResponse {
     };
 }
 const rules = {
-    name: {minLength: minLength(1)},
+    unit_name: {minLength: minLength(1)},
 };
 
 const validate = useVuelidate(rules, toRefs(formUnitInput));
@@ -94,7 +94,7 @@ const backendErrors = reactive<{
       if(response.data != undefined){
           SuccessPopUp();
           state.respUnit = response.data.data;
-          formUnitInput.name = " ";
+          formUnitInput.unit_name = " ";
       }
   } catch (err) {
       FailedPopUp();
@@ -248,9 +248,9 @@ onMounted(() => {
                 </div>
               </FormLabel>
               <div class="flex-1 w-full mt-3 xl:mt-0">
-                <FormInput id="crud-form-1" v-model.trim="validate.name.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.name.$error,}" placeholder="Input Unit Name" @keydown.enter="submitForm"/>
-                <template v-if="validate.name.$error">
-                  <div v-for="(error, index) in validate.name.$errors" :key="index" class="mt-2 text-danger">
+                <FormInput id="crud-form-1" v-model.trim="validate.unit_name.$model" class="w-full" type="text" name="unit_name":class="{ 'border-danger': validate.unit_name.$error,}" placeholder="Input Unit Name" @keydown.enter="submitForm"/>
+                <template v-if="validate.unit_name.$error">
+                  <div v-for="(error, index) in validate.unit_name.$errors" :key="index" class="mt-2 text-danger">
                     {{ error.$message }}
                   </div>
                 </template>
@@ -264,7 +264,7 @@ onMounted(() => {
           <ul v-for="(data, index) in state.respUnit" :key="index" class="">
             <li class="p-2">
               <span class=" inline-block px-4 py-3 bg-gray-100 rounded-sm min-w-52 md:min-w-36 text-center"> 
-              {{data.name}}
+              {{data.unit_name}}
               <a class="ml-2"  href="javascript:;" @click="deleteUnitName(data.id)">×</a>
               </span>
             </li>

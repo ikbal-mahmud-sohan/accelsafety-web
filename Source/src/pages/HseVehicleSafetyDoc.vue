@@ -141,26 +141,26 @@ const state = reactive({
 });
 
 function CloseControlVisitorsHSE01 (){
-  state.ControlVisitorsHSE01 = false;
-  state.ControlVisitors = false;
-  state.AddControlVisitorsHSE01 = false;
-  state.UpdateControlVisitorsHSE01 = false;
+  // state.ControlVisitorsHSE01 = false;
+  // state.ControlVisitors = false;
+  // state.AddControlVisitorsHSE01 = false;
+  // state.UpdateControlVisitorsHSE01 = false;
 
 
 }
-function AddControlVisitorsHSE01 (){
-  state.AddControlVisitorsHSE01 = true;
-}
+// function AddControlVisitorsHSE01 (){
+//   state.AddControlVisitorsHSE01 = true;
+// }
 
-function BackControlVisitorsHSE01 (){
-  state.AddControlVisitorsHSE01 = false;
-  state.UpdateControlVisitorsHSE01 = false;
-}
+// function BackControlVisitorsHSE01 (){
+//   state.AddControlVisitorsHSE01 = false;
+//   state.UpdateControlVisitorsHSE01 = false;
+// }
 
-async function UpdateControlVisitorsHSE01 (ID:any){
-  state.UpdateControlVisitorsHSE01 = true;
+// async function UpdateControlVisitorsHSE01 (ID:any){
+//   state.UpdateControlVisitorsHSE01 = true;
 
-}
+// }
 const fetchDropDownData = async () => {
   try {
    let  url = config.baseURL+'/api/v1/hse-vehicle-safety-doc';
@@ -170,8 +170,18 @@ const fetchDropDownData = async () => {
                 },
                 });
     state.viewData = response.data.data;
+
+    // CHANGE: Set the default state based on viewData.length
+    if (state.viewData.length === 0) {
+      state.AddControlVisitorsHSE01 = true; // Show "Insert Power Vehicle Safety" section
+      state.UpdateControlVisitorsHSE01 = false;
+    } else {
+      state.AddControlVisitorsHSE01 = false;
+      state.UpdateControlVisitorsHSE01 = true; // Show "Update Power Vehicle Safety" section
+    }
     cvformData.id = response.data.data.map((item: any) => item.id).join(',');
     fetchcvUpdateData();
+
   } catch (error) {
     console.error('Error fetching data:', error);
   }
@@ -211,48 +221,48 @@ onMounted(() => {
         
       </div>
       <div  class="py-2 px-2 flex justify-between items-center">
-          <div class="flex w-full justify-between items-center">
-              <div class="flex">
-                <Button v-if="!state.AddControlVisitorsHSE01 && state.viewData.length == 0" variant="primary" class="mr-2 shadow-md" @click="AddControlVisitorsHSE01">
-              Add Power Vehicle Safety
-            </Button>
-            <div v-for="( data , index) in state.viewData">
-              <Button v-if="state.viewData.length != 0 && !state.UpdateControlVisitorsHSE01" variant="primary" class="mr-2 shadow-md" @click="UpdateControlVisitorsHSE01(data.id)">
-              Update Power Vehicle Safety
-            </Button>
-            </div>
-            <Button v-if="state.AddControlVisitorsHSE01 || state.UpdateControlVisitorsHSE01" variant="primary" class="mr-2 shadow-md" @click="BackControlVisitorsHSE01">
-              <Lucide icon="ChevronsLeft" class="block mx-auto" />
-              Back
-            </Button>
-              <Menu v-if="!state.AddControlVisitorsHSE01">
-              <Menu.Button :as="Button" class="px-2 !box">
-                <span class="flex items-center justify-center w-5 h-5">
-                  <Lucide icon="Plus" class="w-4 h-4" />
-                </span>
-              </Menu.Button>
-              <Menu.Items class="w-40">
-                <Menu.Item>
-                  <Lucide icon="Printer" class="w-4 h-4 mr-2" /> Print
-                </Menu.Item>
-                <Menu.Item>
-                  <Lucide icon="FileText" class="w-4 h-4 mr-2" /> Export to Excel
-                </Menu.Item>
-                <Menu.Item>
-                  <Lucide icon="FileText" class="w-4 h-4 mr-2" /> Export to PDF
-                </Menu.Item>
-              </Menu.Items>
-            </Menu>
+        <div class="flex w-full justify-between items-center">
+            <div class="flex">
+              <!-- <Button v-if="!state.AddControlVisitorsHSE01 && state.viewData.length == 0" variant="primary" class="mr-2 shadow-md" @click="AddControlVisitorsHSE01">
+                Add Power Vehicle Safety
+              </Button>
+              <div v-for="( data , index) in state.viewData">
+                <Button v-if="state.viewData.length != 0 && !state.UpdateControlVisitorsHSE01" variant="primary" class="mr-2 shadow-md" @click="UpdateControlVisitorsHSE01(data.id)">
+                  Update Power Vehicle Safety
+                </Button>
               </div>
+              <Button v-if="state.AddControlVisitorsHSE01 || state.UpdateControlVisitorsHSE01" variant="primary" class="mr-2 shadow-md" @click="BackControlVisitorsHSE01">
+                <Lucide icon="ChevronsLeft" class="block mx-auto" />
+                Back
+              </Button> -->
+              <Menu v-if="!state.AddControlVisitorsHSE01">
+                <Menu.Button :as="Button" class="px-2 !box">
+                  <span class="flex items-center justify-center w-5 h-5">
+                    <Lucide icon="Plus" class="w-4 h-4" />
+                  </span>
+                </Menu.Button>
+                <Menu.Items class="w-40">
+                  <Menu.Item>
+                    <Lucide icon="Printer" class="w-4 h-4 mr-2" /> Print
+                  </Menu.Item>
+                  <Menu.Item>
+                    <Lucide icon="FileText" class="w-4 h-4 mr-2" /> Export to Excel
+                  </Menu.Item>
+                  <Menu.Item>
+                    <Lucide icon="FileText" class="w-4 h-4 mr-2" /> Export to PDF
+                  </Menu.Item>
+                </Menu.Items>
+              </Menu>
+            </div>
             <div v-if="state.viewData.length != 0" class="py-4 px-4">
-            <Button variant="primary" class="w-32" @click="ApprovedCv">
-                <Lucide icon="Check" class="w-4 h-4 mr-2" /> Approved
-            </Button>
-          </div>
-          </div>
-           
+              <Button variant="primary" class="w-32" @click="ApprovedCv">
+                  <Lucide icon="Check" class="w-4 h-4 mr-2" /> Approved
+              </Button>
+            </div>
+        </div>
       </div>
-      <div class="p-4" v-if="!state.AddControlVisitorsHSE01 && !state.UpdateControlVisitorsHSE01">
+      <!-- <div class="p-4" v-if="!state.AddControlVisitorsHSE01 && !state.UpdateControlVisitorsHSE01"> -->
+      <div class="p-4">
       
         <div v-if="state.viewData.length != 0"  v-for="( data , index) in state.viewData" :key="index">
           <div  class="p-4" v-html="data.descriptions"></div>
