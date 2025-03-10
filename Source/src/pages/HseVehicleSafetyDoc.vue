@@ -283,7 +283,7 @@ onMounted(() => {
               </ul>
             </div>
         </div>
-        <div v-else class=" text-xl text-center p-4">No Data</div>
+        <!-- <div v-else class=" text-xl text-center p-4">No Data</div> -->
         
       </div>
       <div class="p-4" v-if="state.AddControlVisitorsHSE01">

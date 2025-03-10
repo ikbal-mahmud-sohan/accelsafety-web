@@ -64,7 +64,7 @@ interface BackendErrorResponse {
     };
 }
 const rules = {
-    unit_name: {minLength: minLength(1)},
+    unit_name: {required, minLength: minLength(1)},
 };
 
 const validate = useVuelidate(rules, toRefs(formUnitInput));
