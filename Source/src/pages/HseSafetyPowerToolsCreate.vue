@@ -28,14 +28,22 @@ import TomSelect from "@/components/Base/TomSelect";
 
 const formData = reactive({
   unit_name: '',
-  visitor_name: '',
-  company_name: '',
-  whom_to_meet: '',
-  visit_purpose: '',
-  temp_id_card_no: '',
-  time_of_entry: '',
-  time_of_exit: '',
-  signature: [] as File[],
+  tool_id_number: '',
+  tool_name: '',
+  tool_type: '',
+  tool_manufacturer: '',
+  tool_user: '',
+  tool_last_calibration_date:'',
+  tool_last_maintenance_date:'',
+  tool_enlistment_date:'',
+  // visitor_name: '',
+  // company_name: '',
+  // whom_to_meet: '',
+  // visit_purpose: '',
+  // temp_id_card_no: '',
+  // time_of_entry: '',
+  // time_of_exit: '',
+  // signature: [] as File[],
 });
 
 const state = reactive({
@@ -47,45 +55,74 @@ const state = reactive({
 const router = useRouter();
 const route = useRoute();
 
-const handleFileChange = (event: Event) => {
-  const input = event.target as HTMLInputElement;
-  if (input.files) {
-    formData.signature = Array.from(input.files);
-  }
-};
+const toolLastCalibrationDate = ref("");
+const toolLastMaintenanceDate = ref("");
+const toolEnlistmentDate = ref("");
+
+// const handleFileChange = (event: Event) => {
+//   const input = event.target as HTMLInputElement;
+//   if (input.files) {
+//     formData.signature = Array.from(input.files);
+//   }
+// };
 
 const rules = {
   unit_name: { required, minLength: minLength(3) },
-  visitor_name: { required, minLength: minLength(3) },
-  company_name: { required, minLength: minLength(3) },
-  whom_to_meet: { required, minLength: minLength(3) },
-  visit_purpose: { required, minLength: minLength(3) },
-  temp_id_card_no: { required, minLength: minLength(3) },
-  time_of_entry: { required, minLength: minLength(3) },
-  time_of_exit: { required, minLength: minLength(3) },
+  tool_id_number: { required, minLength: minLength(1) },
+  tool_name: { required, minLength: minLength(3) },
+  tool_type: { required, minLength: minLength(3) },
+  tool_manufacturer: { required, minLength: minLength(3) },
+  tool_user: { required, minLength: minLength(3) },
+  tool_last_calibration_date: {required },
+  tool_last_maintenance_date: {required },
+  tool_enlistment_date: {required },
+  // visitor_name: { required, minLength: minLength(3) },
+  // company_name: { required, minLength: minLength(3) },
+  // whom_to_meet: { required, minLength: minLength(3) },
+  // visit_purpose: { required, minLength: minLength(3) },
+  // temp_id_card_no: { required, minLength: minLength(3) },
+  // time_of_entry: { required, minLength: minLength(3) },
+  // time_of_exit: { required, minLength: minLength(3) },
 };
 
 const validate = useVuelidate(rules, toRefs(formData));
 
+const convertDateFormat = (dateString: string): string => {
+  const date = new Date(dateString);
+  const day = date.getDate();
+  const month = date.getMonth() + 1; // Months are zero-based
+  const year = date.getFullYear();
+  return `${day}-${month}-${year}`;
+};
+
 const submitForm = async () => {
+
+  formData.tool_last_calibration_date = convertDateFormat(toolLastCalibrationDate.value);
+  formData.tool_last_maintenance_date = convertDateFormat(toolLastMaintenanceDate.value);
+  formData.tool_enlistment_date = convertDateFormat(toolEnlistmentDate.value);
+
   validate.value.$touch();
   if (validate.value.$invalid) {
     FailedPopUp();
   } else {
     const form = new FormData();
     (Object.keys(formData) as Array<keyof typeof formData>).forEach((key) => {
-      if (key !== 'signature') {
-        form.append(key, formData[key] as string);
-      }
+      // form.append(key, formData[key] as string);
+      const value = formData[key];
+      console.log(`Appending to FormData: key=${key}, value=${value}`);
+      form.append(key, value as string);
+      // if (key !== 'signature') {
+      //   form.append(key, formData[key] as string);
+      // }
     });
-    formData.signature.forEach((file, index) => {
-      form.append(`signature[${index}]`, file);
-    });
+    // formData.signature.forEach((file, index) => {
+    //   form.append(`signature[${index}]`, file);
+    // });
 
     try {
       let url = state.isEditMode
-        ? `${config.baseURL}/api/v1/visitor-entry/update/${state.entryId}`
-        : `${config.baseURL}/api/v1/visitor-entry`;
+        ? `${config.baseURL}/api/v1/power-tools/update/${state.entryId}`
+        : `${config.baseURL}/api/v1/power-tools`;
 
       const response = await axios.post(url, form, {
         headers: {
@@ -95,7 +132,7 @@ const submitForm = async () => {
       });
 
       console.log("shamim_res: ", response.data);
-      router.push({ name: 'hse-visitors-entry-list' });
+      router.push({ name: 'hse-safety-power-tools-list' });
       SuccessPopUp();
     } catch (error) {
       console.error('Error submitting form:', error);
@@ -106,7 +143,7 @@ const submitForm = async () => {
 
 const fetchEntryData = async (id: string) => {
   try {
-    const response = await axios.get(`${config.baseURL}/api/v1/visitor-entry/edit/${id}`, {
+    const response = await axios.get(`${config.baseURL}/api/v1/power-tools/edit/${id}`, {
       headers: {
         'Authorization': state.token,
       },
@@ -114,18 +151,26 @@ const fetchEntryData = async (id: string) => {
 
     const data = response.data.data;
     console.log('Fetched Data:', data);
+    // Object.keys(formData).forEach((key) => {
+    //   const formKey = key as keyof typeof formData;
+    //   if (formKey in data) {
+    //     // Handle the signature field separately
+    //     if (formKey === 'signature') {
+    //       // Ensure signature is always an array
+    //       formData[formKey] = data[formKey] ? Array.isArray(data[formKey]) ? data[formKey] : [data[formKey]] : [];
+    //     } else {
+    //       formData[formKey] = data[formKey];
+    //     }
+    //   }
+    // });
+
     Object.keys(formData).forEach((key) => {
       const formKey = key as keyof typeof formData;
       if (formKey in data) {
-        // Handle the signature field separately
-        if (formKey === 'signature') {
-          // Ensure signature is always an array
-          formData[formKey] = data[formKey] ? Array.isArray(data[formKey]) ? data[formKey] : [data[formKey]] : [];
-        } else {
-          formData[formKey] = data[formKey];
-        }
+        formData[formKey] = data[formKey];
       }
     });
+    
     console.log('Form Data after population:', formData);
   } catch (error) {
     console.error('Error fetching entry data:', error);
@@ -177,7 +222,7 @@ function SuccessPopUp() {
 
 <template>
   <div class="flex items-center mt-8 intro-y">
-    <h2 class="mr-auto text-lg font-medium">{{ state.isEditMode ? 'Edit Visitors Entry' : 'Add Visitors Entry' }}</h2>
+    <h2 class="mr-auto text-lg font-medium">{{ state.isEditMode ? 'Edit Safety Of Power Tools' : 'Add Safety Of Power Tools' }}</h2>
   </div>
   <div class="grid grid-cols-11 pb-20 mt-5 gap-x-6">
     <!-- BEGIN: Notification -->
@@ -192,7 +237,7 @@ function SuccessPopUp() {
           <Lucide icon="Info" class="w-4 h-4 mr-2" />
         </span>
         <span>
-          Ensure accurate online Visitors Entry with correct date formats and file uploads in the specified format and size.
+          Ensure to fill accurate online Safety Of Power Tools with correct date formats and file uploads in the specified format and size.
           <a
             href="https://themeforest.net/item/midone-jquery-tailwindcss-html-admin-template/26366820"
             class="ml-1 underline"
@@ -259,13 +304,13 @@ function SuccessPopUp() {
                   <FormLabel class="xl:w-40 xl:!mr-10">
                     <div class="text-left">
                       <div class="flex items-center">
-                        <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-4">Visitor Name
+                        <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-4">Tool ID Number
                           <span class="relative group cursor-pointer ml-1">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                               <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
                             </svg>
                               <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
-                                Visitor Name
+                                Tool ID Number
                               </div>
                           </span>
                         </div>
@@ -273,11 +318,11 @@ function SuccessPopUp() {
                     </div>
                   </FormLabel>
                   <div class="flex-1 w-full mt-3 xl:mt-0">
-                    <FormInput id="crud-form-3" v-model.trim="validate.visitor_name.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.visitor_name.$error,}" placeholder="Insert Visitor Name"/>
+                    <FormInput id="crud-form-3" v-model.trim="validate.tool_id_number.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.tool_id_number.$error,}" placeholder="Insert Tool ID Number"/>
                     
                     <div class="flex justify-between">
-                      <template v-if="validate.visitor_name.$error">
-                        <div v-for="(error, index) in validate.visitor_name.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
+                      <template v-if="validate.tool_id_number.$error">
+                        <div v-for="(error, index) in validate.tool_id_number.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
                           {{ error.$message }}
                         </div>
                       </template>
@@ -293,13 +338,13 @@ function SuccessPopUp() {
                   <FormLabel class="xl:w-40 xl:!mr-10">
                     <div class="text-left">
                       <div class="flex items-center">
-                        <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-4">Company Name
+                        <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-4">Tool Name
                           <span class="relative group cursor-pointer ml-1">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                               <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
                             </svg>
                               <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
-                                Company Name
+                                Tool Name
                               </div>
                           </span>
                         </div>
@@ -307,11 +352,11 @@ function SuccessPopUp() {
                     </div>
                   </FormLabel>
                   <div class="flex-1 w-full mt-3 xl:mt-0">
-                    <FormInput id="crud-form-3" v-model.trim="validate.company_name.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.company_name.$error,}" placeholder="Insert Company Name"/>
+                    <FormInput id="crud-form-3" v-model.trim="validate.tool_name.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.tool_name.$error,}" placeholder="Insert Tool Name"/>
                     
                     <div class="flex justify-between">
-                      <template v-if="validate.company_name.$error">
-                        <div v-for="(error, index) in validate.company_name.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
+                      <template v-if="validate.tool_name.$error">
+                        <div v-for="(error, index) in validate.tool_name.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
                           {{ error.$message }}
                         </div>
                       </template>
@@ -327,13 +372,13 @@ function SuccessPopUp() {
                   <FormLabel class="xl:w-40 xl:!mr-10">
                     <div class="text-left">
                       <div class="flex items-center">
-                        <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-4">Whom To Meet
+                        <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-4">Tool Type
                           <span class="relative group cursor-pointer ml-1">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                               <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
                             </svg>
                               <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
-                                Whom To Meet
+                                Tool Type
                               </div>
                           </span>
                         </div>
@@ -341,11 +386,11 @@ function SuccessPopUp() {
                     </div>
                   </FormLabel>
                   <div class="flex-1 w-full mt-3 xl:mt-0">
-                    <FormInput id="crud-form-3" v-model.trim="validate.whom_to_meet.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.whom_to_meet.$error,}" placeholder="Insert Whom To Meet"/>
+                    <FormInput id="crud-form-3" v-model.trim="validate.tool_type.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.tool_type.$error,}" placeholder="Insert Tool Type"/>
                     
                     <div class="flex justify-between">
-                      <template v-if="validate.whom_to_meet.$error">
-                        <div v-for="(error, index) in validate.whom_to_meet.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
+                      <template v-if="validate.tool_type.$error">
+                        <div v-for="(error, index) in validate.tool_type.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
                           {{ error.$message }}
                         </div>
                       </template>
@@ -361,13 +406,13 @@ function SuccessPopUp() {
                   <FormLabel class="xl:w-40 xl:!mr-10">
                     <div class="text-left">
                       <div class="flex items-center">
-                        <div class="font-medium text-sm flex mt-6 xl:mt-4">Visit Purpose
+                        <div class="font-medium text-sm flex mt-6 xl:mt-4">Tool Manufacturer
                           <span class="relative group cursor-pointer ml-1">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                               <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
                             </svg>
                               <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
-                                Visit Purpose
+                                Tool Manufacturer
                               </div>
                           </span>
                         </div>
@@ -375,11 +420,11 @@ function SuccessPopUp() {
                     </div>
                   </FormLabel>
                   <div class="flex-1 w-full mt-3 xl:mt-0">
-                    <FormInput id="crud-form-3" v-model.trim="validate.visit_purpose.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.visit_purpose.$error,}" placeholder="Insert Visit Purpose"/>
+                    <FormInput id="crud-form-3" v-model.trim="validate.tool_manufacturer.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.tool_manufacturer.$error,}" placeholder="Insert Tool Manufacturer"/>
                     
                     <div class="flex justify-between">
-                      <template v-if="validate.visit_purpose.$error">
-                        <div v-for="(error, index) in validate.visit_purpose.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
+                      <template v-if="validate.tool_manufacturer.$error">
+                        <div v-for="(error, index) in validate.tool_manufacturer.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
                           {{ error.$message }}
                         </div>
                       </template>
@@ -395,13 +440,13 @@ function SuccessPopUp() {
                   <FormLabel class="xl:w-40 xl:!mr-10">
                     <div class="text-left">
                       <div class="flex items-center">
-                        <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-4">Temp Id Card No
+                        <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-4">Tool User
                           <span class="relative group cursor-pointer ml-1">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                               <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
                             </svg>
                               <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
-                                Temp Id Card No
+                                Tool User
                               </div>
                           </span>
                         </div>
@@ -409,11 +454,11 @@ function SuccessPopUp() {
                     </div>
                   </FormLabel>
                   <div class="flex-1 w-full mt-3 xl:mt-0">
-                    <FormInput id="crud-form-3" v-model.trim="validate.temp_id_card_no.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.temp_id_card_no.$error,}" placeholder="Insert Temp Id Card No"/>
+                    <FormInput id="crud-form-3" v-model.trim="validate.tool_user.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.tool_user.$error,}" placeholder="Insert Tool User"/>
                     
                     <div class="flex justify-between">
-                      <template v-if="validate.temp_id_card_no.$error">
-                        <div v-for="(error, index) in validate.temp_id_card_no.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
+                      <template v-if="validate.tool_user.$error">
+                        <div v-for="(error, index) in validate.tool_user.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
                           {{ error.$message }}
                         </div>
                       </template>
@@ -424,6 +469,255 @@ function SuccessPopUp() {
               </div>
             </div>
             <div class="md:w-1/2 w-full">
+              <div class="px-4 py-2">
+                <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                    <FormLabel class="xl:w-40 xl:!mr-10">
+                      <div class="text-left">
+                        <div class="flex items-center">
+                          <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-4">Tool Last Calibration Date
+                            <span class="relative group cursor-pointer ml-1">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                  </svg>
+                                    <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                      The date when the tool last calibrated
+                                    </div>
+                                </span>
+                          </div>
+                        </div>
+                      </div>
+                    </FormLabel>
+                    <div class="flex-1 w-full mt-3 xl:mt-0">
+                      <Preview class="intro-y box" v-slot="{ toggle }">
+                        <Preview.Panel>
+                            <div class="relative w-full mx-auto">
+                              <div
+                                class="absolute flex items-center justify-center w-10 h-full border rounded-l bg-slate-100 text-slate-500 dark:bg-darkmode-700 dark:border-darkmode-800 dark:text-slate-400">
+                                <Lucide icon="Calendar" class="w-4 h-4" />
+                              </div>
+                              <Litepicker
+                                v-model="toolLastCalibrationDate"
+                                :options="{
+                                  autoApply: false,
+                                  showWeekNumbers: true,
+                                  dropdowns: {
+                                    minYear: 1990,
+                                    maxYear: null,
+                                    months: true,
+                                    years: true,
+                                  },
+                                }"
+                                class="pl-12"/>
+                            </div>
+                          </Preview.Panel>
+                          <Preview.Panel type="source">
+                            <Preview.Highlight>
+                              {{`
+                              <div class="relative w-56 mx-auto">
+                                <div
+                                  class="absolute flex items-center justify-center w-10 h-full border rounded-l bg-slate-100 text-slate-500 dark:bg-darkmode-700 dark:border-darkmode-800 dark:text-slate-400"
+                                >
+                                  <Lucide icon="Calendar" class="w-4 h-4" />
+                                </div>
+                                <Litepicker
+                                  v-model="date"
+                                  :options="{
+                                    autoApply: false,
+                                    showWeekNumbers: true,
+                                    dropdowns: {
+                                      minYear: 1990,
+                                      maxYear: null,
+                                      months: true,
+                                      years: true,
+                                    },
+                                  }"
+                                  class="pl-12"
+                                />
+                              </div>
+                              `}}
+                            </Preview.Highlight>
+                          </Preview.Panel>
+                      
+                      </Preview>
+                      <div class="flex justify-between">
+                        <template v-if="validate.tool_last_calibration_date.$error">
+                        <div v-for="(error, index) in validate.tool_last_calibration_date.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
+                          {{ error.$message }}
+                        </div>
+                      </template>
+                        <p class="text-right mt-2 w-full"> Required</p>
+                      </div>
+                    </div>
+                  </FormInline>
+              </div>
+            </div>
+            <div class="md:w-1/2 w-full">
+              <div class="px-4 py-2">
+                <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                    <FormLabel class="xl:w-40 xl:!mr-10">
+                      <div class="text-left">
+                        <div class="flex items-center">
+                          <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-4">Tool Last Maintenance Date
+                            <span class="relative group cursor-pointer ml-1">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                  </svg>
+                                    <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                      The date when the tool last maintenance happend
+                                    </div>
+                                </span>
+                          </div>
+                        </div>
+                      </div>
+                    </FormLabel>
+                    <div class="flex-1 w-full mt-3 xl:mt-0">
+                      <Preview class="intro-y box" v-slot="{ toggle }">
+                        <Preview.Panel>
+                            <div class="relative w-full mx-auto">
+                              <div
+                                class="absolute flex items-center justify-center w-10 h-full border rounded-l bg-slate-100 text-slate-500 dark:bg-darkmode-700 dark:border-darkmode-800 dark:text-slate-400">
+                                <Lucide icon="Calendar" class="w-4 h-4" />
+                              </div>
+                              <Litepicker
+                                v-model="toolLastMaintenanceDate"
+                                :options="{
+                                  autoApply: false,
+                                  showWeekNumbers: true,
+                                  dropdowns: {
+                                    minYear: 1990,
+                                    maxYear: null,
+                                    months: true,
+                                    years: true,
+                                  },
+                                }"
+                                class="pl-12"/>
+                            </div>
+                          </Preview.Panel>
+                          <Preview.Panel type="source">
+                            <Preview.Highlight>
+                              {{`
+                              <div class="relative w-56 mx-auto">
+                                <div
+                                  class="absolute flex items-center justify-center w-10 h-full border rounded-l bg-slate-100 text-slate-500 dark:bg-darkmode-700 dark:border-darkmode-800 dark:text-slate-400"
+                                >
+                                  <Lucide icon="Calendar" class="w-4 h-4" />
+                                </div>
+                                <Litepicker
+                                  v-model="date"
+                                  :options="{
+                                    autoApply: false,
+                                    showWeekNumbers: true,
+                                    dropdowns: {
+                                      minYear: 1990,
+                                      maxYear: null,
+                                      months: true,
+                                      years: true,
+                                    },
+                                  }"
+                                  class="pl-12"
+                                />
+                              </div>
+                              `}}
+                            </Preview.Highlight>
+                          </Preview.Panel>
+                      
+                      </Preview>
+                      <div class="flex justify-between">
+                        <template v-if="validate.tool_last_maintenance_date.$error">
+                        <div v-for="(error, index) in validate.tool_last_maintenance_date.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
+                          {{ error.$message }}
+                        </div>
+                      </template>
+                        <p class="text-right mt-2 w-full"> Required</p>
+                      </div>
+                    </div>
+                  </FormInline>
+              </div>
+            </div>
+            <div class="md:w-1/2 w-full">
+              <div class="px-4 py-2">
+                <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                    <FormLabel class="xl:w-40 xl:!mr-10">
+                      <div class="text-left">
+                        <div class="flex items-center">
+                          <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-4">Tool Enlistment Date
+                            <span class="relative group cursor-pointer ml-1">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                  </svg>
+                                    <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                      The date when the tool Enlisted
+                                    </div>
+                                </span>
+                          </div>
+                        </div>
+                      </div>
+                    </FormLabel>
+                    <div class="flex-1 w-full mt-3 xl:mt-0">
+                      <Preview class="intro-y box" v-slot="{ toggle }">
+                        <Preview.Panel>
+                            <div class="relative w-full mx-auto">
+                              <div
+                                class="absolute flex items-center justify-center w-10 h-full border rounded-l bg-slate-100 text-slate-500 dark:bg-darkmode-700 dark:border-darkmode-800 dark:text-slate-400">
+                                <Lucide icon="Calendar" class="w-4 h-4" />
+                              </div>
+                              <Litepicker
+                                v-model="toolEnlistmentDate"
+                                :options="{
+                                  autoApply: false,
+                                  showWeekNumbers: true,
+                                  dropdowns: {
+                                    minYear: 1990,
+                                    maxYear: null,
+                                    months: true,
+                                    years: true,
+                                  },
+                                }"
+                                class="pl-12"/>
+                            </div>
+                          </Preview.Panel>
+                          <Preview.Panel type="source">
+                            <Preview.Highlight>
+                              {{`
+                              <div class="relative w-56 mx-auto">
+                                <div
+                                  class="absolute flex items-center justify-center w-10 h-full border rounded-l bg-slate-100 text-slate-500 dark:bg-darkmode-700 dark:border-darkmode-800 dark:text-slate-400"
+                                >
+                                  <Lucide icon="Calendar" class="w-4 h-4" />
+                                </div>
+                                <Litepicker
+                                  v-model="date"
+                                  :options="{
+                                    autoApply: false,
+                                    showWeekNumbers: true,
+                                    dropdowns: {
+                                      minYear: 1990,
+                                      maxYear: null,
+                                      months: true,
+                                      years: true,
+                                    },
+                                  }"
+                                  class="pl-12"
+                                />
+                              </div>
+                              `}}
+                            </Preview.Highlight>
+                          </Preview.Panel>
+                      
+                      </Preview>
+                      <div class="flex justify-between">
+                        <template v-if="validate.tool_enlistment_date.$error">
+                        <div v-for="(error, index) in validate.tool_enlistment_date.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
+                          {{ error.$message }}
+                        </div>
+                      </template>
+                        <p class="text-right mt-2 w-full"> Required</p>
+                      </div>
+                    </div>
+                  </FormInline>
+              </div>
+            </div>
+            <!-- <div class="md:w-1/2 w-full">
               <div class="px-4 py-2">
                 <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                   <FormLabel class="xl:w-40 xl:!mr-10">
@@ -490,8 +784,8 @@ function SuccessPopUp() {
                   </div>
                 </FormInline>
               </div>
-            </div>
-            <div class="md:w-1/2 w-full">
+            </div> -->
+            <!-- <div class="md:w-1/2 w-full">
                 <div class="px-4 py-2">
                   <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                     <FormLabel class="xl:w-40 xl:!mr-10">
@@ -532,7 +826,7 @@ function SuccessPopUp() {
                     </div>
                   </FormInline>
                 </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -587,7 +881,7 @@ function SuccessPopUp() {
             class="mt-2 text-xs leading-relaxed text-slate-600 dark:text-slate-500"
           >
             <div>
-              When filling out the visitors entry report, be specific and clear with details, using the correct date format and precise descriptions..
+              When filling out the safety of power tools report, be specific and clear with details, using the correct date format and precise descriptions..
             </div>
             <div class="mt-2">
               Ensure all required fields are accurately completed and boolean options are correctly marked. Upload relevant files and adhere to format and size requirements for attachments.

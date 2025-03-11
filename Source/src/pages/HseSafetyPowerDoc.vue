@@ -139,26 +139,26 @@ const state = reactive({
 });
 
 function CloseControlVisitorsHSE01 (){
-  state.ControlVisitorsHSE01 = false;
-  state.ControlVisitors = false;
-  state.AddControlVisitorsHSE01 = false;
-  state.UpdateControlVisitorsHSE01 = false;
+  // state.ControlVisitorsHSE01 = false;
+  // state.ControlVisitors = false;
+  // state.AddControlVisitorsHSE01 = false;
+  // state.UpdateControlVisitorsHSE01 = false;
 
 
 }
-function AddControlVisitorsHSE01 (){
-  state.AddControlVisitorsHSE01 = true;
-}
+// function AddControlVisitorsHSE01 (){
+//   state.AddControlVisitorsHSE01 = true;
+// }
 
-function BackControlVisitorsHSE01 (){
-  state.AddControlVisitorsHSE01 = false;
-  state.UpdateControlVisitorsHSE01 = false;
-}
+// function BackControlVisitorsHSE01 (){
+//   state.AddControlVisitorsHSE01 = false;
+//   state.UpdateControlVisitorsHSE01 = false;
+// }
 
-async function UpdateControlVisitorsHSE01 (ID:any){
-  state.UpdateControlVisitorsHSE01 = true;
+// async function UpdateControlVisitorsHSE01 (ID:any){
+//   state.UpdateControlVisitorsHSE01 = true;
 
-}
+// }
 const fetchDropDownData = async () => {
   try {
    let  url = config.baseURL+'/api/v1/hse-safety-power-tools';
@@ -168,6 +168,15 @@ const fetchDropDownData = async () => {
                 },
                 });
     state.viewData = response.data.data;
+
+    // CHANGE: Set the default state based on viewData.length
+    if (state.viewData.length === 0) {
+      state.AddControlVisitorsHSE01 = true; // Show "Insert Safety Power" section
+      state.UpdateControlVisitorsHSE01 = false;
+    } else {
+      state.AddControlVisitorsHSE01 = false;
+      state.UpdateControlVisitorsHSE01 = true; // Show "Update Safety Power" section
+    }
     cvformData.id = response.data.data.map((item: any) => item.id).join(',');
     fetchcvUpdateData();
   } catch (error) {
@@ -211,7 +220,7 @@ onMounted(() => {
       <div  class="py-2 px-2 flex justify-between items-center">
           <div class="flex w-full justify-between items-center">
               <div class="flex">
-                <Button v-if="!state.AddControlVisitorsHSE01 && state.viewData.length == 0" variant="primary" class="mr-2 shadow-md" @click="AddControlVisitorsHSE01">
+                <!-- <Button v-if="!state.AddControlVisitorsHSE01 && state.viewData.length == 0" variant="primary" class="mr-2 shadow-md" @click="AddControlVisitorsHSE01">
               Add Safety Power
             </Button>
             <div v-for="( data , index) in state.viewData">
@@ -222,7 +231,7 @@ onMounted(() => {
             <Button v-if="state.AddControlVisitorsHSE01 || state.UpdateControlVisitorsHSE01" variant="primary" class="mr-2 shadow-md" @click="BackControlVisitorsHSE01">
               <Lucide icon="ChevronsLeft" class="block mx-auto" />
               Back
-            </Button>
+            </Button> -->
               <Menu v-if="!state.AddControlVisitorsHSE01">
               <Menu.Button :as="Button" class="px-2 !box">
                 <span class="flex items-center justify-center w-5 h-5">
@@ -250,7 +259,8 @@ onMounted(() => {
           </div>
            
       </div>
-      <div class="p-4" v-if="!state.AddControlVisitorsHSE01 && !state.UpdateControlVisitorsHSE01">
+      <!-- <div class="p-4" v-if="!state.AddControlVisitorsHSE01 && !state.UpdateControlVisitorsHSE01"> -->
+      <div class="p-4">
       
         <div v-if="state.viewData.length != 0"  v-for="( data , index) in state.viewData" :key="index">
           <div  class="p-4" v-html="data.descriptions"></div>
@@ -271,7 +281,7 @@ onMounted(() => {
               </ul>
             </div>
         </div>
-        <div v-else class=" text-xl text-center p-4">No Data</div>
+        <!-- <div v-else class=" text-xl text-center p-4">No Data</div> -->
         
       </div>
       <div class="p-4" v-if="state.AddControlVisitorsHSE01">
