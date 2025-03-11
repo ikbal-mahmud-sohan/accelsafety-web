@@ -10,38 +10,42 @@ import Tippy from '@/components/Base/Tippy';
 import { Dialog, Menu } from '@/components/Base/Headless';
 import Table from '@/components/Base/Table';
 import config from "@/config";
-import { getToken } from './../auth/setToken'
+import { getToken } from '../auth/setToken'
 
 
 const state = reactive({
-  vehicleReg: [] as Array<any>,
+  visitorsEntry: [] as Array<any>,
   token: getToken(),
 
 });
 
 const fetchData = async () => {
   try {
-   let  url = config.baseURL+'/api/v1/power-vehicle';
+  //  let  url = config.baseURL+'/api/v1/safety';
+   let  url = config.baseURL+'/api/v1/safety-committee-organogram';
     const response = await axios.get(url,{
                 headers: {
                     'Authorization': state.token,
                 },
                 });
-    state.vehicleReg = response.data.data;
+    state.visitorsEntry = response.data.data;
   } catch (error) {
     console.error('Error fetching data:', error);
   }
 };
 const deleteData = async (sID:string) => {
   try {
-    let url = config.baseURL+"/api/v1/power-vehicle/delete/"+sID;
-    const response = await axios.get(url,{
+    // let url = config.baseURL+"/api/v1/safety/"+sID;
+    let url = config.baseURL+"/api/v1/safety-committee-organogram/delete/"+sID;
+    const response = await axios.delete(url,{
                 headers: {
                     'Authorization': state.token,
                 },
                 });
-    // state.vehicleReg = response.data.data;
+    // state.visitorsEntry = response.data.data;
+
     await fetchData();
+
   } catch (error) {
     console.error('Error fetching data:', error);
   }
@@ -53,12 +57,12 @@ onMounted(() => {
 </script>
 
 <template>
-  <h2 class="mt-10 text-lg font-medium intro-y">Power Vehicle Registration List</h2>
+  <h2 class="mt-10 text-lg font-medium intro-y">Safety Committee List</h2>
   <div class="grid grid-cols-12 gap-6 mt-5">
     <div class="flex flex-wrap items-center col-span-12 mt-2 intro-y sm:flex-nowrap">
-      <router-link :to="{ name: 'hse-power-vehicle-registration-create' }">
+      <router-link :to="{ name: 'hse-safety-committee-create' }">
         <Button variant="primary" class="mr-2 shadow-md">
-          Add Power Vehicle Registration
+          Add New Safety Committee
         </Button>
       </router-link>
       <Menu>
@@ -102,41 +106,24 @@ onMounted(() => {
         <Table.Thead>
           <Table.Tr>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">ID</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Unit Name</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Vehicle ID Number</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Capacity</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Type of Vehicle</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Vehicle Owner</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Manufacturer Company Name</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Last Maintenance Date</Table.Th>
-            <Table.Th class="text-center border-b-0 whitespace-nowrap uppercase">ACTIONS</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Name</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Position</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Additional Name</Table.Th>
           </Table.Tr>
         </Table.Thead>
-        <Table.Tbody v-if="state.vehicleReg.length !== 0">
-          <Table.Tr  v-for="(report, index) in state.vehicleReg" :key="index" class="intro-x">
+        <Table.Tbody v-if="state.visitorsEntry.length !== 0">
+          <Table.Tr  v-for="(report, index) in state.visitorsEntry" :key="index" class="intro-x">
             <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
               {{ report.id }}
             </Table.Td>
             <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.unit_name }}
+              {{ report.name }}
             </Table.Td>
             <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.vehicle_id }}
+              {{ report.position }}
             </Table.Td>
             <Table.Td class="whitespace-nowrap box text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.capacity }}
-            </Table.Td>
-            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.type_of_vehicle }}
-            </Table.Td>
-            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.vehicle_owner }}
-            </Table.Td>
-            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.manufacturer_company_name }}
-            </Table.Td>
-            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.last_maintenance_date }}
+              {{ report.additional_name }}
             </Table.Td>
             <Table.Td
               :class="[
@@ -149,7 +136,7 @@ onMounted(() => {
                   <Lucide icon="CheckSquare" class="w-4 h-4 mr-1" />
                   Approved
                 </router-link> -->
-                <router-link :to="{name:'hse-power-vehicle-registration-edit', params:{id:report.id} }" class="flex items-center mr-3">
+                <router-link :to="{name:'hse-safety-committee-edit', params:{id:report.id} }" class="flex items-center mr-3">
                   <Lucide icon="CheckSquare" class="w-4 h-4 mr-1" />
                   Edit
                 </router-link>
