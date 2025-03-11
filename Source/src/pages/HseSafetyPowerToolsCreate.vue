@@ -141,6 +141,12 @@ const submitForm = async () => {
   }
 };
 
+const reverseDateFormat = (dateString: string): string => {
+  const [day, month, year] = dateString.split('-').map(Number);
+  const date = new Date(year, month - 1, day); // Months are zero-based in JavaScript Date
+  return date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+};
+
 const fetchEntryData = async (id: string) => {
   try {
     const response = await axios.get(`${config.baseURL}/api/v1/power-tools/edit/${id}`, {
@@ -170,6 +176,11 @@ const fetchEntryData = async (id: string) => {
         formData[formKey] = data[formKey];
       }
     });
+
+    // Populate the date refs with the reversed date format
+    toolLastCalibrationDate.value = reverseDateFormat(data.tool_last_calibration_date);
+    toolLastMaintenanceDate.value = reverseDateFormat(data.tool_last_maintenance_date);
+    toolEnlistmentDate.value = reverseDateFormat(data.tool_enlistment_date);
     
     console.log('Form Data after population:', formData);
   } catch (error) {

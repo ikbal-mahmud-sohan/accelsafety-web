@@ -62,7 +62,7 @@ const submitForm = async () => {
     } else {
 
             try {
-                let  url = config.baseURL+'/api/v1/hse-safety-power-tools';
+                // let  url = config.baseURL+'/api/v1/hse-safety-power-tools';
                 const response = await axios.post(url, cvformData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
@@ -89,7 +89,7 @@ const updateForm = async () => {
     } else {
 
             try {
-                let  url = config.baseURL+'/api/v1/hse-safety-power-tools/'+cvformData.id;
+                // let  url = config.baseURL+'/api/v1/hse-safety-power-tools/'+cvformData.id;
                 const response = await axios.post(url, cvUpdateformData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
@@ -161,7 +161,7 @@ function CloseControlVisitorsHSE01 (){
 // }
 const fetchDropDownData = async () => {
   try {
-   let  url = config.baseURL+'/api/v1/hse-safety-power-tools';
+  //  let  url = config.baseURL+'/api/v1/hse-safety-power-tools';
     const response = await axios.get(url,{
                 headers: {
                     'Authorization': state.token,
@@ -185,7 +185,7 @@ const fetchDropDownData = async () => {
 };
 const fetchcvUpdateData = async () => {
   try {
-   let  url = config.baseURL+'/api/v1/hse-safety-power-tools/'+cvformData.id;
+  //  let  url = config.baseURL+'/api/v1/hse-safety-power-tools/'+cvformData.id;
     const response = await axios.get(url,{
                 headers: {
                     'Authorization': state.token,
@@ -210,7 +210,7 @@ onMounted(() => {
     
     <div class="bg-white z-50 shadow-md rounded-md p-4 w-full">
       <div class="pt-4 px-4 flex justify-end items-center">
-        <router-link :to="{ name: 'hse-safety-power-tools' }">
+        <router-link :to="{ name: 'hse-safety-committee' }">
             <Button variant="primary" class="w-32 mb-2 mr-2">
               <Lucide icon="ChevronsLeftIcon" class="w-4 h-4 mr-2" /> Back
             </Button>
@@ -283,14 +283,14 @@ onMounted(() => {
 
       <div class="p-4" v-if="state.AddControlVisitorsHSE01">
         <div class="p-5 mt-5 intro-y box">
-        <div class="py-4"><h2 class="mr-auto text-xl text-center font-medium uppercase">Insert Safety Power</h2></div>
+        <div class="py-4"><h2 class="mr-auto text-xl text-center font-medium uppercase">Insert Safety Committee</h2></div>
           <Alert variant="primary" dismissible class="col-span-11 mb-6 intro-y box dark:border-darkmode-600" v-slot="{ dismiss }">
               <div class="flex items-center">
                 <span>
                   <Lucide icon="Info" class="w-4 h-4 mr-2" />
                 </span>
                 <span>
-                  Ensure accurate online Safety Power with correct date formats and file uploads in the specified format and size.
+                  Ensure accurate online Safety Committee with correct date formats and file uploads in the specified format and size.
                 </span>
                 <Alert.DismissButton class="text-white" @click="dismiss" aria-label="Close">
                   <Lucide icon="X" class="w-4 h-4" />
@@ -348,14 +348,14 @@ onMounted(() => {
       </div>
       <div class="p-4" v-if="state.UpdateControlVisitorsHSE01">
         <div class="p-5 mt-5 intro-y box">
-        <div class="py-4"><h2 class="mr-auto text-xl text-center font-medium uppercase">Update Safety Power</h2></div>
+        <div class="py-4"><h2 class="mr-auto text-xl text-center font-medium uppercase">Update Safety Committee</h2></div>
           <Alert variant="primary" dismissible class="col-span-11 mb-6 intro-y box dark:border-darkmode-600" v-slot="{ dismiss }">
               <div class="flex items-center">
                 <span>
                   <Lucide icon="Info" class="w-4 h-4 mr-2" />
                 </span>
                 <span>
-                  Ensure accurate online Safety Power with correct date formats and file uploads in the specified format and size.
+                  Ensure accurate online Safety Committee with correct date formats and file uploads in the specified format and size.
                 </span>
                 <Alert.DismissButton class="text-white" @click="dismiss" aria-label="Close">
                   <Lucide icon="X" class="w-4 h-4" />

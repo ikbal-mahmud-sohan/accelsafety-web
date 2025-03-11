@@ -432,6 +432,32 @@ const router = createRouter({
             name: "hse-vehicle-safety-list",
             component: () => import("../pages/HseVehicleSafetyChecklistList.vue"),
           },
+          // SafetyCommittee
+          {
+            path: "hse-safety-committee",
+            name: "hse-safety-committee",
+            component: () => import("../pages/HseSafetyCommittee.vue"),
+          },
+          {
+            path: "hse-safety-committee-doc",
+            name: "hse-safety-committee-doc",
+            component: () => import("../pages/HseSafetyCommitteeDoc.vue"),
+          },
+          {
+            path: "hse-safety-committee-create",
+            name: "hse-safety-committee-create",
+            component: () => import("../pages/HseSafetyCommitteeCreate.vue"),
+          },
+          {
+            path: "hse-safety-committee-edit/:id",
+            name: "hse-safety-committee-edit",
+            component: () => import("../pages/HseSafetyCommitteeCreate.vue"),
+          },
+          {
+            path: "hse-safety-committee-list",
+            name: "hse-safety-committee-list",
+            component: () => import("../pages/HseSafetyCommitteeList.vue"),
+          },
           // SafetyPowerTools
           {
             path: "hse-safety-power-tools",
@@ -1477,6 +1503,11 @@ const router = createRouter({
           {
             path: "hse-power-vehicle-registration-create",
             name: "hse-power-vehicle-registration-create",
+            component: () => import("../pages/HsePowerVehicleRegistrationCreate.vue"),
+          },
+          {
+            path: "hse-power-vehicle-registration-edit/:id",
+            name: "hse-power-vehicle-registration-edit",
             component: () => import("../pages/HsePowerVehicleRegistrationCreate.vue"),
           },
           {
