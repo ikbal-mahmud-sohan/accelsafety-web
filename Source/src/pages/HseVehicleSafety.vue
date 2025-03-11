@@ -13,7 +13,7 @@ import Button from "@/components/Base/Button";
     </router-link>
     
   </div>
-  <div class="pb-8">
+  <div class="">
     <h2 class="text-2xl font-medium intro-y text-center uppercase">Power Vehicle Safety</h2>
   </div>
   <!-- <div class="flex flex-wrap bg-theme-1 bg-opacity-20 px-4 py-4 rounded-md shadow-md">
