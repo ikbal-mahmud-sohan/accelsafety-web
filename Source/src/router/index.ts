@@ -443,6 +443,21 @@ const router = createRouter({
             name: "hse-safety-power-tools-doc",
             component: () => import("../pages/HseSafetyPowerDoc.vue"),
           },
+          {
+            path: "hse-safety-power-tools-create",
+            name: "hse-safety-power-tools-create",
+            component: () => import("../pages/HseSafetyPowerToolsCreate.vue"),
+          },
+          {
+            path: "hse-safety-power-tools-edit/:id",
+            name: "hse-safety-power-tools-edit",
+            component: () => import("../pages/HseSafetyPowerToolsCreate.vue"),
+          },
+          {
+            path: "hse-safety-power-tools-list",
+            name: "hse-safety-power-tools-list",
+            component: () => import("../pages/HseSafetyPowerToolsList.vue"),
+          },
           // Sight and Hearing Protection
           {
             path: "hse-sight-hearin-protection",
