@@ -28,7 +28,7 @@ import Button from "@/components/Base/Button";
           </router-link>
         </div>
         <div class="py-1">
-          <p class="text-center">Safety Committee doc</p>
+          <p class="text-center">Safety Committee SOP</p>
         </div>
         </div>
       </div>

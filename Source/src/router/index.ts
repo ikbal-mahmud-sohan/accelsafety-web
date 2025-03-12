@@ -407,11 +407,11 @@ const router = createRouter({
             name: "visitor-log",
             component: () => import("../pages/HseVisitorLogData.vue"),
           },
-          {
-            path: "visitor-entry",
-            name: "visitor-entry",
-            component: () => import("../pages/HseVisitorsEntry.vue"),
-          },
+          // {
+          //   path: "visitor-entry",
+          //   name: "visitor-entry",
+          //   component: () => import("../pages/HseVisitorsEntry.vue"),
+          // },
           {
             path: "hse-vehicle-safety",
             name: "hse-vehicle-safety",
@@ -1495,11 +1495,12 @@ const router = createRouter({
             name: "bike-checklists-create",
             component: () => import("../pages/HseBikeChecklistsCreate.vue"),
           },
-          {
-            path: "hse-power-vehicle-registration",
-            name: "hse-power-vehicle-registration",
-            component: () => import("../pages/HsePowerVehicleRegistration.vue"),
-          },
+          // powerVehicle
+          // {
+          //   path: "hse-power-vehicle-registration",
+          //   name: "hse-power-vehicle-registration",
+          //   component: () => import("../pages/HsePowerVehicleRegistration.vue"),
+          // },
           {
             path: "hse-power-vehicle-registration-create",
             name: "hse-power-vehicle-registration-create",
@@ -1515,6 +1516,23 @@ const router = createRouter({
             name: "hse-power-vehicle-registration-list",
             component: () => import("../pages/HsePowerVehicleRegistrationList.vue"),
           },
+          // HseDriverRegistration
+          {
+            path: "hse-driver-registration-create",
+            name: "hse-driver-registration-create",
+            component: () => import("../pages/HseDriverRegistrationCreate.vue"),
+          },
+          {
+            path: "hse-driver-registration-edit/:id",
+            name: "hse-driver-registration-edit",
+            component: () => import("../pages/HseDriverRegistrationCreate.vue"),
+          },
+          {
+            path: "hse-driver-registration-list",
+            name: "hse-driver-registration-list",
+            component: () => import("../pages/HseDriverRegistrationList.vue"),
+          },
+          // visitorsEntry
           {
             path: "hse-visitors-entry-create",
             name: "hse-visitors-entry-create",

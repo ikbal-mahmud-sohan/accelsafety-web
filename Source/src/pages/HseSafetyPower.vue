@@ -28,7 +28,7 @@ import Button from "@/components/Base/Button";
           </router-link>
         </div>
         <div class="py-1">
-          <p class="text-center">Safety of Power Tools</p>
+          <p class="text-center">Power Tools SOP</p>
         </div>
         </div>
       </div>
