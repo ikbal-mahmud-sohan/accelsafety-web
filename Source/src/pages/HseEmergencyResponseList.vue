@@ -22,7 +22,7 @@ const state = reactive({
 const fetchData = async () => {
   try {
   //  let  url = config.baseURL+'/api/v1/safety';
-   let  url = config.baseURL+'/api/v1/safety-committee-organogram';
+   let  url = config.baseURL+'/api/v1/visitor-entry';
     const response = await axios.get(url,{
                 headers: {
                     'Authorization': state.token,
@@ -36,7 +36,7 @@ const fetchData = async () => {
 const deleteData = async (sID:string) => {
   try {
     // let url = config.baseURL+"/api/v1/safety/"+sID;
-    let url = config.baseURL+"/api/v1/safety-committee-organogram/delete/"+sID;
+    let url = config.baseURL+"/api/v1/visitor-entry/delete/"+sID;
     const response = await axios.delete(url,{
                 headers: {
                     'Authorization': state.token,
@@ -57,12 +57,12 @@ onMounted(() => {
 </script>
 
 <template>
-  <h2 class="mt-10 text-lg font-medium intro-y">Safety Committee List</h2>
+  <h2 class="mt-10 text-lg font-medium intro-y">Emergency Response Team</h2>
   <div class="grid grid-cols-12 gap-6 mt-5">
     <div class="flex flex-wrap items-center col-span-12 mt-2 intro-y sm:flex-nowrap">
-      <router-link :to="{ name: 'hse-safety-committee-create' }">
+      <router-link :to="{ name: 'hse-visitors-entry-create' }">
         <Button variant="primary" class="mr-2 shadow-md">
-          Add New Safety Committee
+          Add New Emergency Response Team
         </Button>
       </router-link>
       <Menu>
@@ -106,10 +106,16 @@ onMounted(() => {
         <Table.Thead>
           <Table.Tr>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">ID</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Name</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Position</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Additional Name</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">ACTIONS</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Unit Name</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Visitor Name</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Company Name</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Whom To Meet</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Visit Purpose</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Temp Id Card No</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Time of Entry</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Time of Exit</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Signature</Table.Th>
+            <Table.Th class="text-center border-b-0 whitespace-nowrap uppercase">ACTIONS</Table.Th>
           </Table.Tr>
         </Table.Thead>
         <Table.Tbody v-if="state.visitorsEntry.length !== 0">
@@ -118,13 +124,48 @@ onMounted(() => {
               {{ report.id }}
             </Table.Td>
             <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.name }}
+              {{ report.unit_name }}
             </Table.Td>
             <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.position }}
+              {{ report.visitor_name }}
             </Table.Td>
             <Table.Td class="whitespace-nowrap box text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              {{ report.additional_name }}
+              {{ report.company_name }}
+            </Table.Td>
+            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.whom_to_meet }}
+            </Table.Td>
+            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.visit_purpose }}
+            </Table.Td>
+            
+            <Table.Td class="box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.temp_id_card_no }}
+            </Table.Td>
+            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.time_of_entry }}
+            </Table.Td>
+            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              {{ report.time_of_exit }}
+            </Table.Td>
+            <Table.Td  class="box w-40 rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600"
+            >
+              <div class="flex justify-center">
+                <template v-if="report.signature && report.signature.length > 0">
+                  <div class="w-16 h-16 image-fit zoom-in" v-for="(img, index) in report.signature" :key="index">
+                    <Tippy
+                      as="img"
+                      alt="safety"
+                      class="rounded-full shadow-[0px_0px_0px_2px_#fff,_1px_1px_5px_rgba(0,0,0,0.32)] dark:shadow-[0px_0px_0px_2px_#3f4865,_1px_1px_5px_rgba(0,0,0,0.32)]"
+                      :src="`${config.baseURL}${img}`"
+                      :content="`safety`"
+                    />
+                  </div>
+                </template>
+                <template v-else>
+                  <span>No Data</span>
+                </template>
+              </div>
             </Table.Td>
             <Table.Td
               :class="[
@@ -137,7 +178,7 @@ onMounted(() => {
                   <Lucide icon="CheckSquare" class="w-4 h-4 mr-1" />
                   Approved
                 </router-link> -->
-                <router-link :to="{name:'hse-safety-committee-edit', params:{id:report.id} }" class="flex items-center mr-3">
+                <router-link :to="{name:'hse-visitors-entry-edit', params:{id:report.id} }" class="flex items-center mr-3">
                   <Lucide icon="CheckSquare" class="w-4 h-4 mr-1" />
                   Edit
                 </router-link>
