@@ -432,6 +432,28 @@ const router = createRouter({
             name: "hse-vehicle-safety-list",
             component: () => import("../pages/HseVehicleSafetyChecklistList.vue"),
           },
+          // EmergencyResponse
+          {
+            path: "hse-emergency-response",
+            name: "hse-emergency-response",
+            component: () => import("../pages/HseEmergencyResponse.vue"),
+          },
+          {
+            path: "hse-emergency-response-doc",
+            name: "hse-emergency-response-doc",
+            component: () => import("../pages/HseEmergencyResponseDoc.vue"),
+          },
+          {
+            path: "hse-emergency-response-create",
+            name: "hse-emergency-response-create",
+            component: () => import("../pages/HseEmergencyResponseCreate.vue"),
+          },
+          {
+            path: "hse-emergency-response-list",
+            name: "hse-emergency-response-list",
+            component: () => import("../pages/HseEmergencyResponseList.vue"),
+          },
+
           // SafetyCommittee
           {
             path: "hse-safety-committee",
