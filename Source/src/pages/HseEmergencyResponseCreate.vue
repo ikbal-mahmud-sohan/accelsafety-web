@@ -31,6 +31,7 @@ const formData = reactive({
   type:'',
   designation: '',
   phone: '',
+  image: [] as File[],
   // unit_name: '',
   // tool_id_number: '',
   // tool_name: '',
@@ -47,7 +48,6 @@ const formData = reactive({
   // temp_id_card_no: '',
   // time_of_entry: '',
   // time_of_exit: '',
-  // signature: [] as File[],
 });
 
 const state = reactive({
@@ -65,12 +65,12 @@ const route = useRoute();
 
 const selectedType = ref("");
 
-// const handleFileChange = (event: Event) => {
-//   const input = event.target as HTMLInputElement;
-//   if (input.files) {
-//     formData.signature = Array.from(input.files);
-//   }
-// };
+const handleFileChange = (event: Event) => {
+  const input = event.target as HTMLInputElement;
+  if (input.files) {
+    formData.image = Array.from(input.files);
+  }
+};
 
 const rules = {
   name: { required, minLength: minLength(3) },
@@ -118,23 +118,26 @@ const submitForm = async () => {
     FailedPopUp();
   } else {
     const form = new FormData();
-    (Object.keys(formData) as Array<keyof typeof formData>).forEach((key) => {
-      // form.append(key, formData[key] as string);
-      const value = formData[key];
-      console.log(`Appending to FormData: key=${key}, value=${value}`);
-      form.append(key, value as string);
-      // if (key !== 'signature') {
-      //   form.append(key, formData[key] as string);
-      // }
-    });
-    // formData.signature.forEach((file, index) => {
-    //   form.append(`signature[${index}]`, file);
+    // (Object.keys(formData) as Array<keyof typeof formData>).forEach((key) => {
+      
+    //   const value = formData[key];
+    //   console.log(`Appending to FormData: key=${key}, value=${value}`);
+    //   form.append(key, value as string);
     // });
+
+    (Object.keys(formData) as Array<keyof typeof formData>).forEach((key) => {
+      if (key !== 'image') {
+        form.append(key, formData[key] as string);
+      }
+    });
+    formData.image.forEach((file, index) => {
+      form.append(`image[${index}]`, file);
+    });
 
     try {
       let url = state.isEditMode
-        ? `${config.baseURL}/api/v1/safety-committee-organogram/update/${state.entryId}`
-        : `${config.baseURL}/api/v1/safety-committee-organogram`;
+        ? `${config.baseURL}/api/v1/emergency-response-team/update/${state.entryId}`
+        : `${config.baseURL}/api/v1/emergency-response-team`;
 
       const response = await axios.post(url, form, {
         headers: {
@@ -144,7 +147,7 @@ const submitForm = async () => {
       });
 
       console.log("shamim_res: ", response.data);
-      router.push({ name: 'hse-safety-committee-list' });
+      router.push({ name: 'hse-emergency-response-list' });
       SuccessPopUp();
     } catch (error) {
       console.error('Error submitting form:', error);
@@ -161,7 +164,7 @@ const submitForm = async () => {
 
 const fetchEntryData = async (id: string) => {
   try {
-    const response = await axios.get(`${config.baseURL}/api/v1/safety-committee-organogram/edit/${id}`, {
+    const response = await axios.get(`${config.baseURL}/api/v1/emergency-response-team/edit/${id}`, {
       headers: {
         'Authorization': state.token,
       },
@@ -169,25 +172,25 @@ const fetchEntryData = async (id: string) => {
 
     const data = response.data.data;
     console.log('Fetched Data:', data);
-    // Object.keys(formData).forEach((key) => {
-    //   const formKey = key as keyof typeof formData;
-    //   if (formKey in data) {
-    //     // Handle the signature field separately
-    //     if (formKey === 'signature') {
-    //       // Ensure signature is always an array
-    //       formData[formKey] = data[formKey] ? Array.isArray(data[formKey]) ? data[formKey] : [data[formKey]] : [];
-    //     } else {
-    //       formData[formKey] = data[formKey];
-    //     }
-    //   }
-    // });
-
     Object.keys(formData).forEach((key) => {
       const formKey = key as keyof typeof formData;
       if (formKey in data) {
-        formData[formKey] = data[formKey];
+        // Handle the image field separately
+        if (formKey === 'image') {
+          // Ensure image is always an array
+          formData[formKey] = data[formKey] ? Array.isArray(data[formKey]) ? data[formKey] : [data[formKey]] : [];
+        } else {
+          formData[formKey] = data[formKey];
+        }
       }
     });
+
+    // Object.keys(formData).forEach((key) => {
+    //   const formKey = key as keyof typeof formData;
+    //   if (formKey in data) {
+    //     formData[formKey] = data[formKey];
+    //   }
+    // });
 
     // Populate the date refs with the reversed date format
     // toolLastCalibrationDate.value = reverseDateFormat(data.tool_last_calibration_date);
@@ -346,11 +349,11 @@ function SuccessPopUp() {
                       <!-- <FormInput id="crud-form-11" v-model.trim="validate.type.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.type.$error,}" placeholder="Input Priority Type"/>   -->
                       <select id="crud-form-6" v-model="selectedType"  class="border py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 fdark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 text-gray-500">
                             <option value="" disabled>select type</option>
-                            <option value="Chief Warden">Chief Warden</option>
-                            <option value="Deputy Chief Warden">Deputy Chief Warden</option>
-                            <option value="Fire Fighter">Fire Fighter</option>
-                            <option value="Fire Rescuer">Fire Rescuer</option>
-                            <option value="First Aider">First Aider</option>
+                            <option value="site_main_controller">Chief Warden</option>
+                            <option value="site_incident_controller">Deputy Chief Warden</option>
+                            <option value="first_aider">First Aider</option>
+                            <option value="fire_fighter">Fire Fighter</option>
+                            <option value="fire_rescuer">Fire Rescuer</option>
                       </select>
                       <div class="flex justify-between">
                         <template v-if="validate.type.$error">
@@ -750,19 +753,19 @@ function SuccessPopUp() {
                 </FormInline>
               </div>
             </div> -->
-            <!-- <div class="md:w-1/2 w-full">
+            <div class="md:w-1/2 w-full">
                 <div class="px-4 py-2">
                   <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
                     <FormLabel class="xl:w-40 xl:!mr-10">
                       <div class="text-left">
                         <div class="flex items-center">
-                          <div class="font-medium text-sm flex mt-6 xl:mt-4">Signature
+                          <div class="font-medium text-sm flex mt-6 xl:mt-4">Profile Picture
                             <span class="relative group cursor-pointer ml-1">
                               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
                               </svg>
                                 <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
-                                  Images showing Signature
+                                  Images showing Profile Picture
                                 </div>
                             </span>
                           </div>
@@ -779,11 +782,11 @@ function SuccessPopUp() {
                                     <p class="mb-2 text-sm text-gray-500">Click to upload or drag and drop</p>
                                     <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
                                   </div>
-                                  <input id="file-upload" type="file" class="hidden" multiple @change="handleFileChange"/>
+                                  <input id="file-upload" type="file" class="hidden" multiple accept="image/jpeg, image/png, image/jpg, image/gif, image/svg" @change="handleFileChange"/>
                                 </label>
                                 
-                              <div v-if="formData.signature.length" class="w-full space-y-2">
-                                <div v-for="(file, index) in formData.signature" :key="index" class="flex items-center justify-between p-2 bg-gray-100 rounded-lg shadow">
+                              <div v-if="formData.image.length" class="w-full space-y-2">
+                                <div v-for="(file, index) in formData.image" :key="index" class="flex items-center justify-between p-2 bg-gray-100 rounded-lg shadow">
                                   <span class="text-sm text-gray-700 truncate">{{ file.name }}</span>
                                 </div>
                               </div>
@@ -791,7 +794,7 @@ function SuccessPopUp() {
                     </div>
                   </FormInline>
                 </div>
-            </div> -->
+            </div>
           </div>
         </div>
       </div>
