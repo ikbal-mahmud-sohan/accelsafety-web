@@ -14,7 +14,12 @@ import { getToken } from '../auth/setToken'
 
 
 const state = reactive({
-  visitorsEntry: [] as Array<any>,
+  // visitorsEntry: [] as Array<any>,
+  EmergencyRes: [] as Array<any>,
+  EmergencyRes01: [] as Array<any>,
+  EmergencyRes02: [] as Array<any>,
+  EmergencyRes03: [] as Array<any>,
+  EmergencyRes04: [] as Array<any>,
   token: getToken(),
 
 });
@@ -22,17 +27,88 @@ const state = reactive({
 const fetchData = async () => {
   try {
   //  let  url = config.baseURL+'/api/v1/safety';
-   let  url = config.baseURL+'/api/v1/visitor-entry';
+   let  url = config.baseURL+'/api/v1/emergency-response-team/show-by-type?type=site_main_controller';
     const response = await axios.get(url,{
                 headers: {
                     'Authorization': state.token,
                 },
                 });
-    state.visitorsEntry = response.data.data;
+    // state.visitorsEntry = response.data.data;
+    state.EmergencyRes = response.data.data;
+    console.log("shamim", state.EmergencyRes);
   } catch (error) {
     console.error('Error fetching data:', error);
   }
 };
+
+const fetchData01 = async () => {
+  try {
+  //  let  url = config.baseURL+'/api/v1/safety';
+   let  url = config.baseURL+'/api/v1/emergency-response-team/show-by-type?type=site_incident_controller';
+    const response = await axios.get(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
+    // state.visitorsEntry = response.data.data;
+    state.EmergencyRes01 = response.data.data;
+    console.log("shamim01", state.EmergencyRes01);
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+};
+
+const fetchData02 = async () => {
+  try {
+  //  let  url = config.baseURL+'/api/v1/safety';
+   let  url = config.baseURL+'/api/v1/emergency-response-team/show-by-type?type=first_aider';
+    const response = await axios.get(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
+    // state.visitorsEntry = response.data.data;
+    state.EmergencyRes02 = response.data.data;
+    console.log("shamim02", state.EmergencyRes02);
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+};
+
+const fetchData03 = async () => {
+  try {
+  //  let  url = config.baseURL+'/api/v1/safety';
+   let  url = config.baseURL+'/api/v1/emergency-response-team/show-by-type?type=fire_fighter';
+    const response = await axios.get(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
+    // state.visitorsEntry = response.data.data;
+    state.EmergencyRes03 = response.data.data;
+    console.log("shamim03", state.EmergencyRes03);
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+};
+
+const fetchData04 = async () => {
+  try {
+  //  let  url = config.baseURL+'/api/v1/safety';
+   let  url = config.baseURL+'/api/v1/emergency-response-team/show-by-type?type=fire_rescuer';
+    const response = await axios.get(url,{
+                headers: {
+                    'Authorization': state.token,
+                },
+                });
+    // state.visitorsEntry = response.data.data;
+    state.EmergencyRes04 = response.data.data;
+    console.log("shamim04", state.EmergencyRes04);
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+};
+
 const deleteData = async (sID:string) => {
   try {
     // let url = config.baseURL+"/api/v1/safety/"+sID;
@@ -53,6 +129,10 @@ const deleteData = async (sID:string) => {
 
 onMounted(() => {
   fetchData();
+  fetchData01();
+  fetchData02();
+  fetchData03();
+  fetchData04();
 });
 </script>
 
@@ -60,7 +140,7 @@ onMounted(() => {
   <h2 class="mt-10 text-lg font-medium intro-y">Emergency Response Team</h2>
   <div class="grid grid-cols-12 gap-6 mt-5">
     <div class="flex flex-wrap items-center col-span-12 mt-2 intro-y sm:flex-nowrap">
-      <router-link :to="{ name: 'hse-visitors-entry-create' }">
+      <router-link :to="{ name: 'hse-emergency-response-create' }">
         <Button variant="primary" class="mr-2 shadow-md">
           Add New Emergency Response Team
         </Button>
@@ -101,7 +181,7 @@ onMounted(() => {
       </div>
     </div>
     <!-- BEGIN: Data List -->
-    <div class="col-span-12 overflow-auto intro-y " >
+    <!-- <div class="col-span-12 overflow-auto intro-y " >
       <Table class="border-spacing-y-[10px] border-separate -mt-2">
         <Table.Thead>
           <Table.Tr>
@@ -174,10 +254,6 @@ onMounted(() => {
               ]"
             >
               <div class="flex items-center justify-center">
-                <!-- <router-link :to="{name:'admin-safety-observatio-update-form', params:{id:report.id} }" class="flex items-center mr-3">
-                  <Lucide icon="CheckSquare" class="w-4 h-4 mr-1" />
-                  Approved
-                </router-link> -->
                 <router-link :to="{name:'hse-visitors-entry-edit', params:{id:report.id} }" class="flex items-center mr-3">
                   <Lucide icon="CheckSquare" class="w-4 h-4 mr-1" />
                   Edit
@@ -198,8 +274,108 @@ onMounted(() => {
           </div>
         </Table.Tbody>
       </Table>
-    </div>
+    </div> -->
     <!-- END: Data List -->
+
+    <!-- BEGIN: EMERGENCY RES List -->
+     <div class="col-span-12 overflow-auto intro-y ">
+       <div class="w-full p-5 mt-5 intro-y box">
+          <div class="flex flex-wrap">
+            <div v-if="state.EmergencyRes.length !== 0" class="w-full lg:w-1/2 pb-4">
+              <div v-for="(report, index) in state.EmergencyRes" :key="index" class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400 mr-0 lg:mr-2">
+                <div class="font-bold bg-primary text-white text-base text-center mb-4">Chief Warden</div>
+                <div class="w-full flex justify-center items-center">
+                  <div class="box zoom-in mb-3 flex items-center px-4 py-4 border border-primary w-60">
+                      <div class="image-fit h-10 w-10 flex-none overflow-hidden rounded-md">
+                          <img :src="report.image" :alt="report.name" class="rounded-full">
+                      </div>
+                      <div class="ml-4 mr-auto">
+                          <div class="font-medium">{{ report.name}}</div>
+                          <div class="mt-0.5 text-xs text-slate-500">{{ report.designation }}</div>
+                          <div class="mt-0.5 text-xs text-slate-500">{{ report.phone }}</div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div v-if="state.EmergencyRes01.length !== 0" class="w-full lg:w-1/2 pb-4">
+              <div v-for="(report, index) in state.EmergencyRes01" :key="index" class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400 ml-0 lg:ml-2">
+                <div class="font-bold bg-primary text-white text-base text-center mb-4">Deputy Chief Warden</div>
+                <div class="w-full flex justify-center items-center">
+                  <div class="box zoom-in mb-3 flex items-center px-4 py-4 border border-primary w-60">
+                      <div class="image-fit h-10 w-10 flex-none overflow-hidden rounded-md">
+                          <img :src="report.image" :alt="report.name" class="rounded-full">
+                      </div>
+                      <div class="ml-4 mr-auto">
+                          <div class="font-medium">{{ report.name}}</div>
+                          <div class="mt-0.5 text-xs text-slate-500">{{ report.designation }}</div>
+                          <div class="mt-0.5 text-xs text-slate-500">{{ report.phone }}</div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="w-full lg:w-1/3 pb-4 lg:pb-0">
+              <div class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400 mr-0 lg:mr-2">
+                <div class="font-bold bg-success text-white text-base text-center mb-4">First Aider</div>
+                <div v-if="state.EmergencyRes02.length !== 0" class="w-full">
+                  <div v-for="(report, index) in state.EmergencyRes02" :key="index" class="w-full flex justify-center items-center">
+                    <div class="box zoom-in mb-3 flex items-center px-4 py-4 border border-success w-60">
+                        <div class="image-fit h-10 w-10 flex-none overflow-hidden rounded-md">
+                            <img :src="report.image" :alt="report.name" class="rounded-full">
+                        </div>
+                        <div class="ml-4 mr-auto">
+                            <div class="font-medium">{{ report.name}}</div>
+                            <div class="mt-0.5 text-xs text-slate-500">{{ report.designation }}</div>
+                            <div class="mt-0.5 text-xs text-slate-500">{{ report.phone }}</div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="w-full lg:w-1/3 pb-4 lg:pb-0">
+              <div class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400 mx-0 lg:mx-2">
+                <div class="font-bold bg-danger text-white text-base text-center mb-4">Fire Fighter</div>
+                <div v-if="state.EmergencyRes03.length !== 0" class="w-full">
+                  <div v-for="(report, index) in state.EmergencyRes03" :key="index" class="w-full flex justify-center items-center">
+                    <div class="box zoom-in mb-3 flex items-center px-4 py-4 border border-danger w-60">
+                        <div class="image-fit h-10 w-10 flex-none overflow-hidden rounded-md">
+                            <img :src="report.image" :alt="report.name" class="rounded-full">
+                        </div>
+                        <div class="ml-4 mr-auto">
+                            <div class="font-medium">{{ report.name}}</div>
+                            <div class="mt-0.5 text-xs text-slate-500">{{ report.designation }}</div>
+                            <div class="mt-0.5 text-xs text-slate-500">{{ report.phone }}</div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="w-full lg:w-1/3">
+              <div class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400 ml-0 lg:ml-2">
+                <div class="font-bold bg-warning text-white text-base text-center mb-4">Fire Rescuer</div>
+                <div v-if="state.EmergencyRes04.length !== 0" class="w-full">
+                  <div v-for="(report, index) in state.EmergencyRes04" :key="index" class="w-full flex justify-center items-center">
+                    <div class="box zoom-in mb-3 flex items-center px-4 py-4 border border-warning w-60">
+                        <div class="image-fit h-10 w-10 flex-none overflow-hidden rounded-md">
+                            <img :src="report.image" :alt="report.name" class="rounded-full">
+                        </div>
+                        <div class="ml-4 mr-auto">
+                            <div class="font-medium">{{ report.name}}</div>
+                            <div class="mt-0.5 text-xs text-slate-500">{{ report.designation }}</div>
+                            <div class="mt-0.5 text-xs text-slate-500">{{ report.phone }}</div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+       </div>
+     </div>
+    <!-- END: EMERGENCY RES List -->
     <!-- BEGIN: Pagination -->
     <div class="flex flex-wrap items-center col-span-12 intro-y sm:flex-row sm:flex-nowrap">
       <Pagination class="w-full sm:w-auto sm:mr-auto">
