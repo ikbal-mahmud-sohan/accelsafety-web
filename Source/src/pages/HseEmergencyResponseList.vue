@@ -281,36 +281,40 @@ onMounted(() => {
      <div class="col-span-12 overflow-auto intro-y ">
        <div class="w-full p-5 mt-5 intro-y box">
           <div class="flex flex-wrap">
-            <div v-if="state.EmergencyRes.length !== 0" class="w-full lg:w-1/2 pb-4">
-              <div v-for="(report, index) in state.EmergencyRes" :key="index" class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400 mr-0 lg:mr-2">
+            <div class="w-full lg:w-1/2 pb-4">
+              <div class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400 mr-0 lg:mr-2">
                 <div class="font-bold bg-primary text-white text-base text-center mb-4">Chief Warden</div>
-                <div class="w-full flex justify-center items-center">
-                  <div class="box zoom-in mb-3 flex items-center px-4 py-4 border border-primary w-60">
-                      <div class="image-fit h-10 w-10 flex-none overflow-hidden rounded-md">
-                          <img :src="report.image" :alt="report.name" class="rounded-full">
-                      </div>
-                      <div class="ml-4 mr-auto">
-                          <div class="font-medium">{{ report.name}}</div>
-                          <div class="mt-0.5 text-xs text-slate-500">{{ report.designation }}</div>
-                          <div class="mt-0.5 text-xs text-slate-500">{{ report.phone }}</div>
-                      </div>
+                <div v-if="state.EmergencyRes.length !== 0" class="w-full">
+                  <div v-for="(report, index) in state.EmergencyRes" :key="index" class="w-full flex justify-center items-center">
+                    <div class="box zoom-in mb-3 flex items-center px-4 py-4 border border-primary w-60">
+                        <div class="image-fit h-10 w-10 flex-none overflow-hidden rounded-md">
+                            <img :src="report.image" :alt="report.name" class="rounded-full">
+                        </div>
+                        <div class="ml-4 mr-auto">
+                            <div class="font-medium">{{ report.name}}</div>
+                            <div class="mt-0.5 text-xs text-slate-500">{{ report.designation }}</div>
+                            <div class="mt-0.5 text-xs text-slate-500">{{ report.phone }}</div>
+                        </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div v-if="state.EmergencyRes01.length !== 0" class="w-full lg:w-1/2 pb-4">
-              <div v-for="(report, index) in state.EmergencyRes01" :key="index" class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400 ml-0 lg:ml-2">
+            <div class="w-full lg:w-1/2 pb-4">
+              <div class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400 ml-0 lg:ml-2">
                 <div class="font-bold bg-primary text-white text-base text-center mb-4">Deputy Chief Warden</div>
-                <div class="w-full flex justify-center items-center">
-                  <div class="box zoom-in mb-3 flex items-center px-4 py-4 border border-primary w-60">
-                      <div class="image-fit h-10 w-10 flex-none overflow-hidden rounded-md">
-                          <img :src="report.image" :alt="report.name" class="rounded-full">
-                      </div>
-                      <div class="ml-4 mr-auto">
-                          <div class="font-medium">{{ report.name}}</div>
-                          <div class="mt-0.5 text-xs text-slate-500">{{ report.designation }}</div>
-                          <div class="mt-0.5 text-xs text-slate-500">{{ report.phone }}</div>
-                      </div>
+                <div v-if="state.EmergencyRes01.length !== 0" class="w-full">
+                  <div v-for="(report, index) in state.EmergencyRes01" :key="index" class="w-full flex justify-center items-center">
+                    <div class="box zoom-in mb-3 flex items-center px-4 py-4 border border-primary w-60">
+                        <div class="image-fit h-10 w-10 flex-none overflow-hidden rounded-md">
+                            <img :src="report.image" :alt="report.name" class="rounded-full">
+                        </div>
+                        <div class="ml-4 mr-auto">
+                            <div class="font-medium">{{ report.name}}</div>
+                            <div class="mt-0.5 text-xs text-slate-500">{{ report.designation }}</div>
+                            <div class="mt-0.5 text-xs text-slate-500">{{ report.phone }}</div>
+                        </div>
+                    </div>
                   </div>
                 </div>
               </div>
