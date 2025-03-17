@@ -26,20 +26,25 @@ const router = createRouter({
           component: () => import("../pages/DashboardSafetyObservation.vue"),
         },
         {
+          path: "dashboard-overview-5",
+          name: "dashboard-overview-5",
+          component: () => import("../pages/DashboardSafetyObservationV2.vue"),
+        },
+        {
           path: "dashboard-overview-2",
           name: "dashboard-overview-2",
           component: () => import("../pages/DashboardEnergy.vue"),
         },
-        {
-          path: "dashboard-overview-3",
-          name: "dashboard-overview-3",
-          component: () => import("../pages/DashboardOverview3.vue"),
-        },
-        {
-          path: "dashboard-overview-4",
-          name: "dashboard-overview-4",
-          component: () => import("../pages/DashboardOverview4.vue"),
-        },
+        // {
+        //   path: "dashboard-overview-3",
+        //   name: "dashboard-overview-3",
+        //   component: () => import("../pages/DashboardOverview3.vue"),
+        // },
+        // {
+        //   path: "dashboard-overview-4",
+        //   name: "dashboard-overview-4",
+        //   component: () => import("../pages/DashboardOverview4.vue"),
+        // },
         {
           path: "categories",
           name: "categories",

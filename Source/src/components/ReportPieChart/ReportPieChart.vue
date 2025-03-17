@@ -49,7 +49,8 @@ const options = computed<ChartOptions>(() => {
     maintainAspectRatio: false,
     plugins: {
       legend: {
-        display: false,
+        // display: false,
+        display: true,
       },
     },
   };

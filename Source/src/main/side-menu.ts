@@ -13,6 +13,11 @@ const menu: Array<Menu | "divider"> = [
       },
       {
         icon: "Activity",
+        pageName: "dashboard-overview-5",
+        title: "Report v2",
+      },
+      {
+        icon: "Activity",
         pageName: "dashboard-overview-2",
         title: "Environment",
       },
