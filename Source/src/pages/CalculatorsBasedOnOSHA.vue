@@ -23,7 +23,7 @@ import CalculatorCard from "@/components/Custom/CalculatorCard.vue";
       <div class="flex justify-center items-center p-1">
         <router-link :to="{ name: 'osha-total-recordable-incident-rate-trir-calculator' }">
             <div class="inline-block">
-              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/calculator/cal18.png" alt="">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon_02/cal_3d/OSHA_Total_Recordable_Incident.png" alt="">
             </div>
         </router-link>
       </div>
@@ -36,7 +36,7 @@ import CalculatorCard from "@/components/Custom/CalculatorCard.vue";
       <div class="flex justify-center items-center p-1">
         <router-link :to="{ name: 'osha-dart-rate-calculator' }">
             <div class="inline-block">
-              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/calculator/cal19.png" alt="">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon_02/cal_3d/OSHA_DART_Rate.png" alt="">
             </div>
         </router-link>
       </div>
@@ -49,7 +49,7 @@ import CalculatorCard from "@/components/Custom/CalculatorCard.vue";
       <div class="flex justify-center items-center p-1">
         <router-link :to="{ name: 'nema-ratings-and-ip-equivalency-calculator' }">
             <div class="inline-block">
-              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/calculator/cal20.png" alt="">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon_02/cal_3d/NEMA_Ratings.png" alt="">
             </div>
         </router-link>
       </div>
