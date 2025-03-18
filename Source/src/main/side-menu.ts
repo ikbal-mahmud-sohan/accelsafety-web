@@ -8,13 +8,13 @@ const menu: Array<Menu | "divider"> = [
     subMenu: [
       {
         icon: "Activity",
-        pageName: "dashboard-overview-1",
-        title: "Report",
+        pageName: "dashboard-overview-5",
+        title: "Security",
       },
       {
         icon: "Activity",
-        pageName: "dashboard-overview-5",
-        title: "Report v2",
+        pageName: "dashboard-overview-1",
+        title: "Report",
       },
       {
         icon: "Activity",

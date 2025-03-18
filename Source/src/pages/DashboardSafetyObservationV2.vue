@@ -330,7 +330,7 @@ watchEffect(() => {
         </div> -->
 
         <div class="col-span-12 mt-4">
-          <div class="items-center block h-10 intro-y sm:flex">
+          <div class="items-center justify-center block h-10 intro-y sm:flex">
             <h2 class="mr-5 text-lg font-medium truncate">Total Security Incidents</h2>
 
           </div>
