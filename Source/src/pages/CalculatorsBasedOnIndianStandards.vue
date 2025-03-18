@@ -24,7 +24,7 @@ import CalculatorCard from "@/components/Custom/CalculatorCard.vue";
       <div class="flex justify-center items-center p-1">
         <router-link :to="{ name: 'fire-extinguisher-placement-calculator' }">
             <div class="inline-block">
-              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/calculator/cal3.png" alt="">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon_02/cal_3d/fire_extinguisher.png" alt="">
             </div>
         </router-link>
       </div>
@@ -38,7 +38,7 @@ import CalculatorCard from "@/components/Custom/CalculatorCard.vue";
       <div class="flex justify-center items-center p-1">
         <router-link :to="{ name: 'swl_of_wire_rope_calculator' }">
             <div class="inline-block">
-              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/calculator/cal4.png" alt="">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon_02/cal_3d/SWL_of_Wire_Rope.png" alt="">
             </div>
         </router-link>
       </div>
@@ -52,7 +52,7 @@ import CalculatorCard from "@/components/Custom/CalculatorCard.vue";
       <div class="flex justify-center items-center p-1">
         <router-link :to="{ name: 'stack_height_calculator' }">
             <div class="inline-block">
-              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/calculator/cal5.png" alt="">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon_02/cal_3d/stack_height.png" alt="">
             </div>
         </router-link>
       </div>
@@ -67,7 +67,7 @@ import CalculatorCard from "@/components/Custom/CalculatorCard.vue";
       <div class="flex justify-center items-center p-1">
         <router-link :to="{ name: 'ip-ratings-checker-calculator' }">
             <div class="inline-block">
-              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/calculator/cal6.png" alt="">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon_02/cal_3d/ip_ratings_checker.png" alt="">
             </div>
         </router-link>
       </div>
@@ -81,7 +81,7 @@ import CalculatorCard from "@/components/Custom/CalculatorCard.vue";
       <div class="flex justify-center items-center p-1">
         <router-link :to="{ name: 'excavation-slope-calculator' }">
             <div class="inline-block">
-              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/calculator/cal7.png" alt="">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon_02/cal_3d/excavation_slope.png" alt="">
             </div>
         </router-link>
       </div>
@@ -95,7 +95,7 @@ import CalculatorCard from "@/components/Custom/CalculatorCard.vue";
       <div class="flex justify-center items-center p-1">
         <router-link :to="{ name: 'fall-clearance-calculator' }">
             <div class="inline-block">
-              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/calculator/cal8.png" alt="">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon_02/cal_3d/fall_clearance.png" alt="">
             </div>
         </router-link>
       </div>
@@ -109,7 +109,7 @@ import CalculatorCard from "@/components/Custom/CalculatorCard.vue";
       <div class="flex justify-center items-center p-1">
         <router-link :to="{ name: 'ladder-length-calculator' }">
             <div class="inline-block">
-              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/calculator/cal9.png" alt="">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon_02/cal_3d/ladder_length.png" alt="">
             </div>
         </router-link>
       </div>
@@ -123,7 +123,7 @@ import CalculatorCard from "@/components/Custom/CalculatorCard.vue";
       <div class="flex justify-center items-center p-1">
         <router-link :to="{ name: 'fire-load-calculator' }">
             <div class="inline-block">
-              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/calculator/cal10.png" alt="">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon_02/cal_3d/fire_load.png" alt="">
             </div>
         </router-link>
       </div>
@@ -137,7 +137,7 @@ import CalculatorCard from "@/components/Custom/CalculatorCard.vue";
       <div class="flex justify-center items-center p-1">
         <router-link :to="{ name: 'bulldog-grips-calculator' }">
             <div class="inline-block">
-              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/calculator/cal11.png" alt="">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon_02/cal_3d/wire_rope_grips.png" alt="">
             </div>
         </router-link>
       </div>
@@ -151,7 +151,7 @@ import CalculatorCard from "@/components/Custom/CalculatorCard.vue";
       <div class="flex justify-center items-center p-1">
         <router-link :to="{ name: 'lost-time-injury-frequency-rate' }">
             <div class="inline-block">
-              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/calculator/cal12.png" alt="">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon_02/cal_3d/LTI_frequency.png" alt="">
             </div>
         </router-link>
       </div>
@@ -164,7 +164,7 @@ import CalculatorCard from "@/components/Custom/CalculatorCard.vue";
       <div class="flex justify-center items-center p-1">
         <router-link :to="{ name: 'severity-rate-calculator' }">
             <div class="inline-block">
-              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/calculator/cal13.png" alt="">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon_02/cal_3d/Severity_Rate.png" alt="">
             </div>
         </router-link>
       </div>
@@ -179,7 +179,7 @@ import CalculatorCard from "@/components/Custom/CalculatorCard.vue";
       <div class="flex justify-center items-center p-1">
         <router-link :to="{ name: 'incidence-rate-calculator' }">
             <div class="inline-block">
-              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/calculator/cal14.png" alt="">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon_02/cal_3d/Incidence_Rate.png" alt="">
             </div>
         </router-link>
       </div>
@@ -192,7 +192,7 @@ import CalculatorCard from "@/components/Custom/CalculatorCard.vue";
       <div class="flex justify-center items-center p-1">
         <router-link :to="{ name: 'ambient-noise-level-calculator' }">
             <div class="inline-block">
-              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/calculator/cal15.png" alt="">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon_02/cal_3d/Ambient_Noise.png" alt="">
             </div>
         </router-link>
       </div>
@@ -205,7 +205,7 @@ import CalculatorCard from "@/components/Custom/CalculatorCard.vue";
       <div class="flex justify-center items-center p-1">
         <router-link :to="{ name: 'generalized-anxiety-disorder-assessment' }">
             <div class="inline-block">
-              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/calculator/cal16.png" alt="">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon_02/cal_3d/Anxiety.png" alt="">
             </div>
         </router-link>
       </div>
@@ -218,7 +218,7 @@ import CalculatorCard from "@/components/Custom/CalculatorCard.vue";
       <div class="flex justify-center items-center p-1">
         <router-link :to="{ name: 'daily-drinking-water-intake-calculator' }">
             <div class="inline-block">
-              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/calculator/cal17.png" alt="">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon_02/cal_3d/Daily_Drinking_Water.png" alt="">
             </div>
         </router-link>
       </div>
