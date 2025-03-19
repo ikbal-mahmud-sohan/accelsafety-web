@@ -9,7 +9,7 @@ import Lucide from "@/components/Base/Lucide";
       <div class="flex justify-center items-center p-1">
         <router-link :to="{ name: 'calculator-on-indian-standards' }">
             <div class="inline-block">
-              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/calculator/cal1.png" alt="">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon_02/cal_3d/India_Flag_Icon.H03.png" alt="">
             </div>
         </router-link>
       </div>
@@ -22,7 +22,7 @@ import Lucide from "@/components/Base/Lucide";
       <div class="flex justify-center items-center p-1">
         <router-link :to="{ name: 'calculator-on-osha-standards' }">
             <div class="inline-block">
-              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/calculator/cal2.png" alt="">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon_02/cal_3d/Globe_gold_blue.H03.png" alt="">
             </div>
         </router-link>
       </div>

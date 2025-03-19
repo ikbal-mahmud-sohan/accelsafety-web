@@ -112,7 +112,7 @@ const fetchData04 = async () => {
 const deleteData = async (sID:string) => {
   try {
     // let url = config.baseURL+"/api/v1/safety/"+sID;
-    let url = config.baseURL+"/api/v1/visitor-entry/delete/"+sID;
+    let url = config.baseURL+"/api/v1/emergency-response-team/delete/"+sID;
     const response = await axios.delete(url,{
                 headers: {
                     'Authorization': state.token,
@@ -121,6 +121,10 @@ const deleteData = async (sID:string) => {
     // state.visitorsEntry = response.data.data;
 
     await fetchData();
+    await fetchData01();
+    await fetchData02();
+    await fetchData03();
+    await fetchData04();
 
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -286,7 +290,7 @@ onMounted(() => {
                 <div class="font-bold bg-primary text-white text-base text-center mb-4">Chief Warden</div>
                 <div v-if="state.EmergencyRes.length !== 0" class="w-full">
                   <div v-for="(report, index) in state.EmergencyRes" :key="index" class="w-full flex justify-center items-center">
-                    <div class="box zoom-in mb-3 flex items-center px-4 py-4 border border-primary w-60">
+                    <div class="relative box zoom-in mb-3 flex items-center px-4 py-4 border border-primary w-60">
                         <div class="image-fit h-10 w-10 flex-none overflow-hidden rounded-md">
                             <img :src="report.image" :alt="report.name" class="rounded-full">
                         </div>
@@ -294,6 +298,17 @@ onMounted(() => {
                             <div class="font-medium">{{ report.name}}</div>
                             <div class="mt-0.5 text-xs text-slate-500">{{ report.designation }}</div>
                             <div class="mt-0.5 text-xs text-slate-500">{{ report.phone }}</div>
+                        </div>
+                        <div class="absolute top-2 -right-2 flex flex-col justify-between h-full">
+                          <router-link :to="{name:'hse-emergency-response-edit', params:{id:report.id} }" class="flex items-center mr-3">
+                            <Lucide icon="EditIcon" class="w-4 h-4 mr-1" />
+                          </router-link>
+                          <a
+                            class="flex items-center mb-4"
+                            href="javascript:;"
+                            @click="deleteData(report.id)">
+                            <Lucide icon="Trash2" class="w-4 h-4 mr-1" />
+                          </a>
                         </div>
                     </div>
                   </div>
@@ -305,7 +320,7 @@ onMounted(() => {
                 <div class="font-bold bg-primary text-white text-base text-center mb-4">Deputy Chief Warden</div>
                 <div v-if="state.EmergencyRes01.length !== 0" class="w-full">
                   <div v-for="(report, index) in state.EmergencyRes01" :key="index" class="w-full flex justify-center items-center">
-                    <div class="box zoom-in mb-3 flex items-center px-4 py-4 border border-primary w-60">
+                    <div class="relative box zoom-in mb-3 flex items-center px-4 py-4 border border-primary w-60">
                         <div class="image-fit h-10 w-10 flex-none overflow-hidden rounded-md">
                             <img :src="report.image" :alt="report.name" class="rounded-full">
                         </div>
@@ -313,6 +328,17 @@ onMounted(() => {
                             <div class="font-medium">{{ report.name}}</div>
                             <div class="mt-0.5 text-xs text-slate-500">{{ report.designation }}</div>
                             <div class="mt-0.5 text-xs text-slate-500">{{ report.phone }}</div>
+                        </div>
+                        <div class="absolute top-2 -right-2 flex flex-col justify-between h-full">
+                          <router-link :to="{name:'hse-emergency-response-edit', params:{id:report.id} }" class="flex items-center mr-3">
+                            <Lucide icon="EditIcon" class="w-4 h-4 mr-1" />
+                          </router-link>
+                          <a
+                            class="flex items-center mb-4"
+                            href="javascript:;"
+                            @click="deleteData(report.id)">
+                            <Lucide icon="Trash2" class="w-4 h-4 mr-1" />
+                          </a>
                         </div>
                     </div>
                   </div>
@@ -324,7 +350,7 @@ onMounted(() => {
                 <div class="font-bold bg-success text-white text-base text-center mb-4">First Aider</div>
                 <div v-if="state.EmergencyRes02.length !== 0" class="w-full">
                   <div v-for="(report, index) in state.EmergencyRes02" :key="index" class="w-full flex justify-center items-center">
-                    <div class="box zoom-in mb-3 flex items-center px-4 py-4 border border-success w-60">
+                    <div class="relative box zoom-in mb-3 flex items-center px-4 py-4 border border-success w-60">
                         <div class="image-fit h-10 w-10 flex-none overflow-hidden rounded-md">
                             <img :src="report.image" :alt="report.name" class="rounded-full">
                         </div>
@@ -332,6 +358,17 @@ onMounted(() => {
                             <div class="font-medium">{{ report.name}}</div>
                             <div class="mt-0.5 text-xs text-slate-500">{{ report.designation }}</div>
                             <div class="mt-0.5 text-xs text-slate-500">{{ report.phone }}</div>
+                        </div>
+                        <div class="absolute top-2 -right-2 flex flex-col justify-between h-full">
+                          <router-link :to="{name:'hse-emergency-response-edit', params:{id:report.id} }" class="flex items-center mr-3">
+                            <Lucide icon="EditIcon" class="w-4 h-4 mr-1" />
+                          </router-link>
+                          <a
+                            class="flex items-center mb-4"
+                            href="javascript:;"
+                            @click="deleteData(report.id)">
+                            <Lucide icon="Trash2" class="w-4 h-4 mr-1" />
+                          </a>
                         </div>
                     </div>
                   </div>
@@ -343,7 +380,7 @@ onMounted(() => {
                 <div class="font-bold bg-danger text-white text-base text-center mb-4">Fire Fighter</div>
                 <div v-if="state.EmergencyRes03.length !== 0" class="w-full">
                   <div v-for="(report, index) in state.EmergencyRes03" :key="index" class="w-full flex justify-center items-center">
-                    <div class="box zoom-in mb-3 flex items-center px-4 py-4 border border-danger w-60">
+                    <div class="relative box zoom-in mb-3 flex items-center px-4 py-4 border border-danger w-60">
                         <div class="image-fit h-10 w-10 flex-none overflow-hidden rounded-md">
                             <img :src="report.image" :alt="report.name" class="rounded-full">
                         </div>
@@ -351,6 +388,17 @@ onMounted(() => {
                             <div class="font-medium">{{ report.name}}</div>
                             <div class="mt-0.5 text-xs text-slate-500">{{ report.designation }}</div>
                             <div class="mt-0.5 text-xs text-slate-500">{{ report.phone }}</div>
+                        </div>
+                        <div class="absolute top-2 -right-2 flex flex-col justify-between h-full">
+                          <router-link :to="{name:'hse-emergency-response-edit', params:{id:report.id} }" class="flex items-center mr-3">
+                            <Lucide icon="EditIcon" class="w-4 h-4 mr-1" />
+                          </router-link>
+                          <a
+                            class="flex items-center mb-4"
+                            href="javascript:;"
+                            @click="deleteData(report.id)">
+                            <Lucide icon="Trash2" class="w-4 h-4 mr-1" />
+                          </a>
                         </div>
                     </div>
                   </div>
@@ -362,7 +410,7 @@ onMounted(() => {
                 <div class="font-bold bg-warning text-white text-base text-center mb-4">Fire Rescuer</div>
                 <div v-if="state.EmergencyRes04.length !== 0" class="w-full">
                   <div v-for="(report, index) in state.EmergencyRes04" :key="index" class="w-full flex justify-center items-center">
-                    <div class="box zoom-in mb-3 flex items-center px-4 py-4 border border-warning w-60">
+                    <div class="relative box zoom-in mb-3 flex items-center px-4 py-4 border border-warning w-60">
                         <div class="image-fit h-10 w-10 flex-none overflow-hidden rounded-md">
                             <img :src="report.image" :alt="report.name" class="rounded-full">
                         </div>
@@ -370,6 +418,17 @@ onMounted(() => {
                             <div class="font-medium">{{ report.name}}</div>
                             <div class="mt-0.5 text-xs text-slate-500">{{ report.designation }}</div>
                             <div class="mt-0.5 text-xs text-slate-500">{{ report.phone }}</div>
+                        </div>
+                        <div class="absolute top-2 -right-2 flex flex-col justify-between h-full">
+                          <router-link :to="{name:'hse-emergency-response-edit', params:{id:report.id} }" class="flex items-center mr-3">
+                            <Lucide icon="EditIcon" class="w-4 h-4 mr-1" />
+                          </router-link>
+                          <a
+                            class="flex items-center mb-4"
+                            href="javascript:;"
+                            @click="deleteData(report.id)">
+                            <Lucide icon="Trash2" class="w-4 h-4 mr-1" />
+                          </a>
                         </div>
                     </div>
                   </div>
