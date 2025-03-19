@@ -421,7 +421,7 @@ function SuccessPopUp() {
                     </div>
                   </FormLabel>
                   <div class="flex-1 w-full mt-3 xl:mt-0">
-                    <FormInput id="crud-form-3" v-model.trim="validate.phone.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.phone.$error,}" placeholder="Insert Phone"/>
+                    <FormInput id="crud-form-3" v-model.trim="validate.phone.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.phone.$error,}" placeholder="Insert Phone Number"/>
                     
                     <div class="flex justify-between">
                       <template v-if="validate.phone.$error">

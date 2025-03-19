@@ -454,6 +454,11 @@ const router = createRouter({
             component: () => import("../pages/HseEmergencyResponseCreate.vue"),
           },
           {
+            path: "hse-emergency-response-edit/:id",
+            name: "hse-emergency-response-edit",
+            component: () => import("../pages/HseEmergencyResponseCreate.vue"),
+          },
+          {
             path: "hse-emergency-response-list",
             name: "hse-emergency-response-list",
             component: () => import("../pages/HseEmergencyResponseList.vue"),
