@@ -109,6 +109,7 @@ onMounted(() => {
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Driver Name</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Driver Competency</Table.Th>
             <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Driver License no</Table.Th>
+            <Table.Th class="text-center border-b-0 whitespace-nowrap uppercase">ACTIONS</Table.Th>
           </Table.Tr>
         </Table.Thead>
         <Table.Tbody v-if="state.visitorsEntry.length !== 0">

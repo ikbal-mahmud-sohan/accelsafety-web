@@ -54,12 +54,15 @@ const formData = reactive({
 
 const state = reactive({
   token: getToken(),
+  viewUnitName: [] as Array<any>,
   isEditMode: false,
   entryId: null as string | null,
 });
 
 const router = useRouter();
 const route = useRoute();
+
+const selectedUnitName = ref("");
 
 const lastMaintenanceDate = ref("");
 
@@ -75,7 +78,7 @@ const lastMaintenanceDate = ref("");
 // };
 
 const rules = {
-  unit_name: { required, minLength: minLength(3) },
+  unit_name: { required,},
   vehicle_id: { required, minLength: minLength(1) },
   capacity: { required, minLength: minLength(1) },
   type_of_vehicle: { required, minLength: minLength(3) },
@@ -110,6 +113,8 @@ const convertDateFormat = (dateString: string): string => {
 };
 
 const submitForm = async () => {
+
+  formData.unit_name = selectedUnitName.value;
 
   formData.last_maintenance_date = convertDateFormat(lastMaintenanceDate.value);
 
@@ -159,6 +164,23 @@ const submitForm = async () => {
   }
 };
 
+//fetch unit dropdown
+const fetchDropDownData = async () => {
+    try {
+        let url = config.baseURL+'/api/v1/unit-name';
+        const response = await axios.get(url, {
+            headers: {
+                'Authorization': state.token,
+            },
+        });
+        // console.log("Shamim dropdown: ", response.data.data);
+        // state.viewUnitName = response.data.RespDepartment;
+        state.viewUnitName = response.data.data;
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+};
+
 const reverseDateFormat = (dateString: string): string => {
   const [day, month, year] = dateString.split('-').map(Number);
   const date = new Date(year, month - 1, day); // Months are zero-based in JavaScript Date
@@ -195,6 +217,8 @@ const fetchEntryData = async (id: string) => {
       }
     });
 
+    selectedUnitName.value = data.unit_name;
+
     // Populate the date refs with the reversed date format
     lastMaintenanceDate.value = reverseDateFormat(data.last_maintenance_date);
 
@@ -209,6 +233,7 @@ const fetchEntryData = async (id: string) => {
 };
 
 onMounted(() => {
+  fetchDropDownData();
   const entryId = route.params.id as string;
   if (entryId) {
     state.isEditMode = true;
@@ -307,7 +332,7 @@ function SuccessPopUp() {
                               <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
                             </svg>
                               <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
-                                The unit name
+                                Unit Name is the location where energy is userd
                               </div>
                           </span>
                         </div>
@@ -315,15 +340,18 @@ function SuccessPopUp() {
                     </div>
                   </FormLabel>
                   <div class="flex-1 w-full mt-3 xl:mt-0">
-                    <FormInput id="crud-form-3" v-model.trim="validate.unit_name.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.unit_name.$error,}" placeholder="Insert Unit Name"/>
-                    
+                    <select id="crud-form-6" v-model="selectedUnitName"  class="border py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 fdark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 text-gray-500">
+                          <option value="" disabled>select unit name</option>
+                          <option v-for="(data, index) in state.viewUnitName" :key="index" :value="data.unit_name">{{ data.unit_name }}</option>
+                    </select>
+                  
                     <div class="flex justify-between">
                       <template v-if="validate.unit_name.$error">
-                        <div v-for="(error, index) in validate.unit_name.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
-                          {{ error.$message }}
-                        </div>
-                      </template>
-                      <p class="text-right mt-2 w-full"> Required, at least 3 characters</p>
+                      <div v-for="(error, index) in validate.unit_name.$errors" :key="index" class="mt-2 text-danger whitespace-nowrap">
+                        {{ error.$message }}
+                      </div>
+                    </template>
+                      <p class="text-right mt-2 w-full"> Required</p>
                     </div>
                   </div>
                 </FormInline>
