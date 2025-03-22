@@ -463,6 +463,26 @@ const router = createRouter({
             name: "hse-emergency-response-list",
             component: () => import("../pages/HseEmergencyResponseList.vue"),
           },
+          {
+            path: "hse-emergency-equipment-check",
+            name: "hse-emergency-equipment-check",
+            component: () => import("../pages/HseEmergencyEquipmentCheck.vue"),
+          },
+          {
+            path: "hse-smoke-detector-create",
+            name: "hse-smoke-detector-create",
+            component: () => import("../pages/HseSmokeDetectorCreate.vue"),
+          },
+          {
+            path: "hse-smoke-detector-list",
+            name: "hse-smoke-detector-list",
+            component: () => import("../pages/HseSmokeDetectorList.vue"),
+          },
+          {
+            path: "hse-smoke-detector-full/:id",
+            name: "hse-smoke-detector-full",
+            component: () => import("../pages/HseSmokeDetectorFull.vue"),
+          },
 
           // SafetyCommittee
           {
