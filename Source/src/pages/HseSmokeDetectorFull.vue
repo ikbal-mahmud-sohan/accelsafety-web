@@ -36,16 +36,24 @@ const state = reactive({
 
 });
 // const selectedActivity = ref("");
-const selectedRiskRatingLikelihood = ref("");
-const selectedRiskRatingSeverity = ref("");
-const selectedRiskRatingOverall = ref("");
-const selectedRevisedRiskRatingLikelihood = ref("");
-const selectedRevisedRiskRatingSeverity = ref("");
-const selectedRevisedRiskRatingOverall = ref("");
+const selectedPlacement = ref("");
+const selectedPowerSource = ref("");
+const selectedBatteryCheck = ref("");
+const selectedTestButton = ref("");
+const selectedCleanliness = ref("");
+const selectedSensitivity = ref("");
+const selectedInterconnectionWithRepeater = ref("");
+
+// const selectedRiskRatingLikelihood = ref("");
+// const selectedRiskRatingSeverity = ref("");
+// const selectedRiskRatingOverall = ref("");
+// const selectedRevisedRiskRatingLikelihood = ref("");
+// const selectedRevisedRiskRatingSeverity = ref("");
+// const selectedRevisedRiskRatingOverall = ref("");
 const router = useRouter();
 const route = useRoute();
-const dateconducted = ref("");
-const nextreviewdate = ref("");
+// const dateconducted = ref("");
+// const nextreviewdate = ref("");
 
 
 
@@ -56,19 +64,30 @@ const formData = reactive({
       // date_conducted:'',
       // process_owner_or_department:'',
       // next_review_date:'',
-      hira_lites_assessment_id: '',
-      activity:'',
-      hazard:'',
-      existing_control_measures:'',
-      risk_rating_likelihood:'',
-      risk_rating_severity:'',
-      risk_rating_overall:'',
-      additional_control_measures:'',
-      revised_risk_rating_likelihood:'',
-      revised_risk_rating_severity:'',
-      revised_risk_rating_overall:'',
-      person_responsible:'',
-      completion_date:''
+      smoke_detector_id: '',
+      placement: '',
+      power_source: '',
+      battery_check: '',
+      test_button: '',
+      cleanliness: '',
+      sensitivity: '',
+      interconnection_with_repeater: '',
+      last_calibration_date: '',
+      remarks: '',
+
+      // hira_lites_assessment_id: '',
+      // activity:'',
+      // hazard:'',
+      // existing_control_measures:'',
+      // risk_rating_likelihood:'',
+      // risk_rating_severity:'',
+      // risk_rating_overall:'',
+      // additional_control_measures:'',
+      // revised_risk_rating_likelihood:'',
+      // revised_risk_rating_severity:'',
+      // revised_risk_rating_overall:'',
+      // person_responsible:'',
+      // completion_date:''
 });
 
 const rules = {
@@ -78,35 +97,71 @@ const rules = {
         // date_conducted:{required,},
         // process_owner_or_department:{required,},
         // next_review_date:{required,},
-        hira_lites_assessment_id:{required,},
-        activity:{required,},
-        hazard:{required,},
-        existing_control_measures:{required,},
-        risk_rating_likelihood:{required,},
-        risk_rating_severity:{required,},
-        risk_rating_overall:{required,},
-        additional_control_measures:{required,},
-        revised_risk_rating_likelihood:{required,},
-        revised_risk_rating_severity:{required,},
-        revised_risk_rating_overall:{required,},
-        person_responsible:{required,},
-        completion_date:{required,},
+        smoke_detector_id:{required,},
+        placement:{required,},
+        power_source:{required,},
+        battery_check:{required,},
+        test_button:{required,},
+        cleanliness:{required,},
+        sensitivity:{required,},
+        interconnection_with_repeater:{required,},
+        last_calibration_date:{required,},
+        remarks:{required,},
+
+        // hira_lites_assessment_id:{required,},
+        // activity:{required,},
+        // hazard:{required,},
+        // existing_control_measures:{required,},
+        // risk_rating_likelihood:{required,},
+        // risk_rating_severity:{required,},
+        // risk_rating_overall:{required,},
+        // additional_control_measures:{required,},
+        // revised_risk_rating_likelihood:{required,},
+        // revised_risk_rating_severity:{required,},
+        // revised_risk_rating_overall:{required,},
+        // person_responsible:{required,},
+        // completion_date:{required,},
 };
 
 const validate = useVuelidate(rules, toRefs(formData));
 
 
+// Helper function to format the date
+const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+    const year = date.getFullYear();
+    return `${day}-${month}-${year}`;
+};
+
+
 const submitForm = async () => {
-    // formData.activity = selectedActivity.value;
+    // Format the last_calibration_date to d-m-Y
+    const formattedDate = formatDate(formData.last_calibration_date);
+
+    formData.last_calibration_date = formattedDate;
+
     let id = route.params.id;
     let sID =id.toString()
-    formData.hira_lites_assessment_id = sID;
-    formData.risk_rating_likelihood = selectedRiskRatingLikelihood.value;
-    formData.risk_rating_severity = selectedRiskRatingSeverity.value;
-    formData.risk_rating_overall = selectedRiskRatingOverall.value;
-    formData.revised_risk_rating_likelihood = selectedRevisedRiskRatingLikelihood.value;
-    formData.revised_risk_rating_severity = selectedRevisedRiskRatingSeverity.value;
-    formData.revised_risk_rating_overall = selectedRevisedRiskRatingOverall.value;
+    formData.smoke_detector_id = sID;
+    
+    formData.placement = selectedPlacement.value;
+    formData.power_source = selectedPowerSource.value;
+    formData.battery_check = selectedBatteryCheck.value;
+    formData.test_button = selectedTestButton.value;
+    formData.cleanliness = selectedCleanliness.value;
+    formData.sensitivity = selectedSensitivity.value;
+    formData.interconnection_with_repeater = selectedInterconnectionWithRepeater.value;
+    
+    // formData.hira_lites_assessment_id = sID;
+    // formData.activity = selectedActivity.value;
+    // formData.risk_rating_likelihood = selectedRiskRatingLikelihood.value;
+    // formData.risk_rating_severity = selectedRiskRatingSeverity.value;
+    // formData.risk_rating_overall = selectedRiskRatingOverall.value;
+    // formData.revised_risk_rating_likelihood = selectedRevisedRiskRatingLikelihood.value;
+    // formData.revised_risk_rating_severity = selectedRevisedRiskRatingSeverity.value;
+    // formData.revised_risk_rating_overall = selectedRevisedRiskRatingOverall.value;
     // formData.date_conducted = dateconducted.value;
     // formData.next_review_date = nextreviewdate.value;
     validate.value.$touch();
@@ -115,31 +170,44 @@ const submitForm = async () => {
       FailedPopUp();
     } else {
             try {
-                let  url = config.baseURL+'/api/v1/hira-lites';
+                let  url = config.baseURL+'/api/v1/smoke-detector-checklist';
                 const response = await axios.post(url, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     'Authorization': state.token,
                 },
                 });
-                formData.activity = response.data.activity;
-                formData.hazard = response.data.hazard;
-                formData.existing_control_measures = response.data.existing_control_measures;
-                selectedRiskRatingLikelihood.value = response.data.risk_rating_likelihood;
-                selectedRiskRatingSeverity.value = response.data.risk_rating_severity;
-                selectedRiskRatingOverall.value = response.data.risk_rating_overall;
-                formData.additional_control_measures = response.data.additional_control_measures;
-                selectedRevisedRiskRatingLikelihood.value = response.data.revised_risk_rating_likelihood;
-                selectedRevisedRiskRatingSeverity.value = response.data.revised_risk_rating_severity;
-                selectedRevisedRiskRatingOverall.value = response.data.revised_risk_rating_overall;
-                formData.person_responsible = response.data.person_responsible;
-                formData.completion_date = response.data.completion_date;
-                fetchData();
+
+                selectedPlacement.value = response.data.placement;
+                selectedPowerSource.value = response.data.power_source;
+                selectedBatteryCheck.value = response.data.battery_check;
+                selectedTestButton.value = response.data.test_button;
+                selectedCleanliness.value = response.data.cleanliness;
+                selectedSensitivity.value = response.data.sensitivity;
+                selectedInterconnectionWithRepeater.value = response.data.interconnection_with_repeater;
+                formData.last_calibration_date = response.data.last_calibration_date;
+                formData.remarks = response.data.remarks;
+
+                // formData.activity = response.data.activity;
+                // formData.hazard = response.data.hazard;
+                // formData.existing_control_measures = response.data.existing_control_measures;
+                // selectedRiskRatingLikelihood.value = response.data.risk_rating_likelihood;
+                // selectedRiskRatingSeverity.value = response.data.risk_rating_severity;
+                // selectedRiskRatingOverall.value = response.data.risk_rating_overall;
+                // formData.additional_control_measures = response.data.additional_control_measures;
+                // selectedRevisedRiskRatingLikelihood.value = response.data.revised_risk_rating_likelihood;
+                // selectedRevisedRiskRatingSeverity.value = response.data.revised_risk_rating_severity;
+                // selectedRevisedRiskRatingOverall.value = response.data.revised_risk_rating_overall;
+                // formData.person_responsible = response.data.person_responsible;
+                // formData.completion_date = response.data.completion_date;
+                // fetchData();
         
             } catch (error) {
                 console.error('Error submitting form:', error);
             }
-        
+            
+            await fetchData();
+
             SuccessPopUp();
     }
 };
@@ -147,63 +215,67 @@ const submitForm = async () => {
 // Fetch data from the API and update the state
 const fetchData = async () => {
   try {
-   let  url = config.baseURL+'/api/v1/hira-lites';
+   let  url = config.baseURL+'/api/v1/smoke-detector-checklist';
     const response = await axios.get(url,{
                 headers: {
                     'Authorization': state.token,
                 },
                 });
     state.viewData = response.data.data;
-    console.log("state.viewData",state.viewData)
+    console.log("shamim.state.viewData",state.viewData)
   } catch (error) {
     console.error('Error fetching data:', error);
   }
 };
-const fetchDrpDwnData = async () => {
-  try {
-   let  url = config.baseURL+'/api/v1/hira-lites-drop-down';
-    const response = await axios.get(url,{
-                headers: {
-                    'Authorization': state.token,
-                },
-                });
-    state.drpdwndata = response.data;
-    state.drpactivities = response.data.activities;
-    state.drphazards = response.data.hazards;
-    state.drpexisting_control_measures = response.data.existing_control_measures;
-    state.drppersons_responsible = response.data.persons_responsible;
-    state.drpadditionals_control_measures = response.data.additionals_control_measures;
-  } catch (error) {
-    console.error('Error fetching data:', error);
-  }
-};
+// const fetchDrpDwnData = async () => {
+//   try {
+//    let  url = config.baseURL+'/api/v1/hira-lites-drop-down';
+//     const response = await axios.get(url,{
+//                 headers: {
+//                     'Authorization': state.token,
+//                 },
+//                 });
+//     state.drpdwndata = response.data;
+//     state.drpactivities = response.data.activities;
+//     state.drphazards = response.data.hazards;
+//     state.drpexisting_control_measures = response.data.existing_control_measures;
+//     state.drppersons_responsible = response.data.persons_responsible;
+//     state.drpadditionals_control_measures = response.data.additionals_control_measures;
+//   } catch (error) {
+//     console.error('Error fetching data:', error);
+//   }
+// };
 
 const deleteData = async (sID:string) => {
   try {
-    let url = config.baseURL+"/api/v1/hira-lites/"+sID;
+    let url = config.baseURL+"/api/v1/smoke-detector-checklist/delete/"+sID;
     const response = await axios.delete(url,{
                 headers: {
                     'Authorization': state.token,
                 },
                 });
-    state.viewData = response.data;
+    // state.viewData = response.data;
+    console.log('del msg: ', response.data);
+    
+    await fetchData();
+    
   } catch (error) {
     console.error('Error fetching data:', error);
   }
 };
-const fetchActivity = async () => {
-  try {
-   let  url = config.baseURL+'/api/v1/hira-activity';
-    const response = await axios.get(url,{
-                headers: {
-                    'Authorization': state.token,
-                },
-                });
-    state.ActivityData = response.data.data;
-  } catch (error) {
-    console.error('Error fetching data:', error);
-  }
-};
+// const fetchActivity = async () => {
+//   try {
+//    let  url = config.baseURL+'/api/v1/hira-activity';
+//     const response = await axios.get(url,{
+//                 headers: {
+//                     'Authorization': state.token,
+//                 },
+//                 });
+//     state.ActivityData = response.data.data;
+//   } catch (error) {
+//     console.error('Error fetching data:', error);
+//   }
+// };
 
 const formDataById = ref({
   tag_no: "",
@@ -241,8 +313,8 @@ const fetchDataById = async () => {
 onMounted(() => {
   fetchDataById();
   fetchData();
-  fetchActivity();
-  fetchDrpDwnData();
+  // fetchActivity();
+  // fetchDrpDwnData();
 });
 
 function FailedPopUp(){
@@ -277,88 +349,88 @@ function SuccessPopUp(){
         }).showToast();
 }
 
-const bgColor = computed(() => {
-    switch (selectedRevisedRiskRatingOverall.value) {
-        case 'Critical':
-            return 'bg-red-500 text-white';
-        case 'High':
-            return 'bg-yellow-600 text-white';
-        case 'Moderate':
-            return 'bg-yellow-400 text-black';
-        case 'Low':
-            return 'bg-green-500 text-white';
-        default:
-            return 'bg-white text-gray-400';
-    }
-});
-const riskbgcolor = computed(() => {
-    switch (selectedRiskRatingOverall.value) {
-        case 'Critical':
-            return 'bg-red-500 text-white';
-        case 'High':
-            return 'bg-yellow-600 text-white';
-        case 'Moderate':
-            return 'bg-yellow-400 text-black';
-        case 'Low':
-            return 'bg-green-500 text-white';
-        default:
-            return 'bg-white text-gray-400';
-    }
-});
+// const bgColor = computed(() => {
+//     switch (selectedRevisedRiskRatingOverall.value) {
+//         case 'Critical':
+//             return 'bg-red-500 text-white';
+//         case 'High':
+//             return 'bg-yellow-600 text-white';
+//         case 'Moderate':
+//             return 'bg-yellow-400 text-black';
+//         case 'Low':
+//             return 'bg-green-500 text-white';
+//         default:
+//             return 'bg-white text-gray-400';
+//     }
+// });
+// const riskbgcolor = computed(() => {
+//     switch (selectedRiskRatingOverall.value) {
+//         case 'Critical':
+//             return 'bg-red-500 text-white';
+//         case 'High':
+//             return 'bg-yellow-600 text-white';
+//         case 'Moderate':
+//             return 'bg-yellow-400 text-black';
+//         case 'Low':
+//             return 'bg-green-500 text-white';
+//         default:
+//             return 'bg-white text-gray-400';
+//     }
+// });
 
-const severityColor = computed(() => {
-    switch (selectedRiskRatingSeverity.value) {
-        case 'Severe':
-            return 'bg-red-500 text-white'; // Red for high severity
-        case 'Major':
-            return 'bg-yellow-600 text-white'; // Orange for major severity
-        case 'Moderate':
-            return 'bg-yellow-400 text-black'; // Yellow for moderate severity
-        case 'Minor':
-            return 'bg-yellow-200 text-black'; // Green for minor severity
-        case 'Minimal':
-            return 'bg-green-500 text-white'; // Blue for minimal severity
-        default:
-            return 'bg-white text-gray-400'; // Default color for unselected
-    }
-});
-const severityColor2 = computed(() => {
-    switch (selectedRevisedRiskRatingSeverity.value) {
-        case 'Severe':
-            return 'bg-red-500 text-white'; // Red for high severity
-        case 'Major':
-            return 'bg-yellow-600 text-white'; // Orange for major severity
-        case 'Moderate':
-            return 'bg-yellow-400 text-black'; // Yellow for moderate severity
-        case 'Minor':
-            return 'bg-yellow-200 text-black'; // Green for minor severity
-        case 'Minimal':
-            return 'bg-green-500 text-white'; // Blue for minimal severity
-        default:
-            return 'bg-white text-gray-400'; // Default color for unselected
-    }
-});
+// const severityColor = computed(() => {
+//     switch (selectedRiskRatingSeverity.value) {
+//         case 'Severe':
+//             return 'bg-red-500 text-white'; // Red for high severity
+//         case 'Major':
+//             return 'bg-yellow-600 text-white'; // Orange for major severity
+//         case 'Moderate':
+//             return 'bg-yellow-400 text-black'; // Yellow for moderate severity
+//         case 'Minor':
+//             return 'bg-yellow-200 text-black'; // Green for minor severity
+//         case 'Minimal':
+//             return 'bg-green-500 text-white'; // Blue for minimal severity
+//         default:
+//             return 'bg-white text-gray-400'; // Default color for unselected
+//     }
+// });
+// const severityColor2 = computed(() => {
+//     switch (selectedRevisedRiskRatingSeverity.value) {
+//         case 'Severe':
+//             return 'bg-red-500 text-white'; // Red for high severity
+//         case 'Major':
+//             return 'bg-yellow-600 text-white'; // Orange for major severity
+//         case 'Moderate':
+//             return 'bg-yellow-400 text-black'; // Yellow for moderate severity
+//         case 'Minor':
+//             return 'bg-yellow-200 text-black'; // Green for minor severity
+//         case 'Minimal':
+//             return 'bg-green-500 text-white'; // Blue for minimal severity
+//         default:
+//             return 'bg-white text-gray-400'; // Default color for unselected
+//     }
+// });
 
-const likelihoodColor = computed(() => {
-    switch (selectedRiskRatingLikelihood.value) {
-        case 'Almost Certain': return 'bg-red-500 text-white'; // High probability
-        case 'Likely': return 'bg-yellow-600 text-white'; // Likely to happen
-        case 'Possible': return 'bg-yellow-400 text-black'; // Possible occurrence
-        case 'Unlikely': return 'bg-yellow-200 text-black'; // Unlikely to happen
-        case 'Rare': return 'bg-green-500 text-white'; // Rare occurrence
-        default: return 'bg-white text-gray-400'; // Default color
-    }
-});
-const likelihoodColor2 = computed(() => {
-    switch (selectedRevisedRiskRatingLikelihood.value) {
-        case 'Almost Certain': return 'bg-red-500 text-white'; // High probability
-        case 'Likely': return 'bg-yellow-600 text-white'; // Likely to happen
-        case 'Possible': return 'bg-yellow-400 text-black'; // Possible occurrence
-        case 'Unlikely': return 'bg-yellow-200 text-black'; // Unlikely to happen
-        case 'Rare': return 'bg-green-500 text-white'; // Rare occurrence
-        default: return 'bg-white text-gray-400'; // Default color
-    }
-});
+// const likelihoodColor = computed(() => {
+//     switch (selectedRiskRatingLikelihood.value) {
+//         case 'Almost Certain': return 'bg-red-500 text-white'; // High probability
+//         case 'Likely': return 'bg-yellow-600 text-white'; // Likely to happen
+//         case 'Possible': return 'bg-yellow-400 text-black'; // Possible occurrence
+//         case 'Unlikely': return 'bg-yellow-200 text-black'; // Unlikely to happen
+//         case 'Rare': return 'bg-green-500 text-white'; // Rare occurrence
+//         default: return 'bg-white text-gray-400'; // Default color
+//     }
+// });
+// const likelihoodColor2 = computed(() => {
+//     switch (selectedRevisedRiskRatingLikelihood.value) {
+//         case 'Almost Certain': return 'bg-red-500 text-white'; // High probability
+//         case 'Likely': return 'bg-yellow-600 text-white'; // Likely to happen
+//         case 'Possible': return 'bg-yellow-400 text-black'; // Possible occurrence
+//         case 'Unlikely': return 'bg-yellow-200 text-black'; // Unlikely to happen
+//         case 'Rare': return 'bg-green-500 text-white'; // Rare occurrence
+//         default: return 'bg-white text-gray-400'; // Default color
+//     }
+// });
 const isDropdownVisible = ref(false);
 const ishazards = ref(false);
 const isexisting_control_measures = ref(false);
@@ -545,49 +617,49 @@ onUnmounted(() => {
                 </Button>
                </div>
                <div class="head flex items-center justify-center text-center w-1/11 h-14 p-2 border-r border-b border-t border-gray-100 relative">
-                <select id="crud-form-6" style="padding-right: 24px !important;" v-model="selectedRiskRatingLikelihood" :class="likelihoodColor"  class="border text-gray-400 py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-xs border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-1 focus:ring-primary focus:ring-opacity-100 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 ">
+                <select id="crud-form-6" style="padding-right: 24px !important;" v-model="selectedPlacement"  class="border text-gray-400 py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-xs border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-1 focus:ring-primary focus:ring-opacity-100 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 ">
                     <option value="" disabled>select</option>
                     <option value="1">Yes</option>
                     <option value="0">No</option>
                 </select>
                </div>
                <div class="head flex items-center justify-center text-center w-1/11 h-14 p-2 border-r border-b border-t border-gray-100 relative">
-                <select id="crud-form-6" style="padding-right: 24px !important;" v-model="selectedRiskRatingLikelihood" :class="likelihoodColor"  class="border text-gray-400 py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-xs border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-1 focus:ring-primary focus:ring-opacity-100 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 ">
+                <select id="crud-form-6" style="padding-right: 24px !important;" v-model="selectedPowerSource"   class="border text-gray-400 py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-xs border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-1 focus:ring-primary focus:ring-opacity-100 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 ">
                     <option value="" disabled>select</option>
                     <option value="1">Yes</option>
                     <option value="0">No</option>
                 </select>
                </div>
                <div class="head flex items-center justify-center text-center w-1/11 h-14 p-2 border-r border-b border-t border-gray-100 relative">
-                <select id="crud-form-6" style="padding-right: 24px !important;" v-model="selectedRiskRatingLikelihood" :class="likelihoodColor"  class="border text-gray-400 py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-xs border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-1 focus:ring-primary focus:ring-opacity-100 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 ">
+                <select id="crud-form-6" style="padding-right: 24px !important;" v-model="selectedBatteryCheck" class="border text-gray-400 py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-xs border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-1 focus:ring-primary focus:ring-opacity-100 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 ">
                     <option value="" disabled>select</option>
                     <option value="1">Yes</option>
                     <option value="0">No</option>
                 </select>
                </div>
                <div class="head flex items-center justify-center text-center w-1/11 h-14 p-2 border-r border-b border-t border-gray-100 relative">
-                <select id="crud-form-6" style="padding-right: 24px !important;" v-model="selectedRiskRatingLikelihood" :class="likelihoodColor"  class="border text-gray-400 py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-xs border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-1 focus:ring-primary focus:ring-opacity-100 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 ">
+                <select id="crud-form-6" style="padding-right: 24px !important;" v-model="selectedTestButton"  class="border text-gray-400 py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-xs border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-1 focus:ring-primary focus:ring-opacity-100 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 ">
                     <option value="" disabled>select</option>
                     <option value="1">Yes</option>
                     <option value="0">No</option>
                 </select>
                </div>
                <div class="head flex items-center justify-center text-center w-1/11 h-14 p-2 border-r border-b border-t border-gray-100 relative">
-                <select id="crud-form-6" style="padding-right: 24px !important;" v-model="selectedRiskRatingLikelihood" :class="likelihoodColor"  class="border text-gray-400 py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-xs border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-1 focus:ring-primary focus:ring-opacity-100 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 ">
+                <select id="crud-form-6" style="padding-right: 24px !important;" v-model="selectedCleanliness"  class="border text-gray-400 py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-xs border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-1 focus:ring-primary focus:ring-opacity-100 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 ">
                     <option value="" disabled>select</option>
                     <option value="1">Yes</option>
                     <option value="0">No</option>
                 </select>
                </div>
                <div class="head flex items-center justify-center text-center w-1/11 h-14 p-2 border-r border-b border-t border-gray-100 relative">
-                <select id="crud-form-6" style="padding-right: 24px !important;" v-model="selectedRiskRatingLikelihood" :class="likelihoodColor"  class="border text-gray-400 py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-xs border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-1 focus:ring-primary focus:ring-opacity-100 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 ">
+                <select id="crud-form-6" style="padding-right: 24px !important;" v-model="selectedSensitivity"  class="border text-gray-400 py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-xs border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-1 focus:ring-primary focus:ring-opacity-100 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 ">
                     <option value="" disabled>select</option>
                     <option value="1">Yes</option>
                     <option value="0">No</option>
                 </select>
                </div>
                <div class="head flex items-center justify-center text-center w-1/11 h-14 p-2 border-r border-b border-t border-gray-100 relative">
-                <select id="crud-form-6" style="padding-right: 24px !important;" v-model="selectedRiskRatingLikelihood" :class="likelihoodColor"  class="border text-gray-400 py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-xs border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-1 focus:ring-primary focus:ring-opacity-100 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 ">
+                <select id="crud-form-6" style="padding-right: 24px !important;" v-model="selectedInterconnectionWithRepeater" class="border text-gray-400 py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-xs border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-1 focus:ring-primary focus:ring-opacity-100 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 ">
                     <option value="" disabled>select</option>
                     <option value="1">Yes</option>
                     <option value="0">No</option>
@@ -596,12 +668,12 @@ onUnmounted(() => {
                
                <div class="head flex items-center justify-center text-center w-1/11 h-14 p-2 border-r border-b border-t border-gray-100">
                 <div class="flex-1 w-full mt-3 xl:mt-0">
-                        <FormInput id="crud-form-1" v-model.trim="validate.completion_date.$model" class="w-full text-xs" type="date" name="name":class="{ 'border-danger': validate.person_responsible.$error,}" placeholder="Hazard" />
+                        <FormInput id="crud-form-1" v-model.trim="validate.last_calibration_date.$model" class="w-full text-xs" type="date" name="name" placeholder="Last Calibration Date" pattern="\d{2}-\d{2}-\d{4}" />
                     </div>
                </div>
                <div class="head flex items-center justify-center text-center w-1/11 h-14 p-2 border-r border-b border-t border-gray-100">
                   <div class="flex-1 w-full mt-3 xl:mt-0">
-                    Remarks
+                    <FormInput id="crud-form-1" v-model.trim="validate.remarks.$model" class="w-full text-xs" type="text" name="name" placeholder="Remarks" />
                   </div>
                </div>
                <div class="head flex items-center justify-center text-center w-1/11 h-14 p-2 border-r border-b border-t border-gray-100">
@@ -612,28 +684,16 @@ onUnmounted(() => {
             </div>
           <div v-for="(data, index) in state.viewData" :key="index" class="flex items-center text-xs my-4 shadow-sm bg-white rounded-sm">
                <div class="head flex items-center justify-center w-1/11 h-16 p-2 border border-gray-100">{{data.id}}</div>
-               <div class="head flex items-center justify-center text-center w-1/11 h-16 p-2 border-r border-b border-t border-gray-100">{{data.activity}}</div>
-               <div class="head flex items-center justify-center text-center w-1/11 h-16 p-2 border-r border-b border-t border-gray-100">{{data.hazard}}</div>
-               <div class="head flex items-center justify-center text-center w-1/11 h-16 p-2 border-r border-b border-t border-gray-100">{{data.existing_control_measures}}</div>
-               <div class="head text-center w-2/11 h-16">
-                <div class="flex w-full ">
-                  <div class="h-16 w-1/3 p-2 flex items-center justify-center border-r border-b border-t border-gray-100">{{data.risk_rating_likelihood}}</div>
-                  <div class="h-16 w-1/3 p-2 flex items-center justify-center border-r border-b border-t border-gray-100">{{data.risk_rating_severity}}</div>
-                  <div class="h-16 w-1/3 p-2 flex items-center justify-center border-r border-b border-t border-gray-100">{{data.risk_rating_overall}}</div>
-                </div>
-
-               </div>
-               <div class="head flex items-center justify-center text-center w-1/11 h-16 p-2 border-r border-b border-t border-gray-100">{{data.additional_control_measures}}</div>
-               <div class="head text-center w-2/11 h-16">
-                <div class="flex w-full ">
-                  <div class="h-16 w-1/3 p-2 flex items-center justify-center border-r border-b border-t border-gray-100">{{data.revised_risk_rating_likelihood}}</div>
-                  <div class="h-16 w-1/3 p-2 flex items-center justify-center border-r border-b border-t border-gray-100">{{data.revised_risk_rating_severity}}</div>
-                  <div class="h-16 w-1/3 p-2 flex items-center justify-center border-r border-b border-t border-gray-100">{{data.revised_risk_rating_overall}}</div>
-                </div>
-
-               </div>
-               <div class="head flex items-center justify-center text-center w-1/11 h-16 p-2 border-r border-b border-t border-gray-100"> {{data.person_responsible}}</div>
-               <div class="head flex items-center justify-center text-center w-1/11 h-16 p-2 border-r border-b border-t border-gray-100">{{data.completion_date}}</div>
+               <div class="head flex items-center justify-center text-center w-1/11 h-16 p-2 border-r border-b border-t border-gray-100">{{data.placement}}</div>
+               <div class="head flex items-center justify-center text-center w-1/11 h-16 p-2 border-r border-b border-t border-gray-100">{{data.power_source}}</div>
+               <div class="head flex items-center justify-center text-center w-1/11 h-16 p-2 border-r border-b border-t border-gray-100">{{data.battery_check}}</div>
+               <div class="head flex items-center justify-center text-center w-1/11 h-16 p-2 border-r border-b border-t border-gray-100">{{data.test_button}}</div>
+               <div class="head flex items-center justify-center text-center w-1/11 h-16 p-2 border-r border-b border-t border-gray-100">{{data.cleanliness}}</div>
+               <div class="head flex items-center justify-center text-center w-1/11 h-16 p-2 border-r border-b border-t border-gray-100">{{data.sensitivity}}</div>
+               <div class="head flex items-center justify-center text-center w-1/11 h-16 p-2 border-r border-b border-t border-gray-100">{{data.interconnection_with_repeater}}</div>
+               <div class="head flex items-center justify-center text-center w-1/11 h-16 p-2 border-r border-b border-t border-gray-100">{{data.last_calibration_date}}</div>
+               <div class="head flex items-center justify-center text-center w-1/11 h-16 p-2 border-r border-b border-t border-gray-100">{{data.remarks}}</div>
+               
                <div class="head flex items-center justify-center text-center w-1/11 h-16 p-2 border-r border-b border-t border-gray-100">
                 <a
                   class="flex items-center text-danger"
