@@ -292,7 +292,7 @@ onMounted(() => {
                   <div v-for="(report, index) in state.EmergencyRes" :key="index" class="w-full flex justify-center items-center">
                     <div class="relative box zoom-in mb-3 flex items-center px-4 py-4 border border-primary w-60">
                         <div class="image-fit h-12 w-12 flex-none overflow-hidden rounded-md">
-                            <img :src="report.image || '../src/assets/images/icon_02/placeholder_dp.png'" :alt="report.name" class="rounded-full">
+                            <img :src="report.image ? `${config.baseURL}${report.image}` : '../src/assets/images/icon_02/placeholder_dp.png'" :alt="report.name" class="rounded-full">
                         </div>
                         <div class="ml-3 mr-auto">
                             <div class="font-medium">{{ report.name}}</div>
@@ -322,7 +322,7 @@ onMounted(() => {
                   <div v-for="(report, index) in state.EmergencyRes01" :key="index" class="w-full flex justify-center items-center">
                     <div class="relative box zoom-in mb-3 flex items-center px-4 py-4 border border-primary w-60">
                         <div class="image-fit h-12 w-12 flex-none overflow-hidden rounded-md">
-                            <img :src="report.image || '../src/assets/images/icon_02/placeholder_dp.png'" :alt="report.name" class="rounded-full">
+                            <img :src="report.image ? `${config.baseURL}${report.image}` : '../src/assets/images/icon_02/placeholder_dp.png'" :alt="report.name" class="rounded-full">
                         </div>
                         <div class="ml-3 mr-auto">
                             <div class="font-medium">{{ report.name}}</div>
@@ -352,7 +352,7 @@ onMounted(() => {
                   <div v-for="(report, index) in state.EmergencyRes02" :key="index" class="w-full flex justify-center items-center">
                     <div class="relative box zoom-in mb-3 flex items-center px-4 py-4 border border-success w-60">
                         <div class="image-fit h-12 w-12 flex-none overflow-hidden rounded-md">
-                            <img :src="report.image || '../src/assets/images/icon_02/placeholder_dp.png'" :alt="report.name" class="rounded-full">
+                            <img :src="report.image ? `${config.baseURL}${report.image}` : '../src/assets/images/icon_02/placeholder_dp.png'" :alt="report.name" class="rounded-full">
                         </div>
                         <div class="ml-3 mr-auto">
                             <div class="font-medium">{{ report.name}}</div>
@@ -382,7 +382,7 @@ onMounted(() => {
                   <div v-for="(report, index) in state.EmergencyRes03" :key="index" class="w-full flex justify-center items-center">
                     <div class="relative box zoom-in mb-3 flex items-center px-4 py-4 border border-danger w-60">
                         <div class="image-fit h-12 w-12 flex-none overflow-hidden rounded-md">
-                            <img :src="report.image || '../src/assets/images/icon_02/placeholder_dp.png'" :alt="report.name" class="rounded-full">
+                            <img :src="report.image ? `${config.baseURL}${report.image}` : '../src/assets/images/icon_02/placeholder_dp.png'" :alt="report.name" class="rounded-full">
                         </div>
                         <div class="ml-3 mr-auto">
                             <div class="font-medium">{{ report.name}}</div>
@@ -412,7 +412,7 @@ onMounted(() => {
                   <div v-for="(report, index) in state.EmergencyRes04" :key="index" class="w-full flex justify-center items-center">
                     <div class="relative box zoom-in mb-3 flex items-center px-4 py-4 border border-warning w-60">
                         <div class="image-fit h-12 w-12 flex-none overflow-hidden rounded-md">
-                            <img :src="report.image || '../src/assets/images/icon_02/placeholder_dp.png'" :alt="report.name" class="rounded-full">
+                          <img :src="report.image ? `${config.baseURL}${report.image}` : '../src/assets/images/icon_02/placeholder_dp.png'" :alt="report.name" class="rounded-full">
                         </div>
                         <div class="ml-3 mr-auto">
                             <div class="font-medium">{{ report.name}}</div>
