@@ -31,7 +31,8 @@ const formData = reactive({
   type:'',
   designation: '',
   phone: '',
-  image: [] as File[],
+  image: null as File | string | null, // Can be File, string (existing image path), or null
+  // image: [] as File[],
   // unit_name: '',
   // tool_id_number: '',
   // tool_name: '',
@@ -65,10 +66,34 @@ const route = useRoute();
 
 const selectedType = ref("");
 
+// const handleFileChange = (event: Event) => {
+//   const input = event.target as HTMLInputElement;
+//   if (input.files) {
+//     formData.image = Array.from(input.files);
+//   }
+// };
+
+// const handleFileChange = (event: Event) => {
+//   const input = event.target as HTMLInputElement;
+//   if (input.files) {
+//     const files = Array.from(input.files);
+//     const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/gif', 'image/svg+xml'];
+//     const maxSize = 10 * 1024 * 1024; // 10MB
+//     const validFiles = files.filter(file => allowedTypes.includes(file.type) && file.size <= maxSize);
+//     formData.image = validFiles;
+//   }
+// };
+
 const handleFileChange = (event: Event) => {
   const input = event.target as HTMLInputElement;
-  if (input.files) {
-    formData.image = Array.from(input.files);
+  if (input.files && input.files.length > 0) {
+    const file = input.files[0];
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/gif', 'image/svg+xml'];
+    const maxSize = 10 * 1024 * 1024; // 10MB
+    
+    if (allowedTypes.includes(file.type) && file.size <= maxSize) {
+      formData.image = file;
+    }
   }
 };
 
@@ -126,13 +151,26 @@ const submitForm = async () => {
     // });
 
     (Object.keys(formData) as Array<keyof typeof formData>).forEach((key) => {
-      if (key !== 'image') {
+      if (key !== 'image' && formData[key] !== null) {
         form.append(key, formData[key] as string);
       }
     });
-    formData.image.forEach((file, index) => {
-      form.append(`image[${index}]`, file);
-    });
+    // formData.image.forEach((file, index) => {
+    //   form.append(`image[${index}]`, file);
+    // });
+
+    // Append images with the correct field name
+    // formData.image.forEach((file) => {
+    //   form.append('image', file); // Use 'image' or 'image[]' based on backend expectation
+    // });
+
+    if(formData.image instanceof File) {
+      form.append('image', formData.image);
+    }
+    // Debugging: Log FormData contents
+    for (let [key, value] of form.entries()) {
+      console.log(key, value);
+    }
 
     try {
       let url = state.isEditMode
@@ -172,25 +210,26 @@ const fetchEntryData = async (id: string) => {
 
     const data = response.data.data;
     console.log('Fetched Data:', data);
-    Object.keys(formData).forEach((key) => {
-      const formKey = key as keyof typeof formData;
-      if (formKey in data) {
-        // Handle the image field separately
-        if (formKey === 'image') {
-          // Ensure image is always an array
-          formData[formKey] = data[formKey] ? Array.isArray(data[formKey]) ? data[formKey] : [data[formKey]] : [];
-        } else {
-          formData[formKey] = data[formKey];
-        }
-      }
-    });
-
     // Object.keys(formData).forEach((key) => {
     //   const formKey = key as keyof typeof formData;
     //   if (formKey in data) {
-    //     formData[formKey] = data[formKey];
+    //     // Handle the image field separately
+    //     if (formKey === 'image') {
+    //       // Ensure image is always an array
+    //       formData[formKey] = data[formKey] ? Array.isArray(data[formKey]) ? data[formKey] : [data[formKey]] : [];
+    //     } else {
+    //       formData[formKey] = data[formKey];
+    //     }
     //   }
     // });
+
+    Object.keys(formData).forEach((key) => {
+      const formKey = key as keyof typeof formData;
+      if (formKey in data) {
+        formData[formKey] = data[formKey];
+        // formData[formKey] = formKey === 'image' ? data[formKey] || null : data[formKey];
+      }
+    });
 
     // Populate the date refs with the reversed date format
     // toolLastCalibrationDate.value = reverseDateFormat(data.tool_last_calibration_date);
@@ -785,10 +824,13 @@ function SuccessPopUp() {
                                   <input id="file-upload" type="file" class="hidden" multiple accept="image/jpeg, image/png, image/jpg, image/gif, image/svg" @change="handleFileChange"/>
                                 </label>
                                 
-                              <div v-if="formData.image.length" class="w-full space-y-2">
+                              <!-- <div v-if="formData.image.length" class="w-full space-y-2">
                                 <div v-for="(file, index) in formData.image" :key="index" class="flex items-center justify-between p-2 bg-gray-100 rounded-lg shadow">
                                   <span class="text-sm text-gray-700 truncate">{{ file.name }}</span>
                                 </div>
+                              </div> -->
+                              <div v-if="formData.image" class="w-full p-2 bg-gray-100 rounded-lg shadow">
+                                <span class="text-sm text-gray-700">{{ typeof formData.image === 'string' ? `Current image: ${formData.image.split('/').pop()}` : `New image: ${formData.image.name}` }}</span>
                               </div>
                           </div>
                     </div>
