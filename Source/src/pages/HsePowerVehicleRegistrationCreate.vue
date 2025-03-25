@@ -80,7 +80,7 @@ const lastMaintenanceDate = ref("");
 const rules = {
   unit_name: { required,},
   vehicle_id: { required, minLength: minLength(1) },
-  capacity: { required, minLength: minLength(1) },
+  capacity: { required, integer },
   type_of_vehicle: { required, minLength: minLength(3) },
   vehicle_owner: { required, minLength: minLength(3) },
   manufacturer_company_name: { required, minLength: minLength(3) },
@@ -149,7 +149,9 @@ const submitForm = async () => {
 
       const response = await axios[method](url, form, {
         headers: {
-          'Content-Type': 'multipart/form-data',
+          'Content-Type': state.isEditMode 
+          ? 'application/json'  // JSON for PUT
+          : 'multipart/form-data',  // FormData for POST
           'Authorization': state.token,
         },
       });
@@ -403,7 +405,7 @@ function SuccessPopUp() {
                               <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
                             </svg>
                               <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
-                                Capacity
+                                Capacity (must be number)
                               </div>
                           </span>
                         </div>
