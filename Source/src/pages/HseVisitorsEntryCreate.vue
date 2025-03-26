@@ -502,7 +502,7 @@ function SuccessPopUp() {
                     </div>
                   </FormLabel>
                   <div class="flex-1 w-full mt-3 xl:mt-0">
-                    <FormInput id="crud-form-3" v-model.trim="validate.time_of_entry.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.time_of_entry.$error,}" placeholder="Insert Time of Entry"/>
+                    <FormInput id="crud-form-3" v-model.trim="validate.time_of_entry.$model" class="w-full" type="datetime-local" name="name":class="{ 'border-danger': validate.time_of_entry.$error,}" placeholder="Insert Time of Entry"/>
                     
                     <div class="flex justify-between">
                       <template v-if="validate.time_of_entry.$error">
@@ -510,7 +510,7 @@ function SuccessPopUp() {
                           {{ error.$message }}
                         </div>
                       </template>
-                      <p class="text-right mt-2 w-full"> Required, at least 3 characters</p>
+                      <p class="text-right mt-2 w-full"> Required</p>
                     </div>
                   </div>
                 </FormInline>
@@ -536,7 +536,7 @@ function SuccessPopUp() {
                     </div>
                   </FormLabel>
                   <div class="flex-1 w-full mt-3 xl:mt-0">
-                    <FormInput id="crud-form-3" v-model.trim="validate.time_of_exit.$model" class="w-full" type="text" name="name":class="{ 'border-danger': validate.time_of_exit.$error,}" placeholder="Insert Time of Exit"/>
+                    <FormInput id="crud-form-3" v-model.trim="validate.time_of_exit.$model" class="w-full" type="datetime-local" name="name":class="{ 'border-danger': validate.time_of_exit.$error,}" placeholder="Insert Time of Exit"/>
                     
                     <div class="flex justify-between">
                       <template v-if="validate.time_of_exit.$error">
@@ -544,7 +544,7 @@ function SuccessPopUp() {
                           {{ error.$message }}
                         </div>
                       </template>
-                      <p class="text-right mt-2 w-full"> Required, at least 3 characters</p>
+                      <p class="text-right mt-2 w-full"> Required</p>
                     </div>
                   </div>
                 </FormInline>
