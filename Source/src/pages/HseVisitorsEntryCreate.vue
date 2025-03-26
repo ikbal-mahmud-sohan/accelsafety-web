@@ -35,7 +35,8 @@ const formData = reactive({
   temp_id_card_no: '',
   time_of_entry: '',
   time_of_exit: '',
-  signature: [] as File[],
+  signature: null as File | string | null,
+  // signature: [] as File[],
 });
 
 const state = reactive({
@@ -50,10 +51,23 @@ const route = useRoute();
 
 const selectedUnitName = ref("");
 
+// const handleFileChange = (event: Event) => {
+//   const input = event.target as HTMLInputElement;
+//   if (input.files) {
+//     formData.signature = Array.from(input.files);
+//   }
+// };
+
 const handleFileChange = (event: Event) => {
   const input = event.target as HTMLInputElement;
-  if (input.files) {
-    formData.signature = Array.from(input.files);
+  if (input.files && input.files.length > 0) {
+    const file = input.files[0];
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/gif', 'image/svg+xml'];
+    const maxSize = 10 * 1024 * 1024; // 10MB
+    
+    if (allowedTypes.includes(file.type) && file.size <= maxSize) {
+      formData.signature = file;
+    }
   }
 };
 
@@ -64,8 +78,8 @@ const rules = {
   whom_to_meet: { required, minLength: minLength(3) },
   visit_purpose: { required, minLength: minLength(3) },
   temp_id_card_no: { required, minLength: minLength(3) },
-  time_of_entry: { required, minLength: minLength(3) },
-  time_of_exit: { required, minLength: minLength(3) },
+  time_of_entry: { required, },
+  time_of_exit: { required, },
 };
 
 const validate = useVuelidate(rules, toRefs(formData));
@@ -80,13 +94,21 @@ const submitForm = async () => {
   } else {
     const form = new FormData();
     (Object.keys(formData) as Array<keyof typeof formData>).forEach((key) => {
-      if (key !== 'signature') {
+      if (key !== 'signature' && formData[key] !== null) {
         form.append(key, formData[key] as string);
       }
     });
-    formData.signature.forEach((file, index) => {
-      form.append(`signature[${index}]`, file);
-    });
+    // formData.signature.forEach((file, index) => {
+    //   form.append(`signature[${index}]`, file);
+    // });
+
+    if(formData.signature instanceof File) {
+      form.append('signature', formData.signature);
+    }
+    // Debugging: Log FormData contents
+    for (let [key, value] of form.entries()) {
+      console.log(key, value);
+    }
 
     try {
       let url = state.isEditMode
@@ -137,16 +159,23 @@ const fetchEntryData = async (id: string) => {
 
     const data = response.data.data;
     console.log('Fetched Data:', data);
+    // Object.keys(formData).forEach((key) => {
+    //   const formKey = key as keyof typeof formData;
+    //   if (formKey in data) {
+    //     // Handle the signature field separately
+    //     if (formKey === 'signature') {
+    //       // Ensure signature is always an array
+    //       formData[formKey] = data[formKey] ? Array.isArray(data[formKey]) ? data[formKey] : [data[formKey]] : [];
+    //     } else {
+    //       formData[formKey] = data[formKey];
+    //     }
+    //   }
+    // });
+
     Object.keys(formData).forEach((key) => {
       const formKey = key as keyof typeof formData;
       if (formKey in data) {
-        // Handle the signature field separately
-        if (formKey === 'signature') {
-          // Ensure signature is always an array
-          formData[formKey] = data[formKey] ? Array.isArray(data[formKey]) ? data[formKey] : [data[formKey]] : [];
-        } else {
-          formData[formKey] = data[formKey];
-        }
+        formData[formKey] = data[formKey];
       }
     });
 
@@ -533,7 +562,7 @@ function SuccessPopUp() {
                                 <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
                               </svg>
                                 <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
-                                  Images showing Signature
+                                  Image showing Signature
                                 </div>
                             </span>
                           </div>
@@ -553,10 +582,13 @@ function SuccessPopUp() {
                                   <input id="file-upload" type="file" class="hidden" multiple @change="handleFileChange"/>
                                 </label>
                                 
-                              <div v-if="formData.signature.length" class="w-full space-y-2">
+                              <!-- <div v-if="formData.signature.length" class="w-full space-y-2">
                                 <div v-for="(file, index) in formData.signature" :key="index" class="flex items-center justify-between p-2 bg-gray-100 rounded-lg shadow">
                                   <span class="text-sm text-gray-700 truncate">{{ file.name }}</span>
                                 </div>
+                              </div> -->
+                              <div v-if="formData.signature" class="w-full p-2 bg-gray-100 rounded-lg shadow">
+                                <span class="text-sm text-gray-700">{{ typeof formData.signature === 'string' ? `Current signature: ${formData.signature.split('/').pop()}` : `New signature: ${formData.signature.name}` }}</span>
                               </div>
                           </div>
                     </div>

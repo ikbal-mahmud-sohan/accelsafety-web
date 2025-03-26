@@ -151,7 +151,7 @@ onMounted(() => {
             <Table.Td  class="box w-40 rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600"
             >
               <div class="flex justify-center">
-                <template v-if="report.signature && report.signature.length > 0">
+                <!-- <template v-if="report.signature && report.signature.length > 0">
                   <div class="w-16 h-16 image-fit zoom-in" v-for="(img, index) in report.signature" :key="index">
                     <Tippy
                       as="img"
@@ -159,6 +159,17 @@ onMounted(() => {
                       class="rounded-full shadow-[0px_0px_0px_2px_#fff,_1px_1px_5px_rgba(0,0,0,0.32)] dark:shadow-[0px_0px_0px_2px_#3f4865,_1px_1px_5px_rgba(0,0,0,0.32)]"
                       :src="`${config.baseURL}${img}`"
                       :content="`safety`"
+                    />
+                  </div>
+                </template> -->
+                <template v-if="report.signature">
+                  <div class="w-16 h-16 image-fit zoom-in">
+                    <Tippy
+                      as="img"
+                      :alt="report.visitor_name"
+                      class="rounded-full shadow-[0px_0px_0px_2px_#fff,_1px_1px_5px_rgba(0,0,0,0.32)] dark:shadow-[0px_0px_0px_2px_#3f4865,_1px_1px_5px_rgba(0,0,0,0.32)]"
+                      :src="`${config.baseURL}${report.signature}`"
+                      :content="`${report.visitor_name}`"
                     />
                   </div>
                 </template>

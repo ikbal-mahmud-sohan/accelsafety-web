@@ -75,7 +75,7 @@ const route = useRoute();
 const rules = {
   driver_name: { required, minLength: minLength(3) },
   driver_competency: { required, minLength: minLength(3) },
-  driver_license_no: { required, minLength: minLength(3) },
+  driver_license_no: { required, integer },
   // position: { required, minLength: minLength(3),},
   // unit_name: { required, minLength: minLength(3) },
   // tool_id_number: { required, minLength: minLength(1) },
@@ -402,13 +402,13 @@ function SuccessPopUp() {
                   <FormLabel class="xl:w-40 xl:!mr-10">
                     <div class="text-left">
                       <div class="flex items-center">
-                        <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-4">Driver License no
+                        <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-4">Driver License no.
                           <span class="relative group cursor-pointer ml-1">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                               <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
                             </svg>
                               <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
-                                Driver License no
+                                Driver License no. (must be number)
                               </div>
                           </span>
                         </div>
@@ -424,7 +424,7 @@ function SuccessPopUp() {
                           {{ error.$message }}
                         </div>
                       </template>
-                      <p class="text-right mt-2 w-full"> Required, at least 3 characters</p>
+                      <p class="text-right mt-2 w-full"> Required</p>
                     </div>
                   </div>
                 </FormInline>
