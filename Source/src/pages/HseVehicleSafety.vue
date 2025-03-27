@@ -90,7 +90,7 @@ import Button from "@/components/Base/Button";
       <div class="flex justify-center items-center p-1">
         <router-link :to="{ name: 'hse-vehicle-safety-doc' }">
           <div class="inline-block">
-              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Grader.png" alt="">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Street_sweeper.png" alt="">
             </div>
         </router-link>
       </div>
@@ -102,7 +102,7 @@ import Button from "@/components/Base/Button";
       <div class="flex justify-center items-center p-1">
         <router-link :to="{ name: 'hse-power-vehicle-registration-create' }">
           <div class="inline-block">
-              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Grader.png" alt="">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Street_sweeper.png" alt="">
             </div>
         </router-link>
       </div>
@@ -114,7 +114,7 @@ import Button from "@/components/Base/Button";
       <div class="flex justify-center items-center p-1">
         <router-link :to="{ name: 'hse-power-vehicle-registration-list' }">
           <div class="inline-block">
-              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Grader.png" alt="">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Street_sweeper.png" alt="">
             </div>
         </router-link>
       </div>
@@ -126,7 +126,7 @@ import Button from "@/components/Base/Button";
       <div class="flex justify-center items-center p-1">
         <router-link :to="{ name: 'hse-driver-registration-create' }">
           <div class="inline-block">
-              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Grader.png" alt="">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Electric_Forklift_with_Operator.png" alt="">
             </div>
         </router-link>
       </div>
@@ -138,7 +138,7 @@ import Button from "@/components/Base/Button";
       <div class="flex justify-center items-center p-1">
         <router-link :to="{ name: 'hse-driver-registration-list' }">
           <div class="inline-block">
-              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Grader.png" alt="">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Electric_Forklift_with_Operator.png" alt="">
             </div>
         </router-link>
       </div>

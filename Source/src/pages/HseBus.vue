@@ -14,7 +14,7 @@ import Button from "@/components/Base/Button";
     
   </div>
   <div class="pb-8">
-    <h2 class="text-2xl font-medium intro-y text-center uppercase">Backhoe Loader</h2>
+    <h2 class="text-2xl font-medium intro-y text-center uppercase">Bus</h2>
   </div>
   <div class="flex flex-wrap bg-theme-1 bg-opacity-20 px-4 py-4 rounded-md shadow-md">
     <div class="w-full lg:w-1/3">
@@ -23,12 +23,12 @@ import Button from "@/components/Base/Button";
           <div class="flex justify-center items-center p-4">
             <router-link :to="{ name: 'hse-jcb-checklists' }">
           <div class="inline-block">
-              <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/jcb.png" alt="">
+              <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/41Bus.png" alt="">
             </div>
         </router-link>
         </div>
         <div class="py-1">
-          <p class="text-center">Backhoe Loader (JCB) List</p>
+          <p class="text-center">Bus List</p>
         </div>
         </div>
       </div>
@@ -39,12 +39,12 @@ import Button from "@/components/Base/Button";
           <div class="flex justify-center items-center p-4">
             <router-link :to="{ name: 'hse-jcb-checklists-create' }">
           <div class="inline-block">
-              <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/jcb.png" alt="">
+              <img class="w-40 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/additional/41Bus.png" alt="">
             </div>
         </router-link>
         </div>
         <div class="py-1">
-          <p class="text-center">Backhoe Loader (JCB) Create</p>
+          <p class="text-center">Bus Create</p>
         </div>
         </div>
       </div>
