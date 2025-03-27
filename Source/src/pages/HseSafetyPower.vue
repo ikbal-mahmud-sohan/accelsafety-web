@@ -22,9 +22,9 @@ import Button from "@/components/Base/Button";
         <div class="border py-2">
           <div class="flex justify-center items-center p-4">
           <router-link :to="{ name: 'hse-safety-power-tools-doc' }">
-              <div class="px-4 py-4 bg-white shadow-md rounded-md inline-block">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="w-6 h-6"><path d="M352 32L224 32l0 34.3L224 176 159.6 85.8C84.1 121.8 32 198.8 32 288l0 64 512 0 0-66.4c-.9-88.1-52.8-164.1-127.5-199.8L352 176l0-109.7L352 32zM0 408s80 72 288 72s288-72 288-72l0-24L0 384l0 24z"/></svg>
-              </div>
+            <div class="inline-block">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Safety of Power Tools .png" alt="">
+            </div>
           </router-link>
         </div>
         <div class="py-1">
@@ -38,9 +38,9 @@ import Button from "@/components/Base/Button";
         <div class="border py-2">
           <div class="flex justify-center items-center p-4">
           <router-link :to="{ name: 'hse-safety-power-tools-create' }">
-              <div class="px-4 py-4 bg-white shadow-md rounded-md inline-block">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="w-6 h-6"><path d="M352 32L224 32l0 34.3L224 176 159.6 85.8C84.1 121.8 32 198.8 32 288l0 64 512 0 0-66.4c-.9-88.1-52.8-164.1-127.5-199.8L352 176l0-109.7L352 32zM0 408s80 72 288 72s288-72 288-72l0-24L0 384l0 24z"/></svg>
-              </div>
+            <div class="inline-block">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Safety of Power Tools .png" alt="">
+            </div>
           </router-link>
         </div>
         <div class="py-1">
@@ -54,9 +54,9 @@ import Button from "@/components/Base/Button";
         <div class="border py-2">
           <div class="flex justify-center items-center p-4">
           <router-link :to="{ name: 'hse-safety-power-tools-list' }">
-              <div class="px-4 py-4 bg-white shadow-md rounded-md inline-block">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="w-6 h-6"><path d="M352 32L224 32l0 34.3L224 176 159.6 85.8C84.1 121.8 32 198.8 32 288l0 64 512 0 0-66.4c-.9-88.1-52.8-164.1-127.5-199.8L352 176l0-109.7L352 32zM0 408s80 72 288 72s288-72 288-72l0-24L0 384l0 24z"/></svg>
-              </div>
+            <div class="inline-block">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Safety of Power Tools .png" alt="">
+            </div>
           </router-link>
         </div>
         <div class="py-1">

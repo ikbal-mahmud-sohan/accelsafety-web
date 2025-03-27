@@ -22,9 +22,9 @@ import Button from "@/components/Base/Button";
         <div class="border py-2">
           <div class="flex justify-center items-center p-4">
           <router-link :to="{ name: 'hse-sight-hearin-protection-doc' }">
-              <div class="px-4 py-4 bg-white shadow-md rounded-md inline-block">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-6 h-6"><path d="M256 80C152 80 65.8 156.3 50.4 256l77.6 0 0 224L0 480l0-96 0-96C0 146.6 114.6 32 256 32s256 114.6 256 256l0 96 0 96-128 0 0-224 77.6 0C446.2 156.3 360 80 256 80z"/></svg>
-              </div>
+            <div class="inline-block">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Gas_Mask.png" alt="">
+            </div>
           </router-link>
         </div>
         <div class="py-1">
@@ -38,9 +38,9 @@ import Button from "@/components/Base/Button";
         <div class="border py-2">
           <div class="flex justify-center items-center p-4">
           <router-link :to="{ name: 'hse-noise-intensity-measurement-create' }">
-              <div class="px-4 py-4 bg-white shadow-md rounded-md inline-block">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-6 h-6"><path d="M256 80C152 80 65.8 156.3 50.4 256l77.6 0 0 224L0 480l0-96 0-96C0 146.6 114.6 32 256 32s256 114.6 256 256l0 96 0 96-128 0 0-224 77.6 0C446.2 156.3 360 80 256 80z"/></svg>
-              </div>
+            <div class="inline-block">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Megaphone2.png" alt="">
+            </div>
           </router-link>
         </div>
         <div class="py-1">
@@ -54,9 +54,9 @@ import Button from "@/components/Base/Button";
         <div class="border py-2">
           <div class="flex justify-center items-center p-4">
           <router-link :to="{ name: 'hse-noise-intensity-measurement-list' }">
-              <div class="px-4 py-4 bg-white shadow-md rounded-md inline-block">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-6 h-6"><path d="M256 80C152 80 65.8 156.3 50.4 256l77.6 0 0 224L0 480l0-96 0-96C0 146.6 114.6 32 256 32s256 114.6 256 256l0 96 0 96-128 0 0-224 77.6 0C446.2 156.3 360 80 256 80z"/></svg>
-              </div>
+            <div class="inline-block">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Megaphone2.png" alt="">
+            </div>
           </router-link>
         </div>
         <div class="py-1">
@@ -70,9 +70,9 @@ import Button from "@/components/Base/Button";
         <div class="border py-2">
           <div class="flex justify-center items-center p-4">
           <router-link :to="{ name: 'hse-light-intensity-measurement-create' }">
-              <div class="px-4 py-4 bg-white shadow-md rounded-md inline-block">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-6 h-6"><path d="M256 80C152 80 65.8 156.3 50.4 256l77.6 0 0 224L0 480l0-96 0-96C0 146.6 114.6 32 256 32s256 114.6 256 256l0 96 0 96-128 0 0-224 77.6 0C446.2 156.3 360 80 256 80z"/></svg>
-              </div>
+            <div class="inline-block">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Light & Hearing Protection .png" alt="">
+            </div>
           </router-link>
         </div>
         <div class="py-1">
@@ -86,9 +86,9 @@ import Button from "@/components/Base/Button";
         <div class="border py-2">
           <div class="flex justify-center items-center p-4">
           <router-link :to="{ name: 'hse-light-intensity-measurement-list' }">
-              <div class="px-4 py-4 bg-white shadow-md rounded-md inline-block">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-6 h-6"><path d="M256 80C152 80 65.8 156.3 50.4 256l77.6 0 0 224L0 480l0-96 0-96C0 146.6 114.6 32 256 32s256 114.6 256 256l0 96 0 96-128 0 0-224 77.6 0C446.2 156.3 360 80 256 80z"/></svg>
-              </div>
+            <div class="inline-block">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Light & Hearing Protection .png" alt="">
+            </div>
           </router-link>
         </div>
         <div class="py-1">
