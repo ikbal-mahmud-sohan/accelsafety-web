@@ -24,7 +24,7 @@ const state = reactive({
 // Fetch data from the API and update the state
 const fetchData = async () => {
   try {
-   let  url = config.baseURL+'/api/v1/smoke-detector';
+   let  url = config.baseURL+'/api/v1/fire-extinguisher-tej';
     const response = await axios.get(url,{
                 headers: {
                     'Authorization': state.token,
@@ -37,7 +37,7 @@ const fetchData = async () => {
 };
 const deleteData = async (sID:string) => {
   try {
-    let url = config.baseURL+"/api/v1/smoke-detector/delete/"+sID;
+    let url = config.baseURL+"/api/v1/fire-extinguisher-tej/delete/"+sID;
     const response = await axios.delete(url,{
                 headers: {
                     'Authorization': state.token,
@@ -59,13 +59,13 @@ onMounted(() => {
 </script>
 
 <template>
-  <h2 class="mt-10 text-lg font-medium intro-y">Smoke Detector List</h2>
+  <h2 class="mt-10 text-lg font-medium intro-y">Fire Extinguisher TEJ List</h2>
   <div class="grid grid-cols-12 gap-6 mt-5">
     <div class="flex flex-wrap items-center col-span-12 mt-2 intro-y sm:flex-nowrap">
       <!-- <Button variant="primary" class="mr-2 shadow-md">
         Add New Accident
       </Button> -->
-      <router-link :to="{ name: 'hse-smoke-detector-create' }">
+      <router-link :to="{ name: 'hse-fire-extinguisher-tej-create' }">
         <Button variant="primary" class="mr-2 shadow-md">
           Add
         </Button>
@@ -145,11 +145,11 @@ onMounted(() => {
                   <Lucide icon="CheckSquare" class="w-4 h-4 mr-1" />
                   Assigned
                 </router-link> -->
-                <router-link :to="{name:'hse-smoke-detector-full', params:{id:report.id} }" class="flex items-center mr-3 text-nowrap">
+                <router-link :to="{name:'hse-fire-extinguisher-tej-full', params:{id:report.id} }" class="flex items-center mr-3 text-nowrap">
                   <Lucide icon="CheckSquare" class="w-4 h-4 mr-1 " />
                   Update
                 </router-link>
-                <router-link :to="{name:'hse-smoke-detector-edit', params:{id:report.id} }" class="flex items-center mr-3 text-nowrap">
+                <router-link :to="{name:'hse-fire-extinguisher-tej-edit', params:{id:report.id} }" class="flex items-center mr-3 text-nowrap">
                   <Lucide icon="EditIcon" class="w-4 h-4 mr-1 " />
                   Edit
                 </router-link>

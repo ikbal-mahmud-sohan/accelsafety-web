@@ -49,6 +49,38 @@ import Button from "@/components/Base/Button";
         </div>
       </div>
     </div>
+    <div class="w-full lg:w-1/3">
+      <div class="p-4">
+        <div class="border py-2">
+          <div class="flex justify-center items-center p-4">
+          <router-link :to="{ name: 'hse-fire-extinguisher-tej-create' }">
+            <div class="inline-block">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Fire_Extinguisher_TEJ.png" alt="">
+            </div>
+          </router-link>
+        </div>
+        <div class="py-1">
+          <p class="text-center">Hse Fire Extinguisher TEJ Checklist</p>
+        </div>
+        </div>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/3">
+      <div class="p-4">
+        <div class="border py-2">
+          <div class="flex justify-center items-center p-4">
+          <router-link :to="{ name: 'hse-fire-extinguisher-tej-list' }">
+            <div class="inline-block">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Fire_Extinguisher_TEJ.png" alt="">
+            </div>
+          </router-link>
+        </div>
+        <div class="py-1">
+          <p class="text-center">Hse Fire Extinguisher TEJ List</p>
+        </div>
+        </div>
+      </div>
+    </div>
     
   </div>
 </template>

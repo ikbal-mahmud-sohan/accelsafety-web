@@ -91,8 +91,8 @@ const submitForm = async () => {
             
             try {
                 let  url = state.isEditMode
-                ? `${config.baseURL}/api/v1/smoke-detector/update/${state.entryId}`
-                : `${config.baseURL}/api/v1/smoke-detector`;
+                ? `${config.baseURL}/api/v1/fire-extinguisher-tej/update/${state.entryId}`
+                : `${config.baseURL}/api/v1/fire-extinguisher-tej`;
                 
                 const response = await axios.post(url, formData, {
                 headers: {
@@ -100,8 +100,8 @@ const submitForm = async () => {
                     'Authorization': state.token,
                 },
               });
-              console.log("smoke_res: ", response.data);
-              router.push({ name: 'hse-smoke-detector-list' });
+              console.log("fireExtTEJ_res: ", response.data);
+              router.push({ name: 'hse-fire-extinguisher-tej-list' });
                 // selectedRiskRatingLikelihood.value = response.data.risk_rating_likelihood;
                 // selectedRiskRatingSeverity.value = response.data.risk_rating_severity;
                 // selectedRiskRatingOverall.value = response.data.risk_rating_overall;
@@ -121,14 +121,14 @@ const submitForm = async () => {
 // Fetch data from id
 const fetchEntryData = async (id: string) => {
   try {
-    const response = await axios.get(`${config.baseURL}/api/v1/smoke-detector/edit/${id}`, {
+    const response = await axios.get(`${config.baseURL}/api/v1/fire-extinguisher-tej/edit/${id}`, {
       headers: {
         'Authorization': state.token,
       },
     });
 
     const data = response.data.data;
-    console.log('Fetched smoke Data:', data);
+    console.log('Fetched fireExtTEJ Data:', data);
 
     Object.keys(formData).forEach((key) => {
       const formKey = key as keyof typeof formData;
@@ -277,7 +277,7 @@ onUnmounted(() => {
     <div class="col-span-12   overflow-y-auto ">
         <div class="risk-form-head">
             <div class="py-4 bg-theme-1">
-                <p class=" text-base font-semibold uppercase text-center text-white">{{ state.isEditMode ? 'Smoke Detector FORM Edit' : 'Smoke Detector FORM' }}</p>
+                <p class=" text-base font-semibold uppercase text-center text-white">{{ state.isEditMode ? 'Fire Extinguisher TEJ FORM Edit' : 'Fire Extinguisher TEJ FORM' }}</p>
             </div>
             <div class="box mt-8 py-5">
               <div class="flex flex-wrap">
@@ -526,7 +526,7 @@ onUnmounted(() => {
    <Notification id="success-notification-content" class="flex hidden">
         <Lucide icon="CheckCircle" class="text-success" />
         <div class="ml-4 mr-4">
-          <div class="font-medium text-nowrap">Smoke Detector {{ state.isEditMode ? 'Editing' : 'Create' }} success!</div>
+          <div class="font-medium text-nowrap">Fire Extinguisher TEJ {{ state.isEditMode ? 'Editing' : 'Create' }} success!</div>
         </div>
       </Notification>
       <!-- END: Success Notification Content -->
@@ -534,7 +534,7 @@ onUnmounted(() => {
       <Notification id="failed-notification-content" class="flex items-center hidden">
         <Lucide icon="XCircle" class="text-danger" />
         <div class="ml-4 mr-4">
-          <div class="font-medium text-nowrap">Smoke Detector {{ state.isEditMode ? 'Edit' : 'Create' }} failed!</div>
+          <div class="font-medium text-nowrap">Fire Extinguisher TEJ {{ state.isEditMode ? 'Edit' : 'Create' }} failed!</div>
           <div class="mt-1 text-slate-500">Please check the fileld form.</div>
         </div>
       </Notification>
