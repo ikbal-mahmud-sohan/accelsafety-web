@@ -71,7 +71,7 @@ import Button from "@/components/Base/Button";
           <div class="flex justify-center items-center p-4">
           <router-link :to="{ name: 'hse-emergency-equipment-check' }">
             <div class="inline-block">
-              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Emergency_Button.png" alt="">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Emergency_Light.png" alt="">
             </div>
           </router-link>
         </div>

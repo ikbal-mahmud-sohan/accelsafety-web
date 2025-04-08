@@ -225,7 +225,7 @@ import Lucide from "@/components/Base/Lucide";
       <div class="flex justify-center items-center p-1">
         <router-link :to="{ name: 'hse-electrical-safety' }">
           <div class="inline-block">
-              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/28.Don’t Touch.png" alt="">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Elecrical_Safety.png" alt="">
             </div>
         </router-link>
       </div>
@@ -273,7 +273,7 @@ import Lucide from "@/components/Base/Lucide";
       <div class="flex justify-center items-center p-1">
         <router-link :to="{ name: 'hse-safety-signage-management' }">
           <div class="inline-block">
-              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Caution.png" alt="">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/28.Don’t Touch.png" alt="">
             </div>
         </router-link>
       </div>

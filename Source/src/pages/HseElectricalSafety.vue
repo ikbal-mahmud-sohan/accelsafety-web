@@ -14,7 +14,7 @@ import Button from "@/components/Base/Button";
     
   </div>
   <div class="pb-8">
-    <h2 class="text-2xl font-medium intro-y text-center uppercase">Permit to Work</h2>
+    <h2 class="text-2xl font-medium intro-y text-center uppercase">Elecrical Safety</h2>
   </div>
   <div class="flex flex-wrap bg-theme-1 bg-opacity-20 px-4 py-4 rounded-md shadow-md">
     <div class="w-full lg:w-1/3">
@@ -22,9 +22,9 @@ import Button from "@/components/Base/Button";
         <div class="border py-2">
           <div class="flex justify-center items-center p-4">
           <router-link :to="{ name: 'hse-electrical-safety-doc' }">
-              <div class="px-4 py-4 bg-white shadow-md rounded-md inline-block">
-                <Lucide icon="SunriseIcon" class="block mx-auto w-6 h-6" />
-              </div>
+            <div class="inline-block">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Elecrical_Safety.png" alt="">
+            </div>
           </router-link>
         </div>
         <div class="py-1">
@@ -38,9 +38,9 @@ import Button from "@/components/Base/Button";
         <div class="border py-2">
           <div class="flex justify-center items-center p-4">
           <router-link :to="{ name: 'hse-earthing-pit-condition' }">
-              <div class="px-4 py-4 bg-white shadow-md rounded-md inline-block">
-                <Lucide icon="SunriseIcon" class="block mx-auto w-6 h-6" />
-              </div>
+            <div class="inline-block">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/electric_vehicle_charging.png" alt="">
+            </div>
           </router-link>
         </div>
         <div class="py-1">
@@ -54,9 +54,9 @@ import Button from "@/components/Base/Button";
         <div class="border py-2">
           <div class="flex justify-center items-center p-4">
           <router-link :to="{ name: 'hse-earthing-pit-condition-create' }">
-              <div class="px-4 py-4 bg-white shadow-md rounded-md inline-block">
-                <Lucide icon="SunriseIcon" class="block mx-auto w-6 h-6" />
-              </div>
+            <div class="inline-block">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/electric_vehicle_charging.png" alt="">
+            </div>
           </router-link>
         </div>
         <div class="py-1">
@@ -70,9 +70,9 @@ import Button from "@/components/Base/Button";
         <div class="border py-2">
           <div class="flex justify-center items-center p-4">
           <router-link :to="{ name: 'hse-safety-checklist-hv-list' }">
-              <div class="px-4 py-4 bg-white shadow-md rounded-md inline-block">
-                <Lucide icon="SunriseIcon" class="block mx-auto w-6 h-6" />
-              </div>
+            <div class="inline-block">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/thunder_bolt.png" alt="">
+            </div>
           </router-link>
         </div>
         <div class="py-1">
@@ -86,9 +86,9 @@ import Button from "@/components/Base/Button";
         <div class="border py-2">
           <div class="flex justify-center items-center p-4">
           <router-link :to="{ name: 'hse-safety-checklist-hv-create' }">
-              <div class="px-4 py-4 bg-white shadow-md rounded-md inline-block">
-                <Lucide icon="SunriseIcon" class="block mx-auto w-6 h-6" />
-              </div>
+            <div class="inline-block">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/thunder_bolt.png" alt="">
+            </div>
           </router-link>
         </div>
         <div class="py-1">
@@ -102,9 +102,9 @@ import Button from "@/components/Base/Button";
         <div class="border py-2">
           <div class="flex justify-center items-center p-4">
           <router-link :to="{ name: 'hse-Safety-tt-create' }">
-              <div class="px-4 py-4 bg-white shadow-md rounded-md inline-block">
-                <Lucide icon="SunriseIcon" class="block mx-auto w-6 h-6" />
-              </div>
+            <div class="inline-block">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/transformer.png" alt="">
+            </div>
           </router-link>
         </div>
         <div class="py-1">
@@ -118,9 +118,9 @@ import Button from "@/components/Base/Button";
         <div class="border py-2">
           <div class="flex justify-center items-center p-4">
           <router-link :to="{ name: 'hse-Safety-tt-list' }">
-              <div class="px-4 py-4 bg-white shadow-md rounded-md inline-block">
-                <Lucide icon="SunriseIcon" class="block mx-auto w-6 h-6" />
-              </div>
+            <div class="inline-block">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/transformer.png" alt="">
+            </div>
           </router-link>
         </div>
         <div class="py-1">
