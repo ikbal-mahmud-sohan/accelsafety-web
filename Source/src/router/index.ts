@@ -463,6 +463,7 @@ const router = createRouter({
             name: "hse-emergency-response-list",
             component: () => import("../pages/HseEmergencyResponseList.vue"),
           },
+          //Emergency Equipment
           {
             path: "hse-emergency-equipment-check",
             name: "hse-emergency-equipment-check",
@@ -474,6 +475,11 @@ const router = createRouter({
             component: () => import("../pages/HseSmokeDetectorCreate.vue"),
           },
           {
+            path: "hse-smoke-detector-edit/:id",
+            name: "hse-smoke-detector-edit",
+            component: () => import("../pages/HseSmokeDetectorCreate.vue"),
+          },
+          {
             path: "hse-smoke-detector-list",
             name: "hse-smoke-detector-list",
             component: () => import("../pages/HseSmokeDetectorList.vue"),
@@ -482,6 +488,26 @@ const router = createRouter({
             path: "hse-smoke-detector-full/:id",
             name: "hse-smoke-detector-full",
             component: () => import("../pages/HseSmokeDetectorFull.vue"),
+          },
+          {
+            path: "hse-fire-extinguisher-tej-create",
+            name: "hse-fire-extinguisher-tej-create",
+            component: () => import("../pages/HseFireExtinguisherChecklistTEJCreate.vue"),
+          },
+          {
+            path: "hse-fire-extinguisher-tej-edit/:id",
+            name: "hse-fire-extinguisher-tej-edit",
+            component: () => import("../pages/HseFireExtinguisherChecklistTEJCreate.vue"),
+          },
+          {
+            path: "hse-fire-extinguisher-tej-list",
+            name: "hse-fire-extinguisher-tej-list",
+            component: () => import("../pages/HseFireExtinguisherChecklistTEJList.vue"),
+          },
+          {
+            path: "hse-fire-extinguisher-tej-full/:id",
+            name: "hse-fire-extinguisher-tej-full",
+            component: () => import("../pages/HseFireExtinguisherTEJFull.vue"),
           },
 
           // SafetyCommittee
