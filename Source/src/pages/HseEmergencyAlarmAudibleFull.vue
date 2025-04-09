@@ -36,15 +36,14 @@ const state = reactive({
 
 });
 
-const SelectedFePressureGaugeCondition = ref("");
-const SelectedPlacedInPosition = ref("");
-const SelectedSafetySealOrPin = ref("");
-const SelectedHandleTriggerCondition = ref("");
-const SelectedHoseConnectionSecuredBelt = ref("");
+const SelectedSoundCondition = ref("");
+const SelectedMakeOfPosition = ref("");
+const SelectedAlarmSensor = ref("");
+const SelectedBatteryBackupCondition = ref("");
+const SelectedRecordOfAlarm = ref("");
 const SelectedNamePlateAndOperatingInstruction = ref("");
 const SelectedPhysicalDamage = ref("");
-const SelectedCorrosion = ref("");
-const SelectedLeakage = ref("");
+
 
 const router = useRouter();
 const route = useRoute();
@@ -53,33 +52,30 @@ const route = useRoute();
 
 const formData = reactive({
 
-      fire_extinguisher_tej_id: '',
-      fe_pressure_gauge_condition: '',
-      placed_in_position: '',
-      safety_seal_or_pin: '',
-      handle_trigger_condition: '',
-      hose_connection_secured_belt: '',
+      emergency_alarm_audible_id: '',
+      sound_condition: '',
+      make_of_position: '',
+      alarm_sensor: '',
+      battery_backup_condition: '',
+      record_of_alarm: '',
       name_plate_and_operating_instruction: '',
       physical_damage: '',
-      corrosion: '',
-      leakage: '',
-      refilling_date: '',
+      last_maintenance_date: '',
       remarks: '',
+
 });
 
 const rules = {
 
-        fire_extinguisher_tej_id:{required,},
-        fe_pressure_gauge_condition:{required,},
-        placed_in_position:{required,},
-        safety_seal_or_pin:{required,},
-        handle_trigger_condition:{required,},
-        hose_connection_secured_belt:{required,},
+        emergency_alarm_audible_id:{required,},
+        sound_condition:{required,},
+        make_of_position:{required,},
+        alarm_sensor:{required,},
+        battery_backup_condition:{required,},
+        record_of_alarm:{required,},
         name_plate_and_operating_instruction:{required,},
         physical_damage:{required,},
-        corrosion:{required,},
-        leakage:{required,},
-        refilling_date:{required,},
+        last_maintenance_date:{required,},
         remarks:{required,},
 };
 
@@ -99,22 +95,20 @@ const formatDate = (dateString: string) => {
 const submitForm = async () => {
     // Format the last_calibration_date to d-m-Y
 
-    const formattedDate = formatDate(formData.refilling_date);
-    formData.refilling_date = formattedDate;
+    const formattedDate = formatDate(formData.last_maintenance_date);
+    formData.last_maintenance_date = formattedDate;
 
     let id = route.params.id;
     let sID =id.toString()
-    formData.fire_extinguisher_tej_id = sID;
+    formData.emergency_alarm_audible_id = sID;
 
-    formData.fe_pressure_gauge_condition = SelectedFePressureGaugeCondition.value,
-    formData.placed_in_position = SelectedPlacedInPosition.value,
-    formData.safety_seal_or_pin = SelectedSafetySealOrPin.value,
-    formData.handle_trigger_condition = SelectedHandleTriggerCondition.value,
-    formData.hose_connection_secured_belt = SelectedHoseConnectionSecuredBelt.value,
+    formData.sound_condition = SelectedSoundCondition.value,
+    formData.make_of_position = SelectedMakeOfPosition.value,
+    formData.alarm_sensor = SelectedAlarmSensor.value,
+    formData.battery_backup_condition = SelectedBatteryBackupCondition.value,
+    formData.record_of_alarm = SelectedRecordOfAlarm.value,
     formData.name_plate_and_operating_instruction = SelectedNamePlateAndOperatingInstruction.value,
     formData.physical_damage = SelectedPhysicalDamage.value,
-    formData.corrosion = SelectedCorrosion.value,
-    formData.leakage = SelectedLeakage.value,
 
 
     validate.value.$touch();
@@ -123,7 +117,7 @@ const submitForm = async () => {
       FailedPopUp();
     } else {
             try {
-                let  url = config.baseURL+'/api/v1/fire-extinguisher-tej-checklist';
+                let  url = config.baseURL+'/api/v1/emergency-alarm-audible-checklist';
                 const response = await axios.post(url, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
@@ -131,16 +125,14 @@ const submitForm = async () => {
                 },
                 });
 
-                SelectedFePressureGaugeCondition.value = response.data.fe_pressure_gauge_condition;
-                SelectedPlacedInPosition.value = response.data.placed_in_position;
-                SelectedSafetySealOrPin.value = response.data.safety_seal_or_pin;
-                SelectedHandleTriggerCondition.value = response.data.handle_trigger_condition;
-                SelectedHoseConnectionSecuredBelt.value = response.data.hose_connection_secured_belt;
+                SelectedSoundCondition.value = response.data.sound_condition;
+                SelectedMakeOfPosition.value = response.data.make_of_position;
+                SelectedAlarmSensor.value = response.data.alarm_sensor;
+                SelectedBatteryBackupCondition.value = response.data.battery_backup_condition;
+                SelectedRecordOfAlarm.value = response.data.record_of_alarm;
                 SelectedNamePlateAndOperatingInstruction.value = response.data.name_plate_and_operating_instruction;
                 SelectedPhysicalDamage.value = response.data.physical_damage;
-                SelectedCorrosion.value = response.data.corrosion;
-                SelectedLeakage.value = response.data.leakage;
-                formData.refilling_date = response.data.refilling_date;
+                formData.last_maintenance_date = response.data.last_maintenance_date;
                 formData.remarks = response.data.remarks;
         
             } catch (error) {
@@ -156,7 +148,7 @@ const submitForm = async () => {
 // Fetch data from the API and update the state
 const fetchData = async () => {
   try {
-   let  url = config.baseURL+'/api/v1/fire-extinguisher-tej-checklist';
+   let  url = config.baseURL+'/api/v1/emergency-alarm-audible-checklist';
     const response = await axios.get(url,{
                 headers: {
                     'Authorization': state.token,
@@ -189,7 +181,7 @@ const fetchData = async () => {
 
 const deleteData = async (sID:string) => {
   try {
-    let url = config.baseURL+"/api/v1/fire-extinguisher-tej-checklist/delete/"+sID;
+    let url = config.baseURL+"/api/v1/emergency-alarm-audible-checklist/delete/"+sID;
     const response = await axios.delete(url,{
                 headers: {
                     'Authorization': state.token,
@@ -224,11 +216,11 @@ const formDataById = ref({
   location: "",
 });
 
-// Fetching Fire Extinguisher Form Data with id
+// Fetching Emergency Alarm Audible Form Data with id
 const fetchDataById = async () => {
   try {
     const id = route.params.id;
-    const url = `${config.baseURL}/api/v1/fire-extinguisher-tej/edit/${id}`;
+    const url = `${config.baseURL}/api/v1/emergency-alarm-audible/edit/${id}`;
     const response = await axios.get(url, {
       headers: {
         Authorization: state.token,
@@ -466,7 +458,7 @@ onUnmounted(() => {
     <div class="col-span-12 overflow-y-auto ">
         <div class="risk-form-head">
           <div class="py-4 bg-theme-1">
-              <p class=" text-base font-semibold uppercase text-center text-white">Fire Extinguisher TEJ FORM</p>
+              <p class=" text-base font-semibold uppercase text-center text-white">Emergency Alarm Audible FORM</p>
           </div>
           <div class="flex flex-wrap pt-4">
               <div class="md:w-1/2 w-full">
@@ -538,16 +530,14 @@ onUnmounted(() => {
             </div>
             <div class="flex items-center text-xs uppercase font-semibold bg-theme-1 text-white border shadow-sm">
                <div class="head flex items-center justify-center w-1/11 h-24 p-2 border">S/No.</div>
-               <div class="head flex items-center justify-center text-center w-1/11 h-24 p-2 border-r border-b border-t">F.E. Pressure Gauge Condition</div>
-               <div class="head flex items-center justify-center text-center w-1/11 h-24 p-2 border-r border-b border-t">Placed in Position</div>
-               <div class="head flex items-center justify-center text-center w-1/11 h-24 p-2 border-r border-b border-t">Safety Seal or Pin</div>
-               <div class="head flex items-center justify-center text-center w-1/11 h-24 p-2 border-r border-b border-t">Handle/ Trigger Condition</div>
-               <div class="head flex items-center justify-center text-center w-1/11 h-24 p-2 border-r border-b border-t">Hose connection & Secured Belt</div>
+               <div class="head flex items-center justify-center text-center w-1/11 h-24 p-2 border-r border-b border-t">Sound Condition</div>
+               <div class="head flex items-center justify-center text-center w-1/11 h-24 p-2 border-r border-b border-t">Mark of Position</div>
+               <div class="head flex items-center justify-center text-center w-1/11 h-24 p-2 border-r border-b border-t">Alarm Sensor</div>
+               <div class="head flex items-center justify-center text-center w-1/11 h-24 p-2 border-r border-b border-t">Battery Backup Condition</div>
+               <div class="head flex items-center justify-center text-center w-1/11 h-24 p-2 border-r border-b border-t">Record of Alarm</div>
                <div class="head flex items-center justify-center text-center w-1/11 h-24 p-2 border-r border-b border-t">Name Plate & Operating Instruction</div>
                <div class="head flex items-center justify-center text-center w-1/11 h-24 p-2 border-r border-b border-t">Physical Damage</div>
-               <div class="head flex items-center justify-center text-center w-1/11 h-24 p-2 border-r border-b border-t">Corrosion</div>
-               <div class="head flex items-center justify-center text-center w-1/11 h-24 p-2 border-r border-b border-t">Leakage</div>
-               <div class="head flex items-center justify-center text-center w-1/11 h-24 p-2 border-r border-b border-t">Refilling Date</div>
+               <div class="head flex items-center justify-center text-center w-1/11 h-24 p-2 border-r border-b border-t">Last Maintenance Date</div>
                <div class="head flex items-center justify-center text-center w-1/11 h-24 p-2 border-r border-b border-t">Remarks</div>
                <div class="head flex items-center justify-center text-center w-1/11 h-24 p-2 border-r border-b border-t">Action</div>
             </div>
@@ -560,35 +550,35 @@ onUnmounted(() => {
                 </Button>
                </div>
                <div class="head flex items-center justify-center text-center w-1/11 h-14 p-2 border-r border-b border-t border-gray-100 relative">
-                <select id="crud-form-6" style="padding-right: 24px !important;" v-model="SelectedFePressureGaugeCondition"  class="border text-gray-400 py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-xs border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-1 focus:ring-primary focus:ring-opacity-100 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 ">
+                <select id="crud-form-6" style="padding-right: 24px !important;" v-model="SelectedSoundCondition"  class="border text-gray-400 py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-xs border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-1 focus:ring-primary focus:ring-opacity-100 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 ">
                     <option value="" disabled>select</option>
                     <option value="1">Yes</option>
                     <option value="0">No</option>
                 </select>
                </div>
                <div class="head flex items-center justify-center text-center w-1/11 h-14 p-2 border-r border-b border-t border-gray-100 relative">
-                <select id="crud-form-6" style="padding-right: 24px !important;" v-model="SelectedPlacedInPosition"   class="border text-gray-400 py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-xs border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-1 focus:ring-primary focus:ring-opacity-100 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 ">
+                <select id="crud-form-6" style="padding-right: 24px !important;" v-model="SelectedMakeOfPosition"   class="border text-gray-400 py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-xs border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-1 focus:ring-primary focus:ring-opacity-100 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 ">
                     <option value="" disabled>select</option>
                     <option value="1">Yes</option>
                     <option value="0">No</option>
                 </select>
                </div>
                <div class="head flex items-center justify-center text-center w-1/11 h-14 p-2 border-r border-b border-t border-gray-100 relative">
-                <select id="crud-form-6" style="padding-right: 24px !important;" v-model="SelectedSafetySealOrPin" class="border text-gray-400 py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-xs border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-1 focus:ring-primary focus:ring-opacity-100 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 ">
+                <select id="crud-form-6" style="padding-right: 24px !important;" v-model="SelectedAlarmSensor" class="border text-gray-400 py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-xs border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-1 focus:ring-primary focus:ring-opacity-100 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 ">
                     <option value="" disabled>select</option>
                     <option value="1">Yes</option>
                     <option value="0">No</option>
                 </select>
                </div>
                <div class="head flex items-center justify-center text-center w-1/11 h-14 p-2 border-r border-b border-t border-gray-100 relative">
-                <select id="crud-form-6" style="padding-right: 24px !important;" v-model="SelectedHandleTriggerCondition"  class="border text-gray-400 py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-xs border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-1 focus:ring-primary focus:ring-opacity-100 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 ">
+                <select id="crud-form-6" style="padding-right: 24px !important;" v-model="SelectedBatteryBackupCondition"  class="border text-gray-400 py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-xs border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-1 focus:ring-primary focus:ring-opacity-100 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 ">
                     <option value="" disabled>select</option>
                     <option value="1">Yes</option>
                     <option value="0">No</option>
                 </select>
                </div>
                <div class="head flex items-center justify-center text-center w-1/11 h-14 p-2 border-r border-b border-t border-gray-100 relative">
-                <select id="crud-form-6" style="padding-right: 24px !important;" v-model="SelectedHoseConnectionSecuredBelt"  class="border text-gray-400 py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-xs border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-1 focus:ring-primary focus:ring-opacity-100 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 ">
+                <select id="crud-form-6" style="padding-right: 24px !important;" v-model="SelectedRecordOfAlarm"  class="border text-gray-400 py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-xs border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-1 focus:ring-primary focus:ring-opacity-100 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 ">
                     <option value="" disabled>select</option>
                     <option value="1">Yes</option>
                     <option value="0">No</option>
@@ -608,24 +598,10 @@ onUnmounted(() => {
                     <option value="0">No</option>
                 </select>
                </div> 
-               <div class="head flex items-center justify-center text-center w-1/11 h-14 p-2 border-r border-b border-t border-gray-100 relative">
-                <select id="crud-form-6" style="padding-right: 24px !important;" v-model="SelectedCorrosion" class="border text-gray-400 py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-xs border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-1 focus:ring-primary focus:ring-opacity-100 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 ">
-                    <option value="" disabled>select</option>
-                    <option value="1">Yes</option>
-                    <option value="0">No</option>
-                </select>
-               </div> 
-               <div class="head flex items-center justify-center text-center w-1/11 h-14 p-2 border-r border-b border-t border-gray-100 relative">
-                <select id="crud-form-6" style="padding-right: 24px !important;" v-model="SelectedLeakage" class="border text-gray-400 py-3 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-xs border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-1 focus:ring-primary focus:ring-opacity-100 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 ">
-                    <option value="" disabled>select</option>
-                    <option value="1">Yes</option>
-                    <option value="0">No</option>
-                </select>
-               </div> 
                
                <div class="head flex items-center justify-center text-center w-1/11 h-14 p-2 border-r border-b border-t border-gray-100">
                 <div class="flex-1 w-full mt-3 xl:mt-0">
-                        <FormInput id="crud-form-1" v-model.trim="validate.refilling_date.$model" class="w-full text-xs" type="date" name="name" placeholder="Last Calibration Date" pattern="\d{2}-\d{2}-\d{4}" />
+                        <FormInput id="crud-form-1" v-model.trim="validate.last_maintenance_date.$model" class="w-full text-xs" type="date" name="name" placeholder="Last Calibration Date" pattern="\d{2}-\d{2}-\d{4}" />
                     </div>
                </div>
                <div class="head flex items-center justify-center text-center w-1/11 h-14 p-2 border-r border-b border-t border-gray-100">
@@ -641,16 +617,14 @@ onUnmounted(() => {
             </div>
           <div v-for="(data, index) in state.viewData" :key="index" class="flex items-center text-xs my-4 shadow-sm bg-white rounded-sm">
                <div class="head flex items-center justify-center w-1/11 h-16 p-2 border border-gray-100">{{data.id}}</div>
-               <div class="head flex items-center justify-center text-center w-1/11 h-16 p-2 border-r border-b border-t border-gray-100">{{data.fe_pressure_gauge_condition ? 'Yes' : 'No'}}</div>
-               <div class="head flex items-center justify-center text-center w-1/11 h-16 p-2 border-r border-b border-t border-gray-100">{{data.placed_in_position ? 'Yes' : 'No'}}</div>
-               <div class="head flex items-center justify-center text-center w-1/11 h-16 p-2 border-r border-b border-t border-gray-100">{{data.safety_seal_or_pin ? 'Yes' : 'No'}}</div>
-               <div class="head flex items-center justify-center text-center w-1/11 h-16 p-2 border-r border-b border-t border-gray-100">{{data.handle_trigger_condition ? 'Yes' : 'No'}}</div>
-               <div class="head flex items-center justify-center text-center w-1/11 h-16 p-2 border-r border-b border-t border-gray-100">{{data.hose_connection_secured_belt ? 'Yes' : 'No'}}</div>
+               <div class="head flex items-center justify-center text-center w-1/11 h-16 p-2 border-r border-b border-t border-gray-100">{{data.sound_condition ? 'Yes' : 'No'}}</div>
+               <div class="head flex items-center justify-center text-center w-1/11 h-16 p-2 border-r border-b border-t border-gray-100">{{data.make_of_position ? 'Yes' : 'No'}}</div>
+               <div class="head flex items-center justify-center text-center w-1/11 h-16 p-2 border-r border-b border-t border-gray-100">{{data.alarm_sensor ? 'Yes' : 'No'}}</div>
+               <div class="head flex items-center justify-center text-center w-1/11 h-16 p-2 border-r border-b border-t border-gray-100">{{data.battery_backup_condition ? 'Yes' : 'No'}}</div>
+               <div class="head flex items-center justify-center text-center w-1/11 h-16 p-2 border-r border-b border-t border-gray-100">{{data.record_of_alarm ? 'Yes' : 'No'}}</div>
                <div class="head flex items-center justify-center text-center w-1/11 h-16 p-2 border-r border-b border-t border-gray-100">{{data.name_plate_and_operating_instruction ? 'Yes' : 'No'}}</div>
                <div class="head flex items-center justify-center text-center w-1/11 h-16 p-2 border-r border-b border-t border-gray-100">{{data.physical_damage ? 'Yes' : 'No'}}</div>
-               <div class="head flex items-center justify-center text-center w-1/11 h-16 p-2 border-r border-b border-t border-gray-100">{{data.corrosion ? 'Yes' : 'No'}}</div>
-               <div class="head flex items-center justify-center text-center w-1/11 h-16 p-2 border-r border-b border-t border-gray-100">{{data.leakage ? 'Yes' : 'No'}}</div>
-               <div class="head flex items-center justify-center text-center w-1/11 h-16 p-2 border-r border-b border-t border-gray-100">{{data.refilling_date}}</div>
+               <div class="head flex items-center justify-center text-center w-1/11 h-16 p-2 border-r border-b border-t border-gray-100">{{data.last_maintenance_date}}</div>
                <div class="head flex items-center justify-center text-center w-1/11 h-16 p-2 border-r border-b border-t border-gray-100">{{data.remarks}}</div>
                
                <div class="head flex items-center justify-center text-center w-1/11 h-16 p-2 border-r border-b border-t border-gray-100">
@@ -703,7 +677,7 @@ onUnmounted(() => {
    <Notification id="success-notification-content" class="flex hidden">
         <Lucide icon="CheckCircle" class="text-success" />
         <div class="ml-4 mr-4">
-          <div class="font-medium text-nowrap">Fire Extinguisher TEJ Checklist Create success!</div>
+          <div class="font-medium text-nowrap">Emergency Alarm Audible Checklist Create success!</div>
         </div>
       </Notification>
       <!-- END: Success Notification Content -->
@@ -711,7 +685,7 @@ onUnmounted(() => {
       <Notification id="failed-notification-content" class="flex items-center hidden">
         <Lucide icon="XCircle" class="text-danger" />
         <div class="ml-4 mr-4">
-          <div class="font-medium text-nowrap">Fire Extinguisher TEJ Checklist Create failed!</div>
+          <div class="font-medium text-nowrap">Emergency Alarm Audible Checklist Create failed!</div>
           <div class="mt-1 text-slate-500">Please check the fileld form.</div>
         </div>
       </Notification>

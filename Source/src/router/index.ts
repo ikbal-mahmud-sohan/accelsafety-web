@@ -502,12 +502,107 @@ const router = createRouter({
           {
             path: "hse-fire-extinguisher-tej-list",
             name: "hse-fire-extinguisher-tej-list",
-            component: () => import("../pages/HseFireExtinguisherChecklistTEJList.vue"),
+            component: () => import("../pages/HseFireExtinguisherChecklistTONList.vue"),
           },
           {
-            path: "hse-fire-extinguisher-tej-full/:id",
-            name: "hse-fire-extinguisher-tej-full",
-            component: () => import("../pages/HseFireExtinguisherTEJFull.vue"),
+            path: "hse-fire-extinguisher-ton-create",
+            name: "hse-fire-extinguisher-ton-create",
+            component: () => import("../pages/HseFireExtinguisherChecklistTONCreate.vue"),
+          },
+          {
+            path: "hse-fire-extinguisher-ton-edit/:id",
+            name: "hse-fire-extinguisher-ton-edit",
+            component: () => import("../pages/HseFireExtinguisherChecklistTONCreate.vue"),
+          },
+          {
+            path: "hse-fire-extinguisher-ton-list",
+            name: "hse-fire-extinguisher-ton-list",
+            component: () => import("../pages/HseFireExtinguisherChecklistTONList.vue"),
+          },
+          {
+            path: "hse-fire-extinguisher-ton-full/:id",
+            name: "hse-fire-extinguisher-ton-full",
+            component: () => import("../pages/HseFireExtinguisherTONFull.vue"),
+          },
+          {
+            path: "hse-fire-extinguisher-ctg-create",
+            name: "hse-fire-extinguisher-ctg-create",
+            component: () => import("../pages/HseFireExtinguisherChecklistCTGCreate.vue"),
+          },
+          {
+            path: "hse-fire-extinguisher-ctg-edit/:id",
+            name: "hse-fire-extinguisher-ctg-edit",
+            component: () => import("../pages/HseFireExtinguisherChecklistCTGCreate.vue"),
+          },
+          {
+            path: "hse-fire-extinguisher-ctg-list",
+            name: "hse-fire-extinguisher-ctg-list",
+            component: () => import("../pages/HseFireExtinguisherChecklistCTGList.vue"),
+          },
+          {
+            path: "hse-fire-extinguisher-ctg-full/:id",
+            name: "hse-fire-extinguisher-ctg-full",
+            component: () => import("../pages/HseFireExtinguisherCTGFull.vue"),
+          },
+          {
+            path: "hse-fire-extinguisher-hq-create",
+            name: "hse-fire-extinguisher-hq-create",
+            component: () => import("../pages/HseFireExtinguisherChecklistHQCreate.vue"),
+          },
+          {
+            path: "hse-fire-extinguisher-hq-edit/:id",
+            name: "hse-fire-extinguisher-hq-edit",
+            component: () => import("../pages/HseFireExtinguisherChecklistHQCreate.vue"),
+          },
+          {
+            path: "hse-fire-extinguisher-hq-list",
+            name: "hse-fire-extinguisher-hq-list",
+            component: () => import("../pages/HseFireExtinguisherChecklistHQList.vue"),
+          },
+          {
+            path: "hse-fire-extinguisher-hq-full/:id",
+            name: "hse-fire-extinguisher-hq-full",
+            component: () => import("../pages/HseFireExtinguisherHQFull.vue"),
+          },
+          {
+            path: "hse-emergency-alarm-audible-create",
+            name: "hse-emergency-alarm-audible-create",
+            component: () => import("../pages/HseEmergencyAlarmAudibleCreate.vue"),
+          },
+          {
+            path: "hse-emergency-alarm-audible-edit/:id",
+            name: "hse-emergency-alarm-audible-edit",
+            component: () => import("../pages/HseEmergencyAlarmAudibleCreate.vue"),
+          },
+          {
+            path: "hse-emergency-alarm-audible-list",
+            name: "hse-emergency-alarm-audible-list",
+            component: () => import("../pages/HseEmergencyAlarmAudibleList.vue"),
+          },
+          {
+            path: "hse-emergency-alarm-audible-full/:id",
+            name: "hse-emergency-alarm-audible-full",
+            component: () => import("../pages/HseEmergencyAlarmAudibleFull.vue"),
+          },
+          {
+            path: "hse-emergency-alarm-visible-create",
+            name: "hse-emergency-alarm-visible-create",
+            component: () => import("../pages/HseEmergencyAlarmVisibleCreate.vue"),
+          },
+          {
+            path: "hse-emergency-alarm-visible-edit/:id",
+            name: "hse-emergency-alarm-visible-edit",
+            component: () => import("../pages/HseEmergencyAlarmVisibleCreate.vue"),
+          },
+          {
+            path: "hse-emergency-alarm-visible-list",
+            name: "hse-emergency-alarm-visible-list",
+            component: () => import("../pages/HseEmergencyAlarmVisibleList.vue"),
+          },
+          {
+            path: "hse-emergency-alarm-visible-full/:id",
+            name: "hse-emergency-alarm-visible-full",
+            component: () => import("../pages/HseEmergencyAlarmVisibleFull.vue"),
           },
 
           // SafetyCommittee

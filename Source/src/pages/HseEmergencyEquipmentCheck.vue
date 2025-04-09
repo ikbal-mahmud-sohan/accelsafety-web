@@ -81,6 +81,166 @@ import Button from "@/components/Base/Button";
         </div>
       </div>
     </div>
+    <div class="w-full lg:w-1/3">
+      <div class="p-4">
+        <div class="border py-2">
+          <div class="flex justify-center items-center p-4">
+          <router-link :to="{ name: 'hse-fire-extinguisher-ton-create' }">
+            <div class="inline-block">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Fire_Extinguisher_TEJ.png" alt="">
+            </div>
+          </router-link>
+        </div>
+        <div class="py-1">
+          <p class="text-center">Hse Fire Extinguisher TON Checklist</p>
+        </div>
+        </div>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/3">
+      <div class="p-4">
+        <div class="border py-2">
+          <div class="flex justify-center items-center p-4">
+          <router-link :to="{ name: 'hse-fire-extinguisher-ton-list' }">
+            <div class="inline-block">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Fire_Extinguisher_TEJ.png" alt="">
+            </div>
+          </router-link>
+        </div>
+        <div class="py-1">
+          <p class="text-center">Hse Fire Extinguisher TON List</p>
+        </div>
+        </div>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/3">
+      <div class="p-4">
+        <div class="border py-2">
+          <div class="flex justify-center items-center p-4">
+          <router-link :to="{ name: 'hse-fire-extinguisher-ctg-create' }">
+            <div class="inline-block">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Fire_Extinguisher_TEJ.png" alt="">
+            </div>
+          </router-link>
+        </div>
+        <div class="py-1">
+          <p class="text-center">Hse Fire Extinguisher CTG Checklist</p>
+        </div>
+        </div>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/3">
+      <div class="p-4">
+        <div class="border py-2">
+          <div class="flex justify-center items-center p-4">
+          <router-link :to="{ name: 'hse-fire-extinguisher-ctg-list' }">
+            <div class="inline-block">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Fire_Extinguisher_TEJ.png" alt="">
+            </div>
+          </router-link>
+        </div>
+        <div class="py-1">
+          <p class="text-center">Hse Fire Extinguisher CTG List</p>
+        </div>
+        </div>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/3">
+      <div class="p-4">
+        <div class="border py-2">
+          <div class="flex justify-center items-center p-4">
+          <router-link :to="{ name: 'hse-fire-extinguisher-hq-create' }">
+            <div class="inline-block">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Fire_Extinguisher_TEJ.png" alt="">
+            </div>
+          </router-link>
+        </div>
+        <div class="py-1">
+          <p class="text-center">Hse Fire Extinguisher HQ Checklist</p>
+        </div>
+        </div>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/3">
+      <div class="p-4">
+        <div class="border py-2">
+          <div class="flex justify-center items-center p-4">
+          <router-link :to="{ name: 'hse-fire-extinguisher-hq-list' }">
+            <div class="inline-block">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Fire_Extinguisher_TEJ.png" alt="">
+            </div>
+          </router-link>
+        </div>
+        <div class="py-1">
+          <p class="text-center">Hse Fire Extinguisher HQ List</p>
+        </div>
+        </div>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/3">
+      <div class="p-4">
+        <div class="border py-2">
+          <div class="flex justify-center items-center p-4">
+          <router-link :to="{ name: 'hse-emergency-alarm-audible-create' }">
+            <div class="inline-block">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Fire_Extinguisher_TEJ.png" alt="">
+            </div>
+          </router-link>
+        </div>
+        <div class="py-1">
+          <p class="text-center">Emergency Alarm Audible Checklist</p>
+        </div>
+        </div>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/3">
+      <div class="p-4">
+        <div class="border py-2">
+          <div class="flex justify-center items-center p-4">
+          <router-link :to="{ name: 'hse-emergency-alarm-audible-list' }">
+            <div class="inline-block">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Fire_Extinguisher_TEJ.png" alt="">
+            </div>
+          </router-link>
+        </div>
+        <div class="py-1">
+          <p class="text-center">Emergency Alarm Audible List</p>
+        </div>
+        </div>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/3">
+      <div class="p-4">
+        <div class="border py-2">
+          <div class="flex justify-center items-center p-4">
+          <router-link :to="{ name: 'hse-emergency-alarm-visible-create' }">
+            <div class="inline-block">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Fire_Extinguisher_TEJ.png" alt="">
+            </div>
+          </router-link>
+        </div>
+        <div class="py-1">
+          <p class="text-center">Emergency Alarm Visible Checklist</p>
+        </div>
+        </div>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/3">
+      <div class="p-4">
+        <div class="border py-2">
+          <div class="flex justify-center items-center p-4">
+          <router-link :to="{ name: 'hse-emergency-alarm-visible-list' }">
+            <div class="inline-block">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Fire_Extinguisher_TEJ.png" alt="">
+            </div>
+          </router-link>
+        </div>
+        <div class="py-1">
+          <p class="text-center">Emergency Alarm Visible List</p>
+        </div>
+        </div>
+      </div>
+    </div>
     
   </div>
 </template>
