@@ -53,7 +53,7 @@ const route = useRoute();
 
 const formData = reactive({
 
-      fire_extinguisher_tej_id: '',
+      fire_extinguisher_hq_id: '',
       fe_pressure_gauge_condition: '',
       placed_in_position: '',
       safety_seal_or_pin: '',
@@ -69,7 +69,7 @@ const formData = reactive({
 
 const rules = {
 
-        fire_extinguisher_tej_id:{required,},
+        fire_extinguisher_hq_id:{required,},
         fe_pressure_gauge_condition:{required,},
         placed_in_position:{required,},
         safety_seal_or_pin:{required,},
@@ -104,7 +104,7 @@ const submitForm = async () => {
 
     let id = route.params.id;
     let sID =id.toString()
-    formData.fire_extinguisher_tej_id = sID;
+    formData.fire_extinguisher_hq_id = sID;
 
     formData.fe_pressure_gauge_condition = SelectedFePressureGaugeCondition.value,
     formData.placed_in_position = SelectedPlacedInPosition.value,
@@ -123,7 +123,7 @@ const submitForm = async () => {
       FailedPopUp();
     } else {
             try {
-                let  url = config.baseURL+'/api/v1/fire-extinguisher-tej-checklist';
+                let  url = config.baseURL+'/api/v1/fire-extinguisher-hq-checklist';
                 const response = await axios.post(url, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
@@ -156,7 +156,7 @@ const submitForm = async () => {
 // Fetch data from the API and update the state
 const fetchData = async () => {
   try {
-   let  url = config.baseURL+'/api/v1/fire-extinguisher-tej-checklist';
+   let  url = config.baseURL+'/api/v1/fire-extinguisher-hq-checklist';
     const response = await axios.get(url,{
                 headers: {
                     'Authorization': state.token,
@@ -189,7 +189,7 @@ const fetchData = async () => {
 
 const deleteData = async (sID:string) => {
   try {
-    let url = config.baseURL+"/api/v1/fire-extinguisher-tej-checklist/delete/"+sID;
+    let url = config.baseURL+"/api/v1/fire-extinguisher-hq-checklist/delete/"+sID;
     const response = await axios.delete(url,{
                 headers: {
                     'Authorization': state.token,
@@ -228,7 +228,7 @@ const formDataById = ref({
 const fetchDataById = async () => {
   try {
     const id = route.params.id;
-    const url = `${config.baseURL}/api/v1/fire-extinguisher-tej/edit/${id}`;
+    const url = `${config.baseURL}/api/v1/fire-extinguisher-hq/edit/${id}`;
     const response = await axios.get(url, {
       headers: {
         Authorization: state.token,
@@ -466,7 +466,7 @@ onUnmounted(() => {
     <div class="col-span-12 overflow-y-auto ">
         <div class="risk-form-head">
           <div class="py-4 bg-theme-1">
-              <p class=" text-base font-semibold uppercase text-center text-white">Fire Extinguisher TEJ FORM</p>
+              <p class=" text-base font-semibold uppercase text-center text-white">Fire Extinguisher HQ FORM</p>
           </div>
           <div class="flex flex-wrap pt-4">
               <div class="md:w-1/2 w-full">
@@ -703,7 +703,7 @@ onUnmounted(() => {
    <Notification id="success-notification-content" class="flex hidden">
         <Lucide icon="CheckCircle" class="text-success" />
         <div class="ml-4 mr-4">
-          <div class="font-medium text-nowrap">Fire Extinguisher TEJ Checklist Create success!</div>
+          <div class="font-medium text-nowrap">Fire Extinguisher HQ Checklist Create success!</div>
         </div>
       </Notification>
       <!-- END: Success Notification Content -->
@@ -711,7 +711,7 @@ onUnmounted(() => {
       <Notification id="failed-notification-content" class="flex items-center hidden">
         <Lucide icon="XCircle" class="text-danger" />
         <div class="ml-4 mr-4">
-          <div class="font-medium text-nowrap">Fire Extinguisher TEJ Checklist Create failed!</div>
+          <div class="font-medium text-nowrap">Fire Extinguisher HQ Checklist Create failed!</div>
           <div class="mt-1 text-slate-500">Please check the fileld form.</div>
         </div>
       </Notification>

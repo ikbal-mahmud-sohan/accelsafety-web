@@ -744,7 +744,7 @@ onUnmounted(() => {
    <Notification id="success-notification-content" class="flex hidden">
         <Lucide icon="CheckCircle" class="text-success" />
         <div class="ml-4 mr-4">
-          <div class="font-medium text-nowrap">Risk Assessment Create success!</div>
+          <div class="font-medium text-nowrap">Smoke Detector Create success!</div>
         </div>
       </Notification>
       <!-- END: Success Notification Content -->
@@ -752,7 +752,7 @@ onUnmounted(() => {
       <Notification id="failed-notification-content" class="flex items-center hidden">
         <Lucide icon="XCircle" class="text-danger" />
         <div class="ml-4 mr-4">
-          <div class="font-medium text-nowrap">Risk Assessment Create failed!</div>
+          <div class="font-medium text-nowrap">Smoke Detector Create failed!</div>
           <div class="mt-1 text-slate-500">Please check the fileld form.</div>
         </div>
       </Notification>
