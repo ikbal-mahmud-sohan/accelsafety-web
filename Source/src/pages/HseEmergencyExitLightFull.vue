@@ -52,7 +52,7 @@ const route = useRoute();
 
 const formData = reactive({
 
-      emergency_alarm_visible_id: '',
+      emergency_exit_light_id: '',
       power_supply: '',
       light_condition: '',
       beam_direction_and_coverage: '',
@@ -67,7 +67,7 @@ const formData = reactive({
 
 const rules = {
 
-        emergency_alarm_visible_id:{required,},
+        emergency_exit_light_id:{required,},
         power_supply:{required,},
         light_condition:{required,},
         beam_direction_and_coverage:{required,},
@@ -100,7 +100,7 @@ const submitForm = async () => {
 
     let id = route.params.id;
     let sID =id.toString()
-    formData.emergency_alarm_visible_id = sID;
+    formData.emergency_exit_light_id = sID;
 
     formData.power_supply = SelectedPowerSupply.value,
     formData.light_condition = SelectedLightCondition.value,
@@ -117,7 +117,7 @@ const submitForm = async () => {
       FailedPopUp();
     } else {
             try {
-                let  url = config.baseURL+'/api/v1/emergency-alarm-visible-checklist';
+                let  url = config.baseURL+'/api/v1/emergency-exit-light-checklist';
                 const response = await axios.post(url, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
@@ -148,7 +148,7 @@ const submitForm = async () => {
 // Fetch data from the API and update the state
 const fetchData = async () => {
   try {
-   let  url = config.baseURL+'/api/v1/emergency-alarm-visible-checklist';
+   let  url = config.baseURL+'/api/v1/emergency-exit-light-checklist';
     const response = await axios.get(url,{
                 headers: {
                     'Authorization': state.token,
@@ -181,7 +181,7 @@ const fetchData = async () => {
 
 const deleteData = async (sID:string) => {
   try {
-    let url = config.baseURL+"/api/v1/emergency-alarm-visible-checklist/delete/"+sID;
+    let url = config.baseURL+"/api/v1/emergency-exit-light-checklist/delete/"+sID;
     const response = await axios.delete(url,{
                 headers: {
                     'Authorization': state.token,
@@ -216,11 +216,11 @@ const formDataById = ref({
   location: "",
 });
 
-// Fetching Emergency Alarm Visible Form Data with id
+// Fetching Emergency Exit Light Form Data with id
 const fetchDataById = async () => {
   try {
     const id = route.params.id;
-    const url = `${config.baseURL}/api/v1/emergency-alarm-visible/edit/${id}`;
+    const url = `${config.baseURL}/api/v1/emergency-exit-light/edit/${id}`;
     const response = await axios.get(url, {
       headers: {
         Authorization: state.token,
@@ -458,7 +458,7 @@ onUnmounted(() => {
     <div class="col-span-12 overflow-y-auto ">
         <div class="risk-form-head">
           <div class="py-4 bg-theme-1">
-              <p class=" text-base font-semibold uppercase text-center text-white">Emergency Alarm Visible FORM</p>
+              <p class=" text-base font-semibold uppercase text-center text-white">Emergency Exit Light FORM</p>
           </div>
           <div class="flex flex-wrap pt-4">
               <div class="md:w-1/2 w-full">
@@ -677,7 +677,7 @@ onUnmounted(() => {
    <Notification id="success-notification-content" class="flex hidden">
         <Lucide icon="CheckCircle" class="text-success" />
         <div class="ml-4 mr-4">
-          <div class="font-medium text-nowrap">Emergency Alarm Visible Checklist Create success!</div>
+          <div class="font-medium text-nowrap">Emergency Exit Light Checklist Create success!</div>
         </div>
       </Notification>
       <!-- END: Success Notification Content -->
@@ -685,7 +685,7 @@ onUnmounted(() => {
       <Notification id="failed-notification-content" class="flex items-center hidden">
         <Lucide icon="XCircle" class="text-danger" />
         <div class="ml-4 mr-4">
-          <div class="font-medium text-nowrap">Emergency Alarm Visible Checklist Create failed!</div>
+          <div class="font-medium text-nowrap">Emergency Exit Light Checklist Create failed!</div>
           <div class="mt-1 text-slate-500">Please check the fileld form.</div>
         </div>
       </Notification>

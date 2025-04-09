@@ -87,7 +87,7 @@ import Button from "@/components/Base/Button";
           <div class="flex justify-center items-center p-4">
           <router-link :to="{ name: 'hse-fire-extinguisher-ton-create' }">
             <div class="inline-block">
-              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Fire_Extinguisher_TEJ.png" alt="">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Fire_Extinguisher_TON.png" alt="">
             </div>
           </router-link>
         </div>
@@ -103,7 +103,7 @@ import Button from "@/components/Base/Button";
           <div class="flex justify-center items-center p-4">
           <router-link :to="{ name: 'hse-fire-extinguisher-ton-list' }">
             <div class="inline-block">
-              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Fire_Extinguisher_TEJ.png" alt="">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Fire_Extinguisher_TON.png" alt="">
             </div>
           </router-link>
         </div>
@@ -119,7 +119,7 @@ import Button from "@/components/Base/Button";
           <div class="flex justify-center items-center p-4">
           <router-link :to="{ name: 'hse-fire-extinguisher-ctg-create' }">
             <div class="inline-block">
-              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Fire_Extinguisher_TEJ.png" alt="">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Fire_Extinguisher_CTG.png" alt="">
             </div>
           </router-link>
         </div>
@@ -135,7 +135,7 @@ import Button from "@/components/Base/Button";
           <div class="flex justify-center items-center p-4">
           <router-link :to="{ name: 'hse-fire-extinguisher-ctg-list' }">
             <div class="inline-block">
-              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Fire_Extinguisher_TEJ.png" alt="">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Fire_Extinguisher_CTG.png" alt="">
             </div>
           </router-link>
         </div>
@@ -151,7 +151,7 @@ import Button from "@/components/Base/Button";
           <div class="flex justify-center items-center p-4">
           <router-link :to="{ name: 'hse-fire-extinguisher-hq-create' }">
             <div class="inline-block">
-              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Fire_Extinguisher_TEJ.png" alt="">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Fire_Extinguisher_HQ.png" alt="">
             </div>
           </router-link>
         </div>
@@ -167,7 +167,7 @@ import Button from "@/components/Base/Button";
           <div class="flex justify-center items-center p-4">
           <router-link :to="{ name: 'hse-fire-extinguisher-hq-list' }">
             <div class="inline-block">
-              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Fire_Extinguisher_TEJ.png" alt="">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Fire_Extinguisher_HQ.png" alt="">
             </div>
           </router-link>
         </div>
@@ -183,7 +183,7 @@ import Button from "@/components/Base/Button";
           <div class="flex justify-center items-center p-4">
           <router-link :to="{ name: 'hse-emergency-alarm-audible-create' }">
             <div class="inline-block">
-              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Fire_Extinguisher_TEJ.png" alt="">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Fire_Alarm.png" alt="">
             </div>
           </router-link>
         </div>
@@ -199,7 +199,7 @@ import Button from "@/components/Base/Button";
           <div class="flex justify-center items-center p-4">
           <router-link :to="{ name: 'hse-emergency-alarm-audible-list' }">
             <div class="inline-block">
-              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Fire_Extinguisher_TEJ.png" alt="">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Fire_Alarm.png" alt="">
             </div>
           </router-link>
         </div>
@@ -215,7 +215,7 @@ import Button from "@/components/Base/Button";
           <div class="flex justify-center items-center p-4">
           <router-link :to="{ name: 'hse-emergency-alarm-visible-create' }">
             <div class="inline-block">
-              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Fire_Extinguisher_TEJ.png" alt="">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Sirine.png" alt="">
             </div>
           </router-link>
         </div>
@@ -231,12 +231,44 @@ import Button from "@/components/Base/Button";
           <div class="flex justify-center items-center p-4">
           <router-link :to="{ name: 'hse-emergency-alarm-visible-list' }">
             <div class="inline-block">
-              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Fire_Extinguisher_TEJ.png" alt="">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Sirine.png" alt="">
             </div>
           </router-link>
         </div>
         <div class="py-1">
           <p class="text-center">Emergency Alarm Visible List</p>
+        </div>
+        </div>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/3">
+      <div class="p-4">
+        <div class="border py-2">
+          <div class="flex justify-center items-center p-4">
+          <router-link :to="{ name: 'hse-emergency-exit-light-create' }">
+            <div class="inline-block">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Emergency_Escape_Light.png" alt="">
+            </div>
+          </router-link>
+        </div>
+        <div class="py-1">
+          <p class="text-center">Emergency Exit Light Checklist</p>
+        </div>
+        </div>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/3">
+      <div class="p-4">
+        <div class="border py-2">
+          <div class="flex justify-center items-center p-4">
+          <router-link :to="{ name: 'hse-emergency-exit-light-list' }">
+            <div class="inline-block">
+              <img class="w-32 h-32 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none" src="../assets/images/icon/Emergency_Escape_Light.png" alt="">
+            </div>
+          </router-link>
+        </div>
+        <div class="py-1">
+          <p class="text-center">Emergency Exit Light List</p>
         </div>
         </div>
       </div>
