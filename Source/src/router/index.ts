@@ -604,6 +604,26 @@ const router = createRouter({
             name: "hse-emergency-alarm-visible-full",
             component: () => import("../pages/HseEmergencyAlarmVisibleFull.vue"),
           },
+          {
+            path: "hse-emergency-exit-light-create",
+            name: "hse-emergency-exit-light-create",
+            component: () => import("../pages/HseEmergencyExitLightCreate.vue"),
+          },
+          {
+            path: "hse-emergency-exit-light-edit/:id",
+            name: "hse-emergency-exit-light-edit",
+            component: () => import("../pages/HseEmergencyExitLightCreate.vue"),
+          },
+          {
+            path: "hse-emergency-exit-light-list",
+            name: "hse-emergency-exit-light-list",
+            component: () => import("../pages/HseEmergencyExitLightList.vue"),
+          },
+          {
+            path: "hse-emergency-exit-light-full/:id",
+            name: "hse-emergency-exit-light-full",
+            component: () => import("../pages/HseEmergencyExitLightFull.vue"),
+          },
 
           // SafetyCommittee
           {
