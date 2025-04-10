@@ -625,6 +625,28 @@ const router = createRouter({
             component: () => import("../pages/HseEmergencyExitLightFull.vue"),
           },
 
+          //HseFirstAidChecklist
+          {
+            path: "hse-first-aid-check",
+            name: "hse-first-aid-check",
+            component: () => import("../pages/HseFirstAidCheck.vue"),
+          },
+          {
+            path: "hse-first-aid-create",
+            name: "hse-first-aid-create",
+            component: () => import("../pages/HseFirstAidChecklistCreate.vue"),
+          },
+          {
+            path: "hse-first-aid-edit/:id",
+            name: "hse-first-aid-edit",
+            component: () => import("../pages/HseFirstAidChecklistCreate.vue"),
+          },
+          {
+            path: "hse-first-aid-list",
+            name: "hse-first-aid-list",
+            component: () => import("../pages/HseFirstAidChecklistList.vue"),
+          },
+
           // SafetyCommittee
           {
             path: "hse-safety-committee",
