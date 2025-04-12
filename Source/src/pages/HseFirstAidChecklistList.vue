@@ -29,6 +29,7 @@ const fetchData = async () => {
                 },
                 });
     state.visitorsEntry = response.data.data;
+    console.log('dataFetched: ', state.visitorsEntry);
   } catch (error) {
     console.error('Error fetching data:', error);
   }
@@ -103,21 +104,30 @@ onMounted(() => {
     <!-- BEGIN: Data List -->
     <div class="col-span-12 overflow-auto intro-y " >
       <Table class="border-spacing-y-[10px] border-separate -mt-2">
-        <Table.Thead>
+        <Table.Thead class="bg-primary text-white">
           <Table.Tr>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">ID</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">First Aid Box No.</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Location/Authorized dept.</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Authorized Person</Table.Th>
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Contact No.</Table.Th>
-            <!-- <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Items
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase border-r border-secondary">ID</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase border-r border-secondary">First Aid Box No.</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase border-r border-secondary">Location/Authorized dept.</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase border-r border-secondary">Authorized Person</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase border-r border-secondary">Contact No.</Table.Th>
+            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase border-r border-secondary">
+              <div class="flex flex-col flex-wrap w-full">
+                <div class="w-full text-center border-b border-secondary pb-2 pt-3 -mt-3 h-full">Items</div>
+                <div class="flex flex-nowrap pt-2 h-full">
+                  <div class="w-1/4 text-center text-wrap px-4 border-r border-secondary">Item Name</div>
+                  <div class="w-1/4 text-center text-wrap px-4 border-r border-secondary">Required Quantity</div>
+                  <div class="w-1/4 text-center text-wrap px-4 border-r border-secondary">Available Quantity</div>
+                  <div class="w-1/4 text-center text-wrap px-4">Remarks</div>
+                </div>
+              </div>
+              <!-- Items
               <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Item Name</Table.Th>
               <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Required Quantity</Table.Th>
               <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Available Quantity</Table.Th>
-              <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Available Quantity</Table.Th>
-              <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Remarks</Table.Th>
-            </Table.Th> -->
-            <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Reference</Table.Th>
+              <Table.Th class="text-left border-b-0 whitespace-nowrap uppercase">Remarks</Table.Th> -->
+            </Table.Th>
+            <Table.Th class="text-center border-b-0 whitespace-nowrap uppercase border-r border-secondary">Reference</Table.Th>
             <Table.Th class="text-center border-b-0 whitespace-nowrap uppercase">ACTIONS</Table.Th>
           </Table.Tr>
         </Table.Thead>
@@ -138,22 +148,35 @@ onMounted(() => {
             <Table.Td class="whitespace-nowrap box text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
               {{ report.contact_no }}
             </Table.Td>
-            <!-- <Table.Td class="whitespace-nowrap box text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-              
-              <Table.Td class="whitespace-nowrap box text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-                {{ report.item_name }}
+            <Table.Td class="whitespace-nowrap box text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+              <div class="flex flex-nowrap">
+                <div class="w-1/4 px-4 text-wrap">
+                  {{ report.data[0].item_name }}
+                </div>
+                <div class="w-1/4 px-4 text-wrap">
+                  {{ report.data[0].required_quantity }}
+                </div>
+                <div class="w-1/4 px-4 text-wrap">
+                  {{ report.data[0].available_quantity }}
+                </div>
+                <div class="w-1/4 px-4 text-wrap">
+                  {{ report.data[0].remarks }}
+                </div>
+              </div>
+              <!-- <Table.Td class="whitespace-nowrap box text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+                {{ report.data[0].item_name }}
               </Table.Td>
               <Table.Td class="whitespace-nowrap box text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-                {{ report.required_quantity }}
+                {{ report.data[0].required_quantity }}
               </Table.Td>
               <Table.Td class="whitespace-nowrap box text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-                {{ report.available_quantity }}
+                {{ report.data[0].available_quantity }}
               </Table.Td>
               <Table.Td class="whitespace-nowrap box text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-                {{ report.remarks }}
-              </Table.Td>
-            </Table.Td> -->
-            <Table.Td class="whitespace-nowrap box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+                {{ report.data[0].remarks }}
+              </Table.Td> -->
+            </Table.Td>
+            <Table.Td class=" min-w-60 xl:min-w-80 2xl:min-w-96 box w-40 text-left rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
               {{ report.reference }}
             </Table.Td>
             <Table.Td

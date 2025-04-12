@@ -33,7 +33,7 @@ const formState = reactive({
   contact_no: '',
   data: [
     {
-      item_name: 'Antiseptic Cotton (0.5 ounce)',
+      item_name: '',
       required_quantity: '',
       available_quantity: '',
       remarks: ''
@@ -55,6 +55,7 @@ const rules = {
   contact_no: { required, integer },
   data: {
     $each: helpers.forEach({
+      item_name: { required, minLength: minLength(3) },
       required_quantity: { required, minLength: minLength(1) },
       available_quantity: { required, minLength: minLength(1) },
       remarks: { required, minLength: minLength(3) },
@@ -377,6 +378,40 @@ function SuccessPopUp() {
                   <FormLabel class="xl:w-40 xl:!mr-10">
                     <div class="text-left">
                       <div class="flex items-center">
+                        <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-4">Item Name:
+                          <span class="relative group cursor-pointer ml-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                            </svg>
+                              <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-md">
+                                Item Name
+                              </div>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </FormLabel>
+                  <div class="flex-1 w-full mt-3 xl:mt-0">
+                    <FormInput id="crud-form-3" v-model.trim="formState.data[0].item_name" class="w-full" type="text" name="name":class="{ 'border-danger': v$.$dirty && v$.data.$each.$response.$errors[0]?.item_name?.length }" placeholder="Insert Driver Item Name"/>
+                    
+                    <div class="flex justify-between">
+                      <template v-if="v$.$dirty && v$.data.$each.$response.$errors[0]?.item_name">
+                        <div v-for="(error, index) in v$.data.$each.$response.$errors[0].item_name" :key="index" class="mt-2 text-danger whitespace-nowrap">
+                          {{ error.$message }}
+                        </div>
+                      </template>
+                      <p class="text-right mt-2 w-full"> Required, at least 3 characters</p>
+                    </div>
+                  </div>
+                </FormInline>
+              </div>
+            </div>
+            <div class="md:w-1/2 w-full">
+              <div class="px-4 py-2">
+                <FormInline class="flex flex-col flex-wrap pt-5 mt-5 xl:flex-row first:mt-0 first:pt-0">
+                  <FormLabel class="xl:w-40 xl:!mr-10">
+                    <div class="text-left">
+                      <div class="flex items-center">
                         <div class="font-medium text-sm text-nowrap flex mt-6 xl:mt-4">Required Quantity:
                           <span class="relative group cursor-pointer ml-1">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
@@ -576,7 +611,7 @@ function SuccessPopUp() {
    <Notification id="success-notification-content" class="flex hidden">
         <Lucide icon="CheckCircle" class="text-success" />
         <div class="ml-4 mr-4">
-          <div class="font-medium">First Aid Checklist created successfully!</div>
+          <div class="font-medium">First Aid Checklist {{ componentState.isEditMode ? 'edited' : 'created' }} successfully!</div>
         </div>
       </Notification>
       <!-- END: Success Notification Content -->
@@ -584,7 +619,7 @@ function SuccessPopUp() {
       <Notification id="failed-notification-content" class="flex items-center hidden">
         <Lucide icon="XCircle" class="text-danger" />
         <div class="ml-4 mr-4">
-          <div class="font-medium">First Aid Checklist Create failed!</div>
+          <div class="font-medium">First Aid Checklist {{componentState.isEditMode ? 'edited' : 'Create' }} failed!</div>
           <div class="mt-1 text-slate-500">Please check the filled form.</div>
         </div>
       </Notification>
