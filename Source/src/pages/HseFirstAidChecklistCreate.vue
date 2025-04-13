@@ -358,7 +358,7 @@ function SuccessPopUp() {
                     </div>
                   </FormLabel>
                   <div class="flex-1 w-full mt-3 xl:mt-0">
-                    <FormInput id="crud-form-3" v-model.trim="formState.contact_no" class="w-full" type="text" name="name":class="{ 'border-danger': v$.contact_no.$error,}" placeholder="Insert Driver Contact No."/>
+                    <FormInput id="crud-form-3" v-model.trim="formState.contact_no" class="w-full" type="text" name="name":class="{ 'border-danger': v$.contact_no.$error,}" placeholder="Insert Contact No."/>
                     
                     <div class="flex justify-between">
                       <template v-if="v$.contact_no.$error">
@@ -392,7 +392,7 @@ function SuccessPopUp() {
                     </div>
                   </FormLabel>
                   <div class="flex-1 w-full mt-3 xl:mt-0">
-                    <FormInput id="crud-form-3" v-model.trim="formState.data[0].item_name" class="w-full" type="text" name="name":class="{ 'border-danger': v$.$dirty && v$.data.$each.$response.$errors[0]?.item_name?.length }" placeholder="Insert Driver Item Name"/>
+                    <FormInput id="crud-form-3" v-model.trim="formState.data[0].item_name" class="w-full" type="text" name="name":class="{ 'border-danger': v$.$dirty && v$.data.$each.$response.$errors[0]?.item_name?.length }" placeholder="Insert Item Name"/>
                     
                     <div class="flex justify-between">
                       <template v-if="v$.$dirty && v$.data.$each.$response.$errors[0]?.item_name">
@@ -426,7 +426,7 @@ function SuccessPopUp() {
                     </div>
                   </FormLabel>
                   <div class="flex-1 w-full mt-3 xl:mt-0">
-                    <FormInput id="crud-form-3" v-model.trim="formState.data[0].required_quantity" class="w-full" type="text" name="name":class="{ 'border-danger': v$.$dirty && v$.data.$each.$response.$errors[0]?.required_quantity?.length }" placeholder="Insert Driver Required Quantity"/>
+                    <FormInput id="crud-form-3" v-model.trim="formState.data[0].required_quantity" class="w-full" type="text" name="name":class="{ 'border-danger': v$.$dirty && v$.data.$each.$response.$errors[0]?.required_quantity?.length }" placeholder="Insert Required Quantity"/>
                     
                     <div class="flex justify-between">
                       <template v-if="v$.$dirty && v$.data.$each.$response.$errors[0]?.required_quantity">
@@ -460,7 +460,7 @@ function SuccessPopUp() {
                     </div>
                   </FormLabel>
                   <div class="flex-1 w-full mt-3 xl:mt-0">
-                    <FormInput id="crud-form-3" v-model.trim="formState.data[0].available_quantity" class="w-full" type="text" name="name":class="{ 'border-danger': v$.$dirty && v$.data.$each.$response.$errors[0]?.available_quantity?.length }" placeholder="Insert Driver Available Quantity"/>
+                    <FormInput id="crud-form-3" v-model.trim="formState.data[0].available_quantity" class="w-full" type="text" name="name":class="{ 'border-danger': v$.$dirty && v$.data.$each.$response.$errors[0]?.available_quantity?.length }" placeholder="Insert Available Quantity"/>
                     
                     <div class="flex justify-between">
                       <template v-if="v$.$dirty && v$.data.$each.$response.$errors[0]?.available_quantity">
@@ -494,7 +494,7 @@ function SuccessPopUp() {
                     </div>
                   </FormLabel>
                   <div class="flex-1 w-full mt-3 xl:mt-0">
-                    <FormInput id="crud-form-3" v-model.trim="formState.data[0].remarks" class="w-full" type="text" name="name":class="{ 'border-danger': v$.$dirty && v$.data.$each.$response.$errors[0]?.remarks?.length }" placeholder="Insert Driver Remarks"/>
+                    <FormInput id="crud-form-3" v-model.trim="formState.data[0].remarks" class="w-full" type="text" name="name":class="{ 'border-danger': v$.$dirty && v$.data.$each.$response.$errors[0]?.remarks?.length }" placeholder="Insert Remarks"/>
                     
                     <div class="flex justify-between">
                       <template v-if="v$.$dirty && v$.data.$each.$response.$errors[0]?.remarks">
@@ -528,7 +528,7 @@ function SuccessPopUp() {
                     </div>
                   </FormLabel>
                   <div class="flex-1 w-full mt-3 xl:mt-0">
-                    <FormInput id="crud-form-3" v-model.trim="formState.reference" class="w-full" type="text" name="name":class="{ 'border-danger': v$.reference.$error,}" placeholder="Insert Driver Reference"/>
+                    <FormInput id="crud-form-3" v-model.trim="formState.reference" class="w-full" type="text" name="name":class="{ 'border-danger': v$.reference.$error,}" placeholder="Insert Reference"/>
                     
                     <div class="flex justify-between">
                       <template v-if="v$.reference.$error">
