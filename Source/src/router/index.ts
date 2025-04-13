@@ -646,6 +646,36 @@ const router = createRouter({
             name: "hse-first-aid-list",
             component: () => import("../pages/HseFirstAidChecklistList.vue"),
           },
+          {
+            path: "hse-emergency-drill",
+            name: "hse-emergency-drill",
+            component: () => import("../pages/HseEmergencyDrill.vue"),
+          },
+          {
+            path: "hse-emergency-drill-blueprint",
+            name: "hse-emergency-drill-blueprint",
+            component: () => import("../pages/HseEmergencyDrillBluePrint.vue"),
+          },
+          {
+            path: "hse-emergency-drill-blueprint-create",
+            name: "hse-emergency-drill-blueprint-create",
+            component: () => import("../pages/HseEmergencyDrillBluePrintCreate.vue"),
+          },
+          {
+            path: "hse-emergency-drill-blueprint-edit/:id",
+            name: "hse-emergency-drill-blueprint-edit",
+            component: () => import("../pages/HseEmergencyDrillBluePrintCreate.vue"),
+          },
+          {
+            path: "hse-emergency-drill-blueprint-list",
+            name: "hse-emergency-drill-blueprint-list",
+            component: () => import("../pages/HseEmergencyDrillBluePrintList.vue"),
+          },
+          {
+            path: "hse-emergency-drill-report-doc",
+            name: "hse-emergency-drill-report-doc",
+            component: () => import("../pages/HseEmergencyDrillReportDoc.vue"),
+          },
 
           // SafetyCommittee
           {
@@ -672,6 +702,11 @@ const router = createRouter({
             path: "hse-safety-committee-list",
             name: "hse-safety-committee-list",
             component: () => import("../pages/HseSafetyCommitteeList.vue"),
+          },
+          {
+            path: "hse-safety-committee-meeting-minutes-doc",
+            name: "hse-safety-committee-meeting-minutes-doc",
+            component: () => import("../pages/HseSafetyCommitteeMeetingMinutesDoc.vue"),
           },
           // SafetyPowerTools
           {
