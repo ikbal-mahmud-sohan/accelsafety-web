@@ -82,7 +82,8 @@ const submitForm = async () => {
 };
 const updateForm = async () => {
   cvUpdateformData.descriptions = updateeditorData.value;
-  cvUpdateformData.updated_by = "2";
+  // cvUpdateformData.updated_by = "2";
+  cvUpdateformData.updated_by = "1";
 
   validate2.value.$touch();
   console.log(validate2.value)
@@ -108,7 +109,8 @@ const updateForm = async () => {
   }
 };
 const ApprovedCv = async () => {
-  cvUpdateformData.approved_by = "2";
+  // cvUpdateformData.approved_by = "2";
+  cvUpdateformData.approved_by = "1";
   try {
     let url = config.baseURL + '/api/v1/hse-drill-report-doc/update/' + cvformData.id;
     const response = await axios.post(url, cvUpdateformData, {
