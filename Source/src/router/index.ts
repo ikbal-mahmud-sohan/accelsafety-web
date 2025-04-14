@@ -502,7 +502,12 @@ const router = createRouter({
           {
             path: "hse-fire-extinguisher-tej-list",
             name: "hse-fire-extinguisher-tej-list",
-            component: () => import("../pages/HseFireExtinguisherChecklistTONList.vue"),
+            component: () => import("../pages/HseFireExtinguisherChecklistTEJList.vue"),
+          },
+          {
+            path: "hse-fire-extinguisher-tej-full/:id",
+            name: "hse-fire-extinguisher-tej-full",
+            component: () => import("../pages/HseFireExtinguisherTEJFull.vue"),
           },
           {
             path: "hse-fire-extinguisher-ton-create",
