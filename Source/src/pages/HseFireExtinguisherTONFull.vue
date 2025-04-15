@@ -156,7 +156,10 @@ const submitForm = async () => {
 // Fetch data from the API and update the state
 const fetchData = async () => {
   try {
-   let  url = config.baseURL+'/api/v1/fire-extinguisher-ton-checklist';
+
+    let id = route.params.id;
+
+   let  url = `${config.baseURL}/api/v1/fire-extinguisher-ton-checklist?fire_extinguisher_ton_id=${id}`;
     const response = await axios.get(url,{
                 headers: {
                     'Authorization': state.token,
