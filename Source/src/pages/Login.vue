@@ -11,7 +11,8 @@ import useVuelidate from '@vuelidate/core';
 import config from "@/config";
 import axios, { AxiosError } from 'axios';
 import useauth from './../auth/useAuth'
-import {setToken} from './../auth/setToken'
+import {setToken} from './../auth/setToken';
+import {setUserId} from './../auth/setUserID';
 
 axios.defaults.withCredentials = true
 
@@ -58,6 +59,8 @@ const submitForm = async () => {
                 if (response.data !== undefined) {
                     console.log("Token received:", response.data.token);
                     setToken(response.data.token);
+                    console.log("Id received:", response.data.id);
+                    setUserId(response.data.id);
                     router.push({ name: 'dashboard-overview-1' });
                 }
         

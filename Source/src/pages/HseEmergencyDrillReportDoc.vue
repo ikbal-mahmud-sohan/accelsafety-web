@@ -16,7 +16,8 @@ import { useRouter } from 'vue-router';
 import Toastify from 'toastify-js';
 import { ClassicEditor } from "@/components/Base/Ckeditor";
 import Alert from "@/components/Base/Alert";
-import { getToken } from './../auth/setToken'
+import { getToken } from './../auth/setToken';
+import { getUserIdString } from './../auth/setUserID';
 
 
 
@@ -56,7 +57,8 @@ const validate2 = useVuelidate(rules, toRefs(cvUpdateformData));
 
 const submitForm = async () => {
   cvformData.descriptions = editorData.value;
-  cvformData.created_by = "1";
+  // cvformData.created_by = "1";
+  cvformData.created_by = state.uID;
   validate.value.$touch();
   console.log(validate.value)
   if (validate.value.$invalid) {
@@ -83,7 +85,7 @@ const submitForm = async () => {
 const updateForm = async () => {
   cvUpdateformData.descriptions = updateeditorData.value;
   // cvUpdateformData.updated_by = "2";
-  cvUpdateformData.updated_by = "1";
+  cvUpdateformData.updated_by = state.uID;
 
   validate2.value.$touch();
   console.log(validate2.value)
@@ -110,7 +112,7 @@ const updateForm = async () => {
 };
 const ApprovedCv = async () => {
   // cvUpdateformData.approved_by = "2";
-  cvUpdateformData.approved_by = "1";
+  cvUpdateformData.approved_by = state.uID;
   try {
     let url = config.baseURL + '/api/v1/hse-drill-report-doc/update/' + cvformData.id;
     const response = await axios.post(url, cvUpdateformData, {
@@ -138,6 +140,7 @@ const state = reactive({
   UpdateControlVisitorsHSE01: false,
   viewData: [] as Array<any>,
   token: getToken(),
+  uID: getUserIdString(),
 
 
 });

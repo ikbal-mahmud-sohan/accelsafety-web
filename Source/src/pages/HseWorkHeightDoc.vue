@@ -16,7 +16,8 @@ import { useRouter } from 'vue-router';
 import Toastify from 'toastify-js';
 import { ClassicEditor } from "@/components/Base/Ckeditor";
 import Alert from "@/components/Base/Alert";
-import { getToken } from './../auth/setToken'
+import { getToken } from './../auth/setToken';
+import { getUserIdString } from './../auth/setUserID';
 
 
 
@@ -56,7 +57,8 @@ const validate2 = useVuelidate(rules, toRefs(cvUpdateformData));
 
 const submitForm = async () => {
   cvformData.descriptions = editorData.value;
-  cvformData.created_by = "1";
+  // cvformData.created_by = "1";
+  cvformData.created_by = state.uID;
     validate.value.$touch();
     console.log(validate.value)
     if (validate.value.$invalid) {
@@ -82,7 +84,8 @@ const submitForm = async () => {
 };
 const updateForm = async () => {
   cvUpdateformData.descriptions = updateeditorData.value;
-  cvUpdateformData.updated_by = "2";
+  // cvUpdateformData.updated_by = "2";
+  cvUpdateformData.updated_by = state.uID;
 
     validate2.value.$touch();
     console.log(validate2.value)
@@ -108,7 +111,8 @@ const updateForm = async () => {
     }
 };
 const ApprovedCv = async () => {
-    cvUpdateformData.approved_by = "2";
+    // cvUpdateformData.approved_by = "2";
+    cvUpdateformData.approved_by = state.uID;
   try {
                 let  url = config.baseURL+'/api/v1/hse-work-at-height-status/'+cvformData.id;
                 const response = await axios.post(url, cvUpdateformData, {
@@ -136,30 +140,31 @@ const state = reactive({
   UpdateControlVisitorsHSE01: false,
   viewData: [] as Array<any>,
   token: getToken(),
+  uID: getUserIdString(),
 
 });
 
 function CloseControlVisitorsHSE01 (){
-  state.ControlVisitorsHSE01 = false;
-  state.ControlVisitors = false;
-  state.AddControlVisitorsHSE01 = false;
-  state.UpdateControlVisitorsHSE01 = false;
+  // state.ControlVisitorsHSE01 = false;
+  // state.ControlVisitors = false;
+  // state.AddControlVisitorsHSE01 = false;
+  // state.UpdateControlVisitorsHSE01 = false;
 
 
 }
-function AddControlVisitorsHSE01 (){
-  state.AddControlVisitorsHSE01 = true;
-}
+// function AddControlVisitorsHSE01 (){
+//   state.AddControlVisitorsHSE01 = true;
+// }
 
-function BackControlVisitorsHSE01 (){
-  state.AddControlVisitorsHSE01 = false;
-  state.UpdateControlVisitorsHSE01 = false;
-}
+// function BackControlVisitorsHSE01 (){
+//   state.AddControlVisitorsHSE01 = false;
+//   state.UpdateControlVisitorsHSE01 = false;
+// }
 
-async function UpdateControlVisitorsHSE01 (ID:any){
-  state.UpdateControlVisitorsHSE01 = true;
+// async function UpdateControlVisitorsHSE01 (ID:any){
+//   state.UpdateControlVisitorsHSE01 = true;
 
-}
+// }
 const fetchDropDownData = async () => {
   try {
    let  url = config.baseURL+'/api/v1/hse-work-at-height';
@@ -169,6 +174,15 @@ const fetchDropDownData = async () => {
                 },
                 });
     state.viewData = response.data.data;
+
+    // CHANGE: Set the default state based on viewData.length
+    if (state.viewData.length === 0) {
+      state.AddControlVisitorsHSE01 = true; // Show "Insert Safety Power" section
+      state.UpdateControlVisitorsHSE01 = false;
+    } else {
+      state.AddControlVisitorsHSE01 = false;
+      state.UpdateControlVisitorsHSE01 = true; // Show "Update Safety Power" section
+    }
     cvformData.id = response.data.data.map((item: any) => item.id).join(',');
     fetchcvUpdateData();
   } catch (error) {
@@ -198,10 +212,10 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="grid grid-cols-12 gap-6 mt-8 relative">
+  <div class="w-full">
     
-    <div class="absolute top-0 left-0 bg-white z-50 shadow-md rounded-md p-4 w-full">
-      <div class="pt-4 px-4 flex justify-start items-center">
+    <div class="bg-white z-50 shadow-md rounded-md p-4 w-full">
+      <div class="pt-4 px-4 flex justify-end items-center">
         <router-link :to="{ name: 'hse-work-height' }">
             <Button variant="primary" class="w-32 mb-2 mr-2">
               <Lucide icon="ChevronsLeftIcon" class="w-4 h-4 mr-2" /> Back
@@ -212,7 +226,7 @@ onMounted(() => {
       <div  class="py-2 px-2 flex justify-between items-center">
           <div class="flex w-full justify-between items-center">
               <div class="flex">
-                <Button v-if="!state.AddControlVisitorsHSE01 && state.viewData.length == 0" variant="primary" class="mr-2 shadow-md" @click="AddControlVisitorsHSE01">
+                <!-- <Button v-if="!state.AddControlVisitorsHSE01 && state.viewData.length == 0" variant="primary" class="mr-2 shadow-md" @click="AddControlVisitorsHSE01">
               Add Work at Height
             </Button>
             <div v-for="( data , index) in state.viewData">
@@ -241,7 +255,7 @@ onMounted(() => {
                   <Lucide icon="FileText" class="w-4 h-4 mr-2" /> Export to PDF
                 </Menu.Item>
               </Menu.Items>
-            </Menu>
+            </Menu> -->
               </div>
             <div v-if="state.viewData.length != 0" class="py-4 px-4">
             <Button variant="primary" class="w-32" @click="ApprovedCv">
@@ -251,7 +265,7 @@ onMounted(() => {
           </div>
            
       </div>
-      <div class="p-4" v-if="!state.AddControlVisitorsHSE01 && !state.UpdateControlVisitorsHSE01">
+      <!-- <div class="p-4" v-if="!state.AddControlVisitorsHSE01 && !state.UpdateControlVisitorsHSE01"> -->
       
         <div v-if="state.viewData.length != 0"  v-for="( data , index) in state.viewData" :key="index">
           <div  class="p-4" v-html="data.descriptions"></div>
@@ -272,9 +286,9 @@ onMounted(() => {
               </ul>
             </div>
         </div>
-        <div v-else class=" text-xl text-center p-4">No Data</div>
+        <!-- <div v-else class=" text-xl text-center p-4">No Data</div> -->
         
-      </div>
+      
       <div class="p-4" v-if="state.AddControlVisitorsHSE01">
         <div class="p-5 mt-5 intro-y box">
         <div class="py-4"><h2 class="mr-auto text-xl text-center font-medium uppercase">Insert Work at Height</h2></div>
