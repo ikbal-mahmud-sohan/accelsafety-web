@@ -16,7 +16,8 @@ import { useRouter } from 'vue-router';
 import Toastify from 'toastify-js';
 import { ClassicEditor } from "@/components/Base/Ckeditor";
 import Alert from "@/components/Base/Alert";
-import { getToken } from './../auth/setToken'
+import { getToken } from './../auth/setToken';
+import { getUserIdString } from './../auth/setUserID';
 
 
 
@@ -33,7 +34,6 @@ const editorConfig = {
     ],
   },
 };
-
 const editorData = ref("");
 const updateeditorData = ref("");
 const cvformData = reactive({
@@ -56,14 +56,16 @@ const validate2 = useVuelidate(rules, toRefs(cvUpdateformData));
 
 const submitForm = async () => {
   cvformData.descriptions = editorData.value;
-  cvformData.created_by = "1";
+  // cvformData.created_by = "1";
+  cvformData.created_by = state.uID;
   validate.value.$touch();
   console.log(validate.value)
   if (validate.value.$invalid) {
   } else {
 
     try {
-      let url = config.baseURL + '/api/v1/hse-vehicle-safety-doc';
+      // let url = config.baseURL + '/api/v1/hse-vehicle-safety-doc';
+      let url = config.baseURL + '/api/v1/hse-visitors-entry-sop-doc';
       const response = await axios.post(url, cvformData, {
         headers: {
           'Content-Type': 'multipart/form-data',
@@ -82,7 +84,8 @@ const submitForm = async () => {
 };
 const updateForm = async () => {
   cvUpdateformData.descriptions = updateeditorData.value;
-  cvUpdateformData.updated_by = "2";
+  // cvUpdateformData.updated_by = "2";
+  cvUpdateformData.updated_by = state.uID;
 
   validate2.value.$touch();
   console.log(validate2.value)
@@ -90,7 +93,8 @@ const updateForm = async () => {
   } else {
 
     try {
-      let url = config.baseURL + '/api/v1/hse-vehicle-safety-doc/' + cvformData.id;
+      // let url = config.baseURL + '/api/v1/hse-vehicle-safety-doc/' + cvformData.id;
+      let url = config.baseURL + '/api/v1/hse-visitors-entry-sop-doc/update/' + cvformData.id;
       const response = await axios.post(url, cvUpdateformData, {
         headers: {
           'Content-Type': 'multipart/form-data',
@@ -108,9 +112,10 @@ const updateForm = async () => {
   }
 };
 const ApprovedCv = async () => {
-  cvUpdateformData.approved_by = "2";
+  // cvUpdateformData.approved_by = "2";
+  cvUpdateformData.approved_by = state.uID;
   try {
-    let url = config.baseURL + '/api/v1/hse-vehicle-safety-status/' + cvformData.id;
+    let url = config.baseURL + '/api/v1/hse-visitors-entry-sop-doc/update/' + cvformData.id;
     const response = await axios.post(url, cvUpdateformData, {
       headers: {
         'Content-Type': 'multipart/form-data',
@@ -136,6 +141,7 @@ const state = reactive({
   UpdateControlVisitorsHSE01: false,
   viewData: [] as Array<any>,
   token: getToken(),
+  uID: getUserIdString(),
 
 });
 
@@ -162,7 +168,8 @@ function CloseControlVisitorsHSE01() {
 // }
 const fetchDropDownData = async () => {
   try {
-    let url = config.baseURL + '/api/v1/hse-vehicle-safety-doc';
+    // let url = config.baseURL + '/api/v1/hse-vehicle-safety-doc';
+    let url = config.baseURL + '/api/v1/hse-visitors-entry-sop-doc';
     const response = await axios.get(url, {
       headers: {
         'Authorization': state.token,
@@ -186,7 +193,8 @@ const fetchDropDownData = async () => {
 };
 const fetchcvUpdateData = async () => {
   try {
-    let url = config.baseURL + '/api/v1/hse-vehicle-safety-doc/' + cvformData.id;
+    // let url = config.baseURL + '/api/v1/hse-vehicle-safety-doc/' + cvformData.id;
+    let url = config.baseURL + '/api/v1/hse-visitors-entry-sop-doc/show/' + cvformData.id;
     const response = await axios.get(url, {
       headers: {
         'Authorization': state.token,
@@ -208,6 +216,7 @@ onMounted(() => {
 
 <template>
   <div class="w-full">
+
     <div class=" bg-white z-50 shadow-md rounded-md p-4 w-full">
       <div class="pt-4 px-4 flex justify-end items-center">
         <router-link :to="{ name: 'hse-control-visitors' }">
@@ -217,7 +226,48 @@ onMounted(() => {
         </router-link>
 
       </div>
-
+      <div  class="py-2 px-2 flex justify-between items-center">
+          <div class="flex w-full justify-between items-center">
+              <div class="flex">
+                <!-- <Button v-if="!state.AddControlVisitorsHSE01 && state.viewData.length == 0" variant="primary" class="mr-2 shadow-md" @click="AddControlVisitorsHSE01">
+              Add Safety Power
+            </Button>
+            <div v-for="( data , index) in state.viewData">
+              <Button v-if="state.viewData.length != 0 && !state.UpdateControlVisitorsHSE01" variant="primary" class="mr-2 shadow-md" @click="UpdateControlVisitorsHSE01(data.id)">
+              Update Safety Power
+            </Button>
+            </div>
+            <Button v-if="state.AddControlVisitorsHSE01 || state.UpdateControlVisitorsHSE01" variant="primary" class="mr-2 shadow-md" @click="BackControlVisitorsHSE01">
+              <Lucide icon="ChevronsLeft" class="block mx-auto" />
+              Back
+            </Button>
+              <Menu v-if="!state.AddControlVisitorsHSE01">
+              <Menu.Button :as="Button" class="px-2 !box">
+                <span class="flex items-center justify-center w-5 h-5">
+                  <Lucide icon="Plus" class="w-4 h-4" />
+                </span>
+              </Menu.Button>
+              <Menu.Items class="w-40">
+                <Menu.Item>
+                  <Lucide icon="Printer" class="w-4 h-4 mr-2" /> Print
+                </Menu.Item>
+                <Menu.Item>
+                  <Lucide icon="FileText" class="w-4 h-4 mr-2" /> Export to Excel
+                </Menu.Item>
+                <Menu.Item>
+                  <Lucide icon="FileText" class="w-4 h-4 mr-2" /> Export to PDF
+                </Menu.Item>
+              </Menu.Items>
+            </Menu> -->
+              </div>
+            <div v-if="state.viewData.length != 0" class="py-4 px-4">
+            <Button variant="primary" class="w-32" @click="ApprovedCv">
+                <Lucide icon="Check" class="w-4 h-4 mr-2" /> Approved
+            </Button>
+          </div>
+          </div>
+           
+      </div>
       <!-- <div class="p-4" v-if="!state.AddControlVisitorsHSE01 && !state.UpdateControlVisitorsHSE01"> -->
       <div v-if="state.viewData.length != 0" v-for="(data, index) in state.viewData" :key="index">
         <div class="p-4" v-html="data.descriptions"></div>
@@ -238,20 +288,18 @@ onMounted(() => {
           </ul>
         </div>
       </div>
+      <!-- <div v-else class=" text-xl text-center p-4">No Data</div> -->
+
       <div class="p-4" v-if="state.AddControlVisitorsHSE01">
         <div class="p-5 mt-5 intro-y box">
-          <div class="py-4">
-            <h2 class="mr-auto text-xl text-center font-medium uppercase">Insert Control of Visitors</h2>
-          </div>
-          <Alert variant="primary" dismissible class="col-span-11 mb-6 intro-y box dark:border-darkmode-600"
-            v-slot="{ dismiss }">
+          <div class="py-4"><h2 class="mr-auto text-xl text-center font-medium uppercase">Insert Control of Visitors</h2></div>
+          <Alert variant="primary" dismissible class="col-span-11 mb-6 intro-y box dark:border-darkmode-600" v-slot="{ dismiss }">
             <div class="flex items-center">
               <span>
                 <Lucide icon="Info" class="w-4 h-4 mr-2" />
               </span>
               <span>
-                Ensure accurate online Control of Visitors with correct date formats and file uploads in the specified
-                format and size.
+                Ensure accurate online Control of Visitors with correct date formats and file uploads in the specified format and size.
               </span>
               <Alert.DismissButton class="text-white" @click="dismiss" aria-label="Close">
                 <Lucide icon="X" class="w-4 h-4" />
@@ -259,8 +307,7 @@ onMounted(() => {
             </div>
           </Alert>
           <div class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400">
-            <div
-              class="flex items-center pb-5 text-base font-medium border-b border-slate-200/60 dark:border-darkmode-400">
+            <div class="flex items-center pb-5 text-base font-medium border-b border-slate-200/60 dark:border-darkmode-400">
               <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" />Descriptions
             </div>
             <div class="mt-5">
@@ -280,8 +327,7 @@ onMounted(() => {
                   </div>
                 </FormLabel> -->
                 <div class="flex-1 w-full mt-3 xl:mt-0">
-                  <ClassicEditor v-model="editorData" :class="{ 'border-danger': validate.descriptions.$error, }"
-                    :config="editorConfig" />
+                  <ClassicEditor v-model="editorData" :class="{ 'border-danger': validate.descriptions.$error, }" :config="editorConfig" />
 
                   <div class="flex justify-between">
                     <template v-if="validate.descriptions.$error">

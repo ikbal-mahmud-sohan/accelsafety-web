@@ -16,7 +16,8 @@ import { useRouter } from 'vue-router';
 import Toastify from 'toastify-js';
 import { ClassicEditor } from "@/components/Base/Ckeditor";
 import Alert from "@/components/Base/Alert";
-import { getToken } from './../auth/setToken'
+import { getToken } from './../auth/setToken';
+import { getUserIdString } from './../auth/setUserID';
 
 
 
@@ -55,7 +56,8 @@ const validate2 = useVuelidate(rules, toRefs(cvUpdateformData));
 
 const submitForm = async () => {
   cvformData.descriptions = editorData.value;
-  cvformData.created_by = "1";
+  // cvformData.created_by = "1";
+  cvformData.created_by = state.uID;
     validate.value.$touch();
     console.log(validate.value)
     if (validate.value.$invalid) {
@@ -63,6 +65,7 @@ const submitForm = async () => {
 
             try {
                 // let  url = config.baseURL+'/api/v1/hse-safety-power-tools';
+                let  url = config.baseURL+'/api/v1/hse-safety-committee-sop-doc';
                 const response = await axios.post(url, cvformData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
@@ -81,7 +84,8 @@ const submitForm = async () => {
 };
 const updateForm = async () => {
   cvUpdateformData.descriptions = updateeditorData.value;
-  cvUpdateformData.updated_by = "2";
+  // cvUpdateformData.updated_by = "2";
+  cvUpdateformData.updated_by = state.uID;
 
     validate2.value.$touch();
     console.log(validate2.value)
@@ -90,6 +94,7 @@ const updateForm = async () => {
 
             try {
                 // let  url = config.baseURL+'/api/v1/hse-safety-power-tools/'+cvformData.id;
+                let  url = config.baseURL+'/api/v1/hse-safety-committee-sop-doc/update/'+cvformData.id;
                 const response = await axios.post(url, cvUpdateformData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
@@ -107,9 +112,10 @@ const updateForm = async () => {
     }
 };
 const ApprovedCv = async () => {
-    cvUpdateformData.approved_by = "2";
+    // cvUpdateformData.approved_by = "2";
+    cvUpdateformData.approved_by = state.uID;
   try {
-                let  url = config.baseURL+'/api/v1/hse-vehicle-safety-status/'+cvformData.id;
+                let  url = config.baseURL+'/api/v1/hse-safety-committee-sop-doc/update/'+cvformData.id;
                 const response = await axios.post(url, cvUpdateformData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
@@ -135,6 +141,7 @@ const state = reactive({
   UpdateControlVisitorsHSE01: false,
   viewData: [] as Array<any>,
   token: getToken(),
+  uID: getUserIdString(),
 
 });
 
@@ -162,6 +169,7 @@ function CloseControlVisitorsHSE01 (){
 const fetchDropDownData = async () => {
   try {
   //  let  url = config.baseURL+'/api/v1/hse-safety-power-tools';
+   let  url = config.baseURL+'/api/v1/hse-safety-committee-sop-doc';
     const response = await axios.get(url,{
                 headers: {
                     'Authorization': state.token,
@@ -186,6 +194,7 @@ const fetchDropDownData = async () => {
 const fetchcvUpdateData = async () => {
   try {
   //  let  url = config.baseURL+'/api/v1/hse-safety-power-tools/'+cvformData.id;
+   let  url = config.baseURL+'/api/v1/hse-safety-committee-sop-doc/show/'+cvformData.id;
     const response = await axios.get(url,{
                 headers: {
                     'Authorization': state.token,
@@ -217,10 +226,10 @@ onMounted(() => {
         </router-link>
         
       </div>
-      <!-- <div  class="py-2 px-2 flex justify-between items-center">
+      <div  class="py-2 px-2 flex justify-between items-center">
           <div class="flex w-full justify-between items-center">
               <div class="flex">
-                <Button v-if="!state.AddControlVisitorsHSE01 && state.viewData.length == 0" variant="primary" class="mr-2 shadow-md" @click="AddControlVisitorsHSE01">
+                <!-- <Button v-if="!state.AddControlVisitorsHSE01 && state.viewData.length == 0" variant="primary" class="mr-2 shadow-md" @click="AddControlVisitorsHSE01">
               Add Safety Power
             </Button>
             <div v-for="( data , index) in state.viewData">
@@ -249,7 +258,7 @@ onMounted(() => {
                   <Lucide icon="FileText" class="w-4 h-4 mr-2" /> Export to PDF
                 </Menu.Item>
               </Menu.Items>
-            </Menu>
+            </Menu> -->
               </div>
             <div v-if="state.viewData.length != 0" class="py-4 px-4">
             <Button variant="primary" class="w-32" @click="ApprovedCv">
@@ -258,7 +267,7 @@ onMounted(() => {
           </div>
           </div>
            
-      </div> -->
+      </div>
       <!-- <div class="p-4" v-if="!state.AddControlVisitorsHSE01 && !state.UpdateControlVisitorsHSE01"> -->
       <div v-if="state.viewData.length != 0"  v-for="( data , index) in state.viewData" :key="index">
         <div  class="p-4" v-html="data.descriptions"></div>
