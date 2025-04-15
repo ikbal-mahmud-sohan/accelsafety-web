@@ -148,7 +148,10 @@ const submitForm = async () => {
 // Fetch data from the API and update the state
 const fetchData = async () => {
   try {
-   let  url = config.baseURL+'/api/v1/emergency-alarm-visible-checklist';
+
+    let id = route.params.id;
+
+   let  url = `${config.baseURL}/api/v1/emergency-alarm-visible-checklist?emergency_alarm_visible_id=${id}`;
     const response = await axios.get(url,{
                 headers: {
                     'Authorization': state.token,
