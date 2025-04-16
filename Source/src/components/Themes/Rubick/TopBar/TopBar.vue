@@ -12,7 +12,8 @@ import { required, minLength, email, integer, maxLength } from '@vuelidate/valid
 import useVuelidate from '@vuelidate/core';
 import config from "@/config";
 import axios, { AxiosError } from 'axios';
-import { getToken,removeToken } from './../../../../auth/setToken'
+import { getToken,removeToken } from './../../../../auth/setToken';
+import { getUserIdString, removeUserId } from './../../../../auth/setUserID';
 
 
 const searchDropdown = ref(false);
@@ -24,6 +25,7 @@ const hideSearchDropdown = () => {
 };
 const state = reactive({
     token: getToken(),  // Set initial token from localStorage if it exists
+    id: getUserIdString(),
 });
 const backendErrors = reactive<{
     message: string;
@@ -49,7 +51,8 @@ const submitForm = async () => {
                 },
                 });
                 if (response.data !== undefined) {
-                    removeToken()
+                    removeToken();
+                    removeUserId();
                     router.push({ name: 'home' });
                 }
         
