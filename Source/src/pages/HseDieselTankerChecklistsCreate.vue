@@ -612,7 +612,9 @@ onMounted(() => {
                     </FormInline>
                 </div>
               </div>
-              
+              <div class="w-full flex justify-center items-center">
+                <img class="w-1/2 " src="../assets/images/additional/42DieselTanker.png" alt="">
+              </div>
             </div>
             
           </div>
@@ -1356,9 +1358,7 @@ onMounted(() => {
               </div> 
                
           </div>
-          <div class="mt-5 flex justify-center items-center">
-            <img class="w-1/2 " src="../assets/images/additional/42DieselTanker.png" alt="">
-          </div>
+          
           <div class="mt-5">
             <div class="flex items-center pb-5 text-base font-medium border-b border-slate-200/60 dark:border-darkmode-400">
                 <Lucide icon="ChevronDown" class="w-4 h-4 mr-2" /> Verifier
